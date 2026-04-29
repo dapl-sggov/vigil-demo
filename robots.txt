@@ -1,0 +1,6 @@
+# VIGIL · demonstração interactiva (DAPL/SGGov)
+# Esta demonstração não deve ser indexada por motores de pesquisa
+# durante a fase de teste interno. Distribuição apenas por convite directo.
+
+User-agent: *
+Disallow: /

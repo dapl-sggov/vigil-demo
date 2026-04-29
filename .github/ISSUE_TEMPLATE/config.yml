@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contacto directo (DAPL)
+    url: mailto:bernardo.vidal@sggoverno.gov.pt
+    about: Para questões sensíveis ou que prefiras tratar fora do GitHub.

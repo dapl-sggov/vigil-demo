@@ -1,0 +1,57 @@
+name: 💡 Sugestão de melhoria
+description: Uma ideia para melhorar a plataforma
+title: "[Sugestão] "
+labels: ["sugestao"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pelo contributo. Quanto mais concreta a sugestão, mais útil será para a especificação técnica do concurso.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área da sugestão
+      options:
+        - Funcionalidade nova
+        - Alteração a funcionalidade existente
+        - Interface (UX/UI)
+        - Conteúdo (textos, dados, exemplos)
+        - Acessibilidade
+        - Integração com outros sistemas
+        - Outro
+    validations:
+      required: true
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo (se aplicável)
+      options:
+        - Transversal / múltiplos módulos
+        - LOGIN / HUB
+        - PROSPETIVA
+        - RADAR
+        - FICHA
+        - CONTENCIOSO
+        - GABINETES
+        - ALERTAS
+        - ADMIN
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição da sugestão
+      description: Que problema resolve? Quem beneficia? Como funciona?
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas
+      description: Há outras formas de atingir o mesmo objectivo?
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: Prioridade (na tua opinião)
+      options:
+        - Alta · bloqueante
+        - Média · útil
+        - Baixa · nice to have

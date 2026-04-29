@@ -1,0 +1,71 @@
+name: 🐛 Reportar bug
+description: Algo não funciona como esperado
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pelo reporte. Ajuda-nos a melhorar a demonstração descrevendo o problema com clareza.
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo afectado
+      options:
+        - LOGIN
+        - HUB
+        - PROSPETIVA
+        - RADAR
+        - FICHA
+        - CONTENCIOSO
+        - GABINETES
+        - ALERTAS
+        - ADMIN
+        - Vários / transversal
+    validations:
+      required: true
+  - type: dropdown
+    id: perfil
+    attributes:
+      label: Perfil utilizado
+      options:
+        - bvidal (Admin DAPL)
+        - dgdei (DGDEI)
+        - admin (SGGov)
+        - tecnico (Técnico)
+        - gabinete (Gabinete ministerial)
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      description: O que fizeste, em ordem, antes do erro acontecer
+      placeholder: |
+        1. Login com bvidal/bvidal
+        2. Abri PROSPETIVA
+        3. Cliquei em "Analisar com IA"
+        4. ...
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Comportamento esperado
+    validations:
+      required: true
+  - type: textarea
+    id: observado
+    attributes:
+      label: Comportamento observado
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser e versão
+      placeholder: Edge 120 / Chrome 121 / Firefox 122 / Safari 17
+  - type: textarea
+    id: extra
+    attributes:
+      label: Notas adicionais (capturas de ecrã, consola, etc.)

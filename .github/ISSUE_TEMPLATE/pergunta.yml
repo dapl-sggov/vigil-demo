@@ -1,0 +1,20 @@
+name: ❓ Pergunta
+description: Dúvida sobre o âmbito, conceitos ou funcionamento da demo
+title: "[Pergunta] "
+labels: ["pergunta"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Para questões institucionais sensíveis, prefere o contacto directo (bernardo.vidal@sggoverno.gov.pt).
+  - type: textarea
+    id: pergunta
+    attributes:
+      label: A tua pergunta
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto (opcional)
+      description: Por que estás a perguntar? Em que parte da demo?
