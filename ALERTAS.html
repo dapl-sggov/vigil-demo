@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · ALERTAS</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--blue-soft:#E5ECF3;--red:#D02117;--amber:#C08916;--amber-soft:#FDF4E3;--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;color:#fff;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+.hero{padding:1rem 0 1.4rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:760px;line-height:1.55;}
+
+/* === Escalation pipeline === */
+.escal{display:grid;grid-template-columns:repeat(5,1fr);gap:0.55rem;margin-bottom:1.5rem;padding:1rem 1.1rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.escal-stage{padding:0.65rem 0.7rem;background:var(--bg3);border-radius:6px;text-align:center;position:relative;}
+.escal-stage.active{background:var(--tint-amber);border:1px solid var(--amber);}
+.escal-t{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);font-weight:600;margin-bottom:0.3rem;}
+.escal-stage.active .escal-t{color:var(--amber);}
+.escal-nm{font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+.escal-sub{font-size:0.66rem;color:var(--ink-3);}
+
+/* Filter toolbar */
+.toolbar{display:flex;gap:0.5rem;align-items:center;margin-bottom:0.9rem;flex-wrap:wrap;padding:0.75rem 0.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.tool-search{flex:1;min-width:240px;}
+.inp{padding:0.5rem 0.75rem;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.82rem;color:var(--ink);background:var(--bg2);outline:none;width:100%;}
+.inp:focus{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-soft);}
+.tool-btn{padding:0.45rem 0.85rem;background:var(--bg3);border:1px solid transparent;border-radius:6px;font-family:inherit;font-size:0.78rem;color:var(--ink-2);cursor:pointer;transition:all 0.12s;}
+.tool-btn:hover{background:var(--bg4);}
+.tool-btn.cur{background:var(--amber);color:#fff;}
+.tool-meta{margin-left:auto;font-size:0.74rem;color:var(--ink-3);}
+
+/* Inbox */
+.inbox{display:flex;flex-direction:column;gap:0.5rem;}
+.alert{display:grid;grid-template-columns:auto 32px 1fr auto auto;gap:0.85rem;padding:0.85rem 1rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;align-items:center;cursor:pointer;transition:all 0.12s;}
+.alert:hover{border-color:var(--amber);background:var(--bg3);}
+.alert.unread{background:var(--amber-soft);border-left:3px solid var(--amber);}
+.alert.read{opacity:0.75;}
+
+.alert-dot{width:8px;height:8px;border-radius:50%;}
+.alert-dot.unread{background:var(--amber);}
+.alert-dot.read{background:var(--ink-5);}
+
+.alert-ic{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.alert-ic.red{background:var(--tint-red);color:var(--red);}
+.alert-ic.amber{background:var(--tint-amber);color:var(--amber);}
+.alert-ic.blue{background:var(--tint-blue);color:var(--blue);}
+.alert-ic.green{background:var(--tint-green);color:var(--green);}
+.alert-ic svg{width:16px;height:16px;}
+
+.alert-bd{min-width:0;}
+.alert-h{display:flex;gap:0.55rem;align-items:baseline;flex-wrap:wrap;margin-bottom:0.2rem;}
+.alert-tag{font-size:0.6rem;text-transform:uppercase;padding:0.1rem 0.4rem;border-radius:3px;font-weight:600;letter-spacing:0.04em;}
+.tag-T0{background:var(--tint-red);color:var(--red);}
+.tag-T3{background:var(--tint-amber);color:var(--amber);}
+.tag-T7{background:var(--tint-amber);color:var(--amber);}
+.tag-T14{background:var(--tint-blue);color:var(--blue);}
+.tag-T21{background:var(--bg4);color:var(--ink-2);}
+.alert-celex{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.alert-min{font-size:0.7rem;color:var(--ink-3);}
+.alert-ti{font-size:0.86rem;font-weight:500;color:var(--ink);line-height:1.3;}
+.alert-sub{font-size:0.72rem;color:var(--ink-3);margin-top:0.2rem;line-height:1.4;}
+
+.alert-time{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);text-align:right;}
+.alert-channel{display:flex;gap:0.25rem;}
+.channel-pill{font-size:0.6rem;padding:0.18rem 0.4rem;border-radius:3px;background:var(--bg3);color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:0.03em;}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.4rem;}
+.kpi{padding:0.95rem 1.05rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.kpi-lb{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.5rem;}
+.kpi-vl{font-size:1.55rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;}
+.kpi-vl.amb{color:var(--amber);}
+.kpi-vl.red{color:var(--red);}
+.kpi-vl.grn{color:var(--green);}
+.kpi-dt{font-size:0.7rem;color:var(--ink-3);margin-top:0.4rem;}
+
+/* Detail drawer */
+.detail{position:fixed;top:0;right:0;height:100vh;width:min(560px,90vw);background:var(--bg2);box-shadow:0 -4px 30px rgba(0,0,0,0.15);z-index:50;overflow-y:auto;transform:translateX(100%);transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);}
+.detail.on{transform:translateX(0);}
+.detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:40;opacity:0;pointer-events:none;transition:opacity 0.22s;}
+.detail-overlay.on{opacity:1;pointer-events:auto;}
+.detail-h{padding:1rem 1.4rem;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.detail-x{background:transparent;border:none;cursor:pointer;color:var(--ink-3);width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.detail-x:hover{background:var(--bg3);}
+.detail-x svg{width:18px;height:18px;}
+.detail-bd{padding:1.2rem 1.4rem;}
+.section-h{font-size:0.74rem;font-weight:700;color:var(--ink);margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:0.5rem;}
+.section-h::before{content:"";width:3px;height:14px;background:var(--amber);border-radius:2px;}
+.section-h:not(:first-child){margin-top:1.4rem;}
+
+.btn{padding:0.5rem 0.95rem;border-radius:7px;font-family:inherit;font-size:0.8rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.12s;}
+.btn-primary{background:var(--amber);color:#fff;border-color:var(--amber);}
+.btn-primary:hover{background:#A87714;}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn svg{width:13px;height:13px;}
+
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:toast-in 0.22s;}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr);}.escal{grid-template-columns:1fr;}.alert{grid-template-columns:auto 32px 1fr;}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7A6 6 0 0 0 4 7c0 6-3 7-3 7h18s-3-1-3-7"/><path d="M11 18a2 2 0 0 1-3 0"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · ALERTAS</div><div class="brand-sub">Central de notificações · escalonamento automático em 5 níveis</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eye">Transversal · escalonamento configurável</div>
+    <h1 class="hero-h1">12 alertas activos · 4 não lidos · 1 escalado para SGGov</h1>
+    <p class="hero-sub">Os alertas escalonam automaticamente em 5 níveis ao longo de 21 dias se não houver leitura ou acção. Cada nível notifica via e-mail institucional + Teams. KPI 8.1.f: <strong>92% lidos em &lt; 48h</strong>.</p>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="kpi-lb">Activos</div>
+      <div class="kpi-vl amb">12</div>
+      <div class="kpi-dt">4 não lidos · 8 em curso</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lb">Críticos · não lidos &gt;48h</div>
+      <div class="kpi-vl red">2</div>
+      <div class="kpi-dt">A escalar para próximo nível</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lb">Resolvidos esta semana</div>
+      <div class="kpi-vl grn">7</div>
+      <div class="kpi-dt">↑ 40% face à anterior</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lb">Taxa de leitura &lt;48h (KPI)</div>
+      <div class="kpi-vl grn">92%</div>
+      <div class="kpi-dt">Alvo CdE: ≥80%</div>
+    </div>
+  </div>
+
+  <!-- Escalation pipeline -->
+  <div>
+    <div class="section-h" style="margin-bottom:0.7rem">Pipeline de escalonamento</div>
+    <div class="escal">
+      <div class="escal-stage active"><div class="escal-t">T+0</div><div class="escal-nm">Técnico responsável</div><div class="escal-sub">e-mail + Teams · 4 alertas neste nível</div></div>
+      <div class="escal-stage active"><div class="escal-t">T+3d</div><div class="escal-nm">Chefe de divisão</div><div class="escal-sub">e-mail · 5 alertas</div></div>
+      <div class="escal-stage active"><div class="escal-t">T+7d</div><div class="escal-nm">Director-geral</div><div class="escal-sub">e-mail · 2 alertas</div></div>
+      <div class="escal-stage"><div class="escal-t">T+14d</div><div class="escal-nm">Gabinete ministerial</div><div class="escal-sub">e-mail + briefing PDF</div></div>
+      <div class="escal-stage active"><div class="escal-t">T+21d</div><div class="escal-nm">SGGov · Coordenação</div><div class="escal-sub">relatório semanal · 1 alerta</div></div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="tool-search"><input type="search" class="inp" id="search" placeholder="Pesquisar por título, processo, ministério…" oninput="render()"></div>
+    <button class="tool-btn cur" data-filt="all" onclick="setFilter('all')">Todos</button>
+    <button class="tool-btn" data-filt="unread" onclick="setFilter('unread')">Não lidos</button>
+    <button class="tool-btn" data-filt="critical" onclick="setFilter('critical')">Críticos</button>
+    <button class="tool-btn" data-filt="escalated" onclick="setFilter('escalated')">Escalados</button>
+    <span class="tool-meta" id="tool-meta">— alertas</span>
+  </div>
+
+  <!-- Inbox -->
+  <div class="inbox" id="inbox"></div>
+
+</div>
+
+<!-- DETAIL -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
+<div class="detail" id="detail"></div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+const ALERTS = [
+  { id:'A001', icon:'red', tag:'T+21', tagCls:'tag-T21', read:false, escalated:true, critical:true,
+    title:'C-217/24 · sanção compulsória acumula €2,35M',
+    sub:'€41 250/dia em vigor desde 5-Mar · MAE/ICNF a coordenar acções de protecção · escalado para SGGov · Coordenação',
+    celex:'31992L0043', ministerio:'MAE', time:'há 23 dias', channels:['email','teams','relatorio'],
+    body:'O acórdão TJUE no caso C-217/24 (Habitats / Rede Natura 2000) impôs sanção fixa de €10M e sanção compulsória de €41 250/dia. A 28-04-2026 o total acumulado é €12,77M. ICNF está a executar plano de classificação dos 55 sítios em falta · próxima revisão a 15-05-2026.',
+  },
+  { id:'A002', icon:'red', tag:'T+0', tagCls:'tag-T0', read:false, escalated:false, critical:true,
+    title:'NIS2 · resposta à notificação formal · prazo amanhã',
+    sub:'IP/24/1182 · DGDEI tem 24h para submeter resposta · projecto-Lei pronto pela DAPL',
+    celex:'32022L2555', ministerio:'MAE/CNCS', time:'há 47 min', channels:['email','teams'],
+    body:'Procedimento de infracção IP/24/1182 aberto em 15-11-2024 por incumprimento da obrigação de transposição da NIS2. Prazo de resposta: 29-04-2026. O projecto de Lei está pronto · falta envio formal pela DGDEI à CE.',
+  },
+  { id:'A003', icon:'amber', tag:'T+3', tagCls:'tag-T3', read:false, escalated:false, critical:false,
+    title:'CSDD · marco RSE a 15-05-2026',
+    sub:'Reunião do Secretariado Executivo · MECT submete anteprojecto · 17 dias',
+    celex:'32024L1203', ministerio:'MECT', time:'há 2 dias', channels:['email'],
+    body:'O marco 3 da Ficha CSDD (P008) está agendado para 15-05-2026. Anteprojeto pronto e submetido pelo MECT a 28-04-2026. Próximo passo: aprovação em RSE.',
+  },
+  { id:'A004', icon:'amber', tag:'T+7', tagCls:'tag-T7', read:false, escalated:true, critical:false,
+    title:'EPBD · prazo de transposição em 31 dias',
+    sub:'Anteprojecto em concertação · MAE+MIH · CIAE crítica',
+    celex:'32024L1275', ministerio:'MAE+MIH', time:'há 7 dias', channels:['email','teams'],
+    body:'A Diretiva (UE) 2024/1275 (EPBD) tem prazo de transposição em 29-05-2026. Anteprojecto está em concertação interministerial · próxima reunião CIAE a 02-05-2026.',
+  },
+  { id:'A005', icon:'green', tag:'T+0', tagCls:'tag-T0', read:true, escalated:false, critical:false,
+    title:'Pipeline IA · 8 propostas analisadas pelo crawler',
+    sub:'Ciclo 2026/W17 · 3 escaladas para validação DAPL',
+    celex:'crawler', ministerio:'DAPL', time:'há 4h', channels:['email'],
+    body:'Crawler PROSPETIVA executou hoje (quarta-feira 13:00). Analisou 8 propostas via Sonnet · 3 com confiança alta foram escaladas para validação DAPL.',
+  },
+  { id:'A006', icon:'amber', tag:'T+0', tagCls:'tag-T0', read:true, escalated:false, critical:false,
+    title:'Qualidade do Ar · parecer fundamentado emitido',
+    sub:'INFR/24/0891 · APA a implementar planos · Lisboa+Porto',
+    celex:'32024L0884', ministerio:'MAE/APA', time:'há 14 dias', channels:['email','teams'],
+    body:'CE emitiu parecer fundamentado para o procedimento INFR/24/0891 (qualidade do ar PM2.5/NO₂). Lisboa e Porto excedem limites. APA a implementar planos · MAE coordena resposta.',
+  },
+  { id:'A007', icon:'blue', tag:'T+3', tagCls:'tag-T3', read:true, escalated:false, critical:false,
+    title:'Ficha NIS2 · marco "envio PCM" pendente',
+    sub:'CNCS submeteu anteprojecto · DAPL revê',
+    celex:'32022L2555', ministerio:'MAE/CNCS', time:'há 3 dias', channels:['email'],
+    body:'Marco 2 da Ficha NIS2 (envio PCM) está pendente. CNCS submeteu o anteprojecto em 25-04. DAPL a fazer revisão jurídica.',
+  },
+  { id:'A008', icon:'green', tag:'T+0', tagCls:'tag-T0', read:true, escalated:false, critical:false,
+    title:'AML6 · diálogo informal CE encerrado',
+    sub:'Sem escalação · Lei 83/2017 alterada parcialmente',
+    celex:'32018L1673', ministerio:'MF', time:'há 5 dias', channels:['email'],
+    body:'O diálogo informal sobre transposição AML6 foi encerrado. Lei 83/2017 alterada parcialmente. CE confirma sem escalação para procedimento formal.',
+  },
+  { id:'A009', icon:'amber', tag:'T+14', tagCls:'tag-T14', read:false, escalated:true, critical:false,
+    title:'Briefing semanal · 5 processos com semáforo vermelho',
+    sub:'Para Carolina Goes (SGGov · Coordenação) · semana 17',
+    celex:'agregado', ministerio:'SGGov', time:'há 6 dias', channels:['email','relatorio'],
+    body:'Relatório semanal automatizado. 5 ministérios mantêm semáforo vermelho: MF (5 críticos), MAE (6 críticos), MECT (2), MTSSS (1), MIH (1). Detalhe no GABINETES.',
+  },
+  { id:'A010', icon:'red', tag:'T+0', tagCls:'tag-T0', read:true, escalated:false, critical:true,
+    title:'Análise IA · AI Act · pendente validação DAPL',
+    sub:'Sonnet gerou rascunho · taxa de confiança 76%',
+    celex:'32024R1689', ministerio:'DAPL', time:'há 8 dias', channels:['email'],
+    body:'Análise PROSPETIVA do AI Act (Reg. (UE) 2024/1689) gerada pelo Sonnet com confiança 76%. Identificou 4 diplomas afectados e 2 portarias necessárias. DAPL deve validar antes de escalonar.',
+  },
+  { id:'A011', icon:'amber', tag:'T+3', tagCls:'tag-T3', read:true, escalated:false, critical:false,
+    title:'Trabalho em plataformas · consulta pública até 30-04',
+    sub:'MTSSS a recolher contributos · 4 dias restantes',
+    celex:'32024L2831', ministerio:'MTSSS', time:'há 22 dias', channels:['email'],
+    body:'Anteprojecto de transposição da Diretiva (UE) 2024/2831 está em consulta pública. Encerra a 30-04-2026. Recebidos 23 contributos até hoje.',
+  },
+  { id:'A012', icon:'green', tag:'T+0', tagCls:'tag-T0', read:true, escalated:false, critical:false,
+    title:'Prompt v1.4.0 (análise Sonnet) activado em produção',
+    sub:'Bernardo Vidal · refinamento da temperatura · backup automático',
+    celex:'admin', ministerio:'DAPL', time:'há 1 dia', channels:['email'],
+    body:'O prompt da análise de impacto (Sonnet) foi actualizado de v1.3.2 → v1.4.0 por Bernardo Vidal. Mudanças principais: ajuste de temperatura para 0.3 e estruturação JSON refinada. Análises antigas mantêm referência à versão usada.',
+  },
+];
+
+const ICONS = {
+  red:    '<polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+  amber:  '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  blue:   '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+  green:  '<polyline points="20 6 9 17 4 12"/>',
+};
+
+let curFilter = 'all';
+
+function setFilter(f) {
+  curFilter = f;
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.toggle('cur', b.dataset.filt === f));
+  render();
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let list = ALERTS;
+  if (curFilter === 'unread') list = list.filter(a => !a.read);
+  if (curFilter === 'critical') list = list.filter(a => a.critical);
+  if (curFilter === 'escalated') list = list.filter(a => a.escalated);
+  if (q) list = list.filter(a => (a.title + ' ' + a.sub + ' ' + a.celex + ' ' + a.ministerio).toLowerCase().includes(q));
+
+  document.getElementById('inbox').innerHTML = list.map(a => `
+    <div class="alert ${a.read ? 'read' : 'unread'}" onclick="openDetail('${a.id}')" role="button" tabindex="0">
+      <div class="alert-dot ${a.read ? 'read' : 'unread'}"></div>
+      <div class="alert-ic ${a.icon}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[a.icon] || ICONS.amber}</svg></div>
+      <div class="alert-bd">
+        <div class="alert-h">
+          <span class="alert-tag ${a.tagCls}">${a.tag}</span>
+          ${a.escalated ? '<span class="alert-tag" style="background:var(--tint-red);color:var(--red)">Escalado</span>' : ''}
+          <span class="alert-celex">${a.celex}</span>
+          <span class="alert-min">· ${a.ministerio}</span>
+        </div>
+        <div class="alert-ti">${a.title}</div>
+        <div class="alert-sub">${a.sub}</div>
+      </div>
+      <div class="alert-channel">
+        ${a.channels.includes('email') ? '<span class="channel-pill">Email</span>' : ''}
+        ${a.channels.includes('teams') ? '<span class="channel-pill">Teams</span>' : ''}
+        ${a.channels.includes('relatorio') ? '<span class="channel-pill">Relatório</span>' : ''}
+      </div>
+      <div class="alert-time">${a.time}</div>
+    </div>
+  `).join('') || '<div style="padding:2.5rem;text-align:center;color:var(--ink-4)">Nenhum alerta corresponde aos filtros.</div>';
+  document.getElementById('tool-meta').textContent = `${list.length} / ${ALERTS.length} alertas`;
+}
+
+function openDetail(id) {
+  const a = ALERTS.find(x => x.id === id);
+  if (!a) return;
+  a.read = true;
+  document.getElementById('detail').innerHTML = `
+    <div class="detail-h">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);margin-bottom:0.3rem">${a.id} · ${a.celex} · ${a.ministerio}</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.3">${a.title}</div>
+      </div>
+      <button class="detail-x" onclick="closeDetail()" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="detail-bd">
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
+        <span class="alert-tag ${a.tagCls}">${a.tag}</span>
+        ${a.escalated ? '<span class="alert-tag" style="background:var(--tint-red);color:var(--red)">Escalado</span>' : ''}
+        ${a.critical ? '<span class="alert-tag" style="background:var(--red);color:#fff">Crítico</span>' : ''}
+      </div>
+      <div style="font-size:0.84rem;color:var(--ink-2);line-height:1.6">${a.body}</div>
+
+      <div class="section-h">Histórico de escalonamento</div>
+      <div style="font-size:0.78rem;color:var(--ink-3);font-family:var(--font-mono);line-height:1.6">
+        ✓ ${a.time} · enviado para Técnico responsável (e-mail + Teams)<br>
+        ${a.tag === 'T+3' || a.tag === 'T+7' || a.tag === 'T+14' || a.tag === 'T+21' ? '✓ T+3d · escalado para Chefe de divisão<br>' : ''}
+        ${a.tag === 'T+7' || a.tag === 'T+14' || a.tag === 'T+21' ? '✓ T+7d · escalado para Director-geral<br>' : ''}
+        ${a.tag === 'T+14' || a.tag === 'T+21' ? '✓ T+14d · escalado para Gabinete ministerial<br>' : ''}
+        ${a.tag === 'T+21' ? '✓ T+21d · entrou no relatório semanal SGGov<br>' : ''}
+        ${!['T+3','T+7','T+14','T+21'].includes(a.tag) ? '⏳ Próximo escalonamento em ' + (a.read ? '— se não houver acção' : '3 dias') : ''}
+      </div>
+
+      <div class="section-h">Acções</div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="toast('Alerta acknowledged','Marcado como atendido · escalonamento suspenso');closeDetail()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Atender
+        </button>
+        <button class="btn btn-ghost" onclick="toast('Adiado por 24h','Alerta reaparecerá amanhã às 09:00')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Adiar 24h
+        </button>
+        <button class="btn btn-ghost" onclick="toast('Escalado','Alerta enviado para o nível seguinte','warn')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          Escalar agora
+        </button>
+        ${a.celex !== 'crawler' && a.celex !== 'agregado' && a.celex !== 'admin' ? `<a href="RADAR.html" class="btn btn-ghost">Ver processo →</a>` : ''}
+      </div>
+    </div>
+  `;
+  document.getElementById('detail').classList.add('on');
+  document.getElementById('detail-overlay').classList.add('on');
+  render();
+}
+
+function closeDetail() {
+  document.getElementById('detail').classList.remove('on');
+  document.getElementById('detail-overlay').classList.remove('on');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+function toast(ti, msg, type) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+render();
+</script>
+
+</body>
+</html>

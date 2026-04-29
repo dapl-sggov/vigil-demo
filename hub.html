@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1D1D1F; --ink-2:#3A3A3C; --ink-3:#6E6E73; --ink-4:#8E8E93; --ink-5:#AEAEB2;
+  --line:#E5E5EA; --line-2:#D1D1D6;
+  --bg:#FBFBFD; --bg2:#FFFFFF; --bg3:#F5F5F7; --bg4:#EEEEF1;
+  --green:#0E7433; --green-dark:#0A5A28; --green-soft:#E6F0E9;
+  --blue:#2B5683; --blue-soft:#E5ECF3;
+  --red:#D02117; --red-soft:#FBEAE9;
+  --amber:#C08916; --amber-soft:#FDF4E3;
+  --tint-red:rgba(208,33,23,0.08);
+  --tint-amber:rgba(192,137,22,0.10);
+  --tint-green:rgba(14,116,51,0.08);
+  --tint-blue:rgba(43,86,131,0.08);
+  --sh-sm:0 1px 2px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-md:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-lg:0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;}
+strong,b{font-weight:600;}
+
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+
+/* === HEADER === */
+.hdr{display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);margin-bottom:1.5rem;}
+.hdr-mark{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hdr-mark svg{width:22px;height:22px;}
+.hdr-bd{flex:1;}
+.hdr-nm{font-size:1.05rem;font-weight:700;letter-spacing:-0.015em;line-height:1.2;}
+.hdr-sub{font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem;}
+.hdr-rt{display:flex;gap:0.55rem;align-items:center;}
+
+.user-chip{display:flex;align-items:center;gap:0.6rem;padding:0.35rem 0.55rem 0.35rem 0.4rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all 0.12s;font-family:inherit;}
+.user-chip:hover{background:var(--bg4);}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:600;flex-shrink:0;}
+.user-info{display:flex;flex-direction:column;align-items:flex-start;}
+.user-nm{font-size:0.78rem;font-weight:600;color:var(--ink);line-height:1.2;}
+.user-role{font-size:0.66rem;color:var(--ink-3);line-height:1.2;}
+
+.icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);color:var(--ink-3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.12s;}
+.icon-btn:hover{background:var(--bg3);color:var(--ink);}
+.icon-btn svg{width:15px;height:15px;}
+
+/* === HERO === */
+.hero{margin-bottom:1.4rem;}
+.hero-greet{font-size:0.78rem;color:var(--ink-3);}
+.hero-greet strong{color:var(--ink);}
+.hero-h1{font-size:1.7rem;font-weight:700;letter-spacing:-0.025em;margin-top:0.35rem;color:var(--ink);}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);margin-top:0.5rem;max-width:680px;line-height:1.55;}
+
+/* === STATS BAR === */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.5rem;}
+.stat{padding:0.95rem 1rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.stat-lb{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.5rem;}
+.stat-vl{font-size:1.55rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;}
+.stat-vl.red{color:var(--red);}
+.stat-vl.amb{color:var(--amber);}
+.stat-vl.grn{color:var(--green);}
+.stat-dt{font-size:0.7rem;color:var(--ink-3);margin-top:0.4rem;}
+
+/* === MODULES SECTION === */
+.section{margin-bottom:2rem;}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.85rem;padding-bottom:0.55rem;border-bottom:1px solid var(--line);}
+.section-ti{font-size:0.78rem;font-weight:700;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;}
+.section-meta{font-size:0.74rem;color:var(--ink-4);}
+
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.module{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem;cursor:pointer;transition:all 0.18s;text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.module:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px);border-color:var(--ink-5);}
+.module-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.85rem;}
+.module-ic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.module-ic svg{width:22px;height:22px;}
+.module-ic.green{background:var(--tint-green);color:var(--green);}
+.module-ic.blue{background:var(--tint-blue);color:var(--blue);}
+.module-ic.red{background:var(--tint-red);color:var(--red);}
+.module-ic.amber{background:var(--tint-amber);color:var(--amber);}
+.module-ic.gray{background:var(--bg4);color:var(--ink-3);}
+.module-badge{display:inline-flex;padding:0.2rem 0.55rem;border-radius:4px;font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;}
+.badge-live{background:var(--tint-green);color:var(--green);}
+.badge-beta{background:var(--tint-amber);color:var(--amber);}
+.badge-restrict{background:var(--tint-red);color:var(--red);}
+.badge-admin{background:var(--bg4);color:var(--ink-2);}
+.module-code{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.04em;font-weight:600;margin-bottom:0.3rem;}
+.module-ti{font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.4rem;line-height:1.2;}
+.module-sub{font-size:0.82rem;color:var(--ink-3);line-height:1.5;flex:1;}
+.module-foot{margin-top:0.95rem;padding-top:0.85rem;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:var(--ink-3);}
+.module-foot-meta{display:flex;gap:0.85rem;}
+.module-foot-meta strong{color:var(--ink);}
+.module-foot-arrow{color:var(--green);font-weight:600;}
+
+.module.hidden-perfil{display:none;}
+.module.disabled{opacity:0.45;pointer-events:none;}
+
+/* === ACTIVITY FEED === */
+.feed{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.2rem;}
+.feed-it{display:flex;gap:0.85rem;padding:0.6rem 0;border-bottom:1px solid var(--line);}
+.feed-it:last-child{border-bottom:none;}
+.feed-ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.feed-ic svg{width:14px;height:14px;}
+.feed-ic.g{background:var(--tint-green);color:var(--green);}
+.feed-ic.b{background:var(--tint-blue);color:var(--blue);}
+.feed-ic.a{background:var(--tint-amber);color:var(--amber);}
+.feed-ic.r{background:var(--tint-red);color:var(--red);}
+.feed-bd{flex:1;font-size:0.84rem;}
+.feed-actor{font-weight:600;}
+.feed-time{font-size:0.72rem;color:var(--ink-3);font-family:var(--font-mono);margin-top:0.2rem;}
+
+/* User dropdown menu */
+.menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;box-shadow:var(--sh-md);min-width:240px;padding:0.4rem;z-index:30;display:none;}
+.menu.on{display:block;}
+.menu-h{padding:0.7rem 0.85rem 0.6rem;border-bottom:1px solid var(--line);margin-bottom:0.3rem;}
+.menu-nm{font-size:0.84rem;font-weight:600;}
+.menu-em{font-size:0.72rem;color:var(--ink-3);}
+.menu-it{display:flex;align-items:center;gap:0.55rem;padding:0.55rem 0.85rem;border-radius:6px;cursor:pointer;font-size:0.82rem;color:var(--ink-2);text-decoration:none;}
+.menu-it:hover{background:var(--bg3);color:var(--ink);}
+.menu-it.danger{color:var(--red);}
+.menu-it svg{width:14px;height:14px;}
+.user-wrap{position:relative;}
+
+footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:0.72rem;color:var(--ink-4);text-align:center;}
+
+@media (max-width:900px){
+  .modules{grid-template-columns:1fr 1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:600px){
+  .modules{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr;}
+}
+
+button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-mark">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/>
+        <rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/>
+        <rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="hdr-bd">
+      <div class="hdr-nm">VIGIL</div>
+      <div class="hdr-sub">Plataforma de Acompanhamento do Direito da União Europeia · Demonstração</div>
+    </div>
+    <div class="hdr-rt">
+      <button class="icon-btn" title="Pesquisa global (em produção)" aria-label="Pesquisa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <div class="user-wrap">
+        <button class="user-chip" id="user-chip" onclick="toggleMenu(event)" aria-haspopup="menu" aria-expanded="false">
+          <div class="avatar" id="avatar">—</div>
+          <div class="user-info">
+            <span class="user-nm" id="user-name">—</span>
+            <span class="user-role" id="user-role">—</span>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;color:var(--ink-4)" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="menu" id="menu" role="menu">
+          <div class="menu-h">
+            <div class="menu-nm" id="menu-name">—</div>
+            <div class="menu-em" id="menu-email">—</div>
+          </div>
+          <a href="#" class="menu-it" onclick="event.preventDefault();closeMenu();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            O meu perfil
+          </a>
+          <a href="#" class="menu-it" onclick="event.preventDefault();closeMenu();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Preferências
+          </a>
+          <a href="index.html" class="menu-it danger" onclick="signOut();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Terminar sessão
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-greet"><span id="greet">Bom dia</span> · <strong id="greet-name">—</strong></div>
+    <h1 class="hero-h1" id="hero-h1">Hub do VIGIL</h1>
+    <p class="hero-sub" id="hero-sub">Os módulos abaixo são os que tens acesso de acordo com o teu perfil. Cada um abre uma demonstração simulada da experiência completa.</p>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-lb">Risco financeiro</div>
+      <div class="stat-vl red">&gt;100M€</div>
+      <div class="stat-dt">↑ €41 250/dia · C-217/24</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lb">Diretivas em curso</div>
+      <div class="stat-vl">30</div>
+      <div class="stat-dt">8 com prazo crítico</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lb">Análises IA pendentes</div>
+      <div class="stat-vl amb">3</div>
+      <div class="stat-dt">Última: hoje 09:32</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lb">Fichas atrasadas</div>
+      <div class="stat-vl red">2</div>
+      <div class="stat-dt">NIS2 · CSDD</div>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div class="section">
+    <div class="section-h">
+      <div class="section-ti">Módulos disponíveis para o teu perfil</div>
+      <div class="section-meta" id="modules-count">— módulos</div>
+    </div>
+    <div class="modules" id="modules"></div>
+  </div>
+
+  <!-- ACTIVITY FEED -->
+  <div class="section">
+    <div class="section-h">
+      <div class="section-ti">Actividade recente · pipeline IA semanal</div>
+      <div class="section-meta">Quartas 13:00 Lisboa · após Colégio de Comissários</div>
+    </div>
+    <div class="feed">
+      <div class="feed-it">
+        <div class="feed-ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="feed-bd"><span class="feed-actor">Sistema</span> · 8 propostas analisadas pelo crawler PROSPETIVA · <strong>3 escaladas</strong> para validação DAPL <div class="feed-time">há 15 min · ciclo 2026/W17</div></div>
+      </div>
+      <div class="feed-it">
+        <div class="feed-ic a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="feed-bd">Alerta T+14d escalado para gabinete · <strong>NIS2 · IP/24/1182</strong> · prazo amanhã <div class="feed-time">há 47 min</div></div>
+      </div>
+      <div class="feed-it">
+        <div class="feed-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="feed-bd"><span class="feed-actor">Ana Silva (DGDEI)</span> · ficha <strong>CSDD</strong> actualizada — marco "fins técnicos" concluído <div class="feed-time">hoje 09:14</div></div>
+      </div>
+      <div class="feed-it">
+        <div class="feed-ic r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/></svg></div>
+        <div class="feed-bd">Sanção C-217/24 acumula <strong>€2 351 250</strong> desde acórdão · DGDEI a coordenar acções <div class="feed-time">contagem activa</div></div>
+      </div>
+      <div class="feed-it">
+        <div class="feed-ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/></svg></div>
+        <div class="feed-bd"><span class="feed-actor">Bernardo Vidal</span> · prompt v1.4.0 (análise Sonnet) activado em produção <div class="feed-time">ontem 17:02</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>DAPL · Secretaria-Geral do Governo · Demonstração interactiva · v1.0 · Abril 2026</footer>
+</div>
+
+<script>
+// ============================================================================
+// Session check + module rendering
+// ============================================================================
+
+const session = (() => {
+  try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); }
+  catch(e) { return null; }
+})();
+
+if (!session || !session.perfil) {
+  window.location.href = 'index.html';
+}
+
+// Module catalog
+const MODULES = [
+  { id:'PROSPETIVA', file:'PROSPETIVA.html', code:'M01 · IA · Fase negocial', ti:'PROSPETIVA', sub:'Análise de impacto de propostas legislativas em fase negocial. Cola o articulado da proposta CE e a IA produz um plano de transposição estruturado.', icon:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', iconCls:'amber', badge:'live', meta:'6 exemplos · IA real', allow:['admin','dgdei','tecnico','dapl_admin'] },
+  { id:'RADAR', file:'RADAR.html', code:'M02 · Pós-publicação JOUE', ti:'RADAR', sub:'Monitoriza directivas e regulamentos publicados no JOUE com obrigações nacionais activas. Filtros por sector, estado e ministério.', icon:'<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>', iconCls:'green', badge:'live', meta:'30 processos · live', allow:['admin','dgdei','tecnico','gabinete','dapl_admin'] },
+  { id:'FICHA', file:'FICHA.html', code:'M03 · Transposição', ti:'FICHA', sub:'Wizard de 5 passos com os 19 campos oficiais da Ficha de Transposição DGDEI. Pré-preenchimento por IA, marcos e alertas escalonados.', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>', iconCls:'blue', badge:'beta', meta:'5 fichas demo', allow:['admin','dgdei','tecnico','dapl_admin'] },
+  { id:'CONTENCIOSO', file:'CONTENCIOSO.html', code:'M04 · Pré-cont. + TJUE', ti:'CONTENCIOSO', sub:'Pipeline de 6 fases para gestão de processos perante o TJUE. Apenas metadados — peças classificadas permanecem nos sistemas DGDEI.', icon:'<line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/><path d="M17 7l-3 7a3 3 0 0 0 6 0z"/><line x1="8" y1="21" x2="16" y2="21"/>', iconCls:'red', badge:'restrict', meta:'5 processos · Reservado', allow:['dgdei','dapl_admin'] },
+  { id:'GABINETES', file:'GABINETES.html', code:'M05 · Vista executiva', ti:'GABINETES', sub:'Vista por ministério com semáforo de risco, KPIs e calendário crítico. Briefing PDF descarregável para reuniões com a tutela.', icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>', iconCls:'blue', badge:'beta', meta:'16 ministérios', allow:['admin','dgdei','gabinete','dapl_admin'] },
+  { id:'ALERTAS', file:'ALERTAS.html', code:'Transversal', ti:'ALERTAS', sub:'Centro de notificações com escalonamento automático (T+0 técnico → T+21d SGGov). Filtros por tipo, ministério e severidade.', icon:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>', iconCls:'amber', badge:'live', meta:'12 alertas activos', allow:['admin','dgdei','tecnico','gabinete','dapl_admin'] },
+  { id:'ADMIN', file:'ADMIN.html', code:'Administração', ti:'ADMIN', sub:'Gestão da orgânica governativa, catálogo de Áreas Governativas, prompts IA versionados e qualidade do pipeline.', icon:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>', iconCls:'gray', badge:'admin', meta:'DAPL · estrutural', allow:['dapl_admin'] },
+];
+
+// Render UI
+function init() {
+  // User chip
+  const initials = session.name.split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name;
+  document.getElementById('user-role').textContent = session.role;
+  document.getElementById('menu-name').textContent = session.name;
+  document.getElementById('menu-email').textContent = session.email;
+  document.getElementById('greet-name').textContent = session.name.split(' ')[0];
+
+  // Greeting based on time
+  const h = new Date().getHours();
+  document.getElementById('greet').textContent = h < 12 ? 'Bom dia' : h < 19 ? 'Boa tarde' : 'Boa noite';
+
+  // Hero customizing based on perfil
+  const PROFILE_HERO = {
+    admin:      { h:'O que precisa da tua atenção, Carolina', s:'Como SGGov · Coordenação tens visibilidade global excepto sobre as peças classificadas do contencioso. O pipeline IA produziu 3 análises esta semana.' },
+    dgdei:      { h:'Hoje na DGDEI', s:'Tens acesso pleno incluindo peças do contencioso (módulo restrito). 2 fichas com marcos atrasados precisam de revisão.' },
+    tecnico:    { h:'Hoje no teu portfólio', s:'Como Técnico/Jurista podes consultar e preencher fichas dos teus processos atribuídos. CONTENCIOSO permanece restrito à DGDEI.' },
+    gabinete:   { h:'Vista executiva — Ministério do Ambiente e Energia', s:'Como Gabinete ministerial vês o resumo dos processos sob a tua tutela. C-217/24 (Habitats) com sanção activa.' },
+    dapl_admin: { h:'Centro de comando · DAPL', s:'Como Chefe da DAPL tens acesso a todos os módulos incluindo a administração da plataforma (orgânica, áreas, prompts IA, utilizadores).' },
+  };
+  const ph = PROFILE_HERO[session.perfil] || PROFILE_HERO.admin;
+  document.getElementById('hero-h1').textContent = ph.h;
+  document.getElementById('hero-sub').textContent = ph.s;
+
+  // Modules grid
+  const allowed = MODULES.filter(m => m.allow.includes(session.perfil));
+  const wrap = document.getElementById('modules');
+  wrap.innerHTML = allowed.map(m => `
+    <a class="module" href="${m.file}">
+      <div class="module-h">
+        <div class="module-ic ${m.iconCls}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg>
+        </div>
+        <span class="module-badge badge-${m.badge}">${m.badge === 'live' ? 'Live' : m.badge === 'beta' ? 'Beta' : m.badge === 'restrict' ? 'Restrito' : 'Admin'}</span>
+      </div>
+      <div class="module-code">${m.code}</div>
+      <div class="module-ti">${m.ti}</div>
+      <div class="module-sub">${m.sub}</div>
+      <div class="module-foot">
+        <div class="module-foot-meta"><strong>${m.meta}</strong></div>
+        <div class="module-foot-arrow">Abrir →</div>
+      </div>
+    </a>
+  `).join('');
+  // Show hidden modules as disabled placeholders for transparency
+  const blocked = MODULES.filter(m => !m.allow.includes(session.perfil));
+  if (blocked.length > 0) {
+    blocked.forEach(m => {
+      wrap.innerHTML += `
+        <div class="module disabled" title="O teu perfil não tem acesso a este módulo">
+          <div class="module-h">
+            <div class="module-ic gray">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg>
+            </div>
+            <span class="module-badge badge-restrict">Sem acesso</span>
+          </div>
+          <div class="module-code">${m.code}</div>
+          <div class="module-ti">${m.ti}</div>
+          <div class="module-sub">${m.sub}</div>
+          <div class="module-foot">
+            <div class="module-foot-meta">Restrito ao perfil <strong>${m.allow.join(' / ')}</strong></div>
+          </div>
+        </div>
+      `;
+    });
+  }
+  document.getElementById('modules-count').textContent = allowed.length + ' acessíveis · ' + blocked.length + ' restritos';
+}
+
+function toggleMenu(e) {
+  e.stopPropagation();
+  document.getElementById('menu').classList.toggle('on');
+  const btn = document.getElementById('user-chip');
+  btn.setAttribute('aria-expanded', document.getElementById('menu').classList.contains('on'));
+}
+
+function closeMenu() {
+  document.getElementById('menu').classList.remove('on');
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.user-wrap')) closeMenu();
+});
+
+function signOut() {
+  localStorage.removeItem('vigil-demo-session');
+  // Link href takes care of redirect
+}
+
+init();
+</script>
+
+</body>
+</html>

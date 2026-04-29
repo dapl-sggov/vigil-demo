@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · CONTENCIOSO · Restrito</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--red:#D02117;--amber:#C08916;--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+.classified-banner{background:repeating-linear-gradient(45deg,#FBEAE9,#FBEAE9 10px,#F8E0DE 10px,#F8E0DE 20px);border:2px solid var(--red);border-radius:10px;padding:0.85rem 1.1rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:0.7rem;font-size:0.84rem;color:var(--red);font-weight:600;}
+.classified-banner svg{width:20px;height:20px;flex-shrink:0;}
+
+.access-denied{padding:3rem 2rem;text-align:center;background:var(--bg2);border:1px solid var(--line);border-radius:12px;}
+.access-denied h2{font-size:1.3rem;margin-bottom:0.7rem;color:var(--red);}
+.access-denied p{color:var(--ink-3);max-width:520px;margin:0 auto 1.5rem;line-height:1.55;}
+
+.hero{padding:1rem 0 1.4rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--red);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:760px;line-height:1.55;}
+
+/* Risk dashboard */
+.risk-dash{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.5rem;}
+.risk-card{padding:1rem 1.1rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.risk-card.alert{background:var(--tint-red);border-color:var(--red);}
+.risk-card-lb{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.5rem;}
+.risk-card.alert .risk-card-lb{color:var(--red);}
+.risk-card-vl{font-size:1.7rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;}
+.risk-card.alert .risk-card-vl{color:var(--red);}
+.risk-card-dt{font-size:0.7rem;color:var(--ink-3);margin-top:0.45rem;}
+
+/* List of contencioso */
+.cases{display:flex;flex-direction:column;gap:0.7rem;}
+.case{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.case-h{padding:1rem 1.2rem;display:flex;gap:1rem;align-items:flex-start;cursor:pointer;}
+.case-h:hover{background:var(--bg3);}
+.case-status{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:0.4rem;}
+.case-status.acordao{background:var(--red);}
+.case-status.parecer{background:var(--amber);}
+.case-status.notificacao{background:var(--blue);}
+.case-status.dialogo{background:var(--ink-4);}
+.case-bd{flex:1;}
+.case-celex{font-family:var(--font-mono);font-size:0.74rem;color:var(--red);font-weight:600;margin-bottom:0.2rem;}
+.case-ti{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;line-height:1.3;}
+.case-meta{font-size:0.74rem;color:var(--ink-3);}
+.case-rt{display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;}
+.case-fase-pill{font-size:0.7rem;padding:0.25rem 0.6rem;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.fase-acordao{background:var(--red);color:#fff;}
+.fase-parecer{background:var(--tint-amber);color:var(--amber);}
+.fase-notificacao{background:var(--tint-blue);color:var(--blue);}
+.fase-dialogo{background:var(--bg4);color:var(--ink-3);}
+.case-sancao{font-family:var(--font-mono);font-size:0.74rem;color:var(--red);font-weight:500;}
+.case-arrow{align-self:center;color:var(--ink-4);transition:transform 0.18s;}
+.case.open .case-arrow{transform:rotate(90deg);}
+
+.case-body{display:none;padding:0 1.2rem 1.3rem;border-top:1px solid var(--line);}
+.case.open .case-body{display:block;}
+
+.section-h{font-size:0.74rem;font-weight:700;color:var(--ink);margin:1.3rem 0 0.7rem;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:0.5rem;}
+.section-h::before{content:"";width:3px;height:14px;background:var(--red);border-radius:2px;}
+
+/* 6-phase pipeline */
+.pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:0.4rem;}
+.phase{padding:0.65rem 0.7rem;background:var(--bg3);border-radius:6px;text-align:center;position:relative;}
+.phase.done{background:var(--tint-green);}
+.phase.cur{background:var(--red);color:#fff;}
+.phase-n{font-size:0.6rem;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.04em;font-weight:600;margin-bottom:0.2rem;}
+.phase.cur .phase-n{color:rgba(255,255,255,0.75);}
+.phase.done .phase-n{color:var(--green);}
+.phase-nm{font-size:0.72rem;font-weight:600;color:var(--ink);}
+.phase.cur .phase-nm{color:#fff;}
+.phase-dt{font-family:var(--font-mono);font-size:0.62rem;color:var(--ink-3);margin-top:0.25rem;}
+.phase.cur .phase-dt{color:rgba(255,255,255,0.85);}
+
+/* Pieces table */
+.pieces{display:flex;flex-direction:column;gap:0.4rem;}
+.piece{display:grid;grid-template-columns:90px 1fr 110px 100px 24px;gap:0.6rem;padding:0.55rem 0.75rem;background:var(--bg3);border-radius:6px;align-items:center;font-size:0.78rem;}
+.piece-dt{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.piece-ti{color:var(--ink);font-weight:500;}
+.piece-cls{font-size:0.6rem;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:3px;font-weight:600;letter-spacing:0.04em;text-align:center;}
+.cls-reservado{background:var(--tint-red);color:var(--red);}
+.cls-publico{background:var(--tint-green);color:var(--green);}
+.cls-confidencial{background:#FFEFD5;color:var(--red);}
+.piece-hash{font-family:var(--font-mono);font-size:0.62rem;color:var(--ink-4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.piece-link{color:var(--green);text-decoration:none;display:flex;align-items:center;justify-content:center;}
+.piece-link svg{width:14px;height:14px;}
+
+/* Audit trail */
+.audit{display:flex;flex-direction:column;gap:0.35rem;font-size:0.74rem;}
+.audit-it{display:flex;gap:0.7rem;padding:0.45rem 0.7rem;background:var(--bg3);border-radius:5px;font-family:var(--font-mono);}
+.audit-ts{color:var(--ink-3);min-width:120px;}
+.audit-actor{color:var(--ink);font-weight:600;}
+.audit-action{color:var(--ink-2);}
+
+/* Cost calc */
+.cost-row{display:grid;grid-template-columns:1fr 130px;gap:1rem;padding:0.55rem 0;font-size:0.84rem;border-bottom:1px solid var(--line);}
+.cost-row:last-child{border-bottom:none;}
+.cost-row.total{font-weight:700;font-size:0.95rem;color:var(--red);padding-top:0.95rem;border-top:2px solid var(--red);border-bottom:none;}
+
+.brand-link{color:var(--green);}
+@media (max-width:900px){.risk-dash{grid-template-columns:1fr 1fr;}.pipeline{grid-template-columns:repeat(2,1fr);}.piece{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none"><line x1="10" y1="3" x2="10" y2="17" stroke="#fff" stroke-width="1.5"/><path d="M5 6h10" stroke="#fff" stroke-width="1.5"/><path d="M6 6L4 12a3 3 0 0 0 6 0z" fill="#fff"/><path d="M14 6l-2 6a3 3 0 0 0 6 0z" fill="#fff"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · CONTENCIOSO</div><div class="brand-sub">M04 · Pré-contencioso e contencioso TJUE · acesso restrito DGDEI</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <div id="content"></div>
+
+</div>
+
+<script>
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+const ALLOWED = ['dgdei','dapl_admin'];
+
+if (!ALLOWED.includes(session.perfil)) {
+  document.getElementById('content').innerHTML = `
+    <div class="access-denied">
+      <h2>🔒 Acesso restrito</h2>
+      <p>O módulo CONTENCIOSO contém metadados de peças processuais classificadas no mínimo como <strong>Reservado</strong> (Lei n.º 2/94 e RCM n.º 50/88). Apenas perfis DGDEI e Administração da DAPL podem aceder.</p>
+      <p>O teu perfil actual é <strong>${session.role}</strong>. Para visualizar dados agregados sem acesso a peças individuais, consulta o módulo GABINETES.</p>
+      <a href="hub.html" class="brand-link" style="display:inline-block;padding:0.6rem 1.4rem;background:var(--green);color:#fff;border-radius:7px;text-decoration:none;font-weight:600">← Voltar ao Hub</a>
+    </div>
+  `;
+} else {
+
+const CASES = [
+  { id:'C-217/24', celex:'31992L0043', mat:'Habitats · Rede Natura 2000 (55 sítios)', fase:'acordao', faseLabel:'Acórdão proferido', faseCls:'fase-acordao', dt:'05-03-2026', sancao:'€10M + €41 250/dia',
+    detalhe:'Acção movida pela CE em 12-09-2022. Acórdão TJUE de 5 mar. 2026 condena Portugal pela falha sistemática na designação de zonas especiais de conservação. Sanção fixa €10M + sanção pecuniária compulsória €41 250/dia até cumprimento integral.',
+    pipeline:[
+      {nm:'Pub. JOUE',dt:'21-05-1992',cls:'done'},{nm:'Ficha DGDEI',dt:'1992',cls:'done'},
+      {nm:'Notif. formal',dt:'15-07-2017',cls:'done'},{nm:'Parecer fund.',dt:'10-12-2018',cls:'done'},
+      {nm:'Ação TJUE',dt:'12-09-2022',cls:'done'},{nm:'Acórdão',dt:'05-03-2026',cls:'cur'},
+    ],
+    pieces:[
+      {dt:'15-07-2017',ti:'Notificação formal CE',cls:'reservado',hash:'0x7a3f...e21c'},
+      {dt:'15-09-2017',ti:'Resposta do Governo',cls:'reservado',hash:'0x9c1e...d4a2'},
+      {dt:'10-12-2018',ti:'Parecer fundamentado',cls:'reservado',hash:'0x4b8d...c91e'},
+      {dt:'10-04-2019',ti:'Resposta ao parecer',cls:'reservado',hash:'0x2e5a...b71d'},
+      {dt:'12-09-2022',ti:'Petição inicial · TJUE',cls:'publico',hash:'0xf12c...a3e7'},
+      {dt:'15-12-2022',ti:'Contestação',cls:'reservado',hash:'0x8d31...f24b'},
+      {dt:'05-03-2026',ti:'Acórdão TJUE',cls:'publico',hash:'0xb0e9...1c7a'},
+    ],
+    audit:[
+      {ts:'28-04-2026 14:32',actor:'Ana Silva',action:'view_contencioso_case'},
+      {ts:'28-04-2026 14:33',actor:'Ana Silva',action:'view_piece_meta · acórdão'},
+      {ts:'27-04-2026 11:12',actor:'Bernardo Vidal',action:'view_contencioso_case'},
+      {ts:'25-04-2026 09:44',actor:'Ana Silva',action:'export_briefing_pdf'},
+    ],
+    cost:[
+      {lb:'Sanção fixa (acórdão)', vl:'€10 000 000'},
+      {lb:'Sanção compulsória (€41 250/dia × 57 dias)', vl:'€2 351 250'},
+      {lb:'Custos de defesa estimados', vl:'€420 000'},
+      {lb:'Total acumulado a 28-04-2026', vl:'€12 771 250', total:true},
+    ],
+    minister:'Min. Ambiente e Energia · ICNF',
+  },
+  { id:'IP/24/1182', celex:'32022L2555', mat:'NIS2 · Cibersegurança (falta de transposição)', fase:'notificacao', faseLabel:'Notificação formal', faseCls:'fase-notificacao', dt:'15-11-2024', sancao:'A determinar',
+    detalhe:'Procedimento aberto em 15-11-2024 por incumprimento da obrigação de transposição da Diretiva NIS2 até 17-10-2024. Resposta de Portugal em curso · projecto de Lei pronto.',
+    pipeline:[
+      {nm:'Pub. JOUE',dt:'17-12-2022',cls:'done'},{nm:'Ficha DGDEI',dt:'10-01-2023',cls:'done'},
+      {nm:'Prazo excedido',dt:'17-10-2024',cls:'done'},{nm:'Notif. formal',dt:'15-11-2024',cls:'cur'},
+      {nm:'Parecer fund.',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},
+    ],
+    pieces:[
+      {dt:'15-11-2024',ti:'Notificação formal CE',cls:'reservado',hash:'0x3e7d...c182'},
+      {dt:'29-04-2026',ti:'Resposta de Portugal (PROJECTO)',cls:'reservado',hash:'0xa412...9d51'},
+    ],
+    audit:[
+      {ts:'28-04-2026 16:01',actor:'Ana Silva',action:'edit_piece_meta · resposta'},
+      {ts:'28-04-2026 10:14',actor:'João Mendes',action:'view_contencioso_case'},
+    ],
+    cost:[{lb:'Risco financeiro estimado se acórdão',vl:'€8-12M',total:true}],
+    minister:'Min. Ambiente e Energia · CNCS',
+  },
+  { id:'INFR/24/0891', celex:'32024L0884', mat:'Qualidade do ar · PM2.5 e NO₂ (Lisboa, Porto)', fase:'parecer', faseLabel:'Parecer fundamentado', faseCls:'fase-parecer', dt:'15-04-2026', sancao:'Estimativa 15-25M€',
+    detalhe:'Portugal excedeu sistematicamente os limites de PM2.5 e NO₂ em Lisboa e Porto. CE emitiu parecer fundamentado em 15-04-2026. APA a implementar planos de qualidade do ar.',
+    pipeline:[
+      {nm:'Pub. JOUE',dt:'14-08-2024',cls:'done'},{nm:'Ficha DGDEI',dt:'2024',cls:'done'},
+      {nm:'Notif. formal',dt:'23-01-2025',cls:'done'},{nm:'Parecer fund.',dt:'15-04-2026',cls:'cur'},
+      {nm:'Acção TJUE',dt:'—',cls:''},{nm:'Acórdão',dt:'—',cls:''},
+    ],
+    pieces:[
+      {dt:'23-01-2025',ti:'Notificação formal',cls:'reservado',hash:'0x6f2a...7e3c'},
+      {dt:'15-04-2026',ti:'Parecer fundamentado',cls:'reservado',hash:'0x8b1d...4a92'},
+    ],
+    audit:[{ts:'27-04-2026 09:32',actor:'Bernardo Vidal',action:'view_contencioso_case'}],
+    cost:[{lb:'Risco financeiro estimado',vl:'€15-25M',total:true}],
+    minister:'Min. Ambiente e Energia · APA',
+  },
+  { id:'INFR/22/1034', celex:'32019L0883', mat:'Resíduos gerados por navios', fase:'notificacao', faseLabel:'Notificação formal', faseCls:'fase-notificacao', dt:'10-06-2022', sancao:'A determinar',
+    detalhe:'Notificação por transposição parcial. DGRM e MIH a coordenar acções. Risco baixo de escalar.',
+    pipeline:[
+      {nm:'Pub. JOUE',dt:'07-06-2019',cls:'done'},{nm:'Ficha DGDEI',dt:'2019',cls:'done'},
+      {nm:'Prazo excedido',dt:'28-06-2021',cls:'done'},{nm:'Notif. formal',dt:'10-06-2022',cls:'cur'},
+      {nm:'Parecer fund.',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},
+    ],
+    pieces:[{dt:'10-06-2022',ti:'Notificação formal',cls:'reservado',hash:'0x1d2e...5f8b'}],
+    audit:[],
+    cost:[{lb:'Risco baixo de sanção',vl:'€2-5M',total:true}],
+    minister:'Min. Infraestruturas · DGRM',
+  },
+  { id:'SG/24/3421', celex:'32018L1673', mat:'AML6 · transposição incompleta (diálogo informal)', fase:'dialogo', faseLabel:'Diálogo informal', faseCls:'fase-dialogo', dt:'10-09-2024', sancao:'Sem sanção em curso',
+    detalhe:'Diálogo informal · sem procedimento formal aberto · risco baixo de escalar.',
+    pipeline:[{nm:'Pub. JOUE',dt:'12-11-2018',cls:'done'},{nm:'Ficha DGDEI',dt:'2018',cls:'done'},{nm:'Prazo excedido',dt:'03-12-2020',cls:'done'},{nm:'Diálogo CE',dt:'10-09-2024',cls:'cur'},{nm:'Notif. formal',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},],
+    pieces:[],
+    audit:[],
+    cost:[{lb:'Sem custo monetário neste momento',vl:'—',total:false}],
+    minister:'Min. Finanças',
+  },
+];
+
+const totalRiskAcum = 12771250;
+const totalRiskPotencial = 100000000;
+
+document.getElementById('content').innerHTML = `
+  <div class="classified-banner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <span>Acesso reservado · todas as visualizações são auditadas · peças classificadas permanecem nos sistemas DGDEI · VIGIL armazena apenas metadados (ADR-0008)</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eye">M04 · CONTENCIOSO · DGDEI · TJUE</div>
+    <h1 class="hero-h1">5 processos activos · €12,77M de sanções já pagas/em vigor</h1>
+    <p class="hero-sub">Pipeline de 6 fases para gestão dos processos perante o TJUE: Publicação JOUE → Ficha DGDEI → Prazo excedido → Pré-contencioso → Acção TJUE → Acórdão. Apenas DGDEI e Admin têm acesso. Cada visualização gera entrada em audit_log imutável.</p>
+  </div>
+
+  <div class="risk-dash">
+    <div class="risk-card alert">
+      <div class="risk-card-lb">Total acumulado</div>
+      <div class="risk-card-vl">€12,77M</div>
+      <div class="risk-card-dt">€41 250/dia · C-217/24</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-lb">Risco potencial</div>
+      <div class="risk-card-vl">&gt;€100M</div>
+      <div class="risk-card-dt">Acumulado se incumprimento</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-lb">Casos activos</div>
+      <div class="risk-card-vl">5</div>
+      <div class="risk-card-dt">1 acórdão · 1 parecer · 2 notif. · 1 diálogo</div>
+    </div>
+    <div class="risk-card">
+      <div class="risk-card-lb">Acessos esta semana</div>
+      <div class="risk-card-vl">23</div>
+      <div class="risk-card-dt">DGDEI · DAPL · 0 negados</div>
+    </div>
+  </div>
+
+  <div class="cases">
+    ${CASES.map((c, i) => `
+      <div class="case ${i === 0 ? 'open' : ''}" data-i="${i}">
+        <div class="case-h" onclick="this.parentElement.classList.toggle('open')">
+          <div class="case-status ${c.fase}"></div>
+          <div class="case-bd">
+            <div class="case-celex">${c.id} · CELEX ${c.celex}</div>
+            <div class="case-ti">${c.mat}</div>
+            <div class="case-meta">${c.minister}</div>
+          </div>
+          <div class="case-rt">
+            <span class="case-fase-pill ${c.faseCls}">${c.faseLabel}</span>
+            <span class="case-sancao">${c.sancao}</span>
+            <span style="font-size:0.66rem;color:var(--ink-3);font-family:var(--font-mono)">${c.dt}</span>
+          </div>
+          <svg class="case-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="case-body">
+          <div style="font-size:0.84rem;color:var(--ink-2);line-height:1.55;padding-top:1rem">${c.detalhe}</div>
+
+          <div class="section-h">Pipeline de 6 fases</div>
+          <div class="pipeline">
+            ${c.pipeline.map((p, j) => `
+              <div class="phase ${p.cls}">
+                <div class="phase-n">FASE ${j+1}</div>
+                <div class="phase-nm">${p.nm}</div>
+                <div class="phase-dt">${p.dt}</div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="section-h">Peças processuais (apenas metadados)</div>
+          ${c.pieces.length > 0 ? `<div class="pieces">${c.pieces.map(p => `
+            <div class="piece">
+              <div class="piece-dt">${p.dt}</div>
+              <div class="piece-ti">${p.ti}</div>
+              <div class="piece-cls cls-${p.cls}">${p.cls}</div>
+              <div class="piece-hash">${p.hash}</div>
+              <a href="#" class="piece-link" onclick="event.preventDefault(); openExternal('${c.id}','${p.ti}')" title="Abrir nos sistemas DGDEI">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem peças registadas no VIGIL.</div>'}
+
+          <div class="section-h">Cálculo de risco financeiro</div>
+          ${c.cost.map(co => `<div class="cost-row ${co.total ? 'total' : ''}"><span>${co.lb}</span><span style="text-align:right;font-family:var(--font-mono)">${co.vl}</span></div>`).join('')}
+
+          <div class="section-h">Auditoria · acessos recentes</div>
+          ${c.audit.length > 0 ? `<div class="audit">${c.audit.map(a => `
+            <div class="audit-it">
+              <span class="audit-ts">${a.ts}</span>
+              <span class="audit-actor">${a.actor}</span>
+              <span class="audit-action">→ ${a.action}</span>
+            </div>
+          `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem acessos registados no período.</div>'}
+
+          <div style="margin-top:1.2rem;display:flex;gap:0.55rem;flex-wrap:wrap">
+            <button onclick="alert('Acção registada em audit_log: notify_dgdei')" style="padding:0.5rem 1rem;background:var(--red);color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:0.78rem;font-weight:600;cursor:pointer">Notificar DGDEI</button>
+            <button onclick="alert('Briefing PDF gerado · classificado Reservado')" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;cursor:pointer">Exportar briefing (Reservado)</button>
+            <a href="RADAR.html" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem">← Ver no RADAR</a>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>
+`;
+
+}
+
+function openExternal(caseId, piece) {
+  alert(`Abertura externa:\n\nSistema DGDEI · processo ${caseId}\nPeça: ${piece}\n\n(Mock — em produção abriria o sistema seguro DGDEI)\n\n✓ Acesso registado em audit_log`);
+}
+</script>
+
+</body>
+</html>

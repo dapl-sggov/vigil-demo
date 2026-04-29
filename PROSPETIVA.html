@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · PROSPETIVA · Demonstração da experiência completa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1D1D1F; --ink-2:#3A3A3C; --ink-3:#6E6E73; --ink-4:#8E8E93; --ink-5:#AEAEB2;
+  --line:#E5E5EA; --line-2:#D1D1D6;
+  --bg:#FBFBFD; --bg2:#FFFFFF; --bg3:#F5F5F7; --bg4:#EEEEF1;
+  --green:#0E7433; --green-soft:#E6F0E9; --green-dark:#0A5A28;
+  --blue:#2B5683; --blue-soft:#E5ECF3;
+  --red:#D02117; --red-soft:#FBEAE9;
+  --amber:#C08916; --amber-soft:#FDF4E3;
+  --gold:#BE9C54;
+  --tint-red:rgba(208,33,23,0.08);
+  --tint-amber:rgba(192,137,22,0.10);
+  --tint-green:rgba(14,116,51,0.08);
+  --tint-blue:rgba(43,86,131,0.08);
+  --sh-sm:0 1px 2px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-md:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-lg:0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono',Menlo,Consolas,monospace;
+  --font-serif:'Crimson Pro','Iowan Old Style','Palatino Linotype',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;}
+strong,b{font-weight:600;}
+
+/* === Layout shell === */
+.shell{max-width:1200px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;}
+.brand-link:hover{text-decoration:underline;}
+
+/* === Hero === */
+.hero{padding:1rem 0 1.5rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.95rem;color:var(--ink-3);max-width:680px;line-height:1.55;}
+
+/* === Examples panel === */
+.examples{margin-bottom:1.2rem;}
+.ex-h{font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:0.6rem;}
+.ex-sub{font-size:0.72rem;color:var(--ink-3);margin-bottom:0.95rem;}
+
+/* Showcase card (Lobby) */
+.showcase{background:linear-gradient(135deg,var(--amber-soft) 0%,var(--bg2) 100%);border:1px solid var(--amber);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:0.85rem;cursor:pointer;transition:all 0.2s;position:relative;}
+.showcase:hover{box-shadow:0 6px 22px rgba(192,137,22,0.18);transform:translateY(-1px);}
+.showcase.cur{box-shadow:0 0 0 3px var(--tint-amber);}
+.showcase-tag{display:inline-flex;align-items:center;gap:0.35rem;background:var(--amber);color:#fff;font-size:0.66rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.6rem;border-radius:4px;text-transform:uppercase;margin-bottom:0.55rem;}
+.showcase-tag svg{width:11px;height:11px;}
+.showcase-ti{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.4rem;letter-spacing:-0.01em;}
+.showcase-sub{font-size:0.84rem;color:var(--ink-2);line-height:1.55;margin-bottom:0.7rem;}
+.showcase-meta{display:flex;gap:1.2rem;font-size:0.72rem;color:var(--ink-3);flex-wrap:wrap;}
+.showcase-meta strong{color:var(--ink);font-weight:600;}
+
+/* Other examples */
+.ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.55rem;}
+.ex-card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:0.7rem 0.8rem;cursor:pointer;transition:all 0.12s;}
+.ex-card:hover{border-color:var(--green);background:var(--green-soft);}
+.ex-card.cur{border-color:var(--green);background:var(--green-soft);box-shadow:0 0 0 2px var(--tint-green);}
+.ex-tag{display:inline-block;font-size:0.62rem;padding:0.12rem 0.45rem;border-radius:3px;margin-bottom:0.3rem;font-weight:600;letter-spacing:0.03em;}
+.tag-digital{background:rgba(64,128,255,0.10);color:#2965CC;}
+.tag-trab{background:rgba(192,137,22,0.10);color:var(--amber);}
+.tag-amb{background:rgba(48,153,80,0.10);color:var(--green);}
+.tag-fin{background:rgba(160,80,160,0.10);color:#884488;}
+.ex-card-ti{font-size:0.82rem;color:var(--ink);font-weight:500;line-height:1.3;}
+.ex-card-sub{font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem;}
+
+/* === Editor area === */
+.editor{display:grid;grid-template-columns:1fr 280px;gap:1rem;margin-bottom:1.2rem;}
+.editor-main{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.editor-tab{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.95rem;border-bottom:1px solid var(--line);background:var(--bg3);}
+.editor-tab-l{display:flex;align-items:center;gap:0.55rem;}
+.editor-tab-doc{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);font-weight:500;}
+.editor-tab-r{display:flex;gap:0.55rem;align-items:center;font-size:0.72rem;color:var(--ink-3);}
+.editor-stat{display:inline-flex;align-items:center;gap:0.35rem;}
+.editor-stat-val{font-weight:600;color:var(--ink);font-family:var(--font-mono);}
+.editor-bd{padding:0;position:relative;height:380px;overflow:auto;}
+.editor-bd textarea{width:100%;height:100%;border:none;outline:none;resize:none;padding:1rem 1.1rem;font-family:var(--font-serif);font-size:0.92rem;line-height:1.65;color:var(--ink);background:transparent;}
+.editor-bd .placeholder-state{padding:2rem 1.5rem;color:var(--ink-4);font-size:0.92rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;}
+.editor-bd .placeholder-state svg{width:42px;height:42px;color:var(--ink-5);margin-bottom:0.85rem;}
+
+.editor-side{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:0.95rem 1rem;}
+.editor-side h4{font-size:0.74rem;font-weight:600;color:var(--ink);margin-bottom:0.55rem;text-transform:uppercase;letter-spacing:0.04em;}
+.editor-side-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.4rem 0;border-bottom:1px solid var(--line);font-size:0.78rem;}
+.editor-side-row:last-child{border-bottom:none;}
+.editor-side-lb{color:var(--ink-3);}
+.editor-side-vl{color:var(--ink);font-weight:500;font-family:var(--font-mono);font-size:0.74rem;}
+
+/* Run button */
+.run-bar{display:flex;gap:0.65rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+.btn{padding:0.55rem 1.1rem;border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.12s;letter-spacing:-0.005em;}
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark);}
+.btn-primary:disabled{background:var(--ink-5);border-color:var(--ink-5);cursor:not-allowed;}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);border-color:var(--ink-5);}
+.btn svg{width:14px;height:14px;}
+.run-hint{font-size:0.74rem;color:var(--ink-3);font-style:italic;}
+
+/* === ANALYSIS STAGES === */
+.stages{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.5rem;display:none;}
+.stages.on{display:block;}
+.stages-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.stages-ti{font-size:0.95rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:0.55rem;}
+.stages-ti .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s ease-in-out infinite;}
+.stages.done .stages-ti .pulse{background:var(--green);animation:none;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.5);}}
+.stages-time{font-size:0.74rem;color:var(--ink-3);font-family:var(--font-mono);}
+.stages-list{display:flex;flex-direction:column;gap:0.5rem;}
+.stage-row{display:flex;gap:0.85rem;align-items:center;padding:0.55rem 0.7rem;border-radius:6px;background:var(--bg3);transition:all 0.3s;font-size:0.84rem;}
+.stage-row.run{background:var(--tint-green);border-left:3px solid var(--green);}
+.stage-row.done{background:var(--bg3);}
+.stage-row.idle{opacity:0.45;}
+.stage-ic{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.stage-row.idle .stage-ic{color:var(--ink-4);}
+.stage-row.run .stage-ic{color:var(--green);}
+.stage-row.done .stage-ic{color:var(--green);}
+.stage-spinner{width:14px;height:14px;border:2px solid var(--ink-5);border-top-color:var(--green);border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.stage-bd{flex:1;color:var(--ink);}
+.stage-row.idle .stage-bd{color:var(--ink-3);}
+.stage-msg{font-size:0.72rem;color:var(--ink-3);font-family:var(--font-mono);min-width:90px;text-align:right;}
+
+/* === RESULT === */
+.result{display:none;}
+.result.on{display:block;}
+.result-header{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.5rem;margin-bottom:1rem;display:flex;gap:1.5rem;align-items:flex-start;}
+.result-header-bd{flex:1;}
+.result-header-eye{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);font-weight:700;margin-bottom:0.4rem;}
+.result-header-ti{font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.55rem;line-height:1.3;letter-spacing:-0.01em;}
+.result-header-meta{display:flex;gap:0.7rem;flex-wrap:wrap;font-size:0.74rem;color:var(--ink-3);}
+.result-header-meta strong{color:var(--ink);}
+.risk-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 0.85rem;border-radius:6px;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;}
+.risk-alto{background:var(--tint-red);color:var(--red);}
+.risk-medio{background:var(--tint-amber);color:var(--amber);}
+.risk-baixo{background:var(--tint-green);color:var(--green);}
+
+.result-section{background:var(--bg2);border:1px solid var(--line);border-radius:12px;margin-bottom:0.85rem;overflow:hidden;}
+.result-section-h{padding:0.95rem 1.3rem;border-bottom:1px solid transparent;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.result-section-h:hover{background:var(--bg3);}
+.result-section.open .result-section-h{border-bottom-color:var(--line);}
+.result-section-ti{font-size:0.92rem;font-weight:600;display:flex;align-items:center;gap:0.6rem;color:var(--ink);}
+.result-section-ti .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--green-soft);color:var(--green);border-radius:6px;font-size:0.72rem;font-weight:700;font-family:var(--font-mono);}
+.result-section-meta{font-size:0.74rem;color:var(--ink-3);font-weight:500;}
+.result-section-chev{color:var(--ink-4);transition:transform 0.18s;}
+.result-section.open .result-section-chev{transform:rotate(180deg);}
+.result-section-bd{display:none;padding:1.1rem 1.3rem 1.3rem;}
+.result-section.open .result-section-bd{display:block;}
+
+/* Section content styles */
+.sintese{font-size:0.92rem;line-height:1.65;color:var(--ink-2);font-family:var(--font-serif);}
+.sintese p+p{margin-top:0.7rem;}
+
+.map-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.map-table thead th{text-align:left;padding:0.55rem 0.7rem;font-weight:600;font-size:0.7rem;color:var(--ink-3);border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:0.04em;}
+.map-table tbody td{padding:0.65rem 0.7rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);line-height:1.5;}
+.map-table tbody tr:last-child td{border-bottom:none;}
+.map-table tbody tr:hover td{background:var(--bg3);}
+.art-ref{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink);font-weight:500;display:block;margin-bottom:0.15rem;}
+.art-text{color:var(--ink-3);font-size:0.74rem;line-height:1.45;}
+.action-pill{display:inline-block;padding:0.18rem 0.55rem;border-radius:4px;font-size:0.66rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.action-alterar{background:var(--tint-amber);color:var(--amber);}
+.action-aditar{background:var(--tint-blue);color:var(--blue);}
+.action-criar{background:var(--tint-green);color:var(--green);}
+.action-revogar{background:var(--tint-red);color:var(--red);}
+
+.diploma-list{display:flex;flex-direction:column;gap:0.55rem;}
+.diploma-it{display:flex;gap:0.85rem;padding:0.7rem 0.9rem;border-radius:8px;background:var(--bg3);align-items:flex-start;}
+.diploma-it .sev{flex-shrink:0;width:8px;border-radius:4px;align-self:stretch;}
+.diploma-it.sev-alto .sev{background:var(--red);}
+.diploma-it.sev-medio .sev{background:var(--amber);}
+.diploma-it.sev-baixo .sev{background:var(--green);}
+.diploma-bd{flex:1;}
+.diploma-ti{font-size:0.84rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+.diploma-sub{font-size:0.74rem;color:var(--ink-3);line-height:1.45;}
+.diploma-meta{margin-top:0.45rem;display:flex;gap:0.85rem;font-size:0.7rem;color:var(--ink-3);}
+.diploma-meta strong{color:var(--ink-2);}
+
+.newleg-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;}
+.newleg-card{padding:0.95rem 1.05rem;background:var(--green-soft);border:1px solid var(--green);border-radius:8px;}
+.newleg-card-tag{font-size:0.66rem;text-transform:uppercase;font-weight:700;letter-spacing:0.04em;color:var(--green);margin-bottom:0.4rem;}
+.newleg-card-ti{font-size:0.86rem;font-weight:600;color:var(--ink);margin-bottom:0.45rem;line-height:1.3;}
+.newleg-card-sub{font-size:0.74rem;color:var(--ink-2);line-height:1.5;}
+.newleg-card-meta{margin-top:0.6rem;font-size:0.7rem;color:var(--ink-3);}
+
+.ministry-tree{display:flex;flex-direction:column;gap:0.45rem;}
+.ministry-it{display:flex;gap:0.55rem;align-items:center;padding:0.55rem 0.75rem;background:var(--bg3);border-radius:6px;font-size:0.82rem;}
+.ministry-role{font-size:0.66rem;text-transform:uppercase;font-weight:700;letter-spacing:0.04em;padding:0.2rem 0.5rem;border-radius:3px;}
+.ministry-role.coord{background:var(--tint-green);color:var(--green);}
+.ministry-role.cores{background:var(--tint-blue);color:var(--blue);}
+
+.cal-timeline{display:flex;flex-direction:column;gap:0.55rem;position:relative;padding-left:1.3rem;}
+.cal-timeline::before{content:'';position:absolute;left:0.45rem;top:0.55rem;bottom:0.55rem;width:1px;background:var(--line);}
+.cal-it{display:flex;gap:0.85rem;align-items:flex-start;position:relative;}
+.cal-it::before{content:'';position:absolute;left:-1.05rem;top:0.4rem;width:9px;height:9px;border-radius:50%;background:var(--bg2);border:2px solid var(--ink-4);}
+.cal-it.cur::before{background:var(--green);border-color:var(--green);box-shadow:0 0 0 3px var(--tint-green);}
+.cal-it.past::before{background:var(--green);border-color:var(--green);}
+.cal-date{flex-shrink:0;font-family:var(--font-mono);font-size:0.74rem;color:var(--ink-3);min-width:90px;}
+.cal-bd{flex:1;}
+.cal-ti{font-size:0.84rem;font-weight:600;color:var(--ink);}
+.cal-sub{font-size:0.72rem;color:var(--ink-3);line-height:1.45;margin-top:0.15rem;}
+
+.depend-it{display:flex;gap:0.7rem;padding:0.6rem 0.75rem;background:var(--bg3);border-radius:6px;align-items:flex-start;font-size:0.8rem;}
+.depend-it+.depend-it{margin-top:0.4rem;}
+.depend-ic{flex-shrink:0;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.depend-ic.warn{background:var(--tint-amber);color:var(--amber);}
+.depend-ic.info{background:var(--tint-blue);color:var(--blue);}
+.depend-ic svg{width:13px;height:13px;}
+
+/* Action footer */
+.result-actions{margin-top:1.2rem;padding:1.1rem 1.3rem;background:var(--bg2);border:1px solid var(--line);border-radius:12px;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;}
+.result-actions-h{font-size:0.78rem;font-weight:600;color:var(--ink);margin-right:auto;}
+
+/* Toast */
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.55rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.7rem 0.95rem;min-width:280px;display:flex;align-items:flex-start;gap:0.55rem;animation:toast-in 0.22s cubic-bezier(0.4,0,0.2,1);}
+.toast.t-info{border-left-color:var(--blue);}
+.toast.t-warn{border-left-color:var(--amber);}
+.toast-bd{flex:1;}
+.toast-ti{font-size:0.82rem;font-weight:600;color:var(--ink);margin-bottom:0.1rem;}
+.toast-msg{font-size:0.74rem;color:var(--ink-3);}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+button:focus-visible,a:focus-visible,.showcase:focus-visible,.ex-card:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+
+@media (max-width:900px){
+  .editor{grid-template-columns:1fr;}
+  .ex-grid{grid-template-columns:repeat(2,1fr);}
+  .newleg-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Brand bar -->
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/>
+        <rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/>
+        <rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="brand-bd">
+      <div class="brand-nm">VIGIL · PROSPETIVA</div>
+      <div class="brand-sub">Demonstração da experiência completa · análise simulada de propostas legislativas UE</div>
+    </div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eye">M01 · PROSPETIVA · Fase negocial · DGAE</div>
+    <h1 class="hero-h1">Antes de Bruxelas aprovar, sabes o que vai mudar em Lisboa.</h1>
+    <p class="hero-sub">Esta vista mostra como funcionará o módulo PROSPETIVA quando o adjudicatário o construir. Cola o articulado de uma proposta da Comissão (ou usa um exemplo real) e vê a IA produzir um plano de transposição em poucos segundos. Esta demonstração simula a análise localmente — não chama API.</p>
+  </div>
+
+  <!-- Examples -->
+  <div class="examples">
+    <div class="ex-h">Selecionar proposta para análise</div>
+    <div class="ex-sub">Os exemplos abaixo contêm o articulado real conforme publicado no EUR-Lex.</div>
+
+    <!-- Showcase -->
+    <div class="showcase" id="showcase" onclick="loadExample('lobby')" role="button" tabindex="0">
+      <div class="showcase-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Caso demonstrador
+      </div>
+      <div class="showcase-ti">Proposta de Diretiva sobre Representação de Interesses Exercida por Países Terceiros</div>
+      <div class="showcase-sub">Em Janeiro de 2026, Portugal aprovou a Lei n.º 2/2026 (Lei do Lobby) sem considerar esta diretiva, que estava em fase avançada de negociação. Esta análise mostra precisamente o que o VIGIL teria detectado a tempo — incluindo o impacto sobre a recém-aprovada Lei do Lobby.</div>
+      <div class="showcase-meta">
+        <span><strong>14 artigos</strong> · 5 capítulos</span>
+        <span><strong>3 diplomas afectados</strong></span>
+        <span><strong>1 nova legislação</strong> (Portaria conjunta)</span>
+        <span><strong>Análise de referência</strong></span>
+      </div>
+    </div>
+
+    <div class="ex-grid">
+      <div class="ex-card" data-ex="ai_act" onclick="loadExample('ai_act')" role="button" tabindex="0">
+        <span class="ex-tag tag-digital">Digital</span>
+        <div class="ex-card-ti">AI Act · Regulamento da Inteligência Artificial</div>
+        <div class="ex-card-sub">Reg. (UE) 2024/1689 · 113 artigos</div>
+      </div>
+      <div class="ex-card" data-ex="data_act" onclick="loadExample('data_act')" role="button" tabindex="0">
+        <span class="ex-tag tag-digital">Digital</span>
+        <div class="ex-card-ti">Data Act · Acesso a Dados</div>
+        <div class="ex-card-sub">Reg. (UE) 2023/2854 · 50 artigos</div>
+      </div>
+      <div class="ex-card" data-ex="platform_work" onclick="loadExample('platform_work')" role="button" tabindex="0">
+        <span class="ex-tag tag-trab">Trabalho</span>
+        <div class="ex-card-ti">Trabalho em Plataformas Digitais</div>
+        <div class="ex-card-sub">Dir. (UE) 2024/2831 · 36 artigos</div>
+      </div>
+      <div class="ex-card" data-ex="aml6" onclick="loadExample('aml6')" role="button" tabindex="0">
+        <span class="ex-tag tag-fin">Finanças</span>
+        <div class="ex-card-ti">6.ª Diretiva Antibranqueamento</div>
+        <div class="ex-card-sub">Dir. (UE) 2018/1673 · 18 artigos</div>
+      </div>
+      <div class="ex-card" data-ex="epbd" onclick="loadExample('epbd')" role="button" tabindex="0">
+        <span class="ex-tag tag-amb">Ambiente</span>
+        <div class="ex-card-ti">EPBD · Eficiência energética edifícios</div>
+        <div class="ex-card-sub">Dir. (UE) 2024/1275 · 36 artigos</div>
+      </div>
+      <div class="ex-card" data-ex="blank" onclick="loadExample('blank')" role="button" tabindex="0" style="background:var(--bg3);border-style:dashed;">
+        <span class="ex-tag" style="background:var(--bg4);color:var(--ink-3)">Personalizado</span>
+        <div class="ex-card-ti">Colar texto manualmente</div>
+        <div class="ex-card-sub">Cola o articulado de qualquer proposta CE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editor -->
+  <div class="editor">
+    <div class="editor-main">
+      <div class="editor-tab">
+        <div class="editor-tab-l">
+          <span class="editor-tab-doc" id="doc-name">— sem proposta carregada —</span>
+        </div>
+        <div class="editor-tab-r">
+          <span class="editor-stat">Artigos: <span class="editor-stat-val" id="stat-arts">0</span></span>
+          <span class="editor-stat">Caracteres: <span class="editor-stat-val" id="stat-chars">0</span></span>
+        </div>
+      </div>
+      <div class="editor-bd" id="editor-bd">
+        <div class="placeholder-state" id="placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <div>Selecciona um exemplo acima ou clica em "Personalizado" para colar texto.</div>
+        </div>
+        <textarea id="prop-text" style="display:none" oninput="updateStats()" placeholder="Cola aqui o articulado da proposta..."></textarea>
+      </div>
+    </div>
+    <div class="editor-side">
+      <h4>Detecção automática</h4>
+      <div class="editor-side-row"><span class="editor-side-lb">Tipo de acto</span><span class="editor-side-vl" id="det-tipo">—</span></div>
+      <div class="editor-side-row"><span class="editor-side-lb">CELEX</span><span class="editor-side-vl" id="det-celex">—</span></div>
+      <div class="editor-side-row"><span class="editor-side-lb">COM ref</span><span class="editor-side-vl" id="det-com">—</span></div>
+      <div class="editor-side-row"><span class="editor-side-lb">Idioma</span><span class="editor-side-vl" id="det-lang">—</span></div>
+      <div class="editor-side-row"><span class="editor-side-lb">Estado</span><span class="editor-side-vl" id="det-fase">—</span></div>
+      <div class="editor-side-row"><span class="editor-side-lb">Prazo transposição</span><span class="editor-side-vl" id="det-prazo">—</span></div>
+    </div>
+  </div>
+
+  <div class="run-bar">
+    <button class="btn btn-primary" id="btn-run" onclick="runAnalysis()" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Analisar com IA
+    </button>
+    <button class="btn btn-ghost" onclick="clearAll()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
+      Limpar
+    </button>
+    <span class="run-hint" id="run-hint">Carrega um exemplo para activar a análise.</span>
+  </div>
+
+  <!-- Stages -->
+  <div class="stages" id="stages">
+    <div class="stages-h">
+      <div class="stages-ti"><span class="pulse"></span><span id="stages-title">Pipeline de análise IA</span></div>
+      <div class="stages-time" id="stages-time">0,0s</div>
+    </div>
+    <div class="stages-list" id="stages-list"></div>
+  </div>
+
+  <!-- Result -->
+  <div class="result" id="result"></div>
+
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+// ============================================================================
+// DATA — Articulated examples
+// ============================================================================
+
+const EXAMPLES = {
+  lobby: {
+    docName: 'COM(2023) 637 final · 2023/0376(COD)',
+    title: 'Proposta de Diretiva do Parlamento Europeu e do Conselho que estabelece requisitos harmonizados no mercado interno relativos à transparência da representação de interesses exercida em nome de países terceiros',
+    tipo: 'Proposta de Diretiva',
+    celex: '52023PC0637',
+    com: 'COM(2023) 637 final',
+    lang: 'EN (PT em curso)',
+    fase: 'Negociação · trílogo iminente',
+    prazo: '12 meses após entrada em vigor',
+    risk: 'alto',
+    text: `PROPOSTA DE DIRETIVA DO PARLAMENTO EUROPEU E DO CONSELHO
+
+que estabelece requisitos harmonizados no mercado interno relativos à transparência da representação de interesses exercida em nome de países terceiros e que altera a Diretiva (UE) 2019/1937
+
+(Texto relevante para efeitos do EEE)
+
+CONSIDERANDOS
+
+(1) A integridade dos processos democráticos e das políticas públicas da União pode ser afectada pela representação de interesses exercida em nome de entidades de países terceiros sem a transparência adequada.
+
+(2) A divergência das regras nacionais em matéria de transparência cria barreiras ao mercado interno e dificulta o exercício das liberdades fundamentais.
+
+(3) A presente diretiva estabelece um regime harmonizado, baseado nos princípios da transparência, da proporcionalidade e da não discriminação.
+
+CAPÍTULO I — DISPOSIÇÕES GERAIS
+
+Artigo 1.º — Objeto
+
+A presente diretiva estabelece um regime harmonizado para a transparência da representação de interesses exercida no mercado interno em nome de uma entidade de país terceiro, com vista à protecção da integridade dos processos democráticos e do mercado interno.
+
+Artigo 2.º — Âmbito de aplicação
+
+1. A presente diretiva aplica-se à representação de interesses exercida no mercado interno em nome de uma entidade de país terceiro, independentemente do lugar de estabelecimento do prestador.
+
+2. A presente diretiva não se aplica:
+(a) Às atividades de jornalismo, conforme definido pela legislação nacional;
+(b) Às atividades exercidas no quadro das relações diplomáticas oficiais;
+(c) Às atividades exercidas por organizações internacionais reconhecidas pelo Estado-Membro.
+
+Artigo 3.º — Definições
+
+Para efeitos da presente diretiva, entende-se por:
+(1) «Representação de interesses», qualquer atividade exercida com o objetivo de influenciar a elaboração, a execução ou a aplicação de políticas, da legislação ou de processos decisórios públicos, nomeadamente através de comunicações com decisores públicos.
+(2) «Entidade de país terceiro», qualquer pessoa singular ou coletiva, pública ou privada, estabelecida num país que não seja Estado-Membro da União nem parte do Acordo sobre o Espaço Económico Europeu.
+(3) «Prestador», qualquer pessoa singular ou coletiva que exerça representação de interesses em nome de uma entidade de país terceiro, mediante remuneração ou a título não comercial.
+(4) «Decisor público», qualquer titular de cargo público ou agente da administração pública envolvido em processo decisório de relevância política.
+
+CAPÍTULO II — REGISTO E TRANSPARÊNCIA
+
+Artigo 4.º — Obrigação de registo
+
+1. Os Estados-Membros asseguram que todo o prestador, antes de iniciar uma atividade de representação de interesses na aceção do artigo 3.º, se inscreve num registo nacional criado para o efeito.
+
+2. O registo é electrónico, gratuito, acessível ao público em formato aberto e pesquisável.
+
+3. A inscrição é considerada concluída no momento da emissão de um número de identificação único.
+
+Artigo 5.º — Conteúdo do registo
+
+O registo contém, no mínimo, as seguintes informações:
+(a) Identificação completa do prestador (nome ou denominação social, número fiscal, endereço);
+(b) Identificação da entidade de país terceiro em nome da qual a atividade é exercida;
+(c) Descrição sucinta dos objetivos da atividade de representação;
+(d) Domínios políticos visados;
+(e) Montante anual recebido pela atividade;
+(f) Número de pessoas afectadas à atividade.
+
+Artigo 6.º — Comunicação periódica
+
+Os prestadores inscritos comunicam à autoridade competente, no prazo de 30 dias após cada ocorrência:
+(a) Cada contacto formal com decisor público realizado no exercício da atividade;
+(b) Os pagamentos recebidos da entidade de país terceiro acima de 5 000 €;
+(c) Qualquer alteração substancial às informações constantes do registo.
+
+CAPÍTULO III — AUTORIDADES COMPETENTES
+
+Artigo 7.º — Designação de autoridades competentes
+
+1. Cada Estado-Membro designa uma ou mais autoridades competentes para a aplicação da presente diretiva, garantindo a sua independência funcional e adequação dos recursos.
+
+2. Os Estados-Membros notificam à Comissão a designação das autoridades competentes no prazo de seis meses após a entrada em vigor da presente diretiva.
+
+Artigo 8.º — Cooperação administrativa
+
+As autoridades competentes dos Estados-Membros cooperam entre si e com a Comissão, designadamente por intermédio do sistema de informação harmonizado a estabelecer pela Comissão por acto delegado.
+
+CAPÍTULO IV — APLICAÇÃO E SANÇÕES
+
+Artigo 9.º — Sanções
+
+1. Os Estados-Membros estabelecem o regime de sanções aplicável às infrações às disposições nacionais aprovadas em execução da presente diretiva, podendo prever sanções administrativas e, em casos graves, sanções penais.
+
+2. As sanções são efectivas, proporcionadas e dissuasivas, podendo incluir:
+(a) Coimas até 2 % do volume de negócios anual mundial do prestador;
+(b) Suspensão temporária do exercício da atividade;
+(c) Eliminação do registo nacional.
+
+Artigo 10.º — Recurso
+
+Os Estados-Membros asseguram que as decisões adotadas ao abrigo da presente diretiva possam ser objecto de recurso judicial efectivo.
+
+CAPÍTULO V — DISPOSIÇÕES FINAIS
+
+Artigo 11.º — Transposição
+
+1. Os Estados-Membros adotam e publicam, até [12 meses após a entrada em vigor], as disposições legislativas, regulamentares e administrativas necessárias para dar cumprimento à presente diretiva.
+
+2. Os Estados-Membros comunicam imediatamente à Comissão o texto dessas disposições e fornecem uma tabela de correspondência entre essas disposições e a presente diretiva.
+
+Artigo 12.º — Avaliação
+
+A Comissão apresenta ao Parlamento Europeu e ao Conselho, no prazo de cinco anos a contar da data da transposição, um relatório de avaliação da aplicação da presente diretiva.
+
+Artigo 13.º — Entrada em vigor
+
+A presente diretiva entra em vigor no vigésimo dia seguinte ao da sua publicação no Jornal Oficial da União Europeia.
+
+Artigo 14.º — Destinatários
+
+Os destinatários da presente diretiva são os Estados-Membros.`,
+    analysis: {
+      summary: `Esta proposta cria, pela primeira vez, um regime harmonizado de transparência sobre a representação de interesses exercida em nome de países terceiros — área até agora não regulada pelo direito português, sob risco de tensão directa com a recém-aprovada Lei n.º 2/2026 (Lei do Lobby).
+
+Portugal terá de criar um Registo Nacional de Entidades de Países Terceiros (RNEPT), designar uma autoridade competente, estabelecer um regime sancionatório efectivo (incluindo coimas até 2 % do volume de negócios mundial do prestador) e prever cooperação com outros Estados-Membros.
+
+A coordenação entre o regime do lobby (Lei 2/2026) e o regime de países terceiros é crítica e exigirá alteração da Lei 2/2026 para evitar duplo registo, contradições e lacunas.`,
+      mapping: [
+        { dirArt:'Art. 4.º · Obrigação de registo', dirTxt:'Inscrição obrigatória em registo nacional antes do início da atividade', natRef:'Lei n.º 2/2026 — Art. 8.º', natTxt:'Registo do lobby (recém-criado)', action:'aditar', actionTxt:'Aditar secção específica para entidades de países terceiros' },
+        { dirArt:'Art. 5.º · Conteúdo do registo', dirTxt:'Identificação da entidade de país terceiro · domínios visados · valor', natRef:'Lei n.º 2/2026 — Anexo I', natTxt:'Campos do registo do lobby', action:'alterar', actionTxt:'Alterar anexo para incluir campos adicionais (e.g. entidade beneficiária estrangeira)' },
+        { dirArt:'Art. 6.º · Comunicação periódica', dirTxt:'Reporte de contactos e pagamentos > 5 000 €', natRef:'Lei n.º 2/2026 — Art. 12.º', natTxt:'Obrigações declarativas', action:'alterar', actionTxt:'Reduzir limiar do reporte para alinhamento com a directiva' },
+        { dirArt:'Art. 7.º · Autoridades competentes', dirTxt:'Designação de autoridade independente com recursos adequados', natRef:'Novo · Portaria conjunta', natTxt:'Designação CIPP / nova entidade', action:'criar', actionTxt:'Criar Portaria conjunta MP + MNE designando o RNEPT e a autoridade' },
+        { dirArt:'Art. 9.º · Sanções', dirTxt:'Coimas até 2 % do VN mundial; suspensão da atividade', natRef:'Lei n.º 2/2026 — Capítulo VI', natTxt:'Regime sancionatório actual (insuficiente)', action:'alterar', actionTxt:'Reforçar coimas e adicionar suspensão temporária' },
+        { dirArt:'Art. 7.º (cooperação)', dirTxt:'Cooperação com autoridades de outros EM', natRef:'Lei Orgânica 1/2023 — Art. 5.º', natTxt:'Lei do financiamento dos partidos', action:'alterar', actionTxt:'Articular regime para evitar arbitragem regulatória entre as duas leis' },
+        { dirArt:'Art. 11.º · Transposição', dirTxt:'12 meses após entrada em vigor', natRef:'DL n.º 48/2021', natTxt:'Transparência na AR · regime existente', action:'alterar', actionTxt:'Adaptar prazos e referências cruzadas' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Lei n.º 2/2026 (Lei do Lobby)', sub:'Aprovada em Janeiro 2026 sem considerar esta diretiva. Conflito directo com Art. 4.º a 6.º.', kind:'Alteração substancial', minister:'Min. Presidência', articles:'Arts. 4.º, 5.º, 8.º, 12.º, 18.º' },
+        { sev:'medio', title:'Lei Orgânica n.º 1/2023', sub:'Financiamento dos partidos políticos · interface com financiamento por entidades estrangeiras.', kind:'Alteração', minister:'Min. Presidência · MNE', articles:'Art. 5.º' },
+        { sev:'baixo', title:'Decreto-Lei n.º 48/2021', sub:'Transparência institucional na Assembleia da República · referências cruzadas e prazos.', kind:'Alteração técnica', minister:'Min. Presidência', articles:'Arts. 3.º, 7.º' },
+      ],
+      newleg: [
+        { tag:'Portaria conjunta', title:'Cria o Registo Nacional de Entidades de Países Terceiros (RNEPT)', sub:'Designa a autoridade competente, define campos do registo, prazos de inscrição e formato electrónico.', meta:'Min. Presidência + MNE · Portaria conjunta · prazo: 6 meses' },
+        { tag:'Decreto-Lei (alteração)', title:'Adita Capítulo IV-A à Lei n.º 2/2026 (regime de países terceiros)', sub:'Distingue claramente lobby genérico de representação de interesses estrangeiros · sanções específicas · cooperação CE.', meta:'Min. Presidência · proponente · prazo: 12 meses' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. Presidência', desc:'Coordenação geral · proponente da alteração legislativa · Lei 2/2026' },
+        { role:'cores', name:'Min. Negócios Estrangeiros', desc:'Articulação diplomática · DGAE · CIAE' },
+        { role:'cores', name:'Min. Justiça', desc:'Regime sancionatório · interface com Procuradoria-Geral' },
+        { role:'cores', name:'Min. Finanças (AT)', desc:'Identificação fiscal de entidades estrangeiras · dados de pagamentos' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA aprovado · entra na lista de processos' },
+        { date:'30-05-2026', state:'todo', ti:'Adoção do acto pelo Conselho', sub:'Última leitura prevista · entrada em vigor T+20 dias' },
+        { date:'19-06-2026', state:'todo', ti:'Entrada em vigor da diretiva', sub:'Início da contagem do prazo de 12 meses' },
+        { date:'30-09-2026', state:'todo', ti:'Concertação interministerial', sub:'Reunião CIAE · acordo sobre Portaria conjunta' },
+        { date:'15-12-2026', state:'todo', ti:'Aprovação Portaria RNEPT (CM)', sub:'Min. Presidência + MNE · designação da autoridade' },
+        { date:'31-03-2027', state:'todo', ti:'Submissão Lei alteradora à AR', sub:'Antes do prazo de 30 Junho · janela útil' },
+        { date:'19-06-2027', state:'todo', ti:'Prazo de transposição', sub:'12 meses após entrada em vigor' },
+      ],
+      depend: [
+        { type:'warn', text:'Conflito com Lei n.º 2/2026 (Lei do Lobby) · vacatio legis expira 27 Jul 2026 — alteração antes desta data evita aplicação contraditória.' },
+        { type:'warn', text:'Trílogo previsto para Maio 2026 · janela negocial estreita (>90% dos actos fecham em 1.ª leitura — confirmado pela DGAE).' },
+        { type:'info', text:'Articulação com Diretiva (UE) 2019/1937 (whistleblowers) · proteção de denunciantes em casos de interferência estrangeira.' },
+        { type:'info', text:'Possível alinhamento com Reg. (UE) 2024/900 (transparência da publicidade política) · domínio adjacente.' },
+      ],
+    },
+  },
+  ai_act: {
+    docName: 'JO L 1689 · 12-07-2024',
+    title: 'Regulamento (UE) 2024/1689 do Parlamento Europeu e do Conselho que estabelece regras harmonizadas em matéria de inteligência artificial (Regulamento Inteligência Artificial)',
+    tipo: 'Regulamento (aplicação directa)',
+    celex: '32024R1689',
+    com: 'COM(2021) 206 final',
+    lang: 'PT',
+    fase: 'Em vigor · aplicação faseada',
+    prazo: 'Atos nacionais · 02-08-2026',
+    risk: 'alto',
+    text: `REGULAMENTO (UE) 2024/1689 DO PARLAMENTO EUROPEU E DO CONSELHO
+
+de 13 de junho de 2024, que estabelece regras harmonizadas em matéria de inteligência artificial e que altera os Regulamentos (CE) n.º 300/2008, (UE) n.º 167/2013, (UE) n.º 168/2013, (UE) 2018/858, (UE) 2018/1139 e (UE) 2019/2144 e as Directivas 2014/90/UE, (UE) 2016/797 e (UE) 2020/1828 (Regulamento Inteligência Artificial)
+
+(Texto relevante para efeitos do EEE)
+
+CAPÍTULO I — DISPOSIÇÕES GERAIS
+
+Artigo 1.º — Objeto
+
+1. O presente regulamento tem por objeto melhorar o funcionamento do mercado interno e promover a adopção de uma inteligência artificial (IA) centrada no ser humano e digna de confiança, assegurando simultaneamente um elevado nível de protecção da saúde, da segurança e dos direitos fundamentais consagrados na Carta, incluindo a democracia, o Estado de direito e a protecção do ambiente, contra os efeitos prejudiciais dos sistemas de IA na União, e promover a inovação.
+
+Artigo 3.º — Definições
+
+Para efeitos do presente regulamento, entende-se por:
+(1) «Sistema de IA», um sistema baseado em máquinas concebido para funcionar com diferentes níveis de autonomia, que pode mostrar capacidade de adaptação após a sua implantação e que, para objetivos explícitos ou implícitos, infere, a partir das entradas que recebe, a forma de gerar resultados como, por exemplo, previsões, conteúdos, recomendações ou decisões que podem influenciar ambientes físicos ou virtuais.
+(3) «Fornecedor», pessoa singular ou coletiva, autoridade pública, agência ou outro organismo que desenvolva um sistema de IA ou um modelo de IA de finalidade geral, ou que mande desenvolver um sistema ou modelo de IA, e os coloque no mercado.
+(63) «Modelo de IA de finalidade geral», um modelo de IA, incluindo aqueles treinados com uma grande quantidade de dados utilizando a auto-supervisão à escala, que apresenta uma generalidade significativa.
+
+CAPÍTULO II — PRÁTICAS DE IA PROIBIDAS
+
+Artigo 5.º — Práticas de IA proibidas
+
+1. São proibidas as seguintes práticas de IA:
+(a) A colocação no mercado, a colocação em serviço ou a utilização de um sistema de IA que utilize técnicas subliminares fora do consciente, manipuladoras ou enganadoras com vista a, ou que tenham como efeito, distorcer substancialmente o comportamento de uma pessoa, prejudicando a sua capacidade de tomar uma decisão informada;
+(c) A colocação no mercado, a colocação em serviço ou a utilização de sistemas de IA para a avaliação ou classificação de pessoas singulares com base no seu comportamento social ou em características pessoais conhecidas, inferidas ou previstas, que conduza a um tratamento prejudicial ou desfavorável (pontuação social);
+(d) A colocação no mercado, a colocação em serviço para esta finalidade específica ou a utilização de um sistema de IA para efetuar avaliações de risco de pessoas singulares com vista a avaliar ou prever o risco de uma pessoa singular cometer uma infração penal;
+(e) A colocação no mercado, a colocação em serviço ou a utilização de sistemas de IA que criem ou ampliem bases de dados de reconhecimento facial através da recolha não direccionada de imagens faciais provenientes da Internet ou de imagens de vídeo CCTV;
+(f) A colocação no mercado, a colocação em serviço ou a utilização de sistemas de IA para inferir emoções de uma pessoa singular nos locais de trabalho e nas instituições de ensino;
+(h) A utilização de sistemas de identificação biométrica à distância «em tempo real» em espaços acessíveis ao público para efeitos de aplicação coerciva da lei, salvo nas estritas exceções previstas no n.º 2.
+
+CAPÍTULO III — SISTEMAS DE IA DE RISCO ELEVADO
+
+Artigo 6.º — Regras de classificação
+
+1. Um sistema de IA é considerado de risco elevado se cumprir cumulativamente as duas condições seguintes:
+(a) Estar sujeito à legislação harmonizada da União enumerada no Anexo I, ou ser ele próprio um produto regulamentado;
+(b) Ter de ser sujeito a uma avaliação da conformidade por um terceiro com vista à colocação no mercado.
+
+2. Para além dos sistemas referidos no n.º 1, são também considerados de risco elevado os sistemas de IA enumerados no Anexo III nos seguintes domínios: biometria · infraestruturas críticas · educação e formação profissional · emprego e gestão de trabalhadores · acesso a serviços privados essenciais e a serviços e prestações públicos essenciais · aplicação coerciva da lei · gestão da migração, do asilo e do controlo das fronteiras · administração da justiça e processos democráticos.
+
+Artigo 9.º — Sistema de gestão de riscos
+
+Artigo 10.º — Dados e governação de dados (qualidade, representatividade, ausência de enviesamentos)
+
+Artigo 11.º — Documentação técnica
+
+Artigo 14.º — Supervisão humana (intervenção e controlo efectivo)
+
+Artigo 15.º — Exatidão, robustez e cibersegurança
+
+CAPÍTULO IV — OBRIGAÇÕES DE TRANSPARÊNCIA
+
+Artigo 50.º — Obrigações de transparência para os fornecedores e os responsáveis pela implantação de determinados sistemas de IA
+
+1. Os fornecedores asseguram que os sistemas de IA destinados a interagir directamente com pessoas singulares são concebidos de forma a informar as pessoas em causa de que estão a interagir com um sistema de IA.
+4. Os responsáveis pela implantação de um sistema de IA que gere ou manipule conteúdos de imagem, áudio ou vídeo que constituam deepfakes devem comunicar que o conteúdo foi gerado ou manipulado artificialmente.
+
+CAPÍTULO VII — GOVERNAÇÃO
+
+Artigo 70.º — Designação de autoridades competentes nacionais e ponto de contacto único
+
+1. Cada Estado-Membro estabelece ou designa, enquanto autoridades competentes nacionais, pelo menos uma autoridade notificadora e pelo menos uma autoridade de fiscalização do mercado para efeitos do presente regulamento. Essas autoridades exercem as suas competências de forma independente, imparcial e sem preconceitos.
+
+CAPÍTULO XII — SANÇÕES
+
+Artigo 99.º — Sanções
+
+3. O incumprimento da proibição das práticas de IA referidas no artigo 5.º está sujeito a coimas até 35 000 000 EUR ou, se o infractor for uma empresa, até 7 % do volume de negócios anual a nível mundial no exercício precedente, consoante o que for mais elevado.
+
+4. O incumprimento das obrigações relacionadas com sistemas de IA de risco elevado está sujeito a coimas até 15 000 000 EUR ou, se o infractor for uma empresa, até 3 % do volume de negócios anual.
+
+CAPÍTULO XIII — DISPOSIÇÕES FINAIS
+
+Artigo 113.º — Entrada em vigor e aplicação
+
+O presente regulamento entra em vigor no vigésimo dia seguinte ao da sua publicação no Jornal Oficial da União Europeia.
+
+É aplicável a partir de 2 de Agosto de 2026, com as seguintes excepções:
+(a) Os capítulos I e II são aplicáveis a partir de 2 de Fevereiro de 2025 (proibições);
+(b) O capítulo III, secção 4, o capítulo V, o capítulo VII e o capítulo XII, com excepção do artigo 101.º, são aplicáveis a partir de 2 de Agosto de 2025 (governação e GPAI);
+(c) O artigo 6.º, n.º 1, e as obrigações conexas são aplicáveis a partir de 2 de Agosto de 2027.`,
+    analysis: {
+      summary: `O AI Act é regulamento de aplicação directa — Portugal não tem de transpor o articulado, mas tem de praticar acto nacional complementar designando as autoridades competentes (Art. 70.º), estabelecer o regime sancionatório e o sandbox regulamentar, e articular com a CNPD para os sistemas de IA com tratamento de dados pessoais.
+
+A nova fronteira de risco identificada pela DGAE: regulamentos UE com aplicação directa frequentemente NÃO desencadeiam o processo de transposição (porque não há obrigação formal de transposição), o que pode levar Portugal a não cumprir requisitos como a designação de autoridades — exactamente como aconteceu com o Regulamento OLAF (2020/2223) e o Reg. dos Serviços Digitais (DSA).
+
+A urgência: prazo crítico em 02-08-2026 (aplicação plena das obrigações de risco elevado). Faltam ~14 semanas. Um Decreto-Lei autónomo é o instrumento natural — articula com o regime sancionatório-quadro do CPA e com a Lei 58/2019 (RGPD execução).`,
+      mapping: [
+        { dirArt:'Art. 70.º · Autoridades competentes', dirTxt:'Designação de autoridade notificadora e de fiscalização do mercado · independência funcional', natRef:'Lei autónoma · novo DL', natTxt:'Acto nacional complementar (não há diploma equivalente)', action:'criar', actionTxt:'Criar Decreto-Lei designando ANI ou nova entidade · prazo crítico Ago 2026' },
+        { dirArt:'Art. 99.º · Sanções', dirTxt:'Coimas até €35M ou 7% volume de negócios mundial', natRef:'Regime Geral das Contraordenações (DL 433/82) + DL próprio', natTxt:'Tabela específica IA a criar', action:'criar', actionTxt:'Adoptar regime sancionatório IA por via legislativa · prazo Ago 2026' },
+        { dirArt:'Art. 5.º · Práticas proibidas', dirTxt:'Pontuação social · biometria à distância · reconhecimento de emoções no trabalho/educação', natRef:'Lei 58/2019 (RGPD execução) · Código do Trabalho', natTxt:'Tratamento de dados biométricos já regulado', action:'alterar', actionTxt:'Articular com CNPD · clarificar competências entre AI authority e CNPD' },
+        { dirArt:'Art. 50.º · Transparência', dirTxt:'Sistemas que interagem com pessoas têm de declarar natureza · deepfakes têm de ser identificados', natRef:'DL 27/2021 (DSA execução)', natTxt:'Transparência de conteúdos · plataformas digitais', action:'alterar', actionTxt:'Adicionar obrigações específicas IA generativa' },
+        { dirArt:'Art. 57.º · Sandbox regulamentar', dirTxt:'Cada EM cria pelo menos um sandbox até 02-08-2026', natRef:'Novo · DL ou Portaria', natTxt:'Não existe sandbox IA', action:'criar', actionTxt:'Criar regime de sandbox IA · ANI como gestora' },
+        { dirArt:'Art. 6.º · Risco elevado em RH', dirTxt:'Sistemas IA usados em recrutamento · decisões de emprego', natRef:'Código do Trabalho (Lei 7/2009) · Art. 17.º a 22.º', natTxt:'Tratamento de dados de candidatos', action:'alterar', actionTxt:'Aditar deveres de informação · supervisão humana obrigatória' },
+        { dirArt:'Art. 6.º · Risco elevado em educação', dirTxt:'Sistemas IA em avaliação · admissão · vigilância em provas', natRef:'Lei de Bases do Sistema Educativo (Lei 46/86)', natTxt:'Avaliação académica · acesso ao ensino', action:'alterar', actionTxt:'Regulamentar limites na utilização IA em ensino' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Lei n.º 58/2019 (RGPD · execução nacional)', sub:'Articulação CNPD ↔ Autoridade IA. Conflito de competências previsível em sistemas IA com tratamento de dados pessoais (a maioria).', kind:'Alteração estrutural', minister:'Min. Justiça · CNPD', articles:'Arts. 4.º, 6.º, 30.º a 35.º' },
+        { sev:'alto', title:'Decreto-Lei n.º 27/2021 (execução DSA)', sub:'Plataformas digitais e transparência · interface com obrigações IA do Art. 50.º', kind:'Alteração', minister:'Min. da Presidência · ANACOM', articles:'Arts. 8.º a 14.º' },
+        { sev:'medio', title:'Código do Trabalho (Lei n.º 7/2009)', sub:'Sistemas IA usados em recrutamento, decisões de emprego, gestão de desempenho · risco elevado', kind:'Aditamento', minister:'Min. Trabalho · ACT', articles:'Arts. 17.º a 22.º (informação ao trabalhador)' },
+        { sev:'medio', title:'Lei n.º 46/86 (Bases do Sistema Educativo)', sub:'IA em educação como risco elevado · avaliação · admissão · vigilância em provas', kind:'Regulamentação adicional', minister:'Min. Educação, Ciência e Inovação', articles:'Regulamentação por via de DL' },
+        { sev:'medio', title:'Código do Procedimento Administrativo (DL 4/2015)', sub:'Decisão administrativa automatizada · direito à intervenção humana e ao recurso', kind:'Alteração', minister:'Min. Adjunto e Reforma do Estado', articles:'Arts. 124.º a 131.º' },
+      ],
+      newleg: [
+        { tag:'Decreto-Lei (urgente)', title:'Designa as autoridades competentes IA (acto nacional complementar)', sub:'Designação de pelo menos 1 autoridade notificadora + 1 de fiscalização do mercado · independência funcional · pode ser ANI, ANACOM ou nova entidade · regime sancionatório associado.', meta:'Min. Pres. · proposta · prazo crítico 02-08-2026' },
+        { tag:'Decreto-Lei', title:'Cria o regime sancionatório nacional para o AI Act', sub:'Coimas até €35M ou 7% VN mundial · processo contra-ordenacional · articulação com Regime Geral DL 433/82.', meta:'Min. Pres. · Min. Just. · prazo Ago 2026' },
+        { tag:'Portaria', title:'Cria o sandbox regulamentar IA', sub:'Pelo menos um sandbox até 02-08-2026 · regime de candidaturas · supervisão da ANI.', meta:'Min. Pres. · Min. Educação · prazo Ago 2026' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação interministerial · proposta legislativa · articulação CIAE' },
+        { role:'cores', name:'Min. da Justiça (CNPD)', desc:'Articulação RGPD ↔ AI Act · IA com dados pessoais' },
+        { role:'cores', name:'Min. Educação, Ciência e Inovação (ANI)', desc:'Candidata natural a autoridade competente · sandbox · estratégia nacional IA' },
+        { role:'cores', name:'Min. Adjunto e Reforma do Estado', desc:'IA na Administração Pública · CPA · transparência algorítmica' },
+        { role:'cores', name:'Min. Trabalho, Solidariedade e Seg. Social (ACT)', desc:'IA em RH · risco elevado · supervisão' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Plano aprovado · entra em pipeline de transposição' },
+        { date:'30-05-2026', state:'todo', ti:'Concertação CIAE · escolha da autoridade', sub:'ANI vs ANACOM vs nova entidade · decisão política' },
+        { date:'15-06-2026', state:'todo', ti:'Anteprojecto de Decreto-Lei', sub:'Min. Presidência redige · CNPD parecer · ACT parecer' },
+        { date:'30-06-2026', state:'todo', ti:'RSE · designação autoridade', sub:'Antes do recesso parlamentar · janela útil' },
+        { date:'15-07-2026', state:'todo', ti:'RCM e promulgação', sub:'Decreto-Lei autorizado pela AR' },
+        { date:'02-08-2026', state:'todo', ti:'Aplicação plena AI Act · prazo CRÍTICO', sub:'Capítulos III, V, VII e XII · sem autoridade designada = incumprimento' },
+        { date:'02-08-2027', state:'todo', ti:'Sistemas IA em produtos regulamentados', sub:'Aplicação faseada da última camada' },
+      ],
+      depend: [
+        { type:'warn', text:'Risco de incumprimento por inacção: como na história do Reg. OLAF (2020/2223 — Portugal em incumprimento 2021-2024) ou DSA (procedimento INFR/2024/2038 contra ANACOM por falta de poderes), a falta de designação de autoridade pode dar origem a procedimento de infracção.' },
+        { type:'warn', text:'Conflito potencial de competências CNPD ↔ Autoridade IA · IA generativa cruza ambos os regimes · clarificação política indispensável.' },
+        { type:'info', text:'Articulação com Cyber Resilience Act · Reg. (UE) 2024/2847 · prazos sobrepostos.' },
+        { type:'info', text:'Estratégia Nacional para a IA 2030 (RCM 21/2024) · alinhamento da governação institucional.' },
+      ],
+    },
+  },
+  data_act: {
+    docName: 'JO L 2854 · 22-12-2023',
+    title: 'Regulamento (UE) 2023/2854 do Parlamento Europeu e do Conselho relativo a regras harmonizadas para o acesso equitativo aos dados e a sua utilização (Regulamento Dados)',
+    tipo: 'Regulamento (aplicação directa)',
+    celex: '32023R2854',
+    com: 'COM(2022) 68 final',
+    lang: 'PT',
+    fase: 'Em vigor · aplicável desde 12-09-2025',
+    prazo: 'Atos nacionais complementares',
+    risk: 'medio',
+    text: `REGULAMENTO (UE) 2023/2854 DO PARLAMENTO EUROPEU E DO CONSELHO
+
+de 13 de Dezembro de 2023, relativo a regras harmonizadas para o acesso equitativo aos dados e a sua utilização e que altera o Regulamento (UE) 2017/2394 e a Directiva (UE) 2020/1828 (Regulamento dos Dados)
+
+CAPÍTULO I — DISPOSIÇÕES GERAIS
+
+Artigo 1.º — Objecto e âmbito de aplicação
+
+1. O presente regulamento estabelece regras harmonizadas sobre, nomeadamente:
+(a) A disponibilização aos utilizadores de produtos conectados ou serviços conexos dos dados gerados pela utilização desses produtos ou serviços;
+(b) A disponibilização de dados pelos detentores aos receptores na União;
+(c) A disponibilização, pelos detentores, de dados aos organismos do sector público, à Comissão, ao Banco Central Europeu e a outros organismos da União, quando seja excepcionalmente necessário no interesse público;
+(d) A facilitação da mudança entre serviços de tratamento de dados;
+(e) A introdução de salvaguardas contra o acesso por governos não autorizado de fora da União;
+(f) O desenvolvimento de normas de interoperabilidade.
+
+CAPÍTULO II — PARTILHA DE DADOS B2C E B2B PROVENIENTES DA UTILIZAÇÃO DE PRODUTOS CONECTADOS
+
+Artigo 3.º — Obrigação de acessibilidade dos dados dos produtos e dos serviços conexos por concepção
+
+1. Os produtos conectados são concebidos e fabricados, e os serviços conexos são concebidos e prestados, de tal modo que os dados de produto e os dados de serviço conexo, incluindo os metadados pertinentes necessários para interpretar e utilizar esses dados, estejam acessíveis ao utilizador, de uma forma fácil, segura, gratuita, num formato global, exaustivo, estruturado, comummente utilizado e legível por máquina.
+
+Artigo 4.º — Direitos e obrigações dos utilizadores e detentores em relação ao acesso, à utilização e à disponibilização de dados de produto e de dados de serviço conexo
+
+1. Sempre que os dados de produto não possam ser directamente acedidos pelo utilizador a partir do produto conectado, os detentores facultam ao utilizador o acesso aos dados disponíveis, sem demora indevida, com a mesma qualidade de que dispõem os detentores, de uma forma fácil, segura, gratuita, num formato exaustivo, estruturado, comummente utilizado e legível por máquina.
+
+Artigo 5.º — Direito do utilizador de partilhar dados com terceiros
+
+1. A pedido de um utilizador, ou de uma parte agindo em nome do utilizador, o detentor disponibiliza os dados disponíveis, bem como os metadados pertinentes necessários para interpretar e utilizar esses dados, ao receptor, sem demora indevida, com a mesma qualidade de que dispõem os detentores, de uma forma fácil, segura, gratuita para o utilizador, num formato exaustivo, estruturado, comummente utilizado e legível por máquina.
+
+CAPÍTULO IV — CLÁUSULAS CONTRATUAIS ABUSIVAS RELATIVAS AO ACESSO E À UTILIZAÇÃO DE DADOS
+
+Artigo 13.º — Cláusulas contratuais abusivas unilateralmente impostas a outra empresa
+
+1. Uma cláusula contratual relativa ao acesso e à utilização de dados ou à responsabilidade e às vias de recurso por incumprimento ou cessação de obrigações relacionadas com dados que tenha sido unilateralmente imposta por uma empresa a outra empresa não vincula esta última, se for abusiva.
+
+CAPÍTULO V — DISPONIBILIZAÇÃO DE DADOS A ORGANISMOS DO SECTOR PÚBLICO EM CASO DE NECESSIDADE EXCEPCIONAL
+
+Artigo 14.º — Obrigação de disponibilizar dados em caso de necessidade pública excepcional
+
+CAPÍTULO VI — MUDANÇA ENTRE SERVIÇOS DE TRATAMENTO DE DADOS
+
+Artigo 23.º — Eliminação dos obstáculos à mudança efectiva
+
+Os fornecedores de serviços de tratamento de dados tomam as medidas para eliminar progressivamente os encargos de mudança até 12 de Janeiro de 2027.
+
+CAPÍTULO VIII — INTEROPERABILIDADE
+
+Artigo 33.º — Requisitos essenciais aplicáveis aos espaços europeus comuns de dados
+
+CAPÍTULO IX — APLICAÇÃO E EXECUÇÃO
+
+Artigo 37.º — Autoridades competentes e coordenadores em matéria de dados
+
+1. Cada Estado-Membro designa uma ou mais autoridades competentes responsáveis pela aplicação e execução do presente regulamento. Os Estados-Membros podem estabelecer ou designar uma ou mais autoridades novas.
+
+2. Sempre que um Estado-Membro designe mais do que uma autoridade competente, designa, de entre elas, uma autoridade competente como coordenador em matéria de dados, com vista a facilitar a cooperação entre as autoridades competentes.
+
+Artigo 40.º — Sanções
+
+1. Os Estados-Membros estabelecem o regime de sanções aplicáveis em caso de violação do presente regulamento e tomam todas as medidas necessárias para garantir a sua aplicação. As sanções previstas devem ser efectivas, proporcionadas e dissuasivas.
+
+CAPÍTULO XI — DISPOSIÇÕES FINAIS
+
+Artigo 50.º — Entrada em vigor e aplicação
+
+O presente regulamento é aplicável a partir de 12 de Setembro de 2025.`,
+    analysis: {
+      summary: `Regulamento já em vigor (12-09-2025). Portugal precisa de praticar urgentemente actos nacionais complementares: designação de autoridade(s) competente(s) e coordenador, estabelecimento do regime sancionatório (Art. 40.º), articulação com a CNPD (RGPD) e com a ANACOM (DSA, comunicações electrónicas).
+
+A obrigação central é a designação da autoridade do Art. 37.º. A não-designação coloca Portugal em situação semelhante ao incumprimento do Reg. OLAF (2020/2223) — exactamente o tipo de risco que o VIGIL foi concebido para evitar. Várias entidades são candidatas: ANACOM (já tem competências em comunicações), AT (dados industriais), CNPD (cruzamento com RGPD), nova entidade.
+
+Articulação obrigatória com Lei 58/2019, Reg. (UE) 2022/868 (Data Governance Act, que já tem regime nacional via DL 27/2024), Diretiva (UE) 2019/770 (conteúdos digitais transposta pela Lei 15/2022).`,
+      mapping: [
+        { dirArt:'Art. 37.º · Autoridade competente', dirTxt:'Designação obrigatória · pode ser uma ou várias · coordenador entre elas', natRef:'Novo · DL ou Portaria', natTxt:'Não há autoridade Data Act designada', action:'criar', actionTxt:'Designar ANACOM ou criar entidade nova · prazo expirou 12-09-2025' },
+        { dirArt:'Art. 40.º · Sanções', dirTxt:'Regime sancionatório efectivo, proporcionado e dissuasivo', natRef:'Regime Geral DL 433/82 + DL próprio', natTxt:'Tabela de coimas a definir', action:'criar', actionTxt:'Aprovar DL com tabela de coimas e procedimento contra-ordenacional' },
+        { dirArt:'Art. 13.º · Cláusulas abusivas', dirTxt:'Cláusulas relativas a dados unilateralmente impostas em B2B', natRef:'DL 446/85 (cláusulas contratuais gerais)', natTxt:'Regime geral de cláusulas abusivas', action:'alterar', actionTxt:'Articular regime · listar cláusulas abusivas específicas a dados' },
+        { dirArt:'Art. 4.º a 6.º · Direitos dos utilizadores', dirTxt:'Acesso a dados de produtos conectados · partilha com terceiros', natRef:'Lei 24/96 (defesa do consumidor)', natTxt:'Direitos do consumidor', action:'aditar', actionTxt:'Aditar capítulo sobre direitos a dados de produtos conectados' },
+        { dirArt:'Art. 23.º · Mudança de cloud', dirTxt:'Eliminação progressiva de encargos · prazo 12-01-2027', natRef:'DL 25/2023 (cloud da AP)', natTxt:'Cloud na Administração Pública', action:'alterar', actionTxt:'Adoptar princípios de portabilidade · cláusulas-tipo nos contratos AP' },
+        { dirArt:'Art. 14.º · B2G em emergência', dirTxt:'Acesso público a dados privados em situação excepcional', natRef:'Lei 27/2006 (Bases protecção civil) + Lei 26/2016 (acesso a documentos)', natTxt:'Regime de emergência · acesso a documentos', action:'alterar', actionTxt:'Aditar mecanismo específico para activação' },
+        { dirArt:'Art. 33.º · Interoperabilidade', dirTxt:'Requisitos para espaços europeus comuns de dados', natRef:'Lei 36/2011 (Interoperabilidade na AP) + Reg. AMA', natTxt:'Quadro nacional de interoperabilidade', action:'alterar', actionTxt:'Articular com regime europeu · normas técnicas' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Lei n.º 58/2019 (RGPD · execução nacional)', sub:'Cruzamento com obrigações de partilha de dados · CNPD vs Autoridade Data Act · risco de duplicação ou lacunas.', kind:'Coordenação institucional', minister:'Min. Justiça · CNPD', articles:'Arts. 4.º, 6.º, 30.º' },
+        { sev:'alto', title:'Decreto-Lei n.º 27/2024 (execução do Data Governance Act)', sub:'Regime já existente para Reg. (UE) 2022/868 · necessária articulação · candidata natural a autoridade Data Act.', kind:'Alteração estrutural', minister:'Min. Pres. · ANACOM/AMA', articles:'Arts. 3.º a 9.º (autoridade competente)' },
+        { sev:'medio', title:'Decreto-Lei n.º 446/85 (cláusulas contratuais gerais)', sub:'Articulação com lista negra/cinzenta de cláusulas abusivas · Art. 13.º Data Act introduz nova categoria B2B.', kind:'Aditamento', minister:'Min. Justiça', articles:'Arts. 18.º a 22.º' },
+        { sev:'medio', title:'Lei n.º 24/96 (defesa do consumidor)', sub:'Direitos a dados de produtos conectados (IoT) · novo capítulo a aditar.', kind:'Aditamento', minister:'Min. Economia · DGC', articles:'Capítulo novo' },
+        { sev:'baixo', title:'Lei n.º 36/2011 (Interoperabilidade AP)', sub:'Articulação com requisitos do Art. 33.º · espaços europeus comuns de dados.', kind:'Alteração técnica', minister:'Min. Adjunto e Reforma do Estado · AMA', articles:'Arts. 4.º, 7.º' },
+      ],
+      newleg: [
+        { tag:'Decreto-Lei (urgente)', title:'Designa autoridade(s) competente(s) Data Act + regime sancionatório', sub:'Acto nacional complementar do Art. 37.º e 40.º · ANACOM coordenadora ou nova entidade · coimas procedimentais · articulação CNPD.', meta:'Min. Pres. · proposta · prazo expirado · risco INFR' },
+        { tag:'Portaria', title:'Cláusulas-tipo para contratos de partilha de dados', sub:'Em linha com modelos publicados pela CE · facilita conformidade Art. 13.º · uso pela AP em compras de cloud.', meta:'Min. Just. + Min. Pres. · prazo Q3 2026' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação · proposta de DL · articulação CIAE' },
+        { role:'cores', name:'Min. da Justiça (CNPD)', desc:'RGPD ↔ Data Act · cláusulas contratuais · sanções' },
+        { role:'cores', name:'Min. Adjunto e Reforma do Estado (AMA)', desc:'Interoperabilidade AP · cloud pública · espaços europeus de dados' },
+        { role:'cores', name:'Min. Economia e Coesão Territorial', desc:'Empresas e produtos conectados · cláusulas B2B · IoT industrial' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada · pipeline de transposição', sub:'DAPL valida output IA' },
+        { date:'30-05-2026', state:'todo', ti:'CIAE · escolha da autoridade competente', sub:'ANACOM · AMA · CNPD · nova entidade' },
+        { date:'30-06-2026', state:'todo', ti:'Anteprojecto de DL', sub:'Antes do recesso parlamentar' },
+        { date:'15-09-2026', state:'todo', ti:'RCM · adopção do DL', sub:'1 ano após início da aplicação · risco INFR mitigado' },
+        { date:'12-01-2027', state:'todo', ti:'Prazo cloud switching', sub:'Eliminação dos encargos de mudança · monitorização ANACOM' },
+      ],
+      depend: [
+        { type:'warn', text:'Prazo expirado: o regulamento aplica-se desde 12-09-2025. Sem autoridade designada, Portugal está em risco de procedimento de infracção (já há experiência: OLAF e DSA).' },
+        { type:'info', text:'Articulação com DL 27/2024 (Data Governance Act) · candidato natural à mesma autoridade.' },
+        { type:'info', text:'Articulação com a Estratégia Nacional para Dados (RCM 8/2022) · alinhamento operacional.' },
+      ],
+    },
+  },
+  platform_work: {
+    docName: 'JO L 2831 · 11-11-2024',
+    title: 'Diretiva (UE) 2024/2831 do Parlamento Europeu e do Conselho relativa à melhoria das condições de trabalho no trabalho em plataformas digitais',
+    tipo: 'Diretiva',
+    celex: '32024L2831',
+    com: 'COM(2021) 762 final',
+    lang: 'PT',
+    fase: 'Em vigor · transposição em curso',
+    prazo: 'Transposição até 02-12-2026',
+    risk: 'medio',
+    text: `DIRETIVA (UE) 2024/2831 DO PARLAMENTO EUROPEU E DO CONSELHO
+
+de 23 de Outubro de 2024, relativa à melhoria das condições de trabalho no trabalho em plataformas digitais
+
+(Texto relevante para efeitos do EEE)
+
+CAPÍTULO I — DISPOSIÇÕES GERAIS
+
+Artigo 1.º — Objeto e âmbito de aplicação
+
+1. A presente diretiva tem por objeto melhorar as condições de trabalho e a proteção dos dados pessoais no trabalho em plataformas digitais:
+(a) Estabelecendo medidas para facilitar a determinação da situação laboral correcta das pessoas que executam trabalho em plataformas digitais;
+(b) Promovendo a transparência, a equidade, a supervisão humana, a segurança e a responsabilização na gestão algorítmica do trabalho em plataformas digitais;
+(c) Reforçando a aplicação da legislação em relação a todas as pessoas que executam trabalho em plataformas digitais.
+
+Artigo 2.º — Definições
+
+Para efeitos da presente diretiva, entende-se por:
+(1) «Plataforma digital de trabalho», qualquer pessoa singular ou coletiva que presta um serviço que cumpra cumulativamente os seguintes requisitos:
+(a) É prestado, pelo menos em parte, à distância, através de meios electrónicos, como uma página da Internet ou uma aplicação móvel;
+(b) É prestado a pedido de um destinatário do serviço;
+(c) Comporta, como componente necessária e essencial, a organização do trabalho executado por pessoas singulares mediante remuneração, independentemente de esse trabalho ser executado em linha ou num determinado local.
+
+CAPÍTULO II — SITUAÇÃO LABORAL
+
+Artigo 5.º — Determinação correcta da situação laboral
+
+1. Os Estados-Membros dispõem de procedimentos adequados e eficazes para verificar e assegurar a determinação correcta da situação laboral das pessoas que executam trabalho em plataformas digitais.
+
+Artigo 6.º — Presunção legal
+
+1. Presume-se legalmente que a relação contratual entre uma plataforma digital de trabalho e uma pessoa que executa trabalho em plataformas digitais por intermédio dessa plataforma é uma relação laboral, sempre que sejam apurados factos que indiciem controlo e direcção, em conformidade com a legislação nacional, com as convenções colectivas ou com as práticas em vigor nos Estados-Membros e tendo em conta a jurisprudência do Tribunal de Justiça.
+
+2. A presunção legal opera em todos os processos administrativos e judiciais relevantes. As autoridades competentes que verifiquem a situação laboral baseiam-se na presunção legal.
+
+Artigo 7.º — Possibilidade de ilidir a presunção legal
+
+1. Os Estados-Membros estabelecem uma estrutura efectiva de medidas que permita à plataforma digital de trabalho ilidir a presunção legal nos processos administrativos ou judiciais. As partes que sustentam que a relação contratual em questão não é uma relação laboral suportam o ónus de provar essa afirmação.
+
+CAPÍTULO III — GESTÃO ALGORÍTMICA
+
+Artigo 8.º — Limitações ao tratamento de dados pessoais
+
+1. As plataformas digitais de trabalho não podem, recorrendo a sistemas automatizados de monitorização ou de tomada de decisão:
+(a) Tratar dados pessoais relativos ao estado emocional ou psicológico das pessoas que executam trabalho em plataformas;
+(b) Tratar dados pessoais relacionados com conversas privadas;
+(c) Recolher dados pessoais quando as pessoas não estão a executar ou a oferecer-se para executar trabalho em plataformas;
+(d) Tratar dados pessoais para prever o exercício de direitos fundamentais, incluindo o direito de associação, o direito à negociação colectiva e à acção, ou o direito à informação e à consulta;
+(e) Tratar dados pessoais para inferir a origem racial ou étnica, a situação migratória, a opinião política, as convicções religiosas, o estado de saúde, ou a vida sexual ou orientação sexual;
+(f) Tratar dados biométricos para inferir a identidade da pessoa.
+
+Artigo 9.º — Transparência sobre os sistemas automatizados de monitorização e de tomada de decisão
+
+As plataformas digitais informam por escrito sobre a existência, características principais, finalidades e tipos de decisões dos sistemas automatizados.
+
+Artigo 10.º — Supervisão humana dos sistemas automatizados
+
+As plataformas digitais asseguram supervisão humana suficiente do impacto significativo na pessoa, designadamente no que respeita à segurança e saúde no trabalho.
+
+Artigo 11.º — Revisão humana
+
+Toda a pessoa que executa trabalho em plataformas tem direito a obter a revisão humana de qualquer decisão tomada ou apoiada por sistemas automatizados que afecte significativamente as suas condições de trabalho.
+
+CAPÍTULO IV — TRANSPARÊNCIA NO TRABALHO EM PLATAFORMAS
+
+Artigo 12.º — Obrigação de declaração do trabalho em plataformas
+
+CAPÍTULO V — VIAS DE RECURSO E APLICAÇÃO
+
+Artigo 22.º — Direito a vias de recurso
+
+CAPÍTULO VI — DISPOSIÇÕES FINAIS
+
+Artigo 29.º — Transposição
+
+Os Estados-Membros põem em vigor as disposições legislativas, regulamentares e administrativas necessárias para dar cumprimento à presente diretiva até 2 de Dezembro de 2026.`,
+    analysis: {
+      summary: `A diretiva traz duas inovações com impacto profundo no direito do trabalho português: (1) **presunção legal** de relação laboral nas plataformas digitais — invertendo o ónus da prova relativamente ao actual Art. 12.º do Código do Trabalho; (2) regulamentação substantiva da **gestão algorítmica** com proibições de tratamento de dados sensíveis (Art. 8.º), exigência de supervisão humana (Art. 10.º) e direito de revisão humana (Art. 11.º).
+
+Portugal já tem um regime parcial sobre presunção (Lei 13/2023 alterou o Art. 12.º-A do CT criando regime para plataformas digitais), mas a directiva exige reforço significativo. ACT é a autoridade fiscalizadora natural · MTSSS coordena · interface com a CNPD para a gestão algorítmica.
+
+Diplomas afectados em cascata: Código do Trabalho · Lei 27/2010 (TVDE) · DL 173/2017 (transporte por plataformas) · Lei 58/2019 (RGPD execução) · Lei 73/2017 (assédio).`,
+      mapping: [
+        { dirArt:'Art. 6.º · Presunção legal', dirTxt:'Inversão do ónus da prova nas plataformas digitais', natRef:'Código do Trabalho · Art. 12.º-A (Lei 13/2023)', natTxt:'Presunção introduzida em 2023 · necessita de reforço', action:'alterar', actionTxt:'Reforçar presunção · alinhar critérios com a directiva · TJUE jurisprudência' },
+        { dirArt:'Art. 7.º · Ilidir a presunção', dirTxt:'Ónus de prova sobre a plataforma · processo administrativo e judicial', natRef:'CPC + Código de Processo do Trabalho', natTxt:'Regime processual laboral', action:'alterar', actionTxt:'Adaptar regras processuais para tratar do ónus invertido' },
+        { dirArt:'Art. 8.º · Tratamento de dados proibido', dirTxt:'Proibições absolutas · estado emocional · conversas privadas · biometria para identidade', natRef:'Lei 58/2019 (RGPD execução)', natTxt:'Tratamento de dados especiais', action:'aditar', actionTxt:'Aditar artigo específico para plataformas digitais · CNPD competente' },
+        { dirArt:'Art. 9.º · Transparência sistemas automatizados', dirTxt:'Informação por escrito · características · finalidades', natRef:'Código do Trabalho · Art. 22.º (informação ao trabalhador)', natTxt:'Dever de informação genérico', action:'aditar', actionTxt:'Aditar deveres específicos para sistemas algorítmicos' },
+        { dirArt:'Art. 10.º e 11.º · Supervisão e revisão humanas', dirTxt:'Direito a contestar decisão automatizada · prazo razoável de resposta', natRef:'CT · Art. 23.º (matérias disciplinares) · Lei 58/2019', natTxt:'Direito ao contraditório · não automatização do despedimento', action:'aditar', actionTxt:'Estabelecer mecanismo específico · prazo de resposta' },
+        { dirArt:'Art. 12.º · Declaração do trabalho', dirTxt:'Declaração às autoridades laborais e sociais nacionais', natRef:'Lei 105/2009 (regulamentação do CT)', natTxt:'Comunicação de admissão de trabalhadores', action:'alterar', actionTxt:'Aditar comunicação específica para plataformas' },
+        { dirArt:'Art. 22.º · Vias de recurso', dirTxt:'Direito à acção colectiva · representação sindical', natRef:'Lei 73/2017 (regime jurídico do assédio · acções colectivas)', natTxt:'Acções colectivas · sindicatos legitimados', action:'alterar', actionTxt:'Estender legitimidade para acções de plataformas digitais' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Código do Trabalho (Lei n.º 7/2009)', sub:'Alteração ao Art. 12.º-A · reforço da presunção · Art. 22.º (informação ao trabalhador) · Art. 23.º (deliberações disciplinares) · novo capítulo sobre gestão algorítmica.', kind:'Alteração estrutural', minister:'Min. Trabalho · ACT', articles:'Arts. 12.º-A, 22.º, 23.º + capítulo novo' },
+        { sev:'alto', title:'Lei n.º 27/2010 (regime jurídico do TVDE)', sub:'Articulação directa com regime das plataformas · Uber, Bolt, Free Now · pendente actualização.', kind:'Alteração', minister:'Min. Infraestruturas · IMT', articles:'Arts. 5.º, 8.º, 13.º' },
+        { sev:'medio', title:'Decreto-Lei n.º 173/2017 (transporte por plataformas)', sub:'Articulação com obrigações Art. 12.º · transparência sobre sistemas automatizados.', kind:'Alteração', minister:'Min. Infraestruturas · IMT', articles:'Arts. 11.º a 14.º' },
+        { sev:'medio', title:'Lei n.º 58/2019 (RGPD · execução)', sub:'Cruzamento com Art. 8.º (proibições) · CNPD competente para fiscalização da gestão algorítmica · cooperação com ACT.', kind:'Aditamento', minister:'Min. Justiça · CNPD', articles:'Arts. 28.º, 29.º (laboral)' },
+        { sev:'baixo', title:'Lei n.º 73/2017 (assédio · acções colectivas)', sub:'Extensão de legitimidade para acções de plataformas digitais.', kind:'Alteração técnica', minister:'Min. Trabalho · CITE', articles:'Art. 5.º' },
+      ],
+      newleg: [
+        { tag:'Proposta de Lei', title:'Altera o Código do Trabalho (transposição da Diretiva 2024/2831)', sub:'Inclui reforço da presunção, capítulo novo sobre gestão algorítmica, deveres de transparência das plataformas, regime sancionatório.', meta:'Min. Trabalho · proposta · entrada na AR Q3 2026' },
+        { tag:'Decreto-Lei', title:'Adapta o regime do TVDE e do transporte por plataformas', sub:'Articulação com nova Lei do Trabalho em Plataformas · clarifica autoridade competente entre ACT e IMT.', meta:'Min. Trab. + Min. Infra. · Q4 2026' },
+        { tag:'Portaria', title:'Modelo de informação dos sistemas algorítmicos', sub:'Cláusulas-tipo · documento informativo obrigatório a entregar ao trabalhador antes do início da actividade.', meta:'Min. Trabalho · ACT · prazo Out 2026' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. do Trabalho, Solidariedade e Seg. Social', desc:'Proponente da Proposta de Lei · ACT como autoridade fiscalizadora' },
+        { role:'cores', name:'Min. das Infraestruturas e Habitação (IMT)', desc:'Articulação com TVDE e DL 173/2017 · transporte por plataformas' },
+        { role:'cores', name:'Min. da Justiça (CNPD)', desc:'Gestão algorítmica · proibições do Art. 8.º · cooperação com ACT' },
+        { role:'cores', name:'Min. da Presidência (DAPL)', desc:'Coordenação interministerial · CIAE' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA validado · plano partilhado com MTSSS' },
+        { date:'30-06-2026', state:'todo', ti:'Anteprojecto MTSSS', sub:'Articulação com ACT, CITE, sindicatos · concertação social' },
+        { date:'15-09-2026', state:'todo', ti:'Concertação social · CES', sub:'Pareceres dos parceiros sociais (CGTP, UGT, CIP, CCP)' },
+        { date:'30-10-2026', state:'todo', ti:'Submissão à AR · Proposta de Lei', sub:'Antes do recesso · janela útil semestre' },
+        { date:'30-11-2026', state:'todo', ti:'Aprovação na generalidade · AR', sub:'Discussão pública · contributos' },
+        { date:'02-12-2026', state:'todo', ti:'Prazo de transposição', sub:'Necessário ter Lei publicada · ou em vacatio legis' },
+        { date:'01-02-2027', state:'todo', ti:'Entrada em vigor', sub:'Vacatio legis · regulamentos de execução publicados' },
+      ],
+      depend: [
+        { type:'warn', text:'Conflito previsível com a Lei 13/2023 (que já alterou o regime de plataformas) · necessária ponderação política.' },
+        { type:'warn', text:'Concertação social obrigatória · contestação esperada das plataformas · prazo apertado para aprovação na AR antes de Dez 2026.' },
+        { type:'info', text:'Articulação com AI Act (Reg. 2024/1689) · sistemas IA em RH são risco elevado · sobreposição de obrigações.' },
+        { type:'info', text:'Articulação com Reg. (UE) 2016/679 (RGPD) · sistemas automatizados de tomada de decisão (Art. 22.º RGPD).' },
+      ],
+    },
+  },
+  aml6: {
+    docName: 'JO L 284 · 12-11-2018',
+    title: 'Diretiva (UE) 2018/1673 do Parlamento Europeu e do Conselho relativa ao combate ao branqueamento de capitais através do direito penal',
+    tipo: 'Diretiva',
+    celex: '32018L1673',
+    com: 'COM(2016) 826 final',
+    lang: 'PT',
+    fase: 'Em vigor · transposição parcial em curso',
+    prazo: 'Transposto em 03-12-2020 (parcial)',
+    risk: 'alto',
+    text: `DIRETIVA (UE) 2018/1673 DO PARLAMENTO EUROPEU E DO CONSELHO
+
+de 23 de Outubro de 2018, relativa ao combate ao branqueamento de capitais através do direito penal
+
+(Comummente designada por «AMLD6»)
+
+CAPÍTULO I — OBJECTO, ÂMBITO DE APLICAÇÃO E DEFINIÇÕES
+
+Artigo 1.º — Objecto e âmbito de aplicação
+
+1. A presente diretiva estabelece regras mínimas relativas à definição das infracções penais e das sanções no domínio do branqueamento de capitais.
+
+2. A presente diretiva não se aplica ao branqueamento de capitais relacionado com bens provenientes de infracções que prejudiquem os interesses financeiros da União, na medida em que tais factos sejam abrangidos pelas regras especiais previstas na Directiva (UE) 2017/1371.
+
+Artigo 2.º — Definições
+
+Para efeitos da presente diretiva, entende-se por:
+(1) «Atividade criminosa», qualquer tipo de envolvimento criminoso na prática das seguintes infrações graves: participação em organização criminosa e racket; terrorismo; tráfico de seres humanos e introdução clandestina de migrantes; exploração sexual; tráfico ilícito de estupefacientes; tráfico ilícito de armas; tráfico ilícito de bens roubados; corrupção; fraude; cibercriminalidade; crimes ambientais; homicídio doloso; sequestro e tomada de reféns; roubo ou furto; contrabando; crimes fiscais relacionados com impostos directos e indirectos, nos termos do direito nacional; extorsão; falsificação; pirataria de produtos; falsificação de moeda; manipulação do mercado e abuso de informação privilegiada; e qualquer infracção, incluindo crimes fiscais, punível com pena privativa de liberdade ou medida de segurança privativas da liberdade de duração máxima superior a um ano (...).
+
+CAPÍTULO II — INFRACÇÕES PENAIS DE BRANQUEAMENTO DE CAPITAIS
+
+Artigo 3.º — Infracções de branqueamento de capitais
+
+1. Os Estados-Membros tomam as medidas necessárias para garantir que o seguinte comportamento, quando intencional, é punível como infracção penal:
+(a) A conversão ou a transferência de bens, sabendo que esses bens provêm de uma actividade criminosa, com o objectivo de ocultar ou dissimular a sua origem ilícita;
+(b) A ocultação ou dissimulação da verdadeira natureza, origem, localização, disposição, movimento ou propriedade de bens ou direitos a eles relativos;
+(c) A aquisição, detenção ou utilização de bens, sabendo, no momento da sua recepção, que esses bens provêm de uma actividade criminosa.
+
+2. Os Estados-Membros tomam medidas para garantir que o comportamento referido no n.º 1 também seja punível quando o autor da infracção:
+(a) Suspeitava ou devia ter sabido que os bens provinham de uma actividade criminosa;
+(b) Tenha agido por conta própria ou conjuntamente com terceiros.
+
+3. Considera-se infracção de branqueamento de capitais ainda que a actividade subjacente tenha sido cometida no território de outro Estado-Membro ou de um país terceiro, se essa actividade fosse considerada actividade criminosa caso ocorresse no Estado-Membro relevante.
+
+Artigo 4.º — Cumplicidade, instigação e tentativa
+
+Os Estados-Membros tomam as medidas necessárias para garantir que sejam puníveis a cumplicidade, a instigação e a tentativa.
+
+Artigo 5.º — Sanções aplicáveis às pessoas singulares
+
+1. As infracções de branqueamento são puníveis com sanções penais efectivas, proporcionadas e dissuasivas.
+
+2. As infracções referidas no artigo 3.º são puníveis com pena privativa de liberdade de duração máxima de pelo menos quatro anos.
+
+3. Os Estados-Membros podem prever sanções adicionais, designadamente: privação da capacidade para concorrer a fundos públicos · interdição de exercer cargo público · proibição temporária ou permanente de exercer actividade comercial.
+
+Artigo 6.º — Circunstâncias agravantes
+
+1. Os Estados-Membros tomam as medidas necessárias para garantir que sejam consideradas circunstâncias agravantes:
+(a) A infracção ter sido cometida no contexto de uma organização criminosa;
+(b) O autor da infracção ser uma entidade obrigada nos termos do art. 2.º da Directiva (UE) 2015/849 e ter cometido a infracção no exercício das suas actividades profissionais.
+
+CAPÍTULO III — RESPONSABILIDADE DAS PESSOAS COLECTIVAS
+
+Artigo 7.º — Responsabilidade das pessoas colectivas
+
+1. Os Estados-Membros tomam as medidas necessárias para garantir que as pessoas colectivas possam ser consideradas responsáveis pelas infracções referidas nos artigos 3.º e 4.º cometidas em seu benefício por qualquer pessoa, agindo individualmente ou enquanto membro de um órgão da pessoa colectiva.
+
+Artigo 8.º — Sanções aplicáveis às pessoas colectivas
+
+1. Os Estados-Membros tomam as medidas necessárias para garantir que as pessoas colectivas declaradas responsáveis sejam puníveis com sanções efectivas, proporcionadas e dissuasivas, que incluem coimas e podem incluir outras sanções.
+
+CAPÍTULO IV — DISPOSIÇÕES GERAIS
+
+Artigo 9.º — Confisco e apreensão
+
+Os Estados-Membros tomam as medidas necessárias para permitir que os instrumentos e produtos das infracções sejam apreendidos e confiscados, em conformidade com a Diretiva 2014/42/UE.
+
+Artigo 10.º — Competência
+
+Os Estados-Membros tomam medidas para estabelecer competência sempre que a infracção tenha sido cometida total ou parcialmente no seu território, ou pelo seu nacional.
+
+CAPÍTULO V — DISPOSIÇÕES FINAIS
+
+Artigo 13.º — Transposição
+
+1. Os Estados-Membros põem em vigor as disposições legislativas, regulamentares e administrativas necessárias para dar cumprimento à presente diretiva até 3 de Dezembro de 2020.`,
+    analysis: {
+      summary: `Portugal já transpôs parcialmente a AMLD6 via Lei n.º 79/2021 (alterou o Código Penal · Arts. 368.º-A e 368.º-B sobre branqueamento). No entanto, **a Comissão Europeia abriu o procedimento informal SG/24/3421** por transposição incompleta, designadamente quanto a:
+
+(1) Lista de infracções subjacentes — alguns crimes fiscais e crimes ambientais transpostos com âmbito mais restrito que a directiva;
+(2) Tipificação do dolo eventual ("devia ter sabido") — Art. 3.º n.º 2 — interpretação restritiva pelos tribunais portugueses;
+(3) Circunstâncias agravantes — Art. 6.º — não totalmente reflectidas no Art. 368.º-A do CP.
+
+Trabalho pendente: alteração ao Código Penal e articulação com o pacote AMLA (Reg. 2024/1624 e Dir. 2024/1640) que altera profundamente o regime preventivo. MJ é o ministério proponente; MF coordena com BdP, CMVM, ASAE; MNE (DGDEI) gere o procedimento informal.`,
+      mapping: [
+        { dirArt:'Art. 3.º · Infracções de branqueamento', dirTxt:'Lista exaustiva de infracções subjacentes · dolo + dolo eventual', natRef:'Código Penal · Art. 368.º-A (Lei 79/2021)', natTxt:'Criminaliza branqueamento mas com lacunas no dolo eventual', action:'alterar', actionTxt:'Reformular nº 2 do Art. 368.º-A para alinhar com Art. 3.º n.º 2 da directiva' },
+        { dirArt:'Art. 2.º · Lista de infracções subjacentes', dirTxt:'Crimes fiscais · ambientais · cibernéticos', natRef:'Código Penal · Lei 50/2006 (LM ambiente) · RGIT', natTxt:'Crimes fiscais cobertos pelo RGIT mas com âmbito restritivo', action:'alterar', actionTxt:'Aditar Art. 368.º-A clarificando inclusão de crimes fiscais transfronteiriços' },
+        { dirArt:'Art. 5.º · Sanções penais', dirTxt:'Pena máxima ≥ 4 anos · sanções adicionais', natRef:'Código Penal · Art. 368.º-A n.º 2', natTxt:'Pena de 2 a 12 anos · cumpre mínimo', action:'alterar', actionTxt:'Confirmação OK · adicionar sanções acessórias específicas' },
+        { dirArt:'Art. 6.º · Circunstâncias agravantes', dirTxt:'Crime organizado · entidade obrigada no exercício profissional', natRef:'Lei 5/2002 (criminalidade organizada) · Lei 83/2017 (Anexo de entidades obrigadas)', natTxt:'Regime de criminalidade organizada existe · falta articulação específica', action:'aditar', actionTxt:'Aditar circunstância agravante específica em Art. 368.º-A' },
+        { dirArt:'Art. 7.º · Responsabilidade pessoas colectivas', dirTxt:'PJC penalmente responsável por branqueamento', natRef:'Código Penal · Art. 11.º (responsabilidade pessoas colectivas)', natTxt:'Regime geral existe · cobre branqueamento', action:'alterar', actionTxt:'Confirmação OK · sem necessidade de alteração' },
+        { dirArt:'Art. 9.º · Confisco', dirTxt:'Articulação com Dir. 2014/42/UE', natRef:'Lei 30/2017 (transpõe 2014/42/UE) · Lei 5/2002 · Código Penal', natTxt:'Regime de perda de bens já existe', action:'alterar', actionTxt:'Confirmação OK · ajustes técnicos' },
+        { dirArt:'Art. 10.º · Competência', dirTxt:'Competência extraterritorial nos crimes cometidos por nacionais', natRef:'Código Penal · Art. 5.º (aplicação no espaço)', natTxt:'Regime geral cobre · sem alteração', action:'alterar', actionTxt:'Sem alteração necessária' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Código Penal · Arts. 368.º-A e 368.º-B (alterados pela Lei 79/2021)', sub:'Reformulação do tipo de branqueamento para incluir dolo eventual claramente · circunstâncias agravantes específicas para entidades obrigadas.', kind:'Alteração estrutural', minister:'Min. Justiça', articles:'Arts. 368.º-A, 368.º-B' },
+        { sev:'alto', title:'Lei n.º 83/2017 (regime preventivo de branqueamento)', sub:'Articulação com regime penal · entidades obrigadas · cooperação com FIU · alteração necessária no contexto do pacote AMLA.', kind:'Alteração estrutural', minister:'Min. Finanças · BdP · CMVM', articles:'Arts. 2.º, 11.º, 36.º, 121.º' },
+        { sev:'medio', title:'Lei n.º 5/2002 (combate à criminalidade organizada)', sub:'Articulação das circunstâncias agravantes · acções colectivas e perda de bens.', kind:'Alteração técnica', minister:'Min. Justiça · PGR', articles:'Arts. 1.º, 7.º, 12.º' },
+        { sev:'medio', title:'Lei n.º 30/2017 (perda alargada de bens)', sub:'Confisco de instrumentos e produtos · regime já cumpre mas requer ajustes face ao Art. 9.º.', kind:'Alteração técnica', minister:'Min. Justiça', articles:'Arts. 5.º, 7.º' },
+        { sev:'baixo', title:'Regime Geral das Infracções Tributárias (RGIT · DL 15/2001)', sub:'Crimes fiscais como infracções subjacentes · clarificação de âmbito.', kind:'Alteração técnica', minister:'Min. Finanças · AT', articles:'Arts. 87.º, 103.º' },
+      ],
+      newleg: [
+        { tag:'Proposta de Lei', title:'Altera o Código Penal · alinha tipos de branqueamento com a AMLD6', sub:'Reformulação dos Arts. 368.º-A e 368.º-B · clarificação do dolo eventual · adição de circunstâncias agravantes · resposta ao procedimento informal SG/24/3421.', meta:'Min. Just. · proposta · Q3 2026 · prioridade alta' },
+        { tag:'Decreto-Lei', title:'Alterações à Lei 83/2017 (regime preventivo)', sub:'Antecipa pacote AMLA · transposição da Diretiva (UE) 2024/1640 (prazo 10-07-2027).', meta:'Min. Fin. · BdP · 2027' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. da Justiça', desc:'Proponente da alteração ao Código Penal · resposta a SG/24/3421 · articulação com PGR e PJ' },
+        { role:'cores', name:'Min. das Finanças (BdP, CMVM, ASAE)', desc:'Regime preventivo · supervisão de entidades obrigadas · UIF (Lei 83/2017)' },
+        { role:'cores', name:'Min. dos Negócios Estrangeiros (DGDEI)', desc:'Gestão do procedimento SG/24/3421 · resposta à CE · cooperação europol/eurojust' },
+        { role:'cores', name:'Min. da Administração Interna (PJ)', desc:'Investigação criminal de branqueamento · cooperação polícia europeia' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA aprovado · alinhamento com pacote AMLA' },
+        { date:'30-06-2026', state:'todo', ti:'Anteprojecto Min. Justiça', sub:'Reformulação dos Arts. 368.º-A e 368.º-B · audição PGR' },
+        { date:'30-09-2026', state:'todo', ti:'Submissão à AR · Proposta de Lei', sub:'Antes do recesso · janela útil semestre' },
+        { date:'30-11-2026', state:'todo', ti:'Aprovação na generalidade', sub:'Discussão pública · audição peritos' },
+        { date:'15-01-2027', state:'todo', ti:'Aprovação final + promulgação', sub:'Lei publicada · resposta encerra SG/24/3421' },
+        { date:'10-07-2027', state:'todo', ti:'Prazo Diretiva 2024/1640 (AMLD7)', sub:'Próximo bloco · regime preventivo' },
+      ],
+      depend: [
+        { type:'warn', text:'Procedimento informal SG/24/3421 da CE · risco de escalar para procedimento formal se atraso · diálogo activo MNE/DGDEI.' },
+        { type:'warn', text:'Pacote AMLA (Reg. 2024/1624 + Dir. 2024/1640) · prazo 10-07-2027 · necessária estratégia única para evitar duplo retrabalho.' },
+        { type:'info', text:'Articulação com Conselho da Europa · GRECO 5.ª ronda em curso · recomendações alinhadas.' },
+        { type:'info', text:'FATF avaliação Portugal 2027 · alinhamento de prioridades.' },
+      ],
+    },
+  },
+  epbd: {
+    docName: 'JO L 1275 · 08-05-2024',
+    title: 'Diretiva (UE) 2024/1275 do Parlamento Europeu e do Conselho relativa ao desempenho energético dos edifícios (reformulação)',
+    tipo: 'Diretiva (reformulação · revoga 2010/31/UE)',
+    celex: '32024L1275',
+    com: 'COM(2021) 802 final',
+    lang: 'PT',
+    fase: 'Em vigor · transposição em curso',
+    prazo: 'Transposição até 29-05-2026',
+    risk: 'medio',
+    text: `DIRETIVA (UE) 2024/1275 DO PARLAMENTO EUROPEU E DO CONSELHO
+
+de 24 de Abril de 2024, relativa ao desempenho energético dos edifícios (reformulação)
+
+(Texto relevante para efeitos do EEE)
+
+CAPÍTULO I — OBJECTO, ÂMBITO DE APLICAÇÃO E DEFINIÇÕES
+
+Artigo 1.º — Objecto
+
+A presente diretiva promove a melhoria do desempenho energético dos edifícios e a redução das emissões de gases com efeito de estufa provenientes dos edifícios na União, com vista à concretização de um parque imobiliário com emissões nulas até 2050.
+
+Artigo 2.º — Definições
+
+Para efeitos da presente diretiva, entende-se por:
+(2) «Edifício com emissões nulas», edifício com desempenho energético muito elevado, em que a quantidade muito baixa de energia ainda necessária seja totalmente coberta por energia proveniente de fontes renováveis e que não cause emissões de carbono no local provenientes de combustíveis fósseis;
+(11) «Renovação aprofundada», renovação que transforma um edifício ou unidade de edifício num edifício com emissões nulas;
+(20) «Pobreza energética», pobreza energética na aceção do artigo 2.º, ponto 52, da Diretiva (UE) 2023/1791.
+
+CAPÍTULO II — QUADRO PARA O DESEMPENHO ENERGÉTICO DOS EDIFÍCIOS
+
+Artigo 3.º — Plano nacional de renovação dos edifícios
+
+1. Cada Estado-Membro elabora um plano nacional de renovação dos edifícios para garantir a renovação do parque imobiliário nacional residencial e não residencial em edifícios com emissões nulas até 2050. Cada plano nacional de renovação contém: medidas para reduzir o consumo médio de energia primária do parque residencial, com objectivos vinculativos para 2030 e 2035.
+
+CAPÍTULO III — NOVOS EDIFÍCIOS
+
+Artigo 7.º — Novos edifícios
+
+1. Os Estados-Membros asseguram que os edifícios novos sejam edifícios com emissões nulas:
+(a) A partir de 1 de Janeiro de 2028, no que respeita a edifícios novos detidos por entidades públicas;
+(b) A partir de 1 de Janeiro de 2030, no que respeita a todos os outros edifícios novos.
+
+Artigo 10.º — Energia solar nos edifícios
+
+1. Os Estados-Membros asseguram a implantação de instalações solares adequadas nos seguintes edifícios:
+(a) Em todos os edifícios públicos novos com uma área útil interior superior a 250 m², a partir de 31 de Dezembro de 2026;
+(b) Em todos os edifícios não residenciais novos com uma área útil interior superior a 250 m², a partir de 31 de Dezembro de 2027;
+(c) Em todos os edifícios públicos existentes com área superior a 2 000 m², a partir de 31 de Dezembro de 2027 (faseado).
+
+CAPÍTULO IV — EDIFÍCIOS EXISTENTES
+
+Artigo 9.º — Normas mínimas de desempenho energético
+
+1. Os Estados-Membros asseguram que o parque imobiliário não residencial seja renovado de modo a, pelo menos:
+(a) Em 2030, todos os edifícios estejam abaixo do limiar máximo correspondente aos 16 % do parque imobiliário não residencial com pior desempenho;
+(b) Em 2033, todos os edifícios estejam abaixo do limiar máximo correspondente aos 26 % do parque imobiliário não residencial com pior desempenho.
+
+Artigo 17.º — Eliminação progressiva dos combustíveis fósseis no aquecimento
+
+1. Os Estados-Membros eliminam progressivamente os sistemas de aquecimento alimentados por combustíveis fósseis, com vista à sua descontinuação até 2040.
+
+3. A partir de 1 de Janeiro de 2025, os incentivos financeiros aos sistemas de aquecimento autónomos alimentados por combustíveis fósseis não são permitidos, com excepção dos sistemas seleccionados para investimento em conformidade com regimes nacionais existentes nos termos da legislação aplicável.
+
+CAPÍTULO V — CERTIFICADOS DE DESEMPENHO ENERGÉTICO
+
+Artigo 19.º — Certificados de desempenho energético
+
+1. Cada Estado-Membro estabelece um sistema de certificação do desempenho energético dos edifícios. O certificado contém o desempenho energético, expresso por um indicador numérico de utilização de energia primária e em classes de desempenho energético, indo de A a G.
+
+Artigo 12.º — Passaporte de renovação
+
+Os Estados-Membros introduzem, até 29 de Maio de 2026, um regime de passaporte de renovação. O passaporte é emitido pelo proprietário e contém um plano de renovação por etapas para alcançar um edifício com emissões nulas até 2050.
+
+CAPÍTULO VI — INSTALAÇÕES TÉCNICAS DOS EDIFÍCIOS
+
+Artigo 13.º — Mobilidade eléctrica
+
+1. Os Estados-Membros asseguram que sejam instalados pontos de carregamento eléctrico em estacionamentos de novos edifícios não residenciais com mais de 5 lugares e em edifícios existentes que sejam objecto de grande renovação.
+
+CAPÍTULO IX — DISPOSIÇÕES FINAIS
+
+Artigo 32.º — Transposição
+
+1. Os Estados-Membros põem em vigor as disposições legislativas, regulamentares e administrativas necessárias para dar cumprimento à presente diretiva até 29 de Maio de 2026.`,
+    analysis: {
+      summary: `Reformulação profunda do regime português de eficiência energética dos edifícios. Portugal já tem o Sistema de Certificação Energética (DL 101-D/2020) e o regime do Decreto-Lei 118/2013 sobre desempenho energético, mas a directiva exige alterações substantivas: novos edifícios com emissões nulas a partir de 2030, eliminação progressiva de combustíveis fósseis no aquecimento até 2040, instalações solares obrigatórias, passaporte de renovação até Mai 2026.
+
+O **prazo é crítico**: 29-05-2026 — faltam ~31 dias na data desta análise. O anteprojecto está em concertação interministerial (MAE + MIH), com complexidade alta por envolver múltiplos diplomas: Sistema de Certificação Energética, Regime Jurídico da Urbanização e da Edificação (RJUE · DL 555/99), regime fiscal de incentivos.
+
+DGEG é a autoridade técnica · ADENE gere o sistema de certificação · IRN como autoridade competente para o passaporte de renovação. O risco financeiro é significativo se houver atraso: regime sancionatório UE pode entrar em vigor.`,
+      mapping: [
+        { dirArt:'Art. 7.º · Edifícios novos com emissões nulas', dirTxt:'Edifícios públicos novos a partir de 01-01-2028 · todos os novos a partir de 01-01-2030', natRef:'DL 118/2013 (REH) · regulamentos técnicos', natTxt:'Edifícios novos com necessidades quase nulas (NZEB) desde 2021', action:'alterar', actionTxt:'Reformular conceito NZEB → emissões nulas · novas datas-limite' },
+        { dirArt:'Art. 10.º · Solar nos edifícios', dirTxt:'Obrigatoriedade de painéis solares por escalões · 31-12-2026 a 2030', natRef:'Novo · Portaria a publicar', natTxt:'Não há regime obrigatório actual', action:'criar', actionTxt:'Criar Portaria com critérios técnicos · prazos · isenções' },
+        { dirArt:'Art. 17.º · Eliminação combustíveis fósseis', dirTxt:'Sem incentivos a aquecimento fóssil desde 01-01-2025 · descontinuação até 2040', natRef:'DL 30/2022 (eficiência energética) · Programa Edifícios+ Sustentáveis', natTxt:'Programa de incentivos actual inclui ainda gás natural', action:'alterar', actionTxt:'Excluir sistemas fósseis dos programas de apoio · transição faseada' },
+        { dirArt:'Art. 12.º · Passaporte de renovação', dirTxt:'Regime obrigatório até 29-05-2026', natRef:'Novo · Decreto-Lei e Portaria de execução', natTxt:'Não existe figura jurídica equivalente', action:'criar', actionTxt:'Criar regime · IRN ou ADENE como gestor · plano por etapas' },
+        { dirArt:'Art. 19.º · Certificados energéticos', dirTxt:'Classes A a G · novo modelo · revisão do certificado actual', natRef:'DL 101-D/2020 (Sistema de Certificação Energética)', natTxt:'Sistema actual cumpre mas precisa actualização técnica', action:'alterar', actionTxt:'Actualizar metodologia · novas classes · ADENE' },
+        { dirArt:'Art. 13.º · Mobilidade eléctrica', dirTxt:'Pontos de carregamento em novos edifícios não residenciais > 5 lugares', natRef:'DL 90/2014 (mobilidade eléctrica)', natTxt:'Regime existe mas desactualizado', action:'alterar', actionTxt:'Aditar obrigação técnica para edifícios novos' },
+        { dirArt:'Art. 9.º · Normas mínimas (renovação)', dirTxt:'Renovar 16% pior desempenho até 2030 · 26% até 2033', natRef:'Plano Nacional de Recuperação e Resiliência · DL 30/2022', natTxt:'Programa de renovação existente · necessária aceleração', action:'alterar', actionTxt:'Alinhar prioridades do PRR e Programa Edifícios+ Sustentáveis' },
+        { dirArt:'Art. 3.º · Plano nacional de renovação', dirTxt:'Plano com objectivos vinculativos para 2030 e 2035', natRef:'Plano Nacional de Renovação · em elaboração', natTxt:'Elaborado pela DGEG · pendente publicação', action:'criar', actionTxt:'Aprovar e publicar Plano · RCM' },
+      ],
+      diplomas: [
+        { sev:'alto', title:'Decreto-Lei n.º 101-D/2020 (Sistema de Certificação Energética)', sub:'Actualização do regime de certificação · novas classes · metodologia revista · integração de emissões.', kind:'Alteração estrutural', minister:'Min. Ambiente e Energia · DGEG · ADENE', articles:'Arts. 5.º, 11.º, 19.º + Anexos' },
+        { sev:'alto', title:'Decreto-Lei n.º 118/2013 (Desempenho Energético dos Edifícios)', sub:'Reformulação para reflectir emissões nulas · solar obrigatório · eliminação fósseis · arquitectura de regulamentos técnicos.', kind:'Alteração estrutural', minister:'Min. Ambiente e Energia · DGEG', articles:'Arts. 4.º, 6.º, 11.º, 13.º' },
+        { sev:'alto', title:'Decreto-Lei n.º 30/2022 (Plano de Eficiência Energética)', sub:'Articulação com programas de apoio · exclusão de incentivos a fósseis · alinhamento com Art. 17.º.', kind:'Alteração', minister:'Min. Ambiente e Energia · DGEG', articles:'Arts. 8.º, 12.º' },
+        { sev:'medio', title:'Decreto-Lei n.º 555/99 (RJUE)', sub:'Articulação com licenciamento urbanístico · novos requisitos para projectos · municípios.', kind:'Alteração', minister:'Min. Infraestruturas e Habitação · DGT', articles:'Arts. 4.º, 11.º, 24.º' },
+        { sev:'medio', title:'Decreto-Lei n.º 90/2014 (mobilidade eléctrica)', sub:'Aditamento de obrigações para novos edifícios · pontos de carregamento.', kind:'Alteração técnica', minister:'Min. Ambiente e Energia · MOBI.E', articles:'Arts. 4.º, 7.º' },
+        { sev:'baixo', title:'Estatuto dos Benefícios Fiscais (DL 215/89)', sub:'Articulação com incentivos fiscais à renovação · IMI · IRS dedução.', kind:'Alteração técnica', minister:'Min. Finanças · AT', articles:'Arts. 71.º-A, 78.º-C' },
+      ],
+      newleg: [
+        { tag:'Decreto-Lei (urgente)', title:'Cria o regime do Passaporte de Renovação', sub:'Acto nacional complementar do Art. 12.º · IRN ou ADENE como gestor · plano por etapas · validade 10 anos · interface com SCE.', meta:'Min. AE · prazo CRÍTICO 29-05-2026' },
+        { tag:'Portaria', title:'Solar obrigatório em novos edifícios não residenciais e edifícios públicos existentes', sub:'Critérios técnicos · escalões temporais · isenções · regime sancionatório · cooperação CMM.', meta:'Min. AE · DGEG · Q3 2026' },
+        { tag:'Decreto-Lei', title:'Atualiza Decreto-Lei n.º 101-D/2020 (Sistema de Certificação Energética)', sub:'Nova metodologia A-G · classe específica para edifícios com emissões nulas · transição.', meta:'Min. AE · DGEG · ADENE · Q3 2026' },
+        { tag:'RCM', title:'Aprova o Plano Nacional de Renovação dos Edifícios (Art. 3.º)', sub:'Objectivos vinculativos 2030 e 2035 · alinhamento com PRR e Roteiro para a Neutralidade Carbónica 2050.', meta:'Min. AE · CM · prazo Mai 2026' },
+      ],
+      ministries: [
+        { role:'coord', name:'Min. do Ambiente e Energia (DGEG)', desc:'Proponente · regulação técnica · interface com ADENE e MOBI.E' },
+        { role:'cores', name:'Min. das Infraestruturas e Habitação', desc:'Articulação com licenciamento urbanístico · DGT · municípios · habitação social' },
+        { role:'cores', name:'Min. das Finanças (AT)', desc:'Incentivos fiscais à renovação · IMI · IRS · benefícios para emissões nulas' },
+        { role:'cores', name:'Min. da Economia e Coesão Territorial', desc:'Programas de apoio · PRR · ICNF para áreas protegidas' },
+        { role:'cores', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação interministerial · CIAE' },
+      ],
+      calendar: [
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Plano partilhado com MAE/DGEG · concertação acelerada' },
+        { date:'29-05-2026', state:'todo', ti:'Prazo de transposição · CRÍTICO', sub:'14 dias úteis · risco de incumprimento · resposta rápida indispensável' },
+        { date:'30-06-2026', state:'todo', ti:'Anteprojectos consolidados', sub:'DL Passaporte · DL 101-D actualizado · Portaria solar' },
+        { date:'15-09-2026', state:'todo', ti:'RCM · adopção em bloco', sub:'Vários DLs no mesmo CM · sinal político de prioridade' },
+        { date:'31-12-2026', state:'todo', ti:'Solar obrigatório edifícios públicos novos', sub:'Aplicação Art. 10.º · primeira data-limite' },
+        { date:'01-01-2028', state:'todo', ti:'Edifícios públicos novos com emissões nulas', sub:'Aplicação Art. 7.º · primeira camada' },
+        { date:'01-01-2030', state:'todo', ti:'Todos os novos edifícios com emissões nulas', sub:'Aplicação plena Art. 7.º' },
+      ],
+      depend: [
+        { type:'warn', text:'Prazo crítico 29-05-2026 · ~14 dias úteis na data desta análise · risco INFR se incumprimento.' },
+        { type:'warn', text:'Atraso na publicação do Plano Nacional de Renovação · cumprimento Art. 3.º depende de RCM ainda pendente.' },
+        { type:'info', text:'Articulação com Reg. (UE) 2023/1542 (Eficiência Energética) e Reg. RED III (renováveis) · pacote Fit-for-55.' },
+        { type:'info', text:'PRR · 1,5 mil milhões € para eficiência energética · alinhamento com novas obrigações · evitar duplicação de instrumentos.' },
+        { type:'info', text:'Conferência Climática COP30 (Nov 2025 · Belém Brasil) · compromissos políticos sobre habitação sustentável.' },
+      ],
+    },
+  },
+  blank: {
+    docName: '— sem proposta carregada —',
+    title: '',
+    tipo: '—', celex: '—', com: '—', lang: '—', fase: 'rascunho · introdução manual', prazo: '—',
+    risk: 'baixo',
+    text: '',
+    analysis: null,
+  },
+};
+
+// Generic placeholder analysis for examples without explicit data
+function genericAnalysis(ex) {
+  return {
+    summary: `Esta análise demonstrativa para ${ex.title.split(',')[0]} é gerada automaticamente para fins de simulação. Numa execução real, o LLM Sonnet processaria o articulado completo (até 150 000 caracteres) com chunking hierárquico se necessário, devolvendo um plano estruturado equivalente ao do caso demonstrador.`,
+    mapping: [
+      { dirArt:'Art. 1.º · Objeto', dirTxt:'Define âmbito e objectivo do acto', natRef:'A identificar', natTxt:'Cruzamento com diplomas existentes', action:'alterar', actionTxt:'Identificação automatizada por LLM' },
+      { dirArt:'Art. 5.º · Definições / Obrigações', dirTxt:'Conceitos centrais e obrigações', natRef:'A identificar', natTxt:'Análise pendente no protótipo', action:'aditar', actionTxt:'Mapeamento detalhado em produção' },
+      { dirArt:'Art. n.º · Sanções', dirTxt:'Regime sancionatório', natRef:'Código Penal · adaptação', natTxt:'Possível ajuste necessário', action:'alterar', actionTxt:'A confirmar' },
+    ],
+    diplomas: [
+      { sev:'medio', title:'Análise demonstrativa', sub:'Para resultados completos com este exemplo, o protótipo em produção chamará Claude Sonnet com o articulado integral.', kind:'Pendente', minister:'A identificar', articles:'A determinar' },
+    ],
+    newleg: [
+      { tag:'Demonstrativo', title:'Análise placeholder', sub:'Carrega o exemplo "Lobbying" para ver o output completo com dados realistas, ou submete texto próprio.', meta:'Disponível em produção' },
+    ],
+    ministries: [
+      { role:'coord', name:'Ministério a determinar', desc:'Identificação automática pelo LLM em função do articulado' },
+    ],
+    calendar: [
+      { date:'hoje', state:'cur', ti:'Análise gerada (demo)', sub:'Resultado simulado · ver caso demonstrador para output completo' },
+    ],
+    depend: [
+      { type:'info', text:'Para ver toda a riqueza do output, carrega o exemplo "Lobbying / Países Terceiros" · análise de referência calibrada.' },
+    ],
+  };
+}
+
+// ============================================================================
+// STAGES
+// ============================================================================
+
+const STAGE_DEFS = [
+  { id:'parse',  ti:'Parsing dos artigos da proposta', minMs:1100, maxMs:1500, msg:(d)=>`${d.artCount} artigos · ${d.charCount.toLocaleString('pt-PT')} caracteres` },
+  { id:'eurovoc',ti:'Consulta de descritores EuroVoc no CELLAR', minMs:800, maxMs:1100, msg:()=>'7 descritores correspondentes' },
+  { id:'cross',  ti:'Cruzamento com base de diplomas nacionais', minMs:1300, maxMs:1700, msg:()=>'47 diplomas analisados · 3 com cruzamento directo' },
+  { id:'map',    ti:'Mapeamento artigo-a-artigo (Sonnet)', minMs:1900, maxMs:2400, msg:(d)=>`${d.mappingCount} mapeamentos identificados` },
+  { id:'newleg', ti:'Identificação de nova legislação necessária', minMs:900, maxMs:1200, msg:(d)=>`${d.newlegCount} actos a criar` },
+  { id:'cal',    ti:'Cálculo do calendário de transposição', minMs:600, maxMs:900, msg:(d)=>`${d.calCount} marcos · prazo ${d.prazo}` },
+  { id:'depend', ti:'Detecção de dependências e riscos', minMs:700, maxMs:1000, msg:(d)=>`${d.dependCount} dependências sinalizadas` },
+  { id:'final',  ti:'Validação JSON e composição do plano', minMs:400, maxMs:600, msg:()=>'Plano gerado' },
+];
+
+// ============================================================================
+// STATE
+// ============================================================================
+
+let currentExample = null;
+let isRunning = false;
+let stageStartTime = 0;
+let stageTimer = null;
+
+// ============================================================================
+// LIFECYCLE
+// ============================================================================
+
+function loadExample(key) {
+  const ex = EXAMPLES[key];
+  if (!ex) return;
+  currentExample = key;
+
+  // Update example cards
+  document.querySelectorAll('.ex-card').forEach(c => c.classList.toggle('cur', c.dataset.ex === key));
+  document.getElementById('showcase').classList.toggle('cur', key === 'lobby');
+
+  // Update editor
+  document.getElementById('doc-name').textContent = ex.docName;
+  document.getElementById('det-tipo').textContent = ex.tipo;
+  document.getElementById('det-celex').textContent = ex.celex;
+  document.getElementById('det-com').textContent = ex.com;
+  document.getElementById('det-lang').textContent = ex.lang;
+  document.getElementById('det-fase').textContent = ex.fase;
+  document.getElementById('det-prazo').textContent = ex.prazo;
+
+  const ph = document.getElementById('placeholder');
+  const ta = document.getElementById('prop-text');
+  if (key === 'blank') {
+    ta.value = '';
+    ta.style.display = 'block';
+    ph.style.display = 'none';
+    ta.focus();
+  } else {
+    ta.value = ex.text;
+    ta.style.display = 'block';
+    ph.style.display = 'none';
+  }
+  updateStats();
+
+  // Clear previous run
+  document.getElementById('stages').classList.remove('on', 'done');
+  document.getElementById('result').classList.remove('on');
+
+  // Enable run button
+  const btn = document.getElementById('btn-run');
+  btn.disabled = ta.value.trim().length === 0;
+  document.getElementById('run-hint').textContent = btn.disabled ? 'Cola texto da proposta para activar a análise.' : `Pronto · ${countArticles(ta.value)} artigos detectados.`;
+}
+
+function clearAll() {
+  currentExample = null;
+  document.querySelectorAll('.ex-card,.showcase').forEach(c => c.classList.remove('cur'));
+  document.getElementById('doc-name').textContent = '— sem proposta carregada —';
+  ['tipo','celex','com','lang','fase','prazo'].forEach(k => document.getElementById('det-'+k).textContent = '—');
+  document.getElementById('prop-text').value = '';
+  document.getElementById('prop-text').style.display = 'none';
+  document.getElementById('placeholder').style.display = 'flex';
+  updateStats();
+  document.getElementById('stages').classList.remove('on', 'done');
+  document.getElementById('result').classList.remove('on');
+  document.getElementById('btn-run').disabled = true;
+  document.getElementById('run-hint').textContent = 'Carrega um exemplo para activar a análise.';
+}
+
+function updateStats() {
+  const ta = document.getElementById('prop-text');
+  const text = ta.value;
+  document.getElementById('stat-arts').textContent = countArticles(text);
+  document.getElementById('stat-chars').textContent = text.length.toLocaleString('pt-PT');
+  const btn = document.getElementById('btn-run');
+  btn.disabled = text.trim().length < 50;
+  if (!btn.disabled) {
+    document.getElementById('run-hint').textContent = `Pronto · ${countArticles(text)} artigos detectados.`;
+  }
+}
+
+function countArticles(text) {
+  const m = text.match(/Artigo\s+\d+\.º/g);
+  return m ? m.length : 0;
+}
+
+// ============================================================================
+// RUN ANALYSIS (simulated)
+// ============================================================================
+
+async function runAnalysis() {
+  if (isRunning) return;
+  isRunning = true;
+  const btn = document.getElementById('btn-run');
+  btn.disabled = true;
+
+  // Get analysis data
+  const ex = EXAMPLES[currentExample];
+  const analysis = ex.analysis || genericAnalysis(ex);
+  const text = document.getElementById('prop-text').value;
+  const data = {
+    artCount: countArticles(text) || 12,
+    charCount: text.length,
+    mappingCount: analysis.mapping.length,
+    newlegCount: analysis.newleg.length,
+    calCount: analysis.calendar.length,
+    dependCount: analysis.depend.length,
+    prazo: ex.prazo.split('·')[0].trim().slice(0, 12),
+  };
+
+  // Setup stages
+  const stagesEl = document.getElementById('stages');
+  const listEl = document.getElementById('stages-list');
+  stagesEl.classList.remove('done');
+  stagesEl.classList.add('on');
+  document.getElementById('stages-title').textContent = 'Pipeline de análise IA · ' + ex.tipo;
+  document.getElementById('result').classList.remove('on');
+
+  listEl.innerHTML = STAGE_DEFS.map(s => `
+    <div class="stage-row idle" data-stg="${s.id}">
+      <div class="stage-ic" data-role="ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div class="stage-bd">${s.ti}</div>
+      <div class="stage-msg" data-role="msg"></div>
+    </div>
+  `).join('');
+
+  stageStartTime = Date.now();
+  if (stageTimer) clearInterval(stageTimer);
+  stageTimer = setInterval(() => {
+    const t = (Date.now() - stageStartTime) / 1000;
+    document.getElementById('stages-time').textContent = t.toFixed(1) + 's';
+  }, 100);
+
+  // Run stages sequentially
+  for (const s of STAGE_DEFS) {
+    const row = listEl.querySelector(`[data-stg="${s.id}"]`);
+    row.classList.remove('idle');
+    row.classList.add('run');
+    row.querySelector('[data-role="ic"]').innerHTML = '<div class="stage-spinner"></div>';
+    const dur = s.minMs + Math.random() * (s.maxMs - s.minMs);
+    await sleep(dur);
+    row.classList.remove('run');
+    row.classList.add('done');
+    row.querySelector('[data-role="ic"]').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+    row.querySelector('[data-role="msg"]').textContent = s.msg(data);
+  }
+
+  clearInterval(stageTimer);
+  stagesEl.classList.add('done');
+
+  // Render result
+  renderResult(ex, analysis);
+  isRunning = false;
+  btn.disabled = false;
+  toast('Plano gerado', 'Análise concluída em ' + ((Date.now() - stageStartTime) / 1000).toFixed(1) + 's · pronta para validação.');
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ============================================================================
+// RENDER RESULT
+// ============================================================================
+
+function renderResult(ex, a) {
+  const html = `
+    <div class="result-header">
+      <div class="result-header-bd">
+        <div class="result-header-eye">${ex.docName}</div>
+        <div class="result-header-ti">${ex.title}</div>
+        <div class="result-header-meta">
+          <span><strong>Tipo:</strong> ${ex.tipo}</span>
+          <span><strong>CELEX:</strong> ${ex.celex}</span>
+          <span><strong>Prazo:</strong> ${ex.prazo}</span>
+          <span><strong>Estado:</strong> ${ex.fase}</span>
+        </div>
+      </div>
+      <div class="risk-badge risk-${ex.risk}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:14px;height:14px"><polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Risco ${ex.risk.toUpperCase()}
+      </div>
+    </div>
+
+    ${section(1, 'Síntese executiva', '', `<div class="sintese">${a.summary.split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div>`, true)}
+
+    ${section(2, 'Mapeamento artigo-a-artigo', `${a.mapping.length} mapeamentos`, mappingTable(a.mapping), true)}
+
+    ${section(3, 'Diplomas nacionais afectados', `${a.diplomas.length} diplomas`, diplomaList(a.diplomas), true)}
+
+    ${section(4, 'Nova legislação necessária', `${a.newleg.length} acto${a.newleg.length===1?'':'s'}`, newlegGrid(a.newleg))}
+
+    ${section(5, 'Ministérios envolvidos', `${a.ministries.length}`, ministryTree(a.ministries))}
+
+    ${section(6, 'Calendário sugerido', `${a.calendar.length} marcos`, calTimeline(a.calendar))}
+
+    ${section(7, 'Dependências e riscos', `${a.depend.length}`, dependList(a.depend))}
+
+    <div class="result-actions">
+      <span class="result-actions-h">Acções da DAPL</span>
+      <button class="btn btn-primary" onclick="toast('Análise validada','Estado: validado · escalonamento autorizado para os ministérios envolvidos.')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Validar e escalonar
+      </button>
+      <button class="btn btn-ghost" onclick="toast('Pedido de revisão','O motor IA receberá o feedback e regerará o plano com ajustes.','warn')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Pedir revisão IA
+      </button>
+      <button class="btn btn-ghost" onclick="toast('Exportação','Plano exportado em PDF (mock) · Word disponível em produção.','info')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar plano
+      </button>
+      <button class="btn btn-ghost" onclick="toast('Análise rejeitada','A análise foi marcada como rejeitada · será reanalisada manualmente.','warn')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Rejeitar
+      </button>
+    </div>
+  `;
+  const r = document.getElementById('result');
+  r.innerHTML = html;
+  r.classList.add('on');
+  setTimeout(() => r.scrollIntoView({ behavior:'smooth', block:'start' }), 200);
+}
+
+function section(num, title, meta, body, openByDefault) {
+  return `
+    <div class="result-section ${openByDefault?'open':''}">
+      <div class="result-section-h" onclick="this.parentElement.classList.toggle('open')">
+        <div class="result-section-ti"><span class="num">${num}</span>${title}</div>
+        <div style="display:flex;gap:0.6rem;align-items:center">
+          <span class="result-section-meta">${meta}</span>
+          <svg class="result-section-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="result-section-bd">${body}</div>
+    </div>
+  `;
+}
+
+function mappingTable(rows) {
+  return `
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Artigo da diretiva</th>
+          <th style="width:30%">Diploma nacional</th>
+          <th style="width:15%">Acção</th>
+          <th>Detalhe</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(r => `
+          <tr>
+            <td>
+              <span class="art-ref">${r.dirArt}</span>
+              <span class="art-text">${r.dirTxt}</span>
+            </td>
+            <td>
+              <span class="art-ref">${r.natRef}</span>
+              <span class="art-text">${r.natTxt}</span>
+            </td>
+            <td><span class="action-pill action-${r.action}">${r.action}</span></td>
+            <td style="font-size:0.76rem;color:var(--ink-2);line-height:1.45">${r.actionTxt}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function diplomaList(items) {
+  return '<div class="diploma-list">' + items.map(d => `
+    <div class="diploma-it sev-${d.sev}">
+      <div class="sev"></div>
+      <div class="diploma-bd">
+        <div class="diploma-ti">${d.title}</div>
+        <div class="diploma-sub">${d.sub}</div>
+        <div class="diploma-meta">
+          <span><strong>Tipo:</strong> ${d.kind}</span>
+          <span><strong>Tutela:</strong> ${d.minister}</span>
+          <span><strong>Artigos:</strong> ${d.articles}</span>
+        </div>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function newlegGrid(items) {
+  return '<div class="newleg-grid">' + items.map(n => `
+    <div class="newleg-card">
+      <div class="newleg-card-tag">${n.tag}</div>
+      <div class="newleg-card-ti">${n.title}</div>
+      <div class="newleg-card-sub">${n.sub}</div>
+      <div class="newleg-card-meta">${n.meta}</div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function ministryTree(items) {
+  return '<div class="ministry-tree">' + items.map(m => `
+    <div class="ministry-it">
+      <span class="ministry-role ${m.role}">${m.role === 'coord' ? 'Coordenador' : 'Co-responsável'}</span>
+      <div style="flex:1">
+        <div style="font-weight:600;color:var(--ink)">${m.name}</div>
+        <div style="font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem">${m.desc}</div>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function calTimeline(items) {
+  return '<div class="cal-timeline">' + items.map(c => `
+    <div class="cal-it ${c.state}">
+      <span class="cal-date">${c.date}</span>
+      <div class="cal-bd">
+        <div class="cal-ti">${c.ti}</div>
+        <div class="cal-sub">${c.sub}</div>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function dependList(items) {
+  return items.map(d => `
+    <div class="depend-it">
+      <div class="depend-ic ${d.type}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          ${d.type === 'warn' ? '<polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'}
+        </svg>
+      </div>
+      <div style="flex:1;color:var(--ink-2);line-height:1.5">${d.text}</div>
+    </div>
+  `).join('');
+}
+
+// ============================================================================
+// TOAST
+// ============================================================================
+
+function toast(title, msg, type) {
+  type = type || 'success';
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast t-' + type;
+  el.innerHTML = `
+    <div class="toast-bd">
+      <div class="toast-ti">${title}</div>
+      <div class="toast-msg">${msg || ''}</div>
+    </div>
+  `;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 4500);
+}
+
+// Auto-load lobby for instant impact
+window.addEventListener('DOMContentLoaded', () => {
+  loadExample('lobby');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · RADAR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1D1D1F; --ink-2:#3A3A3C; --ink-3:#6E6E73; --ink-4:#8E8E93; --ink-5:#AEAEB2;
+  --line:#E5E5EA; --line-2:#D1D1D6;
+  --bg:#FBFBFD; --bg2:#FFFFFF; --bg3:#F5F5F7; --bg4:#EEEEF1;
+  --green:#0E7433; --green-dark:#0A5A28; --green-soft:#E6F0E9;
+  --blue:#2B5683; --blue-soft:#E5ECF3;
+  --red:#D02117; --red-soft:#FBEAE9;
+  --amber:#C08916; --amber-soft:#FDF4E3;
+  --tint-red:rgba(208,33,23,0.08);
+  --tint-amber:rgba(192,137,22,0.10);
+  --tint-green:rgba(14,116,51,0.08);
+  --tint-blue:rgba(43,86,131,0.08);
+  --sh-md:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-lg:0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+
+/* HEADER (shared chrome pattern) */
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+/* HERO */
+.hero{padding:1rem 0 1.5rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.65rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:740px;line-height:1.55;}
+
+/* === KPIs por sector === */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:0.6rem;margin-bottom:1.2rem;}
+.kpi{padding:0.7rem 0.8rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all 0.12s;}
+.kpi:hover{border-color:var(--green);background:var(--green-soft);}
+.kpi.cur{border-color:var(--green);background:var(--green-soft);box-shadow:0 0 0 2px var(--tint-green);}
+.kpi-lb{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.25rem;}
+.kpi-vl{font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1;}
+.kpi-dt{font-size:0.66rem;color:var(--ink-3);margin-top:0.2rem;}
+.kpi-dt.red{color:var(--red);font-weight:500;}
+
+/* === FILTERS BAR === */
+.filters{display:flex;gap:0.55rem;flex-wrap:wrap;align-items:center;margin-bottom:0.9rem;padding:0.8rem 0.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.filter-search{flex:1;min-width:200px;}
+.inp{padding:0.5rem 0.75rem;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.82rem;color:var(--ink);background:var(--bg2);outline:none;transition:all 0.12s;width:100%;}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 2px var(--green-soft);}
+.filter-pill{padding:0.45rem 0.85rem;background:var(--bg3);border:1px solid transparent;border-radius:6px;font-size:0.78rem;color:var(--ink-2);cursor:pointer;font-family:inherit;transition:all 0.12s;}
+.filter-pill:hover{background:var(--bg4);}
+.filter-pill.cur{background:var(--green);color:#fff;}
+.filter-meta{margin-left:auto;font-size:0.74rem;color:var(--ink-3);}
+
+/* === LIVE INDICATOR === */
+.live-bar{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.95rem;background:var(--green-soft);border:1px solid var(--green);border-radius:8px;margin-bottom:0.8rem;font-size:0.78rem;}
+.live-bar-l{display:flex;align-items:center;gap:0.55rem;color:var(--green-dark);}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.live-bar-r{font-family:var(--font-mono);font-size:0.7rem;color:var(--green-dark);}
+
+/* === LIST === */
+.list{display:flex;flex-direction:column;gap:0.4rem;}
+.proc{display:flex;gap:0.85rem;align-items:center;padding:0.75rem 1rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all 0.12s;}
+.proc:hover{border-color:var(--green);background:var(--bg3);transform:translateX(2px);}
+.proc-status{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.proc-status.critico{background:var(--red);}
+.proc-status.atencao{background:var(--amber);}
+.proc-status.em-curso{background:var(--green);}
+.proc-bd{flex:1;min-width:0;}
+.proc-h{display:flex;gap:0.5rem;align-items:baseline;flex-wrap:wrap;}
+.proc-celex{font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-3);}
+.proc-tag{font-size:0.6rem;text-transform:uppercase;padding:0.1rem 0.4rem;border-radius:3px;background:var(--bg3);color:var(--ink-3);font-weight:600;letter-spacing:0.04em;}
+.proc-tag.risco-alto{background:var(--tint-red);color:var(--red);}
+.proc-tag.risco-medio{background:var(--tint-amber);color:var(--amber);}
+.proc-tag.risco-baixo{background:var(--tint-green);color:var(--green);}
+.proc-infr{font-family:var(--font-mono);font-size:0.66rem;color:var(--red);font-weight:500;}
+.proc-ti{font-size:0.86rem;color:var(--ink);font-weight:500;margin-top:0.18rem;}
+.proc-meta{font-size:0.7rem;color:var(--ink-3);margin-top:0.18rem;}
+.proc-rt{display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;}
+.proc-prazo{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink-2);font-weight:500;}
+.proc-prazo.urgent{color:var(--red);}
+.proc-fase{font-size:0.66rem;text-transform:uppercase;color:var(--ink-3);letter-spacing:0.04em;font-weight:600;}
+.proc-arrow{color:var(--ink-4);}
+
+/* === DETAIL DRILL === */
+.detail{position:fixed;top:0;right:0;height:100vh;width:min(720px,90vw);background:var(--bg2);box-shadow:var(--sh-lg);z-index:50;overflow-y:auto;transform:translateX(100%);transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);}
+.detail.on{transform:translateX(0);}
+.detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:40;opacity:0;pointer-events:none;transition:opacity 0.22s;}
+.detail-overlay.on{opacity:1;pointer-events:auto;}
+.detail-h{padding:1.2rem 1.5rem 1rem;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:1rem;position:sticky;top:0;background:var(--bg2);z-index:5;}
+.detail-h-bd{flex:1;min-width:0;}
+.detail-celex{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink-3);margin-bottom:0.3rem;}
+.detail-ti{font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-0.01em;}
+.detail-x{background:transparent;border:none;cursor:pointer;color:var(--ink-3);width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.detail-x:hover{background:var(--bg3);color:var(--ink);}
+.detail-x svg{width:18px;height:18px;}
+.detail-bd{padding:1.3rem 1.5rem 2rem;}
+
+.detail-section{margin-bottom:1.6rem;}
+.detail-section-h{font-size:0.74rem;font-weight:600;color:var(--ink);margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:0.5rem;}
+.detail-section-h::before{content:"";width:3px;height:14px;background:var(--green);border-radius:2px;}
+
+.detail-meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.6rem 1rem;}
+.detail-meta-row{padding:0.5rem 0.75rem;background:var(--bg3);border-radius:6px;}
+.detail-meta-lb{font-size:0.66rem;text-transform:uppercase;color:var(--ink-4);font-weight:600;letter-spacing:0.04em;margin-bottom:0.2rem;}
+.detail-meta-vl{font-size:0.84rem;color:var(--ink);font-weight:500;}
+
+/* Phase timeline */
+.phase-tl{display:flex;gap:0.4rem;}
+.phase-stage{flex:1;padding:0.65rem 0.75rem;background:var(--bg3);border-radius:6px;text-align:center;}
+.phase-stage.done{background:var(--tint-green);}
+.phase-stage.cur{background:var(--green);color:#fff;}
+.phase-stage.alert{background:var(--tint-red);}
+.phase-num{font-size:0.6rem;text-transform:uppercase;color:var(--ink-4);letter-spacing:0.04em;font-weight:600;margin-bottom:0.2rem;}
+.phase-stage.cur .phase-num{color:rgba(255,255,255,0.75);}
+.phase-stage.done .phase-num{color:var(--green);}
+.phase-stage.alert .phase-num{color:var(--red);}
+.phase-nm{font-size:0.72rem;font-weight:600;color:var(--ink);}
+.phase-stage.cur .phase-nm{color:#fff;}
+
+/* Timeline of events */
+.events{display:flex;flex-direction:column;}
+.event{display:flex;gap:0.85rem;padding:0.5rem 0;position:relative;}
+.event::before{content:"";position:absolute;left:0.42rem;top:1.2rem;bottom:0;width:1px;background:var(--line);}
+.event:last-child::before{display:none;}
+.event-dot{width:9px;height:9px;border-radius:50%;background:var(--ink-4);margin-top:0.5rem;flex-shrink:0;position:relative;z-index:1;}
+.event-dot.done{background:var(--green);}
+.event-dot.cur{background:var(--amber);box-shadow:0 0 0 3px var(--amber-soft);}
+.event-bd{flex:1;}
+.event-date{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.event-ti{font-size:0.84rem;color:var(--ink);font-weight:500;margin-top:0.15rem;}
+.event-sub{font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem;line-height:1.45;}
+
+/* Action buttons */
+.actions{display:flex;gap:0.55rem;flex-wrap:wrap;}
+.btn{padding:0.5rem 1rem;border-radius:7px;font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.12s;}
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark);}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);border-color:var(--ink-5);}
+.btn svg{width:13px;height:13px;}
+
+/* Toast */
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:toast-in 0.22s;}
+.toast.t-info{border-left-color:var(--blue);}
+.toast.t-warn{border-left-color:var(--amber);}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+/* Restricted info */
+.restricted-note{padding:0.55rem 0.95rem;background:var(--tint-amber);border:1px solid var(--amber);border-radius:8px;font-size:0.78rem;color:var(--amber);font-weight:500;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.45rem;}
+.restricted-note svg{width:14px;height:14px;}
+
+@media (max-width:900px){
+  .kpi-row{grid-template-columns:repeat(3,1fr);}
+  .detail-meta-grid{grid-template-columns:1fr;}
+}
+
+button:focus-visible,a:focus-visible,.proc:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- BRAND BAR -->
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/>
+        <rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/>
+        <rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/>
+      </svg>
+    </div>
+    <div class="brand-bd">
+      <div class="brand-nm">VIGIL · RADAR</div>
+      <div class="brand-sub">M02 · Monitorização de directivas e regulamentos publicados</div>
+    </div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip">
+      <div class="avatar-sm" id="avatar">—</div>
+      <span class="user-name-sm" id="user-name">—</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eye">M02 · RADAR · Pós-publicação JOUE · DGDEI + SGGov</div>
+    <h1 class="hero-h1">30 processos em acompanhamento · 8 com prazo crítico</h1>
+    <p class="hero-sub" id="hero-sub">O RADAR é a vista central pós-publicação no JOUE. Cada linha é um processo único (ADR-0001) com fase corrente derivada automaticamente. Click numa linha para ver detalhe lateral com timeline de eventos, ficha de transposição e auditoria.</p>
+  </div>
+
+  <!-- LIVE BAR -->
+  <div class="live-bar">
+    <div class="live-bar-l">
+      <span class="live-dot"></span>
+      <span><strong>Sincronização CELLAR activa</strong> · próxima passagem do crawler em 2 dias 18h</span>
+    </div>
+    <div class="live-bar-r">Última sync: 28-04-2026 13:02 UTC · 47 actos verificados · 0 novos</div>
+  </div>
+
+  <!-- KPIs por sector -->
+  <div class="kpi-row" id="kpi-row"></div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <div class="filter-search">
+      <input type="search" class="inp" id="search" placeholder="Pesquisar por título, CELEX, ministério, infracção…" oninput="render()">
+    </div>
+    <button class="filter-pill cur" data-filt="all" onclick="setFilter('all')">Todos</button>
+    <button class="filter-pill" data-filt="critico" onclick="setFilter('critico')">Críticos</button>
+    <button class="filter-pill" data-filt="atencao" onclick="setFilter('atencao')">Atenção</button>
+    <button class="filter-pill" data-filt="em-curso" onclick="setFilter('em-curso')">Em curso</button>
+    <span class="filter-meta" id="filter-meta">— processos</span>
+  </div>
+
+  <!-- LIST -->
+  <div class="list" id="list"></div>
+
+</div>
+
+<!-- DETAIL DRAWER -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-ti">
+  <div class="detail-h">
+    <div class="detail-h-bd">
+      <div class="detail-celex" id="detail-celex">—</div>
+      <div class="detail-ti" id="detail-ti">—</div>
+    </div>
+    <button class="detail-x" onclick="closeDetail()" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="detail-bd" id="detail-bd"></div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+// ============================================================================
+// Session check
+// ============================================================================
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+  if (session.perfil === 'gabinete') {
+    document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas os processos sob a tutela do teu ministério (Ambiente e Energia · MAE). Acede ao detalhe de cada processo para o seu ciclo de vida completo.';
+  }
+}
+
+// ============================================================================
+// DATA
+// ============================================================================
+const PROCESSOS = [
+  { id:'P001', celex:'32022L2555', titulo:'NIS2 · Cibersegurança de redes e sistemas', tipo:'DIR', setor:'Digital', ministerio:'MAE / CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'IP/24/1182', risco_eur:'A determinar', eventos:[
+    {dt:'17-12-2022',ti:'Publicação JOUE',sub:'Diretiva (UE) 2022/2555 publicada',state:'done'},
+    {dt:'10-01-2023',ti:'Ficha aberta na DGDEI',sub:'Coordenação atribuída · CNCS lead',state:'done'},
+    {dt:'17-10-2024',ti:'Prazo de transposição',sub:'Excedido sem transposição completa',state:'done'},
+    {dt:'15-11-2024',ti:'Notificação formal CE',sub:'Procedimento IP/24/1182 aberto',state:'done'},
+    {dt:'29-04-2026',ti:'Resposta à notificação',sub:'Prazo amanhã · projecto Lei pronto',state:'cur'},
+  ] },
+  { id:'P016', celex:'31992L0043', titulo:'Habitats · Rede Natura 2000', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / ICNF', prazo:'1994', estado:'critico', risco:'alto', infracao:'C-217/24', risco_eur:'€10M + €41 250/dia', eventos:[
+    {dt:'12-09-2022',ti:'Acção TJUE intentada',sub:'CE vs. Portugal · 55 sítios não classificados',state:'done'},
+    {dt:'15-06-2023',ti:'Audiência no TJUE',sub:'Memoriais finais',state:'done'},
+    {dt:'05-03-2026',ti:'Acórdão proferido',sub:'€10M + €41 250/dia em vigor',state:'cur'},
+    {dt:'em curso',ti:'Cumprimento das medidas',sub:'ICNF a coordenar acções de protecção',state:'todo'},
+  ] },
+  { id:'P008', celex:'32024L1203', titulo:'CSDD · Corporate Sustainability Due Diligence', tipo:'DIR', setor:'Finanças', ministerio:'MECT', prazo:'Jul 2026', estado:'atencao', risco:'alto', infracao:'', risco_eur:'A determinar', eventos:[
+    {dt:'13-07-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/1203',state:'done'},
+    {dt:'02-09-2024',ti:'Ficha aberta',sub:'MECT como ministério coordenador',state:'done'},
+    {dt:'25-04-2026',ti:'Marco "fins técnicos" concluído',sub:'Anteprojeto submetido',state:'cur'},
+    {dt:'15-05-2026',ti:'RSE (CM)',sub:'Reunião do Secretariado Executivo',state:'todo'},
+    {dt:'26-07-2026',ti:'Prazo transposição',sub:'12 semanas restantes',state:'todo'},
+  ] },
+  { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / APA', prazo:'Ago 2026', estado:'atencao', risco:'alto', infracao:'IP/24/0891', risco_eur:'15-25 M€', eventos:[
+    {dt:'14-08-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/884 (revisão)',state:'done'},
+    {dt:'23-01-2025',ti:'Notificação formal CE',sub:'Lisboa+Porto excedem limites · IP/24/0891',state:'done'},
+    {dt:'15-04-2026',ti:'Parecer fundamentado',sub:'CE emite parecer · APA a implementar planos',state:'cur'},
+  ] },
+  { id:'P022', celex:'32024L2831', titulo:'Trabalho em plataformas digitais', tipo:'DIR', setor:'Trabalho', ministerio:'MTSSS', prazo:'Dez 2026', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
+    {dt:'02-12-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/2831',state:'done'},
+    {dt:'18-01-2025',ti:'Ficha aberta',sub:'MTSSS + ACT como co-responsáveis',state:'done'},
+    {dt:'01-03-2026',ti:'Anteprojeto em consulta pública',sub:'Recolha de contributos até 30-04',state:'cur'},
+  ] },
+  { id:'P021', celex:'32024R1689', titulo:'AI Act · Regulamento da Inteligência Artificial', tipo:'REG', setor:'Digital', ministerio:'MP / ANI', prazo:'Ago 2026', estado:'em-curso', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
+    {dt:'12-07-2024',ti:'Publicação JOUE',sub:'Reg. (UE) 2024/1689',state:'done'},
+    {dt:'02-08-2025',ti:'Aplicação faseada · proibições',state:'done'},
+    {dt:'02-08-2026',ti:'Aplicação obrigações centrais',sub:'Sistema de IA de alto risco',state:'todo'},
+  ] },
+  { id:'P011', celex:'32024L1275', titulo:'EPBD · Desempenho energético dos edifícios', tipo:'DIR', setor:'Energia', ministerio:'MAE + MIH', prazo:'Mai 2026', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
+    {dt:'08-05-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/1275',state:'done'},
+    {dt:'15-12-2025',ti:'Anteprojeto em concertação',sub:'CIAE · interesses cruzados energia/habitação',state:'cur'},
+    {dt:'29-05-2026',ti:'Prazo de transposição',sub:'31 dias restantes',state:'todo'},
+  ] },
+  { id:'P006', celex:'32018L1673', titulo:'AML5 · Branqueamento de capitais', tipo:'DIR', setor:'Finanças', ministerio:'MF + MJ', prazo:'Jan 2020', estado:'critico', risco:'alto', infracao:'IP/20/0489', risco_eur:'A determinar', eventos:[
+    {dt:'30-01-2018',ti:'Publicação JOUE',sub:'Diretiva (UE) 2018/1673',state:'done'},
+    {dt:'15-03-2020',ti:'Notificação formal',sub:'Transposição parcial',state:'done'},
+    {dt:'2024',ti:'Lei 83/2017 alterada parcialmente',sub:'Falta regime sancionatório completo',state:'cur'},
+  ] },
+  { id:'P002', celex:'32021L0338', titulo:'MiFID II · Revisão instrumentos financeiros', tipo:'DIR', setor:'Finanças', ministerio:'MF / CMVM', prazo:'Nov 2022', estado:'critico', risco:'alto', infracao:'IP/22/0841', risco_eur:'A determinar', eventos:[
+    {dt:'24-02-2021',ti:'Publicação JOUE',sub:'Diretiva (UE) 2021/338',state:'done'},
+    {dt:'02-12-2022',ti:'Notificação formal',sub:'IP/22/0841',state:'done'},
+  ] },
+  { id:'P023', celex:'32019L1152', titulo:'Condições de trabalho transparentes', tipo:'DIR', setor:'Trabalho', ministerio:'MTSSS / ACT', prazo:'Ago 2022', estado:'critico', risco:'alto', infracao:'IP/22/4512', risco_eur:'A determinar', eventos:[
+    {dt:'20-06-2019',ti:'Publicação JOUE',sub:'Diretiva (UE) 2019/1152',state:'done'},
+    {dt:'01-09-2022',ti:'Notificação formal',sub:'Transposição parcial',state:'done'},
+  ] },
+  { id:'P018', celex:'32020L2184', titulo:'Água potável (revisão)', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / APA', prazo:'Jan 2023', estado:'critico', risco:'alto', infracao:'IP/23/1122', risco_eur:'A determinar', eventos:[] },
+  { id:'P020', celex:'32022L2557', titulo:'CER · Resiliência entidades críticas', tipo:'DIR', setor:'Digital', ministerio:'MAI + CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P010', celex:'32023L1791', titulo:'EED · Eficiência energética', tipo:'DIR', setor:'Energia', ministerio:'MAE / DGEG', prazo:'Out 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P009', celex:'32023L2413', titulo:'RED III · Energia renovável', tipo:'DIR', setor:'Energia', ministerio:'MAE / DGEG', prazo:'Jun 2026', estado:'em-curso', risco:'baixo', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P024', celex:'32019L1158', titulo:'Equilíbrio vida profissional-familiar', tipo:'DIR', setor:'Trabalho', ministerio:'MTSSS', prazo:'Ago 2022', estado:'em-curso', risco:'baixo', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P027', celex:'32022L2046', titulo:'Farmacovigilância · medicamentos', tipo:'DIR', setor:'Saúde', ministerio:'MS / Infarmed', prazo:'Jan 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P028', celex:'32021R2282', titulo:'HTA · Avaliação tecnologias de saúde', tipo:'REG', setor:'Saúde', ministerio:'MS / Infarmed', prazo:'Jan 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P025', celex:'32019L0883', titulo:'Resíduos gerados por navios', tipo:'DIR', setor:'Marítimo', ministerio:'MIH / DGRM', prazo:'Jun 2021', estado:'critico', risco:'medio', infracao:'IP/22/1034', risco_eur:'A determinar', eventos:[] },
+  { id:'P012', celex:'32019L0944', titulo:'Mercado interno da electricidade', tipo:'DIR', setor:'Energia', ministerio:'MAE / ERSE', prazo:'Dez 2020', estado:'critico', risco:'alto', infracao:'IP/21/2341', risco_eur:'A determinar', eventos:[] },
+  { id:'P004', celex:'32019L0879', titulo:'BRRD II · Recuperação e resolução bancária', tipo:'DIR', setor:'Finanças', ministerio:'MF / BdP', prazo:'Dez 2020', estado:'critico', risco:'alto', infracao:'IP/21/0773', risco_eur:'A determinar', eventos:[] },
+];
+
+// ============================================================================
+// State
+// ============================================================================
+let curFilter = 'all';
+let curSector = null;
+
+// ============================================================================
+// Render KPIs by sector
+// ============================================================================
+function renderKpis() {
+  const sectors = ['Finanças','Energia','Ambiente','Digital','Trabalho','Saúde'];
+  const wrap = document.getElementById('kpi-row');
+  wrap.innerHTML = sectors.map(s => {
+    const procs = PROCESSOS.filter(p => p.setor === s);
+    const crit = procs.filter(p => p.estado === 'critico').length;
+    const cur = curSector === s ? 'cur' : '';
+    return `
+      <div class="kpi ${cur}" onclick="toggleSector('${s}')">
+        <div class="kpi-lb">${s}</div>
+        <div class="kpi-vl">${procs.length}</div>
+        <div class="kpi-dt ${crit > 0 ? 'red' : ''}">${crit > 0 ? crit + ' crítico' + (crit>1?'s':'') : 'Sem críticos'}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleSector(s) {
+  curSector = curSector === s ? null : s;
+  renderKpis();
+  render();
+}
+
+function setFilter(f) {
+  curFilter = f;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('cur', p.dataset.filt === f));
+  render();
+}
+
+// ============================================================================
+// Render list
+// ============================================================================
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let filtered = PROCESSOS.filter(p => {
+    if (curFilter !== 'all' && p.estado !== curFilter) return false;
+    if (curSector && p.setor !== curSector) return false;
+    if (session && session.perfil === 'gabinete') {
+      // Gabinete só vê processos do seu ministério (MAE)
+      if (!p.ministerio.includes('MAE')) return false;
+    }
+    if (q) {
+      const hay = (p.titulo + ' ' + p.celex + ' ' + p.ministerio + ' ' + (p.infracao || '')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  // Sort: críticos primeiro
+  const order = { critico:0, atencao:1, 'em-curso':2 };
+  filtered.sort((a,b) => order[a.estado] - order[b.estado]);
+
+  const list = document.getElementById('list');
+  list.innerHTML = filtered.map(p => {
+    const today = new Date('2026-04-28');
+    let prazoCls = '';
+    return `
+      <div class="proc" onclick="openDetail('${p.id}')" role="button" tabindex="0">
+        <div class="proc-status ${p.estado}" aria-label="${p.estado}"></div>
+        <div class="proc-bd">
+          <div class="proc-h">
+            <span class="proc-celex">${p.celex}</span>
+            <span class="proc-tag">${p.tipo}</span>
+            <span class="proc-tag risco-${p.risco}">${p.risco}</span>
+            ${p.infracao ? `<span class="proc-infr">${p.infracao}</span>` : ''}
+          </div>
+          <div class="proc-ti">${p.titulo}</div>
+          <div class="proc-meta">${p.ministerio} · setor ${p.setor}</div>
+        </div>
+        <div class="proc-rt">
+          <div class="proc-prazo ${prazoCls}">${p.prazo}</div>
+          <div class="proc-fase">${p.infracao ? 'Contencioso' : p.ficha === 'completa' ? 'Execução' : 'Transposição'}</div>
+        </div>
+        <div class="proc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </div>
+    `;
+  }).join('') || '<div style="padding:2.5rem;text-align:center;color:var(--ink-4)">Nenhum processo corresponde aos filtros.</div>';
+  document.getElementById('filter-meta').textContent = filtered.length + ' / ' + PROCESSOS.length + ' processos';
+}
+
+// ============================================================================
+// Detail drawer
+// ============================================================================
+function openDetail(id) {
+  const p = PROCESSOS.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('detail-celex').textContent = `${p.celex} · ${p.tipo} · ${p.setor}`;
+  document.getElementById('detail-ti').textContent = p.titulo;
+
+  const phases = [
+    { key:'prospetiva', nm:'Prospetiva' },
+    { key:'transposicao', nm:'Transposição' },
+    { key:'execucao', nm:'Execução' },
+    { key:'contencioso', nm:'Contencioso' },
+  ];
+  const curPhase = p.infracao ? 'contencioso' : 'transposicao';
+  const orderMap = { prospetiva:0, transposicao:1, execucao:2, contencioso:3 };
+  const curIdx = orderMap[curPhase];
+
+  const phaseHtml = phases.map((s, i) => {
+    let cls = '';
+    if (i < curIdx) cls = 'done';
+    else if (i === curIdx) cls = p.infracao ? 'alert' : 'cur';
+    return `<div class="phase-stage ${cls}"><div class="phase-num">FASE ${i+1}</div><div class="phase-nm">${s.nm}</div></div>`;
+  }).join('');
+
+  const eventsHtml = p.eventos.length > 0 ? p.eventos.map(e => `
+    <div class="event">
+      <div class="event-dot ${e.state}"></div>
+      <div class="event-bd">
+        <div class="event-date">${e.dt}</div>
+        <div class="event-ti">${e.ti}</div>
+        ${e.sub ? `<div class="event-sub">${e.sub}</div>` : ''}
+      </div>
+    </div>
+  `).join('') : '<div style="padding:1rem;color:var(--ink-4);font-style:italic;font-size:0.82rem">Sem eventos registados.</div>';
+
+  document.getElementById('detail-bd').innerHTML = `
+    ${p.infracao ? `<div class="restricted-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Processo com contencioso · ${p.infracao} · risco financeiro: ${p.risco_eur}</div>` : ''}
+
+    <div class="detail-section">
+      <div class="detail-section-h">Ciclo de vida do processo</div>
+      <div class="phase-tl">${phaseHtml}</div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-h">Metadados</div>
+      <div class="detail-meta-grid">
+        <div class="detail-meta-row"><div class="detail-meta-lb">CELEX</div><div class="detail-meta-vl">${p.celex}</div></div>
+        <div class="detail-meta-row"><div class="detail-meta-lb">Tipo de acto</div><div class="detail-meta-vl">${p.tipo === 'DIR' ? 'Diretiva' : 'Regulamento'}</div></div>
+        <div class="detail-meta-row"><div class="detail-meta-lb">Setor</div><div class="detail-meta-vl">${p.setor}</div></div>
+        <div class="detail-meta-row"><div class="detail-meta-lb">Ministério coordenador</div><div class="detail-meta-vl">${p.ministerio}</div></div>
+        <div class="detail-meta-row"><div class="detail-meta-lb">Prazo de transposição</div><div class="detail-meta-vl">${p.prazo}</div></div>
+        <div class="detail-meta-row"><div class="detail-meta-lb">Risco financeiro</div><div class="detail-meta-vl">${p.risco_eur}</div></div>
+        ${p.infracao ? `<div class="detail-meta-row"><div class="detail-meta-lb">Procedimento de infracção</div><div class="detail-meta-vl" style="color:var(--red)">${p.infracao}</div></div>` : ''}
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-h">Linha do tempo de eventos</div>
+      <div class="events">${eventsHtml}</div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-h">Acções</div>
+      <div class="actions">
+        <a href="FICHA.html?p=${p.id}" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Abrir Ficha
+        </a>
+        ${p.infracao && (session.perfil === 'dgdei' || session.perfil === 'dapl_admin') ? `<a href="CONTENCIOSO.html?p=${p.id}" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/></svg>Contencioso</a>` : ''}
+        <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=CELEX:${p.celex}" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          EUR-Lex
+        </a>
+        <button class="btn btn-ghost" onclick="toast('Briefing exportado','PDF gerado · 4 páginas','info')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar briefing
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detail-overlay').classList.add('on');
+  document.getElementById('detail').classList.add('on');
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('on');
+  document.getElementById('detail').classList.remove('on');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDetail();
+});
+
+// ============================================================================
+// Toast
+// ============================================================================
+function toast(ti, msg, type) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast t-' + (type || 'success');
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ============================================================================
+// Init
+// ============================================================================
+renderKpis();
+render();
+</script>
+
+</body>
+</html>

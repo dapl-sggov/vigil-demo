@@ -1,0 +1,96 @@
+VIGIL — Demonstração interactiva
+================================
+
+Plataforma de Acompanhamento do Direito da União Europeia
+DAPL · Secretaria-Geral do Governo · Abril 2026
+
+Este pacote contém uma demonstração navegável de todos os módulos
+da plataforma VIGIL. Funciona localmente, sem servidor, em qualquer
+browser moderno (Edge, Chrome, Firefox, Safari).
+
+
+COMO ABRIR
+----------
+
+1. Descomprime o ZIP para qualquer pasta
+2. Faz duplo clique em "index.html" (ou abre-o num browser)
+3. Escolhe um dos perfis de demonstração e entra
+4. Explora os módulos disponíveis para esse perfil
+
+
+PERFIS DE DEMONSTRACAO
+----------------------
+
+  bvidal / bvidal     Admin DAPL (Bernardo Vidal) ........ acesso pleno
+  dgdei  / dgdei      DGDEI (acesso total + Contencioso)
+  admin  / admin      SGGov · Coordenação
+  tecnico / tecnico   Técnico/Jurista (sem Contencioso)
+  gabinete / gabinete Gabinete ministerial (vista executiva)
+
+
+ESTRUTURA DA DEMO
+-----------------
+
+  index.html         Login com 5 perfis demo
+  hub.html           Página inicial com módulos filtrados por perfil
+  PROSPETIVA.html    Análise IA simulada · 6 directivas com dados reais
+  RADAR.html         Monitorização de 30 processos
+  FICHA.html         Wizard de transposição (5 passos · 19 campos)
+  CONTENCIOSO.html   Pipeline TJUE (acesso restrito DGDEI)
+  GABINETES.html     Vista executiva por ministério
+  ALERTAS.html       Centro de notificações com escalonamento
+  ADMIN.html         Administração (orgânica + áreas + prompts IA)
+
+
+ATALHOS
+-------
+
+  - Cada módulo tem botão "← Voltar ao Hub" no topo
+  - Ctrl+B (em alguns módulos) recolhe a barra lateral
+  - Esc fecha modais e drawers laterais
+  - O perfil persiste entre páginas via localStorage (browser local)
+  - Para mudar de perfil: dropdown utilizador → Terminar sessão
+
+
+SUGESTÃO DE PERCURSO (15 minutos)
+---------------------------------
+
+  1. Entra com bvidal/bvidal (vê tudo) → explora o HUB
+  2. Abre PROSPETIVA → clica no caso "Lobbying" → "Analisar com IA"
+     (vê os 8 stages animados, depois o plano completo gerado)
+  3. Volta ao Hub → abre RADAR → clica num processo → drawer lateral
+  4. Volta ao Hub → abre CONTENCIOSO → drill-down num caso TJUE
+  5. Termina sessão → reentra como gabinete/gabinete
+     (vê o que muda na vista para um Gabinete ministerial)
+
+
+CAVEATS
+-------
+
+  - As análises PROSPETIVA são SIMULADAS (não chamam a Anthropic API)
+    O articulado e o plano são representativos da experiência real.
+
+  - O caso "Lobbying" é o mais detalhado e demonstrativo.
+
+  - A demo USA Google Fonts (Lexend, JetBrains Mono) carregadas via CDN.
+    Se a navegação institucional bloquear, as fontes substituem por
+    Arial/Consolas (visualmente aceitável mas perde polish).
+
+  - localStorage é por browser/máquina. Trocar de browser perde sessão.
+
+  - Esta é uma DEMONSTRAÇÃO. Não contém dados reais classificados,
+    nem peças contenciosas. Os processos referenciados são públicos.
+
+
+AVALIAÇÃO
+---------
+
+Por favor envia comentários, sugestões e bugs para:
+
+  Bernardo Vidal
+  Chefe da Divisão de Apoio ao Processo Legislativo
+  bernardo.vidal@sggoverno.gov.pt
+
+
+© DAPL · Secretaria-Geral do Governo · 2026
+Demonstração não-classificada · uso interno · não distribuir externamente

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · FICHA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--blue-soft:#E5ECF3;--red:#D02117;--amber:#C08916;--amber-soft:#FDF4E3;--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+
+/* HEADER */
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+/* HERO */
+.hero{padding:1rem 0 1.3rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:780px;line-height:1.55;}
+
+/* === FICHA SELECTOR (left rail) + WIZARD (right) === */
+.layout{display:grid;grid-template-columns:280px 1fr;gap:1.2rem;}
+.rail{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:0.85rem 0.75rem;}
+.rail-h{font-size:0.7rem;text-transform:uppercase;color:var(--ink-3);font-weight:600;letter-spacing:0.05em;margin-bottom:0.6rem;padding:0 0.5rem;}
+.rail-it{display:block;padding:0.7rem 0.75rem;border-radius:7px;cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;margin-bottom:0.25rem;transition:all 0.12s;}
+.rail-it:hover{background:var(--bg3);}
+.rail-it.cur{background:var(--green-soft);border-color:var(--green);}
+.rail-it-celex{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);}
+.rail-it-ti{font-size:0.78rem;font-weight:500;color:var(--ink);margin-top:0.2rem;line-height:1.3;}
+.rail-it-meta{display:flex;justify-content:space-between;align-items:center;margin-top:0.35rem;font-size:0.66rem;color:var(--ink-3);}
+.rail-it-pill{padding:0.1rem 0.4rem;border-radius:3px;font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.rail-it-pill.completa{background:var(--tint-green);color:var(--green);}
+.rail-it-pill.parcial{background:var(--tint-amber);color:var(--amber);}
+.rail-it-pill.vazia{background:var(--bg4);color:var(--ink-3);}
+.rail-it-pill.atrasada{background:var(--tint-red);color:var(--red);}
+
+.wizard{background:var(--bg2);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.wiz-h{padding:1rem 1.4rem;background:var(--bg3);border-bottom:1px solid var(--line);}
+.wiz-h-eye{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.wiz-h-ti{font-size:1.1rem;font-weight:700;color:var(--ink);margin-top:0.2rem;letter-spacing:-0.01em;}
+.wiz-h-meta{display:flex;gap:1rem;margin-top:0.5rem;font-size:0.74rem;color:var(--ink-3);}
+.wiz-h-meta strong{color:var(--ink);}
+
+/* Stepper */
+.stepper{display:flex;padding:0;background:var(--bg3);border-bottom:1px solid var(--line);}
+.step{flex:1;padding:0.85rem 1rem;cursor:pointer;border-right:1px solid var(--line);position:relative;transition:background 0.12s;background:var(--bg3);}
+.step:last-child{border-right:none;}
+.step:hover{background:var(--bg4);}
+.step.cur{background:var(--bg2);}
+.step.done{background:var(--green-soft);}
+.step-h{display:flex;align-items:center;gap:0.45rem;}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--ink-4);color:#fff;font-size:0.66rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step.cur .step-num{background:var(--green);}
+.step.done .step-num{background:var(--green);}
+.step.done .step-num::before{content:"✓";font-size:0.78rem;}
+.step.done .step-num-txt{display:none;}
+.step-nm{font-size:0.78rem;font-weight:600;color:var(--ink);}
+.step.cur .step-nm{color:var(--green);}
+.step-sub{font-size:0.66rem;color:var(--ink-3);margin-top:0.2rem;padding-left:1.85rem;}
+
+/* Wizard body */
+.wiz-bd{padding:1.5rem;}
+.wiz-bd > div{display:none;}
+.wiz-bd > div.on{display:block;}
+
+.fld{margin-bottom:1.05rem;}
+.fld-lb{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
+.fld-lb-l{font-size:0.74rem;font-weight:600;color:var(--ink-2);}
+.fld-lb-l .req{color:var(--red);margin-left:0.2rem;}
+.fld-lb-r{font-size:0.66rem;color:var(--ink-3);}
+.ai-pill{display:inline-flex;align-items:center;gap:0.25rem;padding:0.12rem 0.45rem;border-radius:3px;background:var(--blue-soft);color:var(--blue);font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.ai-pill svg{width:9px;height:9px;}
+.inp,.tar,.sel{width:100%;padding:0.55rem 0.7rem;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.85rem;color:var(--ink);background:var(--bg2);outline:none;transition:all 0.12s;}
+.inp:focus,.tar:focus,.sel:focus{border-color:var(--green);box-shadow:0 0 0 2px var(--green-soft);}
+.tar{min-height:80px;resize:vertical;font-family:inherit;}
+.fld.ai-prefilled .inp,.fld.ai-prefilled .tar,.fld.ai-prefilled .sel{background:var(--blue-soft);border-color:var(--blue);}
+
+.fld-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;}
+.fld-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;}
+
+.fld-help{font-size:0.7rem;color:var(--ink-3);margin-top:0.25rem;line-height:1.4;}
+
+.section-h{font-size:0.78rem;font-weight:700;color:var(--ink);margin-bottom:0.85rem;padding-bottom:0.45rem;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:0.04em;}
+
+/* Marcos table */
+.marcos{display:flex;flex-direction:column;gap:0.45rem;}
+.marco{display:grid;grid-template-columns:1.5fr 130px 130px 110px;gap:0.7rem;padding:0.7rem 0.85rem;background:var(--bg3);border-radius:7px;align-items:center;}
+.marco-nm{font-size:0.84rem;font-weight:600;color:var(--ink);}
+.marco-sub{font-size:0.7rem;color:var(--ink-3);margin-top:0.15rem;}
+.marco-date{font-family:var(--font-mono);font-size:0.78rem;color:var(--ink);}
+.marco-date.atrasado{color:var(--red);font-weight:600;}
+.marco-status{font-size:0.66rem;text-transform:uppercase;padding:0.18rem 0.5rem;border-radius:3px;font-weight:600;letter-spacing:0.04em;text-align:center;}
+.status-concluido{background:var(--tint-green);color:var(--green);}
+.status-em-curso{background:var(--tint-blue);color:var(--blue);}
+.status-pendente{background:var(--bg4);color:var(--ink-3);}
+.status-atrasado{background:var(--tint-red);color:var(--red);}
+
+.marco-actions{display:flex;justify-content:flex-end;}
+.btn-mini{padding:0.3rem 0.6rem;font-size:0.7rem;border-radius:5px;background:var(--bg2);border:1px solid var(--line);color:var(--ink-2);cursor:pointer;font-family:inherit;}
+.btn-mini:hover{background:var(--bg4);}
+
+/* Wizard footer */
+.wiz-ft{padding:0.9rem 1.4rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--bg3);}
+.wiz-ft-l{font-size:0.74rem;color:var(--ink-3);}
+.wiz-ft-l strong{color:var(--ink);}
+.wiz-ft-r{display:flex;gap:0.5rem;}
+.btn{padding:0.55rem 1.1rem;border-radius:7px;font-family:inherit;font-size:0.84rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.12s;}
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark);}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.btn svg{width:13px;height:13px;}
+
+/* AI prefill banner */
+.ai-banner{padding:0.65rem 0.95rem;background:var(--blue-soft);border:1px solid var(--blue);border-radius:8px;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--blue);font-weight:500;}
+.ai-banner svg{width:16px;height:16px;flex-shrink:0;}
+.ai-banner-action{margin-left:auto;font-size:0.74rem;color:var(--blue);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;font-weight:600;}
+
+/* Toast */
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:toast-in 0.22s;}
+.toast.t-info{border-left-color:var(--blue);}
+.toast.t-warn{border-left-color:var(--amber);}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;}
+  .marco{grid-template-columns:1fr;gap:0.3rem;}
+  .stepper{flex-direction:column;}
+  .step{border-right:none;border-bottom:1px solid var(--line);}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- BRAND -->
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/><rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/><rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · FICHA</div><div class="brand-sub">M03 · Wizard de Transposição · 19 campos oficiais DGDEI</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eye">M03 · FICHA · Transposição · DGDEI + Ministérios</div>
+    <h1 class="hero-h1">5 fichas em curso · 2 com marcos atrasados</h1>
+    <p class="hero-sub">A Ficha de Transposição DGDEI é o instrumento oficial para coordenar a transposição de cada acto europeu. O wizard tem 5 passos com 19 campos. Os campos pré-preenchidos pela IA aparecem destacados a azul — podes aceitar, corrigir ou rejeitar cada um.</p>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    <!-- LEFT RAIL -->
+    <aside class="rail">
+      <div class="rail-h">Fichas activas</div>
+      <div id="rail-list"></div>
+    </aside>
+
+    <!-- WIZARD -->
+    <div class="wizard">
+      <div class="wiz-h">
+        <div class="wiz-h-eye" id="wiz-celex">—</div>
+        <div class="wiz-h-ti" id="wiz-ti">—</div>
+        <div class="wiz-h-meta" id="wiz-meta"></div>
+      </div>
+
+      <!-- STEPPER -->
+      <div class="stepper">
+        <div class="step done" data-step="1" onclick="setStep(1)">
+          <div class="step-h"><div class="step-num"><span class="step-num-txt">1</span></div><div class="step-nm">Identificação</div></div>
+          <div class="step-sub">CELEX · título · prazo</div>
+        </div>
+        <div class="step done" data-step="2" onclick="setStep(2)">
+          <div class="step-h"><div class="step-num"><span class="step-num-txt">2</span></div><div class="step-nm">Coordenação</div></div>
+          <div class="step-sub">Min. coordenador · técnicos</div>
+        </div>
+        <div class="step cur" data-step="3" onclick="setStep(3)">
+          <div class="step-h"><div class="step-num"><span class="step-num-txt">3</span></div><div class="step-nm">Análise jurídica</div></div>
+          <div class="step-sub">Diplomas afectados · IA</div>
+        </div>
+        <div class="step" data-step="4" onclick="setStep(4)">
+          <div class="step-h"><div class="step-num"><span class="step-num-txt">4</span></div><div class="step-nm">Tramitação</div></div>
+          <div class="step-sub">8 marcos canónicos</div>
+        </div>
+        <div class="step" data-step="5" onclick="setStep(5)">
+          <div class="step-h"><div class="step-num"><span class="step-num-txt">5</span></div><div class="step-nm">Validação</div></div>
+          <div class="step-sub">DGDEI · sign-off final</div>
+        </div>
+      </div>
+
+      <!-- WIZARD BODY -->
+      <div class="wiz-bd">
+
+        <!-- STEP 1 -->
+        <div data-stepbody="1">
+          <div class="section-h">Passo 1 · Identificação do acto</div>
+          <div class="fld-grid-2">
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">CELEX <span class="req">*</span></div><div class="fld-lb-r">campo 01</div></div>
+              <input class="inp" id="f-celex" value="32024L1203">
+            </div>
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Tipo de acto <span class="req">*</span></div><div class="fld-lb-r">campo 02</div></div>
+              <select class="sel"><option>Diretiva</option><option>Regulamento</option><option>Decisão</option></select>
+            </div>
+          </div>
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Título oficial <span class="req">*</span></div><div class="fld-lb-r">campo 03</div></div>
+            <input class="inp" id="f-titulo" value="Diretiva (UE) 2024/1203 do PE e do Conselho relativa ao dever de diligência das empresas em matéria de sustentabilidade (CSDDD)">
+          </div>
+          <div class="fld-grid-2">
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Data publicação JOUE</div><div class="fld-lb-r">campo 04</div></div>
+              <input class="inp" type="date" value="2024-07-13">
+            </div>
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Prazo de transposição <span class="req">*</span></div><div class="fld-lb-r">campo 05</div></div>
+              <input class="inp" type="date" value="2026-07-26">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div data-stepbody="2">
+          <div class="section-h">Passo 2 · Coordenação</div>
+          <div class="fld-grid-2">
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Ministério coordenador <span class="req">*</span></div><div class="fld-lb-r">campo 06</div></div>
+              <select class="sel"><option>Min. Economia e Coesão Territorial</option><option>Min. Justiça</option><option>Min. Finanças</option><option>Min. Ambiente e Energia</option></select>
+            </div>
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Áreas governativas envolvidas</div><div class="fld-lb-r">campo 07</div></div>
+              <select class="sel" multiple style="height:80px"><option selected>ECONOMIA</option><option selected>AMBIENTE</option><option>JUSTICA</option><option>FINANCAS</option></select>
+            </div>
+          </div>
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Entidades co-responsáveis</div><div class="fld-lb-r">campo 08</div></div>
+            <input class="inp" value="DGAE · CMVM · IRN · APA">
+          </div>
+          <div class="fld-grid-2">
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Técnico responsável</div><div class="fld-lb-r">campo 09</div></div>
+              <input class="inp" value="Maria Santos · MECT">
+            </div>
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Chefe de divisão</div><div class="fld-lb-r">campo 10</div></div>
+              <input class="inp" value="Dr. António Cunha · MECT/DGAE">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 (CURRENT) -->
+        <div data-stepbody="3" class="on">
+          <div class="ai-banner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>3 campos pré-preenchidos pela análise PROSPETIVA de 25-04-2026 · podes aceitar, corrigir ou rejeitar.</span>
+            <button class="ai-banner-action" onclick="toast('Pré-preenchimento aceite','3 campos confirmados','info')">Aceitar todos</button>
+          </div>
+
+          <div class="section-h">Passo 3 · Análise jurídica</div>
+
+          <div class="fld ai-prefilled">
+            <div class="fld-lb">
+              <div class="fld-lb-l">Diplomas nacionais afectados <span class="req">*</span></div>
+              <div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 11</div>
+            </div>
+            <textarea class="tar" rows="4">• Código das Sociedades Comerciais (DL n.º 262/86) — alteração art.os 65.º, 65.º-A
+• Código do Trabalho (Lei 7/2009) — adaptações em deveres de diligência
+• Lei de Bases do Ambiente (Lei 19/2014) — articulação
+• Regime Geral das Contraordenações Ambientais (Lei 50/2006)</textarea>
+            <div class="fld-help">Lista gerada pela IA com 70% de confiança · validar manualmente.</div>
+          </div>
+
+          <div class="fld ai-prefilled">
+            <div class="fld-lb">
+              <div class="fld-lb-l">Nova legislação necessária</div>
+              <div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 12</div>
+            </div>
+            <textarea class="tar" rows="3">• Lei autónoma de transposição (Proposta de Lei) — definição obrigações de diligência
+• Portaria conjunta (MECT + MA) — designação autoridade competente</textarea>
+          </div>
+
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Tabela de correspondência (URL)</div><div class="fld-lb-r">campo 13</div></div>
+            <input class="inp" placeholder="https://drive.sggov.gov.pt/...">
+          </div>
+
+          <div class="fld-grid-2">
+            <div class="fld">
+              <div class="fld-lb"><div class="fld-lb-l">Impacto orçamental (€)</div><div class="fld-lb-r">campo 14</div></div>
+              <input class="inp" value="€2.5M (5 anos · supervisão)">
+            </div>
+            <div class="fld ai-prefilled">
+              <div class="fld-lb"><div class="fld-lb-l">Risco financeiro de incumprimento</div><div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 15</div></div>
+              <input class="inp" value="Estimativa 8-12M€ se infracção · alto">
+            </div>
+          </div>
+
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Observações jurídicas</div><div class="fld-lb-r">campo 16</div></div>
+            <textarea class="tar" rows="3" placeholder="Notas adicionais, dependências, articulação com outros actos…"></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div data-stepbody="4">
+          <div class="section-h">Passo 4 · Tramitação · 8 marcos canónicos</div>
+          <div class="marcos">
+            <div class="marco">
+              <div><div class="marco-nm">1. Fins técnicos</div><div class="marco-sub">Anteprojecto pronto</div></div>
+              <div class="marco-date">25-04-2026</div>
+              <div class="marco-status status-concluido">Concluído</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">2. Envio à PCM</div><div class="marco-sub">Despacho conjunto MECT-MP</div></div>
+              <div class="marco-date">02-05-2026</div>
+              <div class="marco-status status-em-curso">Em curso</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">3. RSE</div><div class="marco-sub">Reunião do Secretariado Executivo</div></div>
+              <div class="marco-date">15-05-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">4. RCM</div><div class="marco-sub">Reunião do Conselho de Ministros</div></div>
+              <div class="marco-date">22-05-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">5. Promulgação PR</div><div class="marco-sub">Sanção pelo Presidente da República</div></div>
+              <div class="marco-date">10-06-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">6. Publicação DR</div><div class="marco-sub">Diário da República · 1.ª série</div></div>
+              <div class="marco-date">15-06-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">7. Entrada em vigor</div><div class="marco-sub">Vacatio legis (30 dias)</div></div>
+              <div class="marco-date">15-07-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+            <div class="marco">
+              <div><div class="marco-nm">8. Notificação CE</div><div class="marco-sub">SOLVIT · base TRIS</div></div>
+              <div class="marco-date">20-07-2026</div>
+              <div class="marco-status status-pendente">Pendente</div>
+              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;padding:0.7rem 0.95rem;background:var(--tint-amber);border-radius:7px;font-size:0.78rem;color:var(--amber);">
+            ⚠️ Margem face ao prazo (26-07-2026): <strong>6 dias</strong>. Sistema sinaliza alerta automaticamente se algum marco atrasar.
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div data-stepbody="5">
+          <div class="section-h">Passo 5 · Validação final · DGDEI</div>
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Estado da ficha <span class="req">*</span></div><div class="fld-lb-r">campo 17</div></div>
+            <select class="sel"><option>Em curso</option><option>Concluída</option><option>Suspensa</option><option>Arquivada</option></select>
+          </div>
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Validação DGDEI</div><div class="fld-lb-r">campo 18</div></div>
+            <div style="display:flex;gap:0.5rem;align-items:center;padding:0.7rem 0.85rem;background:var(--bg3);border-radius:7px;">
+              <input type="checkbox" id="val" style="width:16px;height:16px;cursor:pointer">
+              <label for="val" style="font-size:0.84rem;cursor:pointer">Valido a presente ficha · Ana Patrícia Silva (DGDEI)</label>
+            </div>
+          </div>
+          <div class="fld">
+            <div class="fld-lb"><div class="fld-lb-l">Observações finais</div><div class="fld-lb-r">campo 19</div></div>
+            <textarea class="tar" rows="3" placeholder="Notas de validação, dependências externas, etc."></textarea>
+          </div>
+          <div style="margin-top:1.2rem;padding:1rem 1.2rem;background:var(--green-soft);border:1px solid var(--green);border-radius:8px;">
+            <div style="font-size:0.84rem;font-weight:600;color:var(--green-dark);margin-bottom:0.4rem;">Pronto para finalizar</div>
+            <div style="font-size:0.78rem;color:var(--ink-2);line-height:1.5;">Ao validar a ficha, o estado passa a "concluída" e o sistema dispara notificações para o gabinete ministerial · arquivar entrada para auditoria · gerar export para o SmartLegis.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="wiz-ft">
+        <div class="wiz-ft-l"><strong>Auto-save</strong> · última alteração há 12s</div>
+        <div class="wiz-ft-r">
+          <button class="btn btn-ghost" id="btn-prev" onclick="prevStep()" disabled>← Anterior</button>
+          <button class="btn btn-primary" id="btn-next" onclick="nextStep()">Seguinte →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+const FICHAS = [
+  { id:'P008', celex:'32024L1203', titulo:'CSDD · Corporate Sustainability Due Diligence', estado:'parcial', prazo:'Jul 2026', min:'MECT', cur:true },
+  { id:'P001', celex:'32022L2555', titulo:'NIS2 · Cibersegurança redes e sistemas', estado:'atrasada', prazo:'Out 2024', min:'MAE / CNCS' },
+  { id:'P011', celex:'32024L1275', titulo:'EPBD · Eficiência energética edifícios', estado:'parcial', prazo:'Mai 2026', min:'MAE + MIH' },
+  { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', estado:'parcial', prazo:'Ago 2026', min:'MAE / APA' },
+  { id:'P022', celex:'32024L2831', titulo:'Trabalho em plataformas digitais', estado:'parcial', prazo:'Dez 2026', min:'MTSSS' },
+  { id:'P023', celex:'32019L1152', titulo:'Condições de trabalho transparentes', estado:'completa', prazo:'Ago 2022', min:'MTSSS' },
+];
+
+let curFichaId = 'P008';
+let curStep = 3;
+
+function renderRail() {
+  document.getElementById('rail-list').innerHTML = FICHAS.map(f => `
+    <a class="rail-it ${f.id === curFichaId ? 'cur' : ''}" onclick="loadFicha('${f.id}'); return false;" href="#">
+      <div class="rail-it-celex">${f.celex}</div>
+      <div class="rail-it-ti">${f.titulo}</div>
+      <div class="rail-it-meta">
+        <span>${f.min}</span>
+        <span class="rail-it-pill ${f.estado}">${f.estado}</span>
+      </div>
+    </a>
+  `).join('');
+}
+
+function loadFicha(id) {
+  curFichaId = id;
+  const f = FICHAS.find(x => x.id === id);
+  if (!f) return;
+  document.getElementById('wiz-celex').textContent = f.celex;
+  document.getElementById('wiz-ti').textContent = f.titulo;
+  document.getElementById('wiz-meta').innerHTML = `<span><strong>Ministério:</strong> ${f.min}</span><span><strong>Prazo:</strong> ${f.prazo}</span><span><strong>Estado:</strong> ${f.estado}</span>`;
+  renderRail();
+}
+
+function setStep(n) {
+  curStep = n;
+  document.querySelectorAll('.step').forEach(s => {
+    s.classList.remove('cur');
+    if (parseInt(s.dataset.step) < n) s.classList.add('done');
+    else s.classList.remove('done');
+    if (parseInt(s.dataset.step) === n) s.classList.add('cur');
+  });
+  document.querySelectorAll('.wiz-bd > div').forEach(b => b.classList.remove('on'));
+  document.querySelector(`[data-stepbody="${n}"]`).classList.add('on');
+  document.getElementById('btn-prev').disabled = n === 1;
+  document.getElementById('btn-next').textContent = n === 5 ? 'Validar e arquivar ✓' : 'Seguinte →';
+}
+
+function nextStep() {
+  if (curStep < 5) setStep(curStep + 1);
+  else toast('Ficha validada','Notificações enviadas · arquivada para auditoria','info');
+}
+function prevStep() { if (curStep > 1) setStep(curStep - 1); }
+
+function toast(ti, msg, type) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast t-' + (type || 'success');
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// Init
+renderRail();
+loadFicha('P008');
+setStep(3);
+
+// Auto-save tick
+setInterval(() => {
+  document.querySelector('.wiz-ft-l').innerHTML = `<strong>Auto-save</strong> · última alteração há ${Math.floor(Math.random()*45)+5}s`;
+}, 8000);
+</script>
+
+</body>
+</html>

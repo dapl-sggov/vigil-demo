@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · ADMIN</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--blue-soft:#E5ECF3;--red:#D02117;--amber:#C08916;--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;color:#fff;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+.access-denied{padding:3rem 2rem;text-align:center;background:var(--bg2);border:1px solid var(--line);border-radius:12px;}
+.access-denied h2{font-size:1.3rem;margin-bottom:0.7rem;color:var(--red);}
+.access-denied p{color:var(--ink-3);max-width:520px;margin:0 auto 1.5rem;line-height:1.55;}
+
+.hero{padding:1rem 0 1.4rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:760px;line-height:1.55;}
+
+/* Tabs */
+.tabs{display:flex;gap:0.3rem;border-bottom:1px solid var(--line);margin-bottom:1.4rem;padding-bottom:0;}
+.tab{padding:0.55rem 1rem;font-family:inherit;font-size:0.84rem;color:var(--ink-3);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;font-weight:500;transition:all 0.12s;margin-bottom:-1px;}
+.tab:hover{color:var(--ink);}
+.tab.cur{color:var(--ink);border-bottom-color:var(--ink);font-weight:600;}
+
+.panel{display:none;}
+.panel.on{display:block;}
+
+/* Cards */
+.section{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:1rem;}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.85rem;padding-bottom:0.5rem;border-bottom:1px solid var(--line);}
+.section-ti{font-size:0.95rem;font-weight:700;color:var(--ink);}
+.section-sub{font-size:0.72rem;color:var(--ink-3);}
+
+/* Areas table */
+.areas-table{width:100%;font-size:0.84rem;border-collapse:collapse;}
+.areas-table thead th{text-align:left;padding:0.55rem 0.7rem;background:var(--bg3);font-size:0.7rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.04em;border-bottom:1px solid var(--line);}
+.areas-table tbody td{padding:0.6rem 0.7rem;border-bottom:1px solid var(--line);vertical-align:middle;}
+.areas-table tbody tr:hover td{background:var(--bg3);}
+.area-codigo{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink);font-weight:500;}
+.area-status{font-size:0.62rem;text-transform:uppercase;padding:0.15rem 0.45rem;border-radius:3px;font-weight:600;letter-spacing:0.04em;}
+.status-active{background:var(--tint-green);color:var(--green);}
+.status-deprec{background:var(--bg4);color:var(--ink-3);}
+
+/* Orgânica timeline */
+.org-tl{display:flex;flex-direction:column;gap:0.45rem;}
+.org-row{display:grid;grid-template-columns:130px 1fr 100px 100px 90px;gap:0.85rem;padding:0.7rem 0.85rem;background:var(--bg3);border-radius:7px;align-items:center;font-size:0.84rem;}
+.org-row.cur{background:var(--green-soft);border:1px solid var(--green);}
+.org-row.cur::before{content:"VIGENTE";position:absolute;font-size:0.6rem;color:var(--green);font-weight:700;letter-spacing:0.04em;}
+.org-num{font-family:var(--font-mono);font-size:0.78rem;color:var(--ink);font-weight:600;}
+.org-nm{color:var(--ink);}
+.org-dl{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.org-min{color:var(--ink-2);text-align:right;font-family:var(--font-mono);font-size:0.74rem;}
+.org-act{display:flex;justify-content:flex-end;}
+
+/* Prompts */
+.prompt-list{display:flex;flex-direction:column;gap:0.55rem;}
+.prompt{display:grid;grid-template-columns:auto 1fr auto auto;gap:0.85rem;padding:0.85rem 1rem;background:var(--bg3);border-radius:8px;align-items:center;}
+.prompt.active{background:var(--green-soft);border:1px solid var(--green);}
+.prompt-version{font-family:var(--font-mono);font-size:0.78rem;font-weight:600;color:var(--ink);padding:0.25rem 0.55rem;background:var(--bg2);border-radius:4px;}
+.prompt.active .prompt-version{background:var(--green);color:#fff;}
+.prompt-bd{}
+.prompt-nm{font-size:0.86rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+.prompt-meta{font-size:0.72rem;color:var(--ink-3);}
+.prompt-stat{font-size:0.7rem;color:var(--ink-3);text-align:right;}
+.prompt-actions{display:flex;gap:0.35rem;}
+
+/* IA quality dashboard */
+.ia-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.4rem;}
+.ia-stat{padding:0.95rem 1.05rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
+.ia-stat-lb{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.5rem;}
+.ia-stat-vl{font-size:1.55rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;}
+.ia-stat-vl.grn{color:var(--green);}
+.ia-stat-vl.amb{color:var(--amber);}
+.ia-stat-dt{font-size:0.7rem;color:var(--ink-3);margin-top:0.4rem;}
+
+/* Bar chart simulado */
+.barchart{display:flex;align-items:flex-end;gap:0.4rem;height:120px;padding:0.5rem 0;}
+.bar{flex:1;background:var(--green);border-radius:3px 3px 0 0;position:relative;min-height:4px;cursor:pointer;}
+.bar:hover{background:var(--green-dark);}
+.bar-lb{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:0.66rem;color:var(--ink-3);font-family:var(--font-mono);white-space:nowrap;}
+
+/* User table */
+.users-table{width:100%;font-size:0.84rem;border-collapse:collapse;}
+.users-table thead th{text-align:left;padding:0.55rem 0.7rem;background:var(--bg3);font-size:0.7rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.04em;border-bottom:1px solid var(--line);}
+.users-table tbody td{padding:0.65rem 0.7rem;border-bottom:1px solid var(--line);vertical-align:middle;}
+.role-pill{display:inline-block;padding:0.18rem 0.55rem;border-radius:3px;font-size:0.66rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.role-admin{background:var(--ink);color:#fff;}
+.role-dgdei{background:var(--tint-red);color:var(--red);}
+.role-tecnico{background:var(--tint-blue);color:var(--blue);}
+.role-gabinete{background:var(--tint-amber);color:var(--amber);}
+.role-sggov{background:var(--tint-green);color:var(--green);}
+
+.btn-mini{padding:0.3rem 0.7rem;font-size:0.72rem;border-radius:5px;background:var(--bg2);border:1px solid var(--line);color:var(--ink-2);cursor:pointer;font-family:inherit;}
+.btn-mini:hover{background:var(--bg4);}
+.btn-mini.danger{color:var(--red);}
+.btn-mini.danger:hover{background:var(--tint-red);}
+
+.btn{padding:0.55rem 1.1rem;border-radius:7px;font-family:inherit;font-size:0.84rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.12s;}
+.btn-primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+.btn-primary:hover{background:#000;}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn svg{width:13px;height:13px;}
+
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:toast-in 0.22s;}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+@media (max-width:900px){.ia-stats{grid-template-columns:1fr 1fr;}.org-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="3"/><path d="M16 7l-2 2m-8 0L4 7m12 6l-2-2m-8 0l-2 2"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · ADMIN</div><div class="brand-sub">Administração da plataforma · Áreas governativas · Orgânica · Prompts IA · Utilizadores</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <div id="content"></div>
+
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+if (session.perfil !== 'dapl_admin') {
+  document.getElementById('content').innerHTML = `
+    <div class="access-denied">
+      <h2>🔒 Acesso restrito ao Admin DAPL</h2>
+      <p>O módulo ADMIN é acessível apenas pelo perfil <strong>Admin DAPL</strong> (Bernardo Vidal). Permite gerir o catálogo de Áreas Governativas, criar nova Orgânica, versionar prompts IA e administrar utilizadores.</p>
+      <p>O teu perfil actual é <strong>${session.role}</strong>.</p>
+      <a href="hub.html" class="brand-link" style="display:inline-block;padding:0.6rem 1.4rem;background:var(--ink);color:#fff;border-radius:7px;text-decoration:none;font-weight:600">← Voltar ao Hub</a>
+    </div>
+  `;
+} else {
+
+document.getElementById('content').innerHTML = `
+  <div class="hero">
+    <div class="hero-eye">Administração · acesso pleno</div>
+    <h1 class="hero-h1">Centro de comando da plataforma</h1>
+    <p class="hero-sub">Gestão estrutural do VIGIL · catálogo de Áreas Governativas (sob controlo DAPL · ADR-0019) · ciclo de vida das orgânicas governativas · prompts IA versionados (ADR-0012) · administração de utilizadores e perfis.</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab cur" data-tab="organica" onclick="setTab('organica')">Orgânica</button>
+    <button class="tab" data-tab="areas" onclick="setTab('areas')">Áreas Governativas</button>
+    <button class="tab" data-tab="prompts" onclick="setTab('prompts')">Prompts IA</button>
+    <button class="tab" data-tab="ia" onclick="setTab('ia')">Qualidade IA</button>
+    <button class="tab" data-tab="users" onclick="setTab('users')">Utilizadores</button>
+  </div>
+
+  <!-- ORGÂNICA -->
+  <div class="panel on" data-panel="organica">
+    <div class="section">
+      <div class="section-h">
+        <div>
+          <div class="section-ti">Histórico de Orgânicas Constitucionais</div>
+          <div class="section-sub">Modelo temporal · uma vigente a cada momento (ADR-0004)</div>
+        </div>
+        <button class="btn btn-primary" onclick="toast('Workflow iniciado','Painel de reconciliação aberto · 24 processos a re-atribuir')">+ Nova Orgânica</button>
+      </div>
+      <div class="org-tl">
+        <div class="org-row cur">
+          <div class="org-num">XXV Governo</div>
+          <div class="org-nm">Governo Constitucional · Pedro Passos Coelho</div>
+          <div class="org-dl">DL 60/2024</div>
+          <div class="org-min">16 ministérios</div>
+          <div class="org-act"><button class="btn-mini">Editar</button></div>
+        </div>
+        <div class="org-row">
+          <div class="org-num">XXIV Governo</div>
+          <div class="org-nm">Governo Constitucional · Luís Montenegro (1.º)</div>
+          <div class="org-dl">DL 32/2024</div>
+          <div class="org-min">17 ministérios</div>
+          <div class="org-act"><button class="btn-mini">Ver</button></div>
+        </div>
+        <div class="org-row">
+          <div class="org-num">XXIII Governo</div>
+          <div class="org-nm">Governo Constitucional · António Costa (2.ª remodelação)</div>
+          <div class="org-dl">DL 60/2022</div>
+          <div class="org-min">19 ministérios</div>
+          <div class="org-act"><button class="btn-mini">Ver</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-h">
+        <div>
+          <div class="section-ti">Workflow de transição</div>
+          <div class="section-sub">Ao criar nova orgânica, o sistema guia a reconciliação dos processos activos</div>
+        </div>
+      </div>
+      <ol style="padding-left:1.2rem;font-size:0.84rem;color:var(--ink-2);line-height:1.7;">
+        <li>Carregar DL orgânico (PDF) → preenchimento automático dos metadados</li>
+        <li>Criar lista de ministérios com sigla, nome oficial, titular</li>
+        <li>Mapear cada ministério a Áreas Governativas (M:N)</li>
+        <li>Painel de reconciliação · sistema sugere atribuição de cada processo activo ao novo ministério com base na Área Governativa</li>
+        <li>Admin valida caso-a-caso (ambiguidades em divisões/fusões de pastas)</li>
+        <li>Confirmação final · transacção: fecha processo_area antigos, cria novos, marca orgânica anterior 'cessado', notifica gabinetes</li>
+        <li>Audit log imutável regista toda a transição</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ÁREAS -->
+  <div class="panel" data-panel="areas">
+    <div class="section">
+      <div class="section-h">
+        <div>
+          <div class="section-ti">Catálogo de Áreas Governativas</div>
+          <div class="section-sub">Estável · só DAPL pode alterar (ADR-0019) · 14 áreas activas</div>
+        </div>
+        <button class="btn btn-primary" onclick="toast('Procedimento formal iniciado','Justificação escrita exigida antes de aprovar')">+ Nova Área</button>
+      </div>
+      <table class="areas-table">
+        <thead><tr><th>Código</th><th>Designação</th><th>Criada em</th><th>Estado</th><th>Processos</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><span class="area-codigo">AMBIENTE</span></td><td>Ambiente, conservação da natureza, ordenamento do território</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>14</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">ENERGIA</span></td><td>Política energética, eficiência, renováveis</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>11</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">CIBERSEGURANCA</span></td><td>Segurança das redes e sistemas de informação</td><td>2018-08-22</td><td><span class="area-status status-active">Activa</span></td><td>4</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">FINANCAS</span></td><td>Fiscalidade, mercados financeiros, banca</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>12</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">ECONOMIA</span></td><td>Economia, comércio, turismo</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>9</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">TRABALHO</span></td><td>Trabalho, condições laborais, seg. social</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>5</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">JUSTICA</span></td><td>Sistema judicial, direitos, cidadania</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>4</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">SAUDE</span></td><td>Sistema nacional de saúde, medicamentos</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>6</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">DIGITAL</span></td><td>Política digital, IA, infraestruturas tecnológicas</td><td>2024-03-15</td><td><span class="area-status status-active">Activa</span></td><td>5</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">MAR</span></td><td>Política marítima, pescas, espaço marítimo</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>2</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">REFORMA_ESTADO</span></td><td>Modernização administrativa, AP digital</td><td>2024-04-01</td><td><span class="area-status status-active">Activa</span></td><td>2</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">INFRAESTRUTURAS</span></td><td>Mobilidade, infraestruturas, habitação</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>6</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">COESAO_TERRITORIAL</span></td><td>Coesão, fundos, autonomias regionais</td><td>2024-03-15</td><td><span class="area-status status-active">Activa</span></td><td>3</td><td><button class="btn-mini">Ver</button></td></tr>
+          <tr><td><span class="area-codigo">ADM_INTERNA</span></td><td>Administração interna, segurança</td><td>2002-04-06</td><td><span class="area-status status-active">Activa</span></td><td>3</td><td><button class="btn-mini">Ver</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PROMPTS -->
+  <div class="panel" data-panel="prompts">
+    <div class="section">
+      <div class="section-h">
+        <div>
+          <div class="section-ti">Prompts IA · análise PROSPETIVA (Sonnet)</div>
+          <div class="section-sub">Versionados em base de dados · ADR-0012 · ajustes não exigem redeploy</div>
+        </div>
+        <button class="btn btn-primary" onclick="toast('Editor de prompt aberto','Preview obrigatório sobre 5 propostas-padrão antes de activar')">+ Nova versão</button>
+      </div>
+      <div class="prompt-list">
+        <div class="prompt active">
+          <span class="prompt-version">v1.4.0</span>
+          <div class="prompt-bd">
+            <div class="prompt-nm">analise-sonnet · activa em produção</div>
+            <div class="prompt-meta">Activada por Bernardo Vidal · ontem 17:02 · temperatura 0.3 · structured output</div>
+          </div>
+          <div class="prompt-stat">15 análises · taxa aceitação 78%<br>custo médio €0,18</div>
+          <div class="prompt-actions"><button class="btn-mini">Ver diff</button><button class="btn-mini">Histórico</button></div>
+        </div>
+        <div class="prompt">
+          <span class="prompt-version">v1.3.2</span>
+          <div class="prompt-bd">
+            <div class="prompt-nm">analise-sonnet · arquivada</div>
+            <div class="prompt-meta">Activa 12-Mar até 27-Abr · 47 análises · taxa aceitação 71%</div>
+          </div>
+          <div class="prompt-stat">Reactivar para A/B</div>
+          <div class="prompt-actions"><button class="btn-mini">Ver diff</button><button class="btn-mini">Reactivar</button></div>
+        </div>
+        <div class="prompt">
+          <span class="prompt-version">v1.3.1</span>
+          <div class="prompt-bd">
+            <div class="prompt-nm">analise-sonnet · descontinuada</div>
+            <div class="prompt-meta">Activa 5-Fev até 11-Mar · ajuste keywords · 32 análises</div>
+          </div>
+          <div class="prompt-stat">Aceitação 64%</div>
+          <div class="prompt-actions"><button class="btn-mini">Ver diff</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-h">
+        <div>
+          <div class="section-ti">Prompts IA · triagem (Haiku)</div>
+          <div class="section-sub">Cascata de 4 camadas · ADR-0014</div>
+        </div>
+      </div>
+      <div class="prompt-list">
+        <div class="prompt active">
+          <span class="prompt-version">v2.1.0</span>
+          <div class="prompt-bd">
+            <div class="prompt-nm">triagem-haiku · activa em produção</div>
+            <div class="prompt-meta">Distinção PE+Conselho vs Conselho · 113 propostas · 0 falsos negativos</div>
+          </div>
+          <div class="prompt-stat">€0,008/proposta</div>
+          <div class="prompt-actions"><button class="btn-mini">Ver diff</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-h"><div><div class="section-ti">Keywords de exclusão · validadas empiricamente</div><div class="section-sub">Camada 0 da triagem · zero custo</div></div></div>
+      <div style="font-family:var(--font-mono);font-size:0.8rem;line-height:1.7;color:var(--ink-2);background:var(--bg3);padding:0.85rem 1rem;border-radius:6px;">
+        position to be adopted · position to be taken · on the signing · on the conclusion · authorising<br>
+        trade agreement · free trade<br>
+        humanitarian aid · development cooperation<br>
+        accession · enlargement · neighbourhood policy · western balkans<br>
+        common foreign · CFSP
+      </div>
+      <div style="margin-top:0.6rem;font-size:0.74rem;color:var(--amber);font-style:italic">⚠️ Nota: <strong>customs</strong> e <strong>tariff</strong> foram REMOVIDOS após confirmação de falso negativo (regulamento 52026PC0099 sobre suspensão de pautas).</div>
+    </div>
+  </div>
+
+  <!-- IA QUALITY -->
+  <div class="panel" data-panel="ia">
+    <div class="ia-stats">
+      <div class="ia-stat"><div class="ia-stat-lb">Custo IA · mês</div><div class="ia-stat-vl">€7,42</div><div class="ia-stat-dt">Cap mensal: €50</div></div>
+      <div class="ia-stat"><div class="ia-stat-lb">Taxa aceitação humana</div><div class="ia-stat-vl grn">78%</div><div class="ia-stat-dt">Alvo CdE: ≥70% ✓</div></div>
+      <div class="ia-stat"><div class="ia-stat-lb">Latência p95</div><div class="ia-stat-vl">12,4s</div><div class="ia-stat-dt">Análise Sonnet completa</div></div>
+      <div class="ia-stat"><div class="ia-stat-lb">False-positive rate</div><div class="ia-stat-vl amb">8%</div><div class="ia-stat-dt">Triagem positiva → rejeitada</div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-h"><div><div class="section-ti">Análises completas · últimas 8 semanas</div><div class="section-sub">Ciclo semanal · quartas 13h Lisboa</div></div></div>
+      <div class="barchart">
+        <div class="bar" style="height:30%"><span class="bar-lb">W10</span></div>
+        <div class="bar" style="height:45%"><span class="bar-lb">W11</span></div>
+        <div class="bar" style="height:55%"><span class="bar-lb">W12</span></div>
+        <div class="bar" style="height:65%"><span class="bar-lb">W13</span></div>
+        <div class="bar" style="height:50%"><span class="bar-lb">W14</span></div>
+        <div class="bar" style="height:75%"><span class="bar-lb">W15</span></div>
+        <div class="bar" style="height:60%"><span class="bar-lb">W16</span></div>
+        <div class="bar" style="height:80%" style="background:var(--green-dark)"><span class="bar-lb">W17</span></div>
+      </div>
+      <div style="margin-top:1.7rem;display:flex;justify-content:space-between;font-size:0.74rem;color:var(--ink-3)">
+        <span>Total ciclo: 8 análises</span>
+        <span>Validadas: 6</span>
+        <span>Rejeitadas: 1</span>
+        <span>Pendentes: 1</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-h"><div><div class="section-ti">Drift de qualidade · comparação trimestral</div><div class="section-sub">Propostas-padrão analisadas com cada versão de prompt</div></div></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;font-size:0.84rem">
+        <div style="padding:0.85rem 1rem;background:var(--tint-green);border-radius:7px"><div style="font-size:0.66rem;color:var(--green);text-transform:uppercase;font-weight:600;letter-spacing:0.04em">Q4 2025 → Q1 2026</div><div style="font-size:1.05rem;font-weight:700;color:var(--green);margin-top:0.3rem">+12%</div><div style="font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem">Melhoria taxa aceitação</div></div>
+        <div style="padding:0.85rem 1rem;background:var(--tint-amber);border-radius:7px"><div style="font-size:0.66rem;color:var(--amber);text-transform:uppercase;font-weight:600;letter-spacing:0.04em">Latência</div><div style="font-size:1.05rem;font-weight:700;color:var(--amber);margin-top:0.3rem">+1,8s</div><div style="font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem">Aumento controlado · prompt mais detalhado</div></div>
+        <div style="padding:0.85rem 1rem;background:var(--tint-green);border-radius:7px"><div style="font-size:0.66rem;color:var(--green);text-transform:uppercase;font-weight:600;letter-spacing:0.04em">Custo</div><div style="font-size:1.05rem;font-weight:700;color:var(--green);margin-top:0.3rem">−14%</div><div style="font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem">Prompt caching activo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USERS -->
+  <div class="panel" data-panel="users">
+    <div class="section">
+      <div class="section-h">
+        <div><div class="section-ti">Utilizadores activos</div><div class="section-sub">Provisionados via Entra ID · 24 utilizadores</div></div>
+        <button class="btn btn-primary" onclick="toast('Convite enviado','Email com link de bem-vindo · expira em 7 dias')">+ Convidar</button>
+      </div>
+      <table class="users-table">
+        <thead><tr><th>Nome</th><th>Email</th><th>Perfil</th><th>Ministério</th><th>Última actividade</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Bernardo Vidal</td><td>bernardo.vidal@sggoverno.gov.pt</td><td><span class="role-pill role-admin">Admin DAPL</span></td><td>SGGov · DAPL</td><td>agora</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>Carolina Goes</td><td>scarolinamgoes@sggov.gov.pt</td><td><span class="role-pill role-sggov">SGGov</span></td><td>SGGov · UPE</td><td>há 23 min</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>Ana Patrícia Silva</td><td>ana.silva@mne.gov.pt</td><td><span class="role-pill role-dgdei">DGDEI</span></td><td>MNE</td><td>há 1h</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>João Mendes</td><td>joao.mendes@sggov.gov.pt</td><td><span class="role-pill role-tecnico">Técnico</span></td><td>SGGov · DAPL</td><td>há 2h</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>Marta Antunes</td><td>marta.antunes@mae.gov.pt</td><td><span class="role-pill role-gabinete">Gabinete</span></td><td>MAE · gab. ministra</td><td>ontem</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>Rui Cardoso</td><td>rui.cardoso@sggov.gov.pt</td><td><span class="role-pill role-tecnico">Técnico</span></td><td>SGGov · DAPL</td><td>há 3 dias</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td>Pedro Ferreira</td><td>pedro.ferreira@mf.gov.pt</td><td><span class="role-pill role-gabinete">Gabinete</span></td><td>MF · gab. ministro</td><td>há 5 dias</td><td><button class="btn-mini">Editar</button></td></tr>
+          <tr><td colspan="6" style="text-align:center;color:var(--ink-3);font-style:italic;font-size:0.78rem;padding:1rem">+ 17 utilizadores · ver lista completa →</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+`;
+
+}
+
+function setTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('cur', t.dataset.tab === name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.dataset.panel === name));
+}
+
+function toast(ti, msg) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+</script>
+
+</body>
+</html>

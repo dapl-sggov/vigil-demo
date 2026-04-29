@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · GABINETES</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--red:#D02117;--amber:#C08916;--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+.hero{padding:1rem 0 1.4rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:760px;line-height:1.55;}
+
+/* Filtros */
+.toolbar{display:flex;gap:0.5rem;align-items:center;margin-bottom:1.1rem;flex-wrap:wrap;}
+.tool-btn{padding:0.45rem 0.85rem;background:var(--bg3);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;color:var(--ink-2);cursor:pointer;transition:all 0.12s;}
+.tool-btn:hover{background:var(--bg4);}
+.tool-btn.cur{background:var(--green);color:#fff;border-color:var(--green);}
+.tool-meta{margin-left:auto;font-size:0.74rem;color:var(--ink-3);}
+
+/* Grid de ministérios (semáforo) */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:2rem;}
+.min-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:1rem 1.1rem;cursor:pointer;transition:all 0.18s;position:relative;overflow:hidden;}
+.min-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.min-card.cur{border-color:var(--green);box-shadow:0 0 0 2px var(--tint-green);}
+.min-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.7rem;}
+.min-sigla{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;}
+.semaforo{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid var(--bg2);box-shadow:0 0 0 1px var(--line);}
+.semaforo.red{background:var(--red);}
+.semaforo.amber{background:var(--amber);}
+.semaforo.green{background:var(--green);}
+.semaforo.gray{background:var(--ink-4);}
+.min-nm{font-size:0.92rem;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:0.5rem;letter-spacing:-0.005em;}
+.min-titular{font-size:0.7rem;color:var(--ink-3);margin-bottom:0.65rem;}
+.min-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;}
+.min-stat{padding:0.4rem 0.5rem;background:var(--bg3);border-radius:5px;text-align:center;}
+.min-stat-vl{font-size:1.05rem;font-weight:700;line-height:1;}
+.min-stat-vl.red{color:var(--red);}
+.min-stat-vl.amb{color:var(--amber);}
+.min-stat-vl.grn{color:var(--green);}
+.min-stat-lb{font-size:0.6rem;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.04em;font-weight:600;margin-top:0.2rem;}
+
+/* Detail panel */
+.detail{display:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.detail.on{display:block;}
+.detail-h{padding:1.2rem 1.5rem;background:linear-gradient(135deg,var(--green-soft) 0%,var(--bg2) 100%);border-bottom:1px solid var(--line);}
+.detail-h-eye{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;}
+.detail-h-ti{font-size:1.4rem;font-weight:700;color:var(--ink);letter-spacing:-0.015em;}
+.detail-h-titular{font-size:0.84rem;color:var(--ink-3);margin-top:0.3rem;}
+.detail-h-meta{display:flex;gap:1.2rem;margin-top:0.85rem;}
+.detail-meta-it{display:flex;flex-direction:column;}
+.detail-meta-lb{font-size:0.66rem;color:var(--ink-4);text-transform:uppercase;letter-spacing:0.04em;font-weight:600;}
+.detail-meta-vl{font-size:0.92rem;font-weight:700;color:var(--ink);margin-top:0.15rem;}
+.detail-meta-vl.red{color:var(--red);}
+.detail-meta-vl.amb{color:var(--amber);}
+
+.detail-bd{padding:1.3rem 1.5rem 1.5rem;}
+
+.section-h{font-size:0.74rem;font-weight:700;color:var(--ink);margin:1.3rem 0 0.7rem;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:0.5rem;}
+.section-h::before{content:"";width:3px;height:14px;background:var(--green);border-radius:2px;}
+.section-h:first-child{margin-top:0;}
+
+.proc-list{display:flex;flex-direction:column;gap:0.45rem;}
+.proc-row{display:grid;grid-template-columns:auto 1fr 90px 90px;gap:0.7rem;padding:0.6rem 0.85rem;background:var(--bg3);border-radius:6px;align-items:center;font-size:0.84rem;cursor:pointer;}
+.proc-row:hover{background:var(--bg4);}
+.proc-dot{width:8px;height:8px;border-radius:50%;}
+.proc-dot.red{background:var(--red);}
+.proc-dot.amber{background:var(--amber);}
+.proc-dot.green{background:var(--green);}
+.proc-row-celex{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);}
+.proc-row-ti{font-weight:500;color:var(--ink);}
+.proc-row-prazo{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink-2);text-align:right;}
+.proc-row-prazo.urgent{color:var(--red);font-weight:600;}
+.proc-row-status{font-size:0.62rem;text-transform:uppercase;text-align:center;padding:0.2rem 0.45rem;border-radius:3px;font-weight:600;letter-spacing:0.03em;}
+.status-critico{background:var(--tint-red);color:var(--red);}
+.status-atencao{background:var(--tint-amber);color:var(--amber);}
+.status-em-curso{background:var(--tint-green);color:var(--green);}
+
+.cal-list{display:flex;flex-direction:column;gap:0.45rem;}
+.cal-it{display:grid;grid-template-columns:90px 1fr;gap:0.85rem;padding:0.55rem 0.7rem;border-radius:6px;background:var(--bg3);}
+.cal-it.urgent{background:var(--tint-red);}
+.cal-it.soon{background:var(--tint-amber);}
+.cal-dt{font-family:var(--font-mono);font-size:0.78rem;color:var(--ink);font-weight:600;}
+.cal-it.urgent .cal-dt{color:var(--red);}
+.cal-it.soon .cal-dt{color:var(--amber);}
+.cal-bd-ti{font-size:0.84rem;color:var(--ink);font-weight:500;}
+.cal-bd-sub{font-size:0.7rem;color:var(--ink-3);margin-top:0.15rem;}
+
+.actions{display:flex;gap:0.55rem;flex-wrap:wrap;margin-top:1.2rem;}
+.btn{padding:0.55rem 1.1rem;border-radius:7px;font-family:inherit;font-size:0.84rem;font-weight:600;cursor:pointer;border:1px solid;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.12s;}
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn svg{width:13px;height:13px;}
+
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:toast-in 0.22s;}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes toast-in{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:600px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="6" rx="1" fill="#fff"/><rect x="11" y="3" width="6" height="6" rx="1" fill="#fff"/><rect x="11" y="11" width="6" height="6" rx="1" fill="#fff"/><rect x="3" y="11" width="6" height="6" rx="1" fill="#fff" opacity="0.7"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · GABINETES</div><div class="brand-sub">M05 · Vista executiva por ministério · semáforo de risco em tempo real</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eye">M05 · GABINETES · Vista executiva · SGGov + Gabinetes ministeriais</div>
+    <h1 class="hero-h1" id="hero-h1">Estado dos 16 ministérios do XXV Governo</h1>
+    <p class="hero-sub" id="hero-sub">Vista de leitura orientada à decisão política. Cada cartão mostra o estado agregado dos processos sob a tutela do ministério: vermelho se há contencioso ou prazo crítico, âmbar se há marcos atrasados, verde se em dia. Clique para abrir KPIs e calendário.</p>
+  </div>
+
+  <div class="toolbar">
+    <button class="tool-btn cur" data-filt="all" onclick="setFilter('all')">Todos · 16</button>
+    <button class="tool-btn" data-filt="red" onclick="setFilter('red')">🔴 Críticos</button>
+    <button class="tool-btn" data-filt="amber" onclick="setFilter('amber')">🟡 Atenção</button>
+    <button class="tool-btn" data-filt="green" onclick="setFilter('green')">🟢 Em dia</button>
+    <span class="tool-meta" id="tool-meta">— ministérios</span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="detail" id="detail"></div>
+
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+const session = (() => { try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); } catch(e) { return null; } })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('avatar').textContent = initials;
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+const MINISTERIOS = [
+  { sigla:'MP', nome:'Min. da Presidência', titular:'Dr. Maria Lúcia Amaral', semaforo:'amber', total:5, criticos:0, atencao:2, emCurso:3, areas:'Lobby · Transparência · Reforma do Estado' },
+  { sigla:'MNE', nome:'Min. dos Negócios Estrangeiros', titular:'Dr. Paulo Rangel', semaforo:'amber', total:8, criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades' },
+  { sigla:'MF', nome:'Min. das Finanças', titular:'Dr. Joaquim Sarmento', semaforo:'red', total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Mercados' },
+  { sigla:'MECT', nome:'Min. da Economia e Coesão Territorial', titular:'Dr. Pedro Reis', semaforo:'amber', total:9, criticos:2, atencao:4, emCurso:3, areas:'Economia · Comércio · Turismo · Coesão' },
+  { sigla:'MAE', nome:'Min. do Ambiente e Energia', titular:'Dra. Maria da Graça Carvalho', semaforo:'red', total:14, criticos:6, atencao:5, emCurso:3, areas:'Ambiente · Energia · Cibersegurança · Mar' },
+  { sigla:'MS', nome:'Min. da Saúde', titular:'Dra. Ana Paula Martins', semaforo:'amber', total:6, criticos:0, atencao:3, emCurso:3, areas:'Saúde · Medicamentos · Tecnologias' },
+  { sigla:'MTSSS', nome:'Min. do Trabalho, Solidariedade e Seg. Social', titular:'Dra. Maria do Rosário Palma Ramalho', semaforo:'amber', total:5, criticos:1, atencao:2, emCurso:2, areas:'Trabalho · Solidariedade · Segurança Social' },
+  { sigla:'MJ', nome:'Min. da Justiça', titular:'Dra. Rita Júdice', semaforo:'green', total:4, criticos:0, atencao:1, emCurso:3, areas:'Justiça · Direitos · Cidadania' },
+  { sigla:'MAI', nome:'Min. da Administração Interna', titular:'Dr. Margarida Blasco', semaforo:'amber', total:3, criticos:1, atencao:1, emCurso:1, areas:'Segurança · Protecção Civil · Resiliência' },
+  { sigla:'MIH', nome:'Min. das Infraestruturas e Habitação', titular:'Dr. Miguel Pinto Luz', semaforo:'amber', total:6, criticos:1, atencao:3, emCurso:2, areas:'Infraestruturas · Habitação · Mobilidade' },
+  { sigla:'MECI', nome:'Min. da Educação, Ciência e Inovação', titular:'Dr. Fernando Alexandre', semaforo:'green', total:3, criticos:0, atencao:1, emCurso:2, areas:'Educação · Ciência · Inovação · Ensino Superior' },
+  { sigla:'MARE', nome:'Min. Adjunto e Reforma do Estado', titular:'Dr. Gonçalo Saraiva Matias', semaforo:'green', total:2, criticos:0, atencao:0, emCurso:2, areas:'Administração Pública · Modernização' },
+  { sigla:'MAP', nome:'Min. da Agricultura e Pescas', titular:'Dr. José Manuel Fernandes', semaforo:'amber', total:4, criticos:1, atencao:2, emCurso:1, areas:'Agricultura · Pescas · Alimentação' },
+  { sigla:'MC', nome:'Min. da Cultura', titular:'Dra. Dalila Rodrigues', semaforo:'green', total:2, criticos:0, atencao:0, emCurso:2, areas:'Cultura · Património · Audiovisual' },
+  { sigla:'MD', nome:'Min. da Defesa Nacional', titular:'Dr. Nuno Melo', semaforo:'gray', total:1, criticos:0, atencao:0, emCurso:1, areas:'Defesa · Indústria de defesa' },
+  { sigla:'MJD', nome:'Min. da Juventude e Desporto', titular:'Dr. Pedro Dias de Jesus', semaforo:'gray', total:1, criticos:0, atencao:0, emCurso:1, areas:'Juventude · Desporto' },
+];
+
+let curFilter = 'all';
+let selectedMin = null;
+
+function setFilter(f) {
+  curFilter = f;
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.toggle('cur', b.dataset.filt === f));
+  render();
+}
+
+function render() {
+  let mins = MINISTERIOS;
+  if (curFilter !== 'all') mins = mins.filter(m => m.semaforo === curFilter);
+  // Se gabinete, filtra para o seu ministério
+  if (session.perfil === 'gabinete' && session.ministerio) {
+    mins = MINISTERIOS.filter(m => m.sigla === session.ministerio);
+    document.getElementById('hero-h1').textContent = 'Vista executiva · ' + mins[0].nome;
+    document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas o teu ministério. Detalhes dos processos sob a tua tutela em baixo.';
+  }
+  document.getElementById('grid').innerHTML = mins.map(m => `
+    <div class="min-card ${selectedMin === m.sigla ? 'cur' : ''}" onclick="selectMin('${m.sigla}')" role="button" tabindex="0">
+      <div class="min-h">
+        <span class="min-sigla">${m.sigla}</span>
+        <span class="semaforo ${m.semaforo}" aria-label="${m.semaforo}"></span>
+      </div>
+      <div class="min-nm">${m.nome}</div>
+      <div class="min-titular">${m.titular}</div>
+      <div class="min-stats">
+        <div class="min-stat"><div class="min-stat-vl ${m.criticos > 0 ? 'red' : ''}">${m.criticos}</div><div class="min-stat-lb">Crít.</div></div>
+        <div class="min-stat"><div class="min-stat-vl ${m.atencao > 0 ? 'amb' : ''}">${m.atencao}</div><div class="min-stat-lb">Aten.</div></div>
+        <div class="min-stat"><div class="min-stat-vl ${m.emCurso > 0 ? 'grn' : ''}">${m.emCurso}</div><div class="min-stat-lb">Curso</div></div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('tool-meta').textContent = `${mins.length} ministério${mins.length === 1 ? '' : 's'} · ${MINISTERIOS.reduce((a,m)=>a+m.total,0)} processos totais`;
+
+  // Auto-select first if gabinete
+  if (session.perfil === 'gabinete' && session.ministerio && !selectedMin) {
+    selectMin(session.ministerio);
+  }
+}
+
+function selectMin(sigla) {
+  selectedMin = sigla;
+  const m = MINISTERIOS.find(x => x.sigla === sigla);
+  if (!m) return;
+  document.querySelectorAll('.min-card').forEach(c => c.classList.remove('cur'));
+  // Find via direct DOM after render
+  const cards = document.querySelectorAll('.min-card');
+  cards.forEach(c => { if (c.querySelector('.min-sigla').textContent === sigla) c.classList.add('cur'); });
+
+  // Mock processes data per ministry — abbreviated
+  const processosPorMin = {
+    MAE: [
+      { celex:'31992L0043', ti:'Habitats · Rede Natura 2000', prazo:'1994', estado:'critico', urgent:true },
+      { celex:'32024L0884', ti:'Qualidade do ar · PM2.5/NO₂', prazo:'Ago 2026', estado:'atencao' },
+      { celex:'32022L2555', ti:'NIS2 · Cibersegurança', prazo:'Out 2024', estado:'critico', urgent:true },
+      { celex:'32024L1275', ti:'EPBD · Edifícios', prazo:'Mai 2026', estado:'atencao' },
+      { celex:'32023L1791', ti:'EED · Eficiência energética', prazo:'Out 2025', estado:'atencao' },
+      { celex:'32023L2413', ti:'RED III · Renováveis', prazo:'Jun 2026', estado:'em-curso' },
+    ],
+    MF: [
+      { celex:'32021L0338', ti:'MiFID II · Instrumentos financeiros', prazo:'Nov 2022', estado:'critico', urgent:true },
+      { celex:'32021L2167', ti:'Créditos não produtivos', prazo:'Dez 2023', estado:'critico', urgent:true },
+      { celex:'32019L0879', ti:'BRRD II · Resolução bancária', prazo:'Dez 2020', estado:'critico', urgent:true },
+      { celex:'32019L2034', ti:'IFD · Empresas de investimento', prazo:'Jun 2021', estado:'critico', urgent:true },
+      { celex:'32018L1673', ti:'AML5 · Branqueamento', prazo:'Jan 2020', estado:'critico', urgent:true },
+    ],
+    MECT: [
+      { celex:'32024L1203', ti:'CSDD · Sustentabilidade Due Diligence', prazo:'Jul 2026', estado:'atencao' },
+      { celex:'32023L2225', ti:'Crédito ao consumidor', prazo:'Nov 2025', estado:'atencao' },
+    ],
+  };
+  const procs = processosPorMin[sigla] || [];
+  const calendario = {
+    MAE: [
+      { dt:'29-04-2026', ti:'Resposta NIS2 IP/24/1182', sub:'Prazo amanhã · DGDEI lead', urgent:true },
+      { dt:'15-05-2026', ti:'CSDD · RSE no Conselho de Ministros', sub:'Articulação MECT' },
+      { dt:'29-05-2026', ti:'Prazo EPBD · 31 dias restantes', sub:'Anteprojecto em concertação', soon:true },
+      { dt:'21-06-2026', ti:'Reunião CIAE · qualidade do ar', sub:'Coordenação interministerial' },
+    ],
+    MF: [
+      { dt:'15-05-2026', ti:'AML6 · projecto-lei à AR', sub:'Submissão antes de 30 jun · janela útil', urgent:true },
+      { dt:'30-05-2026', ti:'Resposta IP/22/0841 · MiFID II', sub:'Após parecer fundamentado', soon:true },
+    ],
+    MECT: [{ dt:'15-05-2026', ti:'CSDD · RSE no CM', sub:'Anteprojecto pronto · marco 2 concluído' }],
+  };
+  const cal = calendario[sigla] || [{ dt:'—', ti:'Sem prazos críticos', sub:'Calendário a 30 dias sem entradas' }];
+
+  document.getElementById('detail').innerHTML = `
+    <div class="detail-h">
+      <div class="detail-h-eye">${m.sigla} · áreas governativas tuteladas</div>
+      <div class="detail-h-ti">${m.nome}</div>
+      <div class="detail-h-titular">${m.titular} · ${m.areas}</div>
+      <div class="detail-h-meta">
+        <div class="detail-meta-it"><span class="detail-meta-lb">Total</span><span class="detail-meta-vl">${m.total}</span></div>
+        <div class="detail-meta-it"><span class="detail-meta-lb">Críticos</span><span class="detail-meta-vl ${m.criticos>0?'red':''}">${m.criticos}</span></div>
+        <div class="detail-meta-it"><span class="detail-meta-lb">Atenção</span><span class="detail-meta-vl ${m.atencao>0?'amb':''}">${m.atencao}</span></div>
+        <div class="detail-meta-it"><span class="detail-meta-lb">Em curso</span><span class="detail-meta-vl">${m.emCurso}</span></div>
+        <div class="detail-meta-it"><span class="detail-meta-lb">Estado global</span><span class="detail-meta-vl ${m.semaforo === 'red' ? 'red' : m.semaforo === 'amber' ? 'amb' : ''}">${m.semaforo === 'red' ? '🔴 Crítico' : m.semaforo === 'amber' ? '🟡 Atenção' : m.semaforo === 'green' ? '🟢 Em dia' : '⚫ Sem actividade'}</span></div>
+      </div>
+    </div>
+    <div class="detail-bd">
+      <div class="section-h">Processos sob tutela</div>
+      <div class="proc-list">
+        ${procs.length > 0 ? procs.map(p => `
+          <div class="proc-row" onclick="window.location.href='RADAR.html'">
+            <div class="proc-dot ${p.estado === 'critico' ? 'red' : p.estado === 'atencao' ? 'amber' : 'green'}"></div>
+            <div>
+              <div class="proc-row-celex">${p.celex}</div>
+              <div class="proc-row-ti">${p.ti}</div>
+            </div>
+            <div class="proc-row-prazo ${p.urgent ? 'urgent' : ''}">${p.prazo}</div>
+            <div class="proc-row-status status-${p.estado}">${p.estado}</div>
+          </div>
+        `).join('') : '<div style="padding:1rem;color:var(--ink-4);font-style:italic;font-size:0.82rem">Sem processos detalhados disponíveis nesta demonstração.</div>'}
+      </div>
+
+      <div class="section-h">Calendário crítico · próximos 60 dias</div>
+      <div class="cal-list">
+        ${cal.map(c => `
+          <div class="cal-it ${c.urgent ? 'urgent' : c.soon ? 'soon' : ''}">
+            <div class="cal-dt">${c.dt}</div>
+            <div>
+              <div class="cal-bd-ti">${c.ti}</div>
+              <div class="cal-bd-sub">${c.sub}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="toast('Briefing PDF gerado','12 páginas · marca SGGov · pronto para a tutela')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descarregar briefing PDF
+        </button>
+        <a href="ALERTAS.html" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+          Alertas activos
+        </a>
+        <a href="RADAR.html" class="btn btn-ghost">Ver no RADAR →</a>
+      </div>
+    </div>
+  `;
+  document.getElementById('detail').classList.add('on');
+  setTimeout(() => document.getElementById('detail').scrollIntoView({ behavior:'smooth', block:'start' }), 150);
+}
+
+function toast(ti, msg) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · Iniciar sessão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1D1D1F; --ink-2:#3A3A3C; --ink-3:#6E6E73; --ink-4:#8E8E93;
+  --line:#E5E5EA;
+  --bg:#FBFBFD; --bg2:#FFFFFF; --bg3:#F5F5F7;
+  --green:#0E7433; --green-dark:#0A5A28; --green-soft:#E6F0E9;
+  --blue:#2B5683; --red:#D02117; --amber:#C08916;
+  --sh-md:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  --sh-lg:0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--bg);height:100vh;width:100vw;overflow:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;}
+body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top right, var(--green-soft) 0%, var(--bg) 60%);}
+
+.scr{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:1.5rem;}
+.card{width:min(440px, 100%);background:var(--bg2);border-radius:16px;box-shadow:var(--sh-lg);overflow:hidden;}
+.brand{padding:2rem 2rem 1.4rem;text-align:center;border-bottom:1px solid var(--line);}
+.brand-mark{width:48px;height:48px;background:var(--green);border-radius:10px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:28px;height:28px;}
+.brand-nm{font-size:1.6rem;font-weight:800;letter-spacing:-0.025em;}
+.brand-sub{font-size:0.78rem;color:var(--ink-3);margin-top:0.3rem;}
+
+.form{padding:1.5rem 2rem 1rem;}
+.fg{margin-bottom:0.95rem;}
+.lbl{display:block;font-size:0.74rem;font-weight:600;color:var(--ink-2);margin-bottom:0.4rem;letter-spacing:-0.005em;}
+.inp{width:100%;padding:0.7rem 0.85rem;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:0.9rem;color:var(--ink);background:var(--bg2);outline:none;transition:all 0.12s;}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft);}
+.btn{width:100%;padding:0.75rem 1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.12s;}
+.btn:hover{background:var(--green-dark);}
+.err{font-size:0.78rem;color:var(--red);margin-top:0.4rem;display:none;}
+.err.on{display:block;}
+
+.demo{padding:0 2rem 1.5rem;border-top:1px solid var(--line);margin-top:0.5rem;padding-top:1.2rem;}
+.demo-h{font-size:0.74rem;font-weight:600;color:var(--ink-3);margin-bottom:0.7rem;display:flex;align-items:center;gap:0.45rem;}
+.demo-h::before{content:"";width:4px;height:4px;background:var(--ink-4);border-radius:50%;}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+.demo-btn{padding:0.6rem 0.75rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;cursor:pointer;text-align:left;font-family:inherit;transition:all 0.12s;}
+.demo-btn:hover{background:var(--green-soft);border-color:var(--green);}
+.demo-cred{font-family:var(--font-mono);font-size:0.74rem;color:var(--ink);font-weight:500;}
+.demo-role{font-size:0.66rem;color:var(--ink-3);margin-top:0.2rem;}
+.demo-btn.full{grid-column:1 / -1;}
+
+.foot{padding:0.85rem 2rem;background:var(--bg3);font-size:0.7rem;color:var(--ink-3);text-align:center;}
+
+.note{padding:0.65rem 2rem;background:var(--green-soft);font-size:0.74rem;color:var(--green-dark);text-align:center;border-bottom:1px solid var(--green);font-weight:500;}
+</style>
+</head>
+<body>
+
+<div class="scr">
+  <div class="card">
+    <div class="note">📡 Demonstração interactiva · simula a experiência VIGIL</div>
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/>
+          <rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/>
+          <rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/>
+        </svg>
+      </div>
+      <div class="brand-nm">VIGIL</div>
+      <div class="brand-sub">Plataforma de Acompanhamento do Direito da União Europeia</div>
+    </div>
+
+    <form class="form" onsubmit="return doLogin(event)" autocomplete="off">
+      <div class="fg">
+        <label class="lbl" for="user">Utilizador</label>
+        <input class="inp" id="user" type="text" autofocus autocomplete="username">
+      </div>
+      <div class="fg">
+        <label class="lbl" for="pass">Password</label>
+        <input class="inp" id="pass" type="password" autocomplete="current-password">
+      </div>
+      <div class="err" id="err">Credenciais incorrectas. Tenta com um dos perfis demo.</div>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+
+    <div class="demo">
+      <div class="demo-h">Perfis de demonstração · clica para entrar</div>
+      <div class="demo-grid">
+        <button class="demo-btn" onclick="quickLogin('admin','Carolina Goes','SGGov · Coordenação','scarolinamgoes@sggov.gov.pt')">
+          <div class="demo-cred">admin / admin</div>
+          <div class="demo-role">SGGov · Coordenação</div>
+        </button>
+        <button class="demo-btn" onclick="quickLogin('dgdei','Ana Patrícia Silva','DGDEI / MNE','ana.silva@mne.gov.pt')">
+          <div class="demo-cred">dgdei / dgdei</div>
+          <div class="demo-role">DGDEI · acesso total</div>
+        </button>
+        <button class="demo-btn" onclick="quickLogin('tecnico','João Mendes','DAPL · Técnico','joao.mendes@sggov.gov.pt')">
+          <div class="demo-cred">tecnico / tecnico</div>
+          <div class="demo-role">Técnico · sem CONTENCIOSO</div>
+        </button>
+        <button class="demo-btn" onclick="quickLogin('gabinete','Marta Antunes','Gab. Min. Ambiente e Energia','marta.antunes@mae.gov.pt')">
+          <div class="demo-cred">gabinete / gabinete</div>
+          <div class="demo-role">Gabinete ministerial</div>
+        </button>
+        <button class="demo-btn full" onclick="quickLogin('dapl_admin','Bernardo Vidal','Chefe da DAPL · Admin','bernardo.vidal@sggoverno.gov.pt')">
+          <div class="demo-cred">bvidal / bvidal</div>
+          <div class="demo-role">Admin DAPL · acesso pleno + administração da plataforma</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="foot">DAPL · Secretaria-Geral do Governo · Demonstração · Abril 2026</div>
+  </div>
+</div>
+
+<script>
+const PROFILES = {
+  admin:      { user:'admin',     pass:'admin',     name:'Carolina Goes',   role:'SGGov · Coordenação',           email:'scarolinamgoes@sggov.gov.pt', perfil:'admin' },
+  dgdei:      { user:'dgdei',     pass:'dgdei',     name:'Ana Patrícia Silva', role:'DGDEI / MNE',                 email:'ana.silva@mne.gov.pt',        perfil:'dgdei' },
+  tecnico:    { user:'tecnico',   pass:'tecnico',   name:'João Mendes',     role:'DAPL · Técnico',                 email:'joao.mendes@sggov.gov.pt',    perfil:'tecnico' },
+  gabinete:   { user:'gabinete',  pass:'gabinete',  name:'Marta Antunes',   role:'Gab. Min. Ambiente e Energia',   email:'marta.antunes@mae.gov.pt',    perfil:'gabinete', ministerio:'MAE' },
+  dapl_admin: { user:'bvidal',    pass:'bvidal',    name:'Bernardo Vidal',  role:'Chefe da DAPL · Admin',          email:'bernardo.vidal@sggoverno.gov.pt', perfil:'dapl_admin' },
+};
+
+function quickLogin(key, name, role, email) {
+  const p = PROFILES[key];
+  document.getElementById('user').value = p.user;
+  document.getElementById('pass').value = p.pass;
+  setTimeout(() => doLogin(null), 220);
+}
+
+function doLogin(ev) {
+  if (ev) ev.preventDefault();
+  const u = document.getElementById('user').value.trim().toLowerCase();
+  const p = document.getElementById('pass').value;
+  const found = Object.values(PROFILES).find(x => x.user === u && x.pass === p);
+  const err = document.getElementById('err');
+  if (!found) {
+    err.classList.add('on');
+    return false;
+  }
+  err.classList.remove('on');
+  // Persist session
+  localStorage.setItem('vigil-demo-session', JSON.stringify({
+    name: found.name, role: found.role, email: found.email,
+    perfil: found.perfil, ministerio: found.ministerio || null,
+    loginAt: Date.now(),
+  }));
+  // Visual feedback
+  document.querySelector('.btn').textContent = 'A entrar…';
+  setTimeout(() => { window.location.href = 'hub.html'; }, 350);
+  return false;
+}
+
+// Auto-redirect if session exists
+(function checkSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem('vigil-demo-session') || 'null');
+    if (s && s.loginAt && (Date.now() - s.loginAt < 8 * 60 * 60 * 1000)) {
+      // Show "continue" link instead of auto-redirect to allow re-login
+      const note = document.querySelector('.note');
+      note.innerHTML = `📡 Sessão activa: <strong>${s.name}</strong> · <a href="hub.html" style="color:var(--green-dark);text-decoration:underline">continuar</a> · <a href="#" onclick="localStorage.removeItem('vigil-demo-session');location.reload();return false" style="color:var(--green-dark);text-decoration:underline">terminar</a>`;
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
