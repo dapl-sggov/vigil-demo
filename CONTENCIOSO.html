@@ -141,7 +141,7 @@ else {
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
 }
 
-const ALLOWED = ['dgdei','dapl_admin'];
+const ALLOWED = ['tecnico_dgdei','admin_demo'];
 
 if (!ALLOWED.includes(session.perfil)) {
   document.getElementById('content').innerHTML = `

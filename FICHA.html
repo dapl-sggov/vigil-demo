@@ -406,6 +406,49 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
 
       </div>
 
+      <!-- SmartLegis section · only for SEAE -->
+      <div id="seae-section" style="display:none; padding:1rem 1.4rem 1.2rem; background:linear-gradient(135deg, #E5ECF3 0%, var(--bg2) 100%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+        <div style="display:flex; align-items:flex-start; gap:0.9rem;">
+          <div style="flex-shrink:0; width:40px; height:40px; background:var(--blue); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:0.85rem; font-weight:700; color:var(--blue);">SmartLegis · Gabinete da SEAE</div>
+            <div style="font-size:0.78rem; color:var(--ink-2); margin-top:0.2rem; line-height:1.5;">Como Gabinete da Secretária de Estado dos Assuntos Europeus, podes criar o plano de transposição em SmartLegis a partir da análise desta ficha. O plano herda automaticamente os 8 marcos canónicos e os diplomas afectados identificados.</div>
+            <div style="display:flex; gap:0.5rem; margin-top:0.7rem; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="createSmartLegisPlan()" style="background:var(--blue); border-color:var(--blue);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                Criar plano em SmartLegis
+              </button>
+              <button class="btn btn-ghost" onclick="toast('Estado SmartLegis','Última sync 2026-05-13 09:14 · plano não existe ainda','info')">
+                Verificar estado SmartLegis
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DGDEI section · register info to CE -->
+      <div id="dgdei-section" style="display:none; padding:1rem 1.4rem 1.2rem; background:linear-gradient(135deg, var(--green-soft) 0%, var(--bg2) 100%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+        <div style="display:flex; align-items:flex-start; gap:0.9rem;">
+          <div style="flex-shrink:0; width:40px; height:40px; background:var(--green); border-radius:10px; display:flex; align-items:center; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:0.85rem; font-weight:700; color:var(--green);">Notas para a Comissão Europeia · DGDEI</div>
+            <div style="font-size:0.78rem; color:var(--ink-2); margin-top:0.2rem; line-height:1.5;">Como Técnico DGDEI, podes registar informação destinada à Comissão sobre o estado da transposição (notificações TRIS, comunicações SOLVIT, respostas a EU Pilot).</div>
+            <div style="display:flex; gap:0.5rem; margin-top:0.7rem; flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="toast('Notificação CE','Comunicação TRIS gerada · pendente assinatura DGDEI','info')" style="background:var(--green); border-color:var(--green);">
+                Registar notificação TRIS
+              </button>
+              <button class="btn btn-ghost" onclick="toast('Anexo CE','Documento adicionado · audit_log registado')">
+                Anexar documento para CE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- FOOTER -->
       <div class="wiz-ft">
         <div class="wiz-ft-l"><strong>Auto-save</strong> · última alteração há 12s</div>
@@ -503,6 +546,27 @@ setStep(3);
 setInterval(() => {
   document.querySelector('.wiz-ft-l').innerHTML = `<strong>Auto-save</strong> · última alteração há ${Math.floor(Math.random()*45)+5}s`;
 }, 8000);
+
+function createSmartLegisPlan() {
+  toast('Plano criado em SmartLegis', 'Referência SL/2026/0341 · MECT notificado · 8 marcos carregados · ligação ao processo VIGIL persiste', 'info');
+}
+
+// Initialize role-specific sections
+function setupRoleSections() {
+  if (session.perfil === 'gabinete_seae' || session.perfil === 'admin_demo') {
+    document.getElementById('seae-section').style.display = 'block';
+  }
+  if (session.perfil === 'tecnico_dgdei' || session.perfil === 'admin_demo') {
+    document.getElementById('dgdei-section').style.display = 'block';
+  }
+  // For read-only perfis, disable form inputs
+  if (['gabinete_min','gabinete_seae','tecnico_dgae','admin_dapl'].includes(session.perfil)) {
+    document.querySelectorAll('.inp, .tar, .sel').forEach(el => {
+      if (!el.id.startsWith('login-')) el.setAttribute('readonly', 'readonly');
+    });
+  }
+}
+setupRoleSections();
 </script>
 
 </body>

@@ -32,7 +32,10 @@ strong,b{font-weight:600;}
 
 .shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
 
-/* === HEADER === */
+.mock-banner{background:#FFF3E0;border:1px solid #E5B870;border-radius:8px;padding:0.6rem 0.9rem;margin-bottom:1rem;display:flex;gap:0.6rem;align-items:flex-start;font-size:0.78rem;color:#7C4F00;}
+.mock-banner svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+.mock-banner strong{color:#5A3800;}
+
 .hdr{display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line);margin-bottom:1.5rem;}
 .hdr-mark{width:36px;height:36px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .hdr-mark svg{width:22px;height:22px;}
@@ -44,32 +47,17 @@ strong,b{font-weight:600;}
 .user-chip{display:flex;align-items:center;gap:0.6rem;padding:0.35rem 0.55rem 0.35rem 0.4rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;cursor:pointer;transition:all 0.12s;font-family:inherit;}
 .user-chip:hover{background:var(--bg4);}
 .avatar{width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:600;flex-shrink:0;}
+.avatar.mock{background:#A06800;}
 .user-info{display:flex;flex-direction:column;align-items:flex-start;}
 .user-nm{font-size:0.78rem;font-weight:600;color:var(--ink);line-height:1.2;}
 .user-role{font-size:0.66rem;color:var(--ink-3);line-height:1.2;}
 
-.icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);color:var(--ink-3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.12s;}
-.icon-btn:hover{background:var(--bg3);color:var(--ink);}
-.icon-btn svg{width:15px;height:15px;}
-
-/* === HERO === */
 .hero{margin-bottom:1.4rem;}
 .hero-greet{font-size:0.78rem;color:var(--ink-3);}
 .hero-greet strong{color:var(--ink);}
 .hero-h1{font-size:1.7rem;font-weight:700;letter-spacing:-0.025em;margin-top:0.35rem;color:var(--ink);}
-.hero-sub{font-size:0.92rem;color:var(--ink-3);margin-top:0.5rem;max-width:680px;line-height:1.55;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);margin-top:0.5rem;max-width:760px;line-height:1.55;}
 
-/* === STATS BAR === */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:1.5rem;}
-.stat{padding:0.95rem 1rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
-.stat-lb{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-4);font-weight:600;margin-bottom:0.5rem;}
-.stat-vl{font-size:1.55rem;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em;}
-.stat-vl.red{color:var(--red);}
-.stat-vl.amb{color:var(--amber);}
-.stat-vl.grn{color:var(--green);}
-.stat-dt{font-size:0.7rem;color:var(--ink-3);margin-top:0.4rem;}
-
-/* === MODULES SECTION === */
 .section{margin-bottom:2rem;}
 .section-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.85rem;padding-bottom:0.55rem;border-bottom:1px solid var(--line);}
 .section-ti{font-size:0.78rem;font-weight:700;letter-spacing:0.06em;color:var(--ink-3);text-transform:uppercase;}
@@ -78,6 +66,7 @@ strong,b{font-weight:600;}
 .modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
 .module{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem;cursor:pointer;transition:all 0.18s;text-decoration:none;color:inherit;display:flex;flex-direction:column;position:relative;overflow:hidden;}
 .module:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px);border-color:var(--ink-5);}
+.module.featured{background:linear-gradient(135deg, var(--green-soft) 0%, var(--bg2) 100%);border-color:var(--green);}
 .module-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.85rem;}
 .module-ic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .module-ic svg{width:22px;height:22px;}
@@ -87,22 +76,20 @@ strong,b{font-weight:600;}
 .module-ic.amber{background:var(--tint-amber);color:var(--amber);}
 .module-ic.gray{background:var(--bg4);color:var(--ink-3);}
 .module-badge{display:inline-flex;padding:0.2rem 0.55rem;border-radius:4px;font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;}
+.badge-new{background:#FFC107;color:#5A3800;}
 .badge-live{background:var(--tint-green);color:var(--green);}
 .badge-beta{background:var(--tint-amber);color:var(--amber);}
 .badge-restrict{background:var(--tint-red);color:var(--red);}
 .badge-admin{background:var(--bg4);color:var(--ink-2);}
+.badge-read{background:var(--tint-blue);color:var(--blue);}
 .module-code{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.04em;font-weight:600;margin-bottom:0.3rem;}
 .module-ti{font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.4rem;line-height:1.2;}
 .module-sub{font-size:0.82rem;color:var(--ink-3);line-height:1.5;flex:1;}
 .module-foot{margin-top:0.95rem;padding-top:0.85rem;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;color:var(--ink-3);}
-.module-foot-meta{display:flex;gap:0.85rem;}
 .module-foot-meta strong{color:var(--ink);}
 .module-foot-arrow{color:var(--green);font-weight:600;}
-
-.module.hidden-perfil{display:none;}
 .module.disabled{opacity:0.45;pointer-events:none;}
 
-/* === ACTIVITY FEED === */
 .feed{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.2rem;}
 .feed-it{display:flex;gap:0.85rem;padding:0.6rem 0;border-bottom:1px solid var(--line);}
 .feed-it:last-child{border-bottom:none;}
@@ -116,12 +103,13 @@ strong,b{font-weight:600;}
 .feed-actor{font-weight:600;}
 .feed-time{font-size:0.72rem;color:var(--ink-3);font-family:var(--font-mono);margin-top:0.2rem;}
 
-/* User dropdown menu */
-.menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;box-shadow:var(--sh-md);min-width:240px;padding:0.4rem;z-index:30;display:none;}
+.menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;box-shadow:var(--sh-md);min-width:280px;padding:0.4rem;z-index:30;display:none;}
 .menu.on{display:block;}
 .menu-h{padding:0.7rem 0.85rem 0.6rem;border-bottom:1px solid var(--line);margin-bottom:0.3rem;}
 .menu-nm{font-size:0.84rem;font-weight:600;}
 .menu-em{font-size:0.72rem;color:var(--ink-3);}
+.menu-unit{font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem;font-style:italic;}
+.menu-note{padding:0.5rem 0.85rem;background:#FFF3E0;color:#7C4F00;font-size:0.7rem;line-height:1.4;border-radius:5px;margin:0.3rem 0;}
 .menu-it{display:flex;align-items:center;gap:0.55rem;padding:0.55rem 0.85rem;border-radius:6px;cursor:pointer;font-size:0.82rem;color:var(--ink-2);text-decoration:none;}
 .menu-it:hover{background:var(--bg3);color:var(--ink);}
 .menu-it.danger{color:var(--red);}
@@ -132,11 +120,9 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line);fon
 
 @media (max-width:900px){
   .modules{grid-template-columns:1fr 1fr;}
-  .stats{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:600px){
   .modules{grid-template-columns:1fr;}
-  .stats{grid-template-columns:1fr;}
 }
 
 button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
@@ -146,7 +132,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 
 <div class="shell">
 
-  <!-- HEADER -->
   <div class="hdr">
     <div class="hdr-mark">
       <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -160,9 +145,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
       <div class="hdr-sub">Plataforma de Acompanhamento do Direito da União Europeia · Demonstração</div>
     </div>
     <div class="hdr-rt">
-      <button class="icon-btn" title="Pesquisa global (em produção)" aria-label="Pesquisa">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </button>
       <div class="user-wrap">
         <button class="user-chip" id="user-chip" onclick="toggleMenu(event)" aria-haspopup="menu" aria-expanded="false">
           <div class="avatar" id="avatar">—</div>
@@ -176,15 +158,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
           <div class="menu-h">
             <div class="menu-nm" id="menu-name">—</div>
             <div class="menu-em" id="menu-email">—</div>
+            <div class="menu-unit" id="menu-unit">—</div>
           </div>
-          <a href="#" class="menu-it" onclick="event.preventDefault();closeMenu();">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            O meu perfil
-          </a>
-          <a href="#" class="menu-it" onclick="event.preventDefault();closeMenu();">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            Preferências
-          </a>
+          <div class="menu-note" id="menu-note" style="display:none"></div>
           <a href="index.html" class="menu-it danger" onclick="signOut();">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Terminar sessão
@@ -194,84 +170,37 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
     </div>
   </div>
 
-  <!-- HERO -->
+  <div id="mock-banner" class="mock-banner" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>
+    <div><strong>Perfil de demonstração.</strong> Este perfil só existe na demo para mostrar todas as funcionalidades em simultâneo. Em produção, ninguém terá este nível de acesso.</div>
+  </div>
+
   <div class="hero">
     <div class="hero-greet"><span id="greet">Bom dia</span> · <strong id="greet-name">—</strong></div>
     <h1 class="hero-h1" id="hero-h1">Hub do VIGIL</h1>
     <p class="hero-sub" id="hero-sub">Os módulos abaixo são os que tens acesso de acordo com o teu perfil. Cada um abre uma demonstração simulada da experiência completa.</p>
   </div>
 
-  <!-- STATS BAR -->
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-lb">Risco financeiro</div>
-      <div class="stat-vl red">&gt;100M€</div>
-      <div class="stat-dt">↑ €41 250/dia · C-217/24</div>
-    </div>
-    <div class="stat">
-      <div class="stat-lb">Diretivas em curso</div>
-      <div class="stat-vl">30</div>
-      <div class="stat-dt">8 com prazo crítico</div>
-    </div>
-    <div class="stat">
-      <div class="stat-lb">Análises IA pendentes</div>
-      <div class="stat-vl amb">3</div>
-      <div class="stat-dt">Última: hoje 09:32</div>
-    </div>
-    <div class="stat">
-      <div class="stat-lb">Fichas atrasadas</div>
-      <div class="stat-vl red">2</div>
-      <div class="stat-dt">NIS2 · CSDD</div>
-    </div>
-  </div>
-
-  <!-- MODULES -->
   <div class="section">
     <div class="section-h">
-      <div class="section-ti">Módulos disponíveis para o teu perfil</div>
+      <div class="section-ti">Módulos disponíveis</div>
       <div class="section-meta" id="modules-count">— módulos</div>
     </div>
     <div class="modules" id="modules"></div>
   </div>
 
-  <!-- ACTIVITY FEED -->
   <div class="section">
     <div class="section-h">
-      <div class="section-ti">Actividade recente · pipeline IA semanal</div>
-      <div class="section-meta">Quartas 13:00 Lisboa · após Colégio de Comissários</div>
+      <div class="section-ti">Actividade recente</div>
+      <div class="section-meta">Pipeline IA · quartas 13:00 Lisboa · output do crawler de propostas CE</div>
     </div>
-    <div class="feed">
-      <div class="feed-it">
-        <div class="feed-ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="feed-bd"><span class="feed-actor">Sistema</span> · 8 propostas analisadas pelo crawler PROSPETIVA · <strong>3 escaladas</strong> para validação DAPL <div class="feed-time">há 15 min · ciclo 2026/W17</div></div>
-      </div>
-      <div class="feed-it">
-        <div class="feed-ic a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 22 2 22"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-        <div class="feed-bd">Alerta T+14d escalado para gabinete · <strong>NIS2 · IP/24/1182</strong> · prazo amanhã <div class="feed-time">há 47 min</div></div>
-      </div>
-      <div class="feed-it">
-        <div class="feed-ic b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-        <div class="feed-bd"><span class="feed-actor">Ana Silva (DGDEI)</span> · ficha <strong>CSDD</strong> actualizada — marco "fins técnicos" concluído <div class="feed-time">hoje 09:14</div></div>
-      </div>
-      <div class="feed-it">
-        <div class="feed-ic r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/></svg></div>
-        <div class="feed-bd">Sanção C-217/24 acumula <strong>€2 351 250</strong> desde acórdão · DGDEI a coordenar acções <div class="feed-time">contagem activa</div></div>
-      </div>
-      <div class="feed-it">
-        <div class="feed-ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/></svg></div>
-        <div class="feed-bd"><span class="feed-actor">Bernardo Vidal</span> · prompt v1.4.0 (análise Sonnet) activado em produção <div class="feed-time">ontem 17:02</div></div>
-      </div>
-    </div>
+    <div class="feed" id="feed"></div>
   </div>
 
-  <footer>DAPL · Secretaria-Geral do Governo · Demonstração interactiva · v1.0 · Abril 2026</footer>
+  <footer>DAPL · Secretaria-Geral do Governo · Demonstração interactiva · v1.1 · Maio 2026</footer>
 </div>
 
 <script>
-// ============================================================================
-// Session check + module rendering
-// ============================================================================
-
 const session = (() => {
   try { return JSON.parse(localStorage.getItem('vigil-demo-session') || 'null'); }
   catch(e) { return null; }
@@ -281,69 +210,119 @@ if (!session || !session.perfil) {
   window.location.href = 'index.html';
 }
 
-// Module catalog
+// === ACCESS MATRIX (refactored) ===
+// access: 'rw' | 'r' | 'read-only-monitor' | null (no access)
+const ACCESS = {
+  HORIZONTE: { admin_demo:'rw', tecnico_dgae:'rw', tecnico_dgdei:'r', gabinete_min:'r', gabinete_seae:'r', admin_dapl:null },
+  PROSPETIVA: { admin_demo:'rw', tecnico_dgae:'rw', tecnico_dgdei:'r', gabinete_min:'r', gabinete_seae:'r', admin_dapl:null },
+  RADAR:      { admin_demo:'rw', tecnico_dgae:'rw', tecnico_dgdei:'rw', gabinete_min:'r', gabinete_seae:'r', admin_dapl:'r' },
+  FICHA:      { admin_demo:'rw', tecnico_dgae:'r', tecnico_dgdei:'rw', gabinete_min:'r', gabinete_seae:'rw', admin_dapl:null },
+  CONTENCIOSO:{ admin_demo:'rw', tecnico_dgae:null, tecnico_dgdei:'rw', gabinete_min:null, gabinete_seae:null, admin_dapl:null },
+  GABINETES:  { admin_demo:'rw', tecnico_dgae:'r', tecnico_dgdei:'r', gabinete_min:'r', gabinete_seae:'rw', admin_dapl:null },
+  ALERTAS:    { admin_demo:'rw', tecnico_dgae:'rw', tecnico_dgdei:'r', gabinete_min:'r', gabinete_seae:'r', admin_dapl:null },
+  ADMIN:      { admin_demo:'rw', tecnico_dgae:null, tecnico_dgdei:null, gabinete_min:null, gabinete_seae:null, admin_dapl:'rw' },
+};
+
 const MODULES = [
-  { id:'PROSPETIVA', file:'PROSPETIVA.html', code:'M01 · IA · Fase negocial', ti:'PROSPETIVA', sub:'Análise de impacto de propostas legislativas em fase negocial. Cola o articulado da proposta CE e a IA produz um plano de transposição estruturado.', icon:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', iconCls:'amber', badge:'live', meta:'6 exemplos · IA real', allow:['admin','dgdei','tecnico','dapl_admin'] },
-  { id:'RADAR', file:'RADAR.html', code:'M02 · Pós-publicação JOUE', ti:'RADAR', sub:'Monitoriza directivas e regulamentos publicados no JOUE com obrigações nacionais activas. Filtros por sector, estado e ministério.', icon:'<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>', iconCls:'green', badge:'live', meta:'30 processos · live', allow:['admin','dgdei','tecnico','gabinete','dapl_admin'] },
-  { id:'FICHA', file:'FICHA.html', code:'M03 · Transposição', ti:'FICHA', sub:'Wizard de 5 passos com os 19 campos oficiais da Ficha de Transposição DGDEI. Pré-preenchimento por IA, marcos e alertas escalonados.', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>', iconCls:'blue', badge:'beta', meta:'5 fichas demo', allow:['admin','dgdei','tecnico','dapl_admin'] },
-  { id:'CONTENCIOSO', file:'CONTENCIOSO.html', code:'M04 · Pré-cont. + TJUE', ti:'CONTENCIOSO', sub:'Pipeline de 6 fases para gestão de processos perante o TJUE. Apenas metadados — peças classificadas permanecem nos sistemas DGDEI.', icon:'<line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/><path d="M17 7l-3 7a3 3 0 0 0 6 0z"/><line x1="8" y1="21" x2="16" y2="21"/>', iconCls:'red', badge:'restrict', meta:'5 processos · Reservado', allow:['dgdei','dapl_admin'] },
-  { id:'GABINETES', file:'GABINETES.html', code:'M05 · Vista executiva', ti:'GABINETES', sub:'Vista por ministério com semáforo de risco, KPIs e calendário crítico. Briefing PDF descarregável para reuniões com a tutela.', icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>', iconCls:'blue', badge:'beta', meta:'16 ministérios', allow:['admin','dgdei','gabinete','dapl_admin'] },
-  { id:'ALERTAS', file:'ALERTAS.html', code:'Transversal', ti:'ALERTAS', sub:'Centro de notificações com escalonamento automático (T+0 técnico → T+21d SGGov). Filtros por tipo, ministério e severidade.', icon:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>', iconCls:'amber', badge:'live', meta:'12 alertas activos', allow:['admin','dgdei','tecnico','gabinete','dapl_admin'] },
-  { id:'ADMIN', file:'ADMIN.html', code:'Administração', ti:'ADMIN', sub:'Gestão da orgânica governativa, catálogo de Áreas Governativas, prompts IA versionados e qualidade do pipeline.', icon:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>', iconCls:'gray', badge:'admin', meta:'DAPL · estrutural', allow:['dapl_admin'] },
+  { id:'HORIZONTE', file:'HORIZONTE.html', code:'M00 · IA · Detecção · DGAE', ti:'HORIZONTE', sub:'Vigilância semanal das decisões do Colégio de Comissários. Detecta novas propostas antes da publicação, identifica ministério candidato, e produz nota de antecipação assinada.', icon:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>', iconCls:'amber', badge:'new', meta:'10 candidatos · esta semana', featured:true },
+  { id:'PROSPETIVA', file:'PROSPETIVA.html', code:'M01 · IA · Análise · DGAE', ti:'PROSPETIVA', sub:'Análise de impacto profunda de propostas legislativas em fase negocial. Mapeia artigo-a-artigo, identifica diplomas afectados, gera plano de transposição.', icon:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', iconCls:'amber', badge:'live', meta:'6 análises validadas' },
+  { id:'RADAR', file:'RADAR.html', code:'M02 · Pós-publicação JOUE', ti:'RADAR', sub:'Monitoriza directivas e regulamentos publicados no JOUE. Cada processo herda timeline retroactiva do HORIZONTE quando aplicável.', icon:'<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>', iconCls:'green', badge:'live', meta:'30 processos · live' },
+  { id:'FICHA', file:'FICHA.html', code:'M03 · Transposição', ti:'FICHA', sub:'Wizard de 5 passos com os 19 campos oficiais da Ficha DGDEI. Para SEAE, inclui acção de criar plano de transposição em SmartLegis.', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>', iconCls:'blue', badge:'beta', meta:'5 fichas demo' },
+  { id:'CONTENCIOSO', file:'CONTENCIOSO.html', code:'M04 · TJUE · Restrito DGDEI', ti:'CONTENCIOSO', sub:'Pipeline de 6 fases para gestão de processos perante o TJUE. Acesso restrito ao Técnico DGDEI (e admin).', icon:'<line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/><path d="M17 7l-3 7a3 3 0 0 0 6 0z"/><line x1="8" y1="21" x2="16" y2="21"/>', iconCls:'red', badge:'restrict', meta:'5 processos · Reservado' },
+  { id:'GABINETES', file:'GABINETES.html', code:'M05 · Vista executiva', ti:'GABINETES', sub:'Vista por ministério com semáforo de risco. Para SEAE, vista transversal de todos os 16 ministérios do XXV Governo.', icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>', iconCls:'blue', badge:'beta', meta:'16 ministérios' },
+  { id:'ALERTAS', file:'ALERTAS.html', code:'Transversal', ti:'ALERTAS', sub:'Centro de notificações com escalonamento automático (T+0 → T+21d). Conteúdo filtrado por perfil.', icon:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>', iconCls:'amber', badge:'live', meta:'12 alertas activos' },
+  { id:'ADMIN', file:'ADMIN.html', code:'Administração da plataforma', ti:'ADMIN', sub:'Gestão da orgânica governativa, Áreas Governativas, prompts IA versionados e utilizadores. Sem interferência em processos.', icon:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>', iconCls:'gray', badge:'admin', meta:'Plataforma · estrutural' },
 ];
 
-// Render UI
+const PROFILE_HERO = {
+  admin_demo: {
+    h: 'Vista completa · todas as funcionalidades',
+    s: 'Este é o perfil de demonstração. Permite explorar todas as funcionalidades em simultâneo, incluindo acessos restritos. Em produção, nenhum utilizador real tem este perfil.',
+  },
+  admin_dapl: {
+    h: 'Administração da plataforma · DAPL',
+    s: 'A DAPL mantém a plataforma sem interferir em processos: actualizar prompts IA, carregar nova orgânica do Governo, gerir Áreas Governativas e utilizadores. Acesso de leitura ao RADAR para monitorizar saúde operacional.',
+  },
+  tecnico_dgae: {
+    h: 'Bom dia, Helena · 4 candidatos novos esta semana',
+    s: 'Como Técnico DGAE, és o operador primário do VIGIL. Quartas de manhã o crawler corre e tens uma inbox de candidatos do Colégio para decidir: vigiar, promover a PROSPETIVA, gerar nota de antecipação para o gabinete candidato, ou arquivar.',
+  },
+  tecnico_dgdei: {
+    h: 'Hoje na DGDEI · 1 sanção activa · 2 marcos atrasados',
+    s: 'Como Técnico DGDEI, geres o CONTENCIOSO em primeira mão e usas o VIGIL para registar informação destinada à Comissão Europeia. Consultas o RADAR e as FICHAS para preparar relatórios e respostas.',
+  },
+  gabinete_min: {
+    h: 'Vista executiva · Min. Ambiente e Energia',
+    s: 'Como Gabinete ministerial vês apenas os processos sob a tua tutela. Recebes notas de antecipação da DGAE quando uma proposta CE cai sobre as áreas do MAE. Usas a informação para empurrar os serviços (ICNF, APA, DGEG) ou para preparar resposta política.',
+  },
+  gabinete_seae: {
+    h: 'Coordenação política transversal · Gab. SEAE',
+    s: 'Como Gabinete da Secretária de Estado dos Assuntos Europeus, tens vista transversal dos 16 ministérios. Para cada FICHA aberta podes criar plano de transposição em SmartLegis. És também destinatário das notas de antecipação da DGAE no nível político.',
+  },
+};
+
 function init() {
-  // User chip
   const initials = session.name.split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
   document.getElementById('avatar').textContent = initials;
   document.getElementById('user-name').textContent = session.name;
   document.getElementById('user-role').textContent = session.role;
   document.getElementById('menu-name').textContent = session.name;
   document.getElementById('menu-email').textContent = session.email;
+  document.getElementById('menu-unit').textContent = session.unit || '';
   document.getElementById('greet-name').textContent = session.name.split(' ')[0];
 
-  // Greeting based on time
+  // Mock indicator
+  if (session.perfil === 'admin_demo') {
+    document.getElementById('avatar').classList.add('mock');
+    document.getElementById('mock-banner').style.display = 'flex';
+  }
+  if (session.note) {
+    document.getElementById('menu-note').textContent = session.note;
+    document.getElementById('menu-note').style.display = 'block';
+  }
+
   const h = new Date().getHours();
   document.getElementById('greet').textContent = h < 12 ? 'Bom dia' : h < 19 ? 'Boa tarde' : 'Boa noite';
 
-  // Hero customizing based on perfil
-  const PROFILE_HERO = {
-    admin:      { h:'O que precisa da tua atenção, Carolina', s:'Como SGGov · Coordenação tens visibilidade global excepto sobre as peças classificadas do contencioso. O pipeline IA produziu 3 análises esta semana.' },
-    dgdei:      { h:'Hoje na DGDEI', s:'Tens acesso pleno incluindo peças do contencioso (módulo restrito). 2 fichas com marcos atrasados precisam de revisão.' },
-    tecnico:    { h:'Hoje no teu portfólio', s:'Como Técnico/Jurista podes consultar e preencher fichas dos teus processos atribuídos. CONTENCIOSO permanece restrito à DGDEI.' },
-    gabinete:   { h:'Vista executiva — Ministério do Ambiente e Energia', s:'Como Gabinete ministerial vês o resumo dos processos sob a tua tutela. C-217/24 (Habitats) com sanção activa.' },
-    dapl_admin: { h:'Centro de comando · DAPL', s:'Como Chefe da DAPL tens acesso a todos os módulos incluindo a administração da plataforma (orgânica, áreas, prompts IA, utilizadores).' },
-  };
-  const ph = PROFILE_HERO[session.perfil] || PROFILE_HERO.admin;
+  const ph = PROFILE_HERO[session.perfil] || PROFILE_HERO.tecnico_dgae;
   document.getElementById('hero-h1').textContent = ph.h;
   document.getElementById('hero-sub').textContent = ph.s;
 
-  // Modules grid
-  const allowed = MODULES.filter(m => m.allow.includes(session.perfil));
   const wrap = document.getElementById('modules');
-  wrap.innerHTML = allowed.map(m => `
-    <a class="module" href="${m.file}">
-      <div class="module-h">
-        <div class="module-ic ${m.iconCls}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg>
-        </div>
-        <span class="module-badge badge-${m.badge}">${m.badge === 'live' ? 'Live' : m.badge === 'beta' ? 'Beta' : m.badge === 'restrict' ? 'Restrito' : 'Admin'}</span>
-      </div>
-      <div class="module-code">${m.code}</div>
-      <div class="module-ti">${m.ti}</div>
-      <div class="module-sub">${m.sub}</div>
-      <div class="module-foot">
-        <div class="module-foot-meta"><strong>${m.meta}</strong></div>
-        <div class="module-foot-arrow">Abrir →</div>
-      </div>
-    </a>
-  `).join('');
-  // Show hidden modules as disabled placeholders for transparency
-  const blocked = MODULES.filter(m => !m.allow.includes(session.perfil));
-  if (blocked.length > 0) {
-    blocked.forEach(m => {
-      wrap.innerHTML += `
+  let visible = 0, restricted = 0;
+  let html = '';
+  MODULES.forEach(m => {
+    const acc = ACCESS[m.id][session.perfil];
+    if (acc) {
+      visible++;
+      const badgeText = m.badge === 'new' ? 'Novo' : m.badge === 'live' ? 'Live' : m.badge === 'beta' ? 'Beta' : m.badge === 'restrict' ? 'Restrito' : 'Admin';
+      const accBadge = acc === 'r' ? '<span class="module-badge badge-read" style="margin-left:0.4rem">Só leitura</span>' : '';
+      html += `
+        <a class="module ${m.featured ? 'featured' : ''}" href="${m.file}">
+          <div class="module-h">
+            <div class="module-ic ${m.iconCls}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${m.icon}</svg>
+            </div>
+            <div><span class="module-badge badge-${m.badge}">${badgeText}</span>${accBadge}</div>
+          </div>
+          <div class="module-code">${m.code}</div>
+          <div class="module-ti">${m.ti}</div>
+          <div class="module-sub">${m.sub}</div>
+          <div class="module-foot">
+            <div class="module-foot-meta"><strong>${m.meta}</strong></div>
+            <div class="module-foot-arrow">Abrir →</div>
+          </div>
+        </a>
+      `;
+    } else {
+      restricted++;
+    }
+  });
+  // Restricted modules shown as disabled cards for transparency
+  MODULES.forEach(m => {
+    if (!ACCESS[m.id][session.perfil]) {
+      const allowed = Object.entries(ACCESS[m.id]).filter(([k,v]) => v && k !== 'admin_demo').map(([k]) => k.replace('_',' '));
+      html += `
         <div class="module disabled" title="O teu perfil não tem acesso a este módulo">
           <div class="module-h">
             <div class="module-ic gray">
@@ -355,34 +334,49 @@ function init() {
           <div class="module-ti">${m.ti}</div>
           <div class="module-sub">${m.sub}</div>
           <div class="module-foot">
-            <div class="module-foot-meta">Restrito ao perfil <strong>${m.allow.join(' / ')}</strong></div>
+            <div class="module-foot-meta">Restrito a: <strong>${allowed.join(' · ') || '—'}</strong></div>
           </div>
-        </div>
-      `;
-    });
-  }
-  document.getElementById('modules-count').textContent = allowed.length + ' acessíveis · ' + blocked.length + ' restritos';
+        </div>`;
+    }
+  });
+  wrap.innerHTML = html;
+  document.getElementById('modules-count').textContent = `${visible} acessíveis · ${restricted} restritos`;
+
+  // Activity feed (tailored)
+  const feed = activityFeedFor(session.perfil);
+  document.getElementById('feed').innerHTML = feed.map(f => `
+    <div class="feed-it">
+      <div class="feed-ic ${f.ic}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${f.svg}</svg></div>
+      <div class="feed-bd">${f.body}<div class="feed-time">${f.time}</div></div>
+    </div>
+  `).join('');
+}
+
+function activityFeedFor(perfil) {
+  const base = [
+    { ic:'a', svg:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+      body:'<span class="feed-actor">Crawler HORIZONTE</span> · 4 propostas detectadas no Colégio · <strong>2 candidatos novos</strong> à espera de decisão DGAE', time:'há 47 min · ciclo 2026/W19' },
+    { ic:'g', svg:'<polyline points="20 6 9 17 4 12"/>',
+      body:'<span class="feed-actor">Helena Carvalho (DGAE)</span> · nota de antecipação assinada e enviada · destinatários: <strong>MS · DGAE · DGDEI</strong> · proposta «Espaço Europeu de Dados de Saúde»', time:'hoje 09:14' },
+    { ic:'b', svg:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+      body:'<span class="feed-actor">Diogo Ferreira (SEAE)</span> · plano de transposição CSDD inserido em SmartLegis · MECT notificado', time:'ontem 15:42' },
+    { ic:'r', svg:'<line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M7 7l-3 7a3 3 0 0 0 6 0z"/>',
+      body:'Sanção C-217/24 acumula <strong>€2 392 500</strong> desde acórdão · DGDEI a coordenar acções com ICNF', time:'contagem activa' },
+    { ic:'g', svg:'<polyline points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/>',
+      body:'<span class="feed-actor">Filipa Soares (Admin DAPL)</span> · prompt v1.4.1 activado em produção · refinamento de keywords ambíguas', time:'ontem 17:02' },
+  ];
+  return base;
 }
 
 function toggleMenu(e) {
   e.stopPropagation();
   document.getElementById('menu').classList.toggle('on');
-  const btn = document.getElementById('user-chip');
-  btn.setAttribute('aria-expanded', document.getElementById('menu').classList.contains('on'));
+  document.getElementById('user-chip').setAttribute('aria-expanded', document.getElementById('menu').classList.contains('on'));
 }
-
-function closeMenu() {
-  document.getElementById('menu').classList.remove('on');
-}
-
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.user-wrap')) closeMenu();
+  if (!e.target.closest('.user-wrap')) document.getElementById('menu').classList.remove('on');
 });
-
-function signOut() {
-  localStorage.removeItem('vigil-demo-session');
-  // Link href takes care of redirect
-}
+function signOut() { localStorage.removeItem('vigil-demo-session'); }
 
 init();
 </script>

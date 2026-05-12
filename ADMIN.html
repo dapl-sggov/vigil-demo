@@ -153,7 +153,7 @@ else {
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
 }
 
-if (session.perfil !== 'dapl_admin') {
+if (session.perfil !== 'admin_dapl' && session.perfil !== 'admin_demo') {
   document.getElementById('content').innerHTML = `
     <div class="access-denied">
       <h2>🔒 Acesso restrito ao Admin DAPL</h2>

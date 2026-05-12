@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIGIL · HORIZONTE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--ink-5:#AEAEB2;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--blue-soft:#E5ECF3;--red:#D02117;--red-soft:#FBEAE9;--amber:#C08916;--amber-soft:#FDF4E3;--gold:#BE9C54;--gold-soft:rgba(190,156,84,0.12);--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
+strong,b{font-weight:600;}
+.shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
+
+.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
+.brand-mark{width:30px;height:30px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:18px;height:18px;color:#fff;}
+.brand-bd{flex:1;}
+.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);}
+.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
+.brand-link:hover{text-decoration:underline;}
+.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
+.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
+.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+
+.hero{padding:1rem 0 1.4rem;}
+.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);font-weight:600;margin-bottom:0.4rem;}
+.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:780px;line-height:1.55;}
+
+.read-only-banner{padding:0.6rem 0.95rem;background:var(--blue-soft);border:1px solid var(--blue);border-radius:8px;font-size:0.78rem;color:var(--blue);margin-bottom:1rem;display:flex;align-items:flex-start;gap:0.55rem;}
+.read-only-banner svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+
+.tabs{display:flex;gap:0.4rem;border-bottom:1px solid var(--line);margin-bottom:1.2rem;}
+.tab{padding:0.65rem 1.05rem;font-family:inherit;font-size:0.86rem;color:var(--ink-3);cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.5rem;}
+.tab:hover{color:var(--ink);}
+.tab.cur{color:var(--ink);border-bottom-color:var(--amber);font-weight:600;}
+.tab .count{background:var(--bg4);color:var(--ink-3);font-size:0.66rem;padding:0.1rem 0.45rem;border-radius:10px;font-weight:600;}
+.tab.cur .count{background:var(--amber);color:#fff;}
+
+.panel{display:none;}
+.panel.on{display:block;}
+
+/* COLÉGIO WATCH (Vista A) */
+.colegio-bar{display:flex;align-items:center;gap:0.8rem;padding:0.85rem 1.1rem;background:linear-gradient(135deg,var(--amber-soft) 0%,var(--bg2) 100%);border:1px solid var(--amber);border-radius:10px;margin-bottom:1.1rem;}
+.colegio-bar-ic{width:32px;height:32px;border-radius:8px;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.colegio-bar-ic svg{width:18px;height:18px;}
+.colegio-bar-bd{flex:1;}
+.colegio-bar-ti{font-size:0.86rem;font-weight:600;color:var(--ink);}
+.colegio-bar-sub{font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem;}
+.colegio-bar-meta{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);text-align:right;}
+
+.cards-grid{display:flex;flex-direction:column;gap:0.7rem;}
+.cand-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:0.9rem 1rem;transition:all 0.15s;}
+.cand-card:hover{border-color:var(--amber);box-shadow:var(--sh-md);}
+.cand-h{display:flex;justify-content:space-between;align-items:flex-start;gap:0.85rem;margin-bottom:0.55rem;}
+.cand-h-l{flex:1;min-width:0;}
+.cand-meta-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap;}
+.cand-vigid{font-family:var(--font-mono);font-size:0.66rem;color:var(--amber);background:var(--amber-soft);padding:0.15rem 0.45rem;border-radius:3px;font-weight:600;letter-spacing:0.02em;}
+.cand-cwp{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);}
+.cand-state-pill{font-size:0.6rem;padding:0.18rem 0.5rem;border-radius:3px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.state-cwp{background:var(--bg4);color:var(--ink-2);}
+.state-call{background:var(--tint-blue);color:var(--blue);}
+.state-colegio-agendado{background:var(--tint-amber);color:var(--amber);}
+.state-colegio-adoptado{background:var(--gold-soft);color:var(--gold);}
+.state-com-publicado{background:var(--green-soft);color:var(--green);}
+.state-vigilancia{background:var(--blue-soft);color:var(--blue);}
+.state-promovido{background:var(--green-soft);color:var(--green);}
+.state-arquivado{background:var(--red-soft);color:var(--red);}
+.cand-title{font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;line-height:1.35;}
+.cand-summary{font-size:0.78rem;color:var(--ink-2);line-height:1.5;}
+.cand-h-r{flex-shrink:0;text-align:right;}
+.cand-crit{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.72rem;font-weight:600;padding:0.25rem 0.5rem;border-radius:4px;}
+.crit-alto{background:var(--tint-red);color:var(--red);}
+.crit-medio{background:var(--tint-amber);color:var(--amber);}
+.crit-baixo{background:var(--tint-green);color:var(--green);}
+.cand-confidence{font-size:0.66rem;color:var(--ink-4);margin-top:0.3rem;font-family:var(--font-mono);}
+
+.cand-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:0.55rem;padding:0.6rem 0.7rem;background:var(--bg3);border-radius:6px;margin:0.5rem 0;}
+.cand-field-lb{font-size:0.6rem;text-transform:uppercase;color:var(--ink-4);font-weight:600;letter-spacing:0.04em;margin-bottom:0.15rem;}
+.cand-field-vl{font-size:0.76rem;color:var(--ink);font-weight:500;}
+
+.cand-actions{display:flex;gap:0.4rem;flex-wrap:wrap;padding-top:0.55rem;border-top:1px solid var(--line);}
+.btn-action{padding:0.4rem 0.8rem;font-family:inherit;font-size:0.74rem;font-weight:600;border-radius:6px;cursor:pointer;border:1px solid;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.3rem;}
+.btn-action svg{width:11px;height:11px;}
+.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);}
+.btn-amber{background:var(--amber);color:#fff;border-color:var(--amber);}
+.btn-amber:hover{background:#9F7012;}
+.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
+.btn-ghost:hover{background:var(--bg3);}
+.btn-danger{background:var(--bg2);color:var(--red);border-color:var(--line);}
+.btn-danger:hover{background:var(--red-soft);}
+
+.cand-note-status{font-size:0.7rem;color:var(--green);font-weight:500;display:inline-flex;align-items:center;gap:0.25rem;}
+
+/* WATCHLIST (Vista B) */
+.list-toolbar{display:flex;gap:0.5rem;align-items:center;margin-bottom:0.9rem;flex-wrap:wrap;padding:0.65rem 0.85rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;}
+.tool-search{flex:1;min-width:200px;}
+.inp,.sel{padding:0.45rem 0.7rem;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.8rem;color:var(--ink);background:var(--bg2);outline:none;}
+.inp:focus,.sel:focus{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-soft);}
+.inp{width:100%;}
+.tool-meta{margin-left:auto;font-size:0.74rem;color:var(--ink-3);}
+
+.timeline-mini{display:flex;align-items:center;gap:0.45rem;margin-top:0.5rem;padding:0.45rem 0.6rem;background:var(--bg);border-radius:6px;}
+.tl-step{display:flex;flex-direction:column;align-items:center;gap:0.2rem;min-width:0;}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.tl-dot.done{background:var(--green);}
+.tl-dot.cur{background:var(--amber);box-shadow:0 0 0 3px var(--amber-soft);}
+.tl-dot.todo{background:var(--ink-5);}
+.tl-lb{font-size:0.6rem;color:var(--ink-3);text-align:center;white-space:nowrap;}
+.tl-line{flex:1;height:2px;background:var(--line);position:relative;align-self:center;margin-top:-0.55rem;}
+.tl-line.done{background:var(--green);}
+
+/* ARQUIVO (Vista C) */
+.arch-card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:0.8rem 0.95rem;border-left:3px solid var(--red);}
+.arch-card+.arch-card{margin-top:0.5rem;}
+.arch-just-pill{display:inline-block;font-size:0.62rem;padding:0.15rem 0.45rem;border-radius:3px;background:var(--red-soft);color:var(--red);font-weight:600;margin-bottom:0.4rem;}
+.arch-just-text{font-size:0.78rem;color:var(--ink-2);font-style:italic;line-height:1.5;}
+.arch-meta{display:flex;gap:0.8rem;font-size:0.7rem;color:var(--ink-3);margin-top:0.55rem;padding-top:0.5rem;border-top:1px solid var(--line);}
+
+/* MODAL · Nota de Antecipação */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:50;padding:1.5rem;backdrop-filter:blur(3px);}
+.modal.on{display:flex;}
+.modal-card{width:min(820px,100%);max-height:90vh;background:var(--bg2);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);display:flex;flex-direction:column;overflow:hidden;}
+.modal-h{padding:1.2rem 1.5rem;background:linear-gradient(135deg,var(--amber-soft) 0%,var(--bg2) 100%);border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.modal-h-bd{flex:1;}
+.modal-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);font-weight:700;margin-bottom:0.3rem;}
+.modal-ti{font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.modal-x{background:transparent;border:none;cursor:pointer;color:var(--ink-3);width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.modal-x:hover{background:var(--bg3);color:var(--ink);}
+.modal-x svg{width:18px;height:18px;}
+.modal-bd{padding:1.5rem;overflow-y:auto;flex:1;}
+
+/* Nota de Antecipação · format */
+.nota-paper{background:#FEFCF8;border:1px solid var(--line);border-radius:6px;padding:2rem 2.2rem;font-family:'Times New Roman',Georgia,serif;line-height:1.6;color:var(--ink);}
+.nota-paper h2{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:0.4rem;letter-spacing:0.02em;font-family:'Inter',sans-serif;}
+.nota-paper h3{font-size:0.78rem;font-weight:600;text-align:center;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.3rem;font-family:'Inter',sans-serif;}
+.nota-paper .hdr-line{height:2px;background:var(--amber);margin:0 0 1.5rem 0;}
+.nota-paper .meta-table{width:100%;font-size:0.84rem;margin-bottom:1.2rem;}
+.nota-paper .meta-table td{padding:0.25rem 0.5rem 0.25rem 0;vertical-align:top;}
+.nota-paper .meta-table td:first-child{font-weight:600;width:30%;}
+.nota-paper p{font-size:0.92rem;margin-bottom:0.85rem;text-align:justify;}
+.nota-paper h4{font-size:0.9rem;font-weight:700;margin-top:1rem;margin-bottom:0.55rem;color:var(--ink);font-family:'Inter',sans-serif;}
+.nota-paper ul{margin-left:1.5rem;font-size:0.88rem;margin-bottom:0.85rem;}
+.nota-paper li{margin-bottom:0.3rem;}
+.nota-paper .signature{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--ink-5);font-size:0.84rem;font-style:italic;color:var(--ink-2);}
+.nota-paper .signature strong{font-style:normal;color:var(--ink);}
+
+.modal-ft{padding:0.9rem 1.5rem;background:var(--bg3);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:0.6rem;}
+.modal-ft-l{font-size:0.74rem;color:var(--ink-3);}
+.modal-ft-r{display:flex;gap:0.5rem;}
+
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
+.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:tin 0.22s;}
+.toast.t-info{border-left-color:var(--blue);}
+.toast.t-warn{border-left-color:var(--amber);}
+.toast-ti{font-size:0.8rem;font-weight:600;}
+.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+@keyframes tin{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+@media (max-width:900px){
+  .cand-fields{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="brand">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3a12 12 0 0 1 3 7 12 12 0 0 1-3 7 12 12 0 0 1-3-7 12 12 0 0 1 3-7z"/></svg></div>
+    <div class="brand-bd"><div class="brand-nm">VIGIL · HORIZONTE</div><div class="brand-sub">M00 · Detecção semanal de propostas legislativas UE · Técnico DGAE</div></div>
+    <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
+    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eye">M00 · HORIZONTE · Fase pré-publicação · DGAE</div>
+    <h1 class="hero-h1" id="hero-h1">Antes de Bruxelas aprovar · sabes o que vai mudar em Lisboa</h1>
+    <p class="hero-sub" id="hero-sub">A cada quarta-feira às 13h, após o Colégio de Comissários, o crawler do VIGIL detecta propostas novas e produz uma fila de candidatos para decisão DGAE. Cada decisão fica auditada: vigiar, promover à análise PROSPETIVA, gerar nota de antecipação para o gabinete candidato, ou arquivar com justificação.</p>
+  </div>
+
+  <div id="readonly-banner" class="read-only-banner" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <div id="readonly-text">Modo de leitura · este perfil pode consultar o HORIZONTE mas não pode decidir promoções, gerar notas ou arquivar candidatos.</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab cur" data-tab="semana" onclick="setTab('semana')">
+      Esta semana
+      <span class="count" id="count-semana">—</span>
+    </button>
+    <button class="tab" data-tab="watchlist" onclick="setTab('watchlist')">
+      Watchlist
+      <span class="count" id="count-watchlist">—</span>
+    </button>
+    <button class="tab" data-tab="arquivo" onclick="setTab('arquivo')">
+      Arquivo justificado
+      <span class="count" id="count-arquivo">—</span>
+    </button>
+  </div>
+
+  <!-- VISTA A · Esta semana -->
+  <div class="panel on" data-panel="semana">
+    <div class="colegio-bar">
+      <div class="colegio-bar-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="colegio-bar-bd">
+        <div class="colegio-bar-ti">Colégio de Comissários · Quarta-feira, 13 de Maio de 2026</div>
+        <div class="colegio-bar-sub">12 pontos na agenda · 4 incluem propostas legislativas · crawler executou às 13h02 · 4 candidatos detectados</div>
+      </div>
+      <div class="colegio-bar-meta">
+        Próximo ciclo: <strong>quarta 20-05</strong><br>
+        Última corrida: <strong>hoje 13:02</strong>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="semana-list"></div>
+  </div>
+
+  <!-- VISTA B · Watchlist -->
+  <div class="panel" data-panel="watchlist">
+    <div class="list-toolbar">
+      <div class="tool-search"><input class="inp" id="wl-search" type="search" placeholder="Pesquisar título, vigil_id, ministério…" oninput="renderWatchlist()"></div>
+      <select class="sel" id="wl-state" onchange="renderWatchlist()">
+        <option value="">Todos os estados</option>
+        <option value="cwp">No CWP</option>
+        <option value="call_for_evidence">Call for Evidence</option>
+        <option value="colegio_adoptado">Adoptado pelo Colégio</option>
+        <option value="vigilancia">Em vigilância</option>
+        <option value="promovido">Promovido a PROSPETIVA/RADAR</option>
+      </select>
+      <select class="sel" id="wl-crit" onchange="renderWatchlist()">
+        <option value="">Todas as criticidades</option>
+        <option value="alto">Alta</option>
+        <option value="medio">Média</option>
+        <option value="baixo">Baixa</option>
+      </select>
+      <span class="tool-meta" id="wl-meta">— candidatos</span>
+    </div>
+    <div class="cards-grid" id="watchlist-list"></div>
+  </div>
+
+  <!-- VISTA C · Arquivo justificado -->
+  <div class="panel" data-panel="arquivo">
+    <div style="padding:0.7rem 0.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:0.9rem;font-size:0.82rem;color:var(--ink-2);line-height:1.5">
+      <strong>Accountability simétrica:</strong> as decisões de <em>não promover</em> um candidato ficam registadas com justificação obrigatória, da mesma forma que as de promover. Se mais tarde se descobrir que uma decisão de arquivamento foi errada, essa descoberta é em si auditável.
+    </div>
+    <div id="arquivo-list"></div>
+  </div>
+
+</div>
+
+<!-- MODAL · Nota de Antecipação -->
+<div class="modal" id="modal-nota">
+  <div class="modal-card">
+    <div class="modal-h">
+      <div class="modal-h-bd">
+        <div class="modal-eyebrow">Nota de Antecipação · Pré-visualização</div>
+        <div class="modal-ti" id="modal-nota-ti">—</div>
+      </div>
+      <button class="modal-x" onclick="closeModal('modal-nota')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-bd" id="modal-nota-bd"></div>
+    <div class="modal-ft">
+      <div class="modal-ft-l">Destinatários definidos pelo Técnico DGAE · auditoria activa</div>
+      <div class="modal-ft-r">
+        <button class="btn-action btn-ghost" onclick="closeModal('modal-nota')">Cancelar</button>
+        <button class="btn-action btn-amber" id="btn-nota-send" onclick="sendNota()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Assinar e enviar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+const session = (()=>{ try{return JSON.parse(localStorage.getItem('vigil-demo-session')||'null');}catch(e){return null;} })();
+if (!session) { window.location.href = 'index.html'; }
+else {
+  document.getElementById('avatar').textContent = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('user-name').textContent = session.name.split(' ')[0];
+}
+
+// Access · only certain profiles can write
+const CAN_WRITE = ['admin_demo','tecnico_dgae'].includes(session.perfil);
+const READ_ONLY_TEXTS = {
+  tecnico_dgdei: 'Como Técnico DGDEI consultas o HORIZONTE para preparar informação destinada à Comissão. Sem permissões de decisão.',
+  gabinete_seae: 'Como Gabinete da SEAE consultas notas de antecipação que te são endereçadas. Sem permissões de decisão.',
+  gabinete_min: 'Como Gabinete ministerial consultas notas de antecipação que dizem respeito ao teu ministério.',
+  admin_dapl: 'A DAPL não tem interferência em processos · consulta o HORIZONTE apenas para monitorizar saúde operacional da plataforma.',
+};
+if (!CAN_WRITE) {
+  document.getElementById('readonly-banner').style.display = 'flex';
+  document.getElementById('readonly-text').textContent = READ_ONLY_TEXTS[session.perfil] || 'Modo de leitura.';
+}
+
+// === DATA ===
+// Candidatos para Esta Semana (semana 19 · Maio 2026)
+const SEMANA = [
+  { vigil_id:'VGL-2026-0142', cwp:'CWP-2026/Item-12', cwp_title:'Revisão da Diretiva NIS · regime de cibersegurança',
+    title:'Proposta de Diretiva de revisão da NIS2 (NIS3) · serviços essenciais críticos alargados',
+    summary:'Alargamento do âmbito da NIS2 a sectores adicionais (administração pública local, organizações de investigação). Reforço dos requisitos de reporte de incidentes (24h para incidentes significativos). Harmonização de sanções a nível UE.',
+    sector:'Digital · Cibersegurança',
+    base_juridica:'Art. 114.º TFUE',
+    ministerio_cand:'MAE · CNCS · MAI',
+    area_gov:'CIBERSEGURANCA',
+    criticidade:'alto', confidence:0.91, model:'haiku-4-5',
+    detected_at:'13-05-2026 13:02',
+    extra:'Sucessor directo da Diretiva 2022/2555 (NIS2) ainda em transposição. Conflito previsível com IP/24/1182.',
+  },
+  { vigil_id:'VGL-2026-0143', cwp:'CWP-2026/Item-44', cwp_title:'Pacote sobre IA em saúde',
+    title:'Iniciativa autónoma da Comissão · Orientações sobre IA generativa em sistemas nacionais de saúde',
+    summary:'Pacote de medidas: (a) orientações vinculativas sobre uso de IA generativa em sistemas nacionais de saúde · (b) regime de avaliação clínica · (c) registo europeu de modelos médicos. Articulação com AI Act e Regulamento Espaço Europeu de Dados de Saúde.',
+    sector:'Saúde · Digital',
+    base_juridica:'Art. 168.º TFUE + Art. 16.º TFUE',
+    ministerio_cand:'MS · Infarmed · SPMS',
+    area_gov:'SAUDE',
+    criticidade:'alto', confidence:0.84, model:'haiku-4-5',
+    detected_at:'13-05-2026 13:02',
+    extra:'Cruza AI Act (Reg. 2024/1689) e Espaço Europeu de Dados de Saúde (Reg. 2025/327 em vigor).',
+  },
+  { vigil_id:'VGL-2026-0144', cwp:'CWP-2026/Item-7', cwp_title:'Revisão eIDAS3',
+    title:'Proposta de Regulamento eIDAS3 · carteira digital europeia · 2.ª iteração',
+    summary:'Segunda iteração da carteira digital europeia. Inclui obrigações para administrações públicas nacionais sobre integração de credenciais europeias. Reforço de interoperabilidade transfronteiriça. Articulação com regimes nacionais de identidade electrónica.',
+    sector:'Digital · Administração',
+    base_juridica:'Art. 114.º TFUE',
+    ministerio_cand:'MARE · AMA · MJ',
+    area_gov:'REFORMA_ESTADO',
+    criticidade:'medio', confidence:0.78, model:'haiku-4-5',
+    detected_at:'13-05-2026 13:02',
+    extra:'Impacto em Chave Móvel Digital, Cartão de Cidadão, autenticacao.gov.pt.',
+  },
+  { vigil_id:'VGL-2026-0145', cwp:'CWP-2026/Item-31', cwp_title:'Pacote sobre Plataformas Digitais',
+    title:'Diretiva sobre auditoria social das plataformas digitais de grande dimensão (≥45M utilizadores)',
+    summary:'Auditoria social anual obrigatória, conduzida por entidades certificadas, sobre VLOPs (Very Large Online Platforms). Conteúdo: avaliação de risco para integridade democrática, direitos fundamentais, saúde mental dos utilizadores.',
+    sector:'Digital · Direitos',
+    base_juridica:'Art. 114.º TFUE',
+    ministerio_cand:'MAI · MJ',
+    area_gov:'DIGITAL',
+    criticidade:'medio', confidence:0.72, model:'haiku-4-5',
+    detected_at:'13-05-2026 13:02',
+    extra:'Aprofunda obrigações do DSA (Reg. 2022/2065). ANACOM como provável coordenadora nacional.',
+  },
+];
+
+// Candidatos em Watchlist (já decididos, em vigilância activa)
+const WATCHLIST = [
+  { vigil_id:'VGL-2026-0089', cwp:'CWP-2025/Item-92', state:'promovido',
+    title:'Lei do Lobby · Diretiva Representação Interesses Países Terceiros',
+    com_ref:'COM(2023) 637 final',
+    summary:'PROMOVIDO em 15-Jan-2026. Análise PROSPETIVA concluída e validada. À espera de adopção pelo Conselho (trílogo em curso).',
+    sector:'Transparência', ministerio_cand:'MP · MNE', criticidade:'alto',
+    primeiro_sinal:'15-Out-2024',
+    observador:'Helena Carvalho · DGAE',
+    timeline:[
+      {dt:'2024-10-15',ev:'CWP 2025 listou iniciativa',state:'done'},
+      {dt:'2025-02-08',ev:'Call for Evidence aberto',state:'done'},
+      {dt:'2025-09-22',ev:'Colégio adopta · COM final publicada',state:'done'},
+      {dt:'2026-01-12',ev:'Detectado pelo crawler HORIZONTE',state:'done'},
+      {dt:'2026-01-15',ev:'Nota antecipação · MP, MNE, DGAE',state:'done'},
+      {dt:'2026-02-03',ev:'Promovido a PROSPETIVA · validado',state:'done'},
+      {dt:'',ev:'Aguarda publicação JOUE para RADAR',state:'cur'},
+    ],
+  },
+  { vigil_id:'VGL-2026-0102', cwp:'CWP-2026/Item-22', state:'vigilancia',
+    title:'IA em recursos humanos · regulamento horizontal',
+    com_ref:'-- aguarda COM prep',
+    summary:'Em vigilância desde Fev-2026. Call for Evidence ainda aberta até 30-Jun. Helena marcou para revisitar após encerramento da consulta pública.',
+    sector:'Trabalho · Digital', ministerio_cand:'MTSSS · ACT', criticidade:'medio',
+    primeiro_sinal:'10-Out-2025',
+    observador:'Helena Carvalho · DGAE',
+    timeline:[
+      {dt:'2025-10-10',ev:'CWP 2026 listou iniciativa',state:'done'},
+      {dt:'2026-02-18',ev:'Call for Evidence aberto · até 30-Jun',state:'done'},
+      {dt:'2026-02-22',ev:'Marcado para vigilância · Helena Carvalho',state:'done'},
+      {dt:'',ev:'Revisitar após encerramento da consulta (Jul-2026)',state:'cur'},
+    ],
+  },
+  { vigil_id:'VGL-2026-0118', cwp:'CWP-2026/Item-18', state:'vigilancia',
+    title:'Pacote anti-SLAPP · 2.ª iteração · processos abusivos contra denunciantes',
+    com_ref:'-- aguarda COM prep',
+    summary:'Reforço da Dir. 2024/1069 com obrigações nacionais adicionais. Em vigilância · provável adopção pelo Colégio em Set-2026.',
+    sector:'Justiça', ministerio_cand:'MJ', criticidade:'medio',
+    primeiro_sinal:'15-Mar-2026',
+    observador:'Helena Carvalho · DGAE',
+    timeline:[
+      {dt:'2026-03-15',ev:'CWP 2026 mid-year revision',state:'done'},
+      {dt:'2026-03-20',ev:'Marcado para vigilância',state:'done'},
+      {dt:'',ev:'Aguarda anúncio formal · Colégio Set/Out 2026',state:'cur'},
+    ],
+  },
+  { vigil_id:'VGL-2025-0241', cwp:'CWP-2024/Item-08', state:'no_radar',
+    title:'AI Act · Regulamento da Inteligência Artificial',
+    com_ref:'Reg. (UE) 2024/1689',
+    summary:'JÁ NO RADAR. Mantido aqui para visualizar linhagem retroactiva: detectado por HORIZONTE em 2024, promovido a PROSPETIVA, publicado JOUE em 12-Jul-2024.',
+    sector:'Digital', ministerio_cand:'MARE · ANI', criticidade:'alto',
+    primeiro_sinal:'19-Out-2021',
+    observador:'Helena Carvalho · DGAE (à data, J. Pereira)',
+    timeline:[
+      {dt:'2021-10-19',ev:'CWP 2022 listou iniciativa',state:'done'},
+      {dt:'2021-12-03',ev:'Detectado · HORIZONTE',state:'done'},
+      {dt:'2022-01-15',ev:'Nota antecipação · MP, MARE, MJ',state:'done'},
+      {dt:'2022-03-08',ev:'Promovido a PROSPETIVA',state:'done'},
+      {dt:'2024-06-13',ev:'Colégio adopta · 32024R1689',state:'done'},
+      {dt:'2024-07-12',ev:'Publicação JOUE · match no RADAR',state:'done'},
+    ],
+  },
+];
+
+// Arquivados com justificação
+const ARQUIVO = [
+  { vigil_id:'VGL-2026-0079',
+    title:'Iniciativa CE sobre regulamentação de criptomoedas comerciais retalhistas',
+    arq_dt:'08-Mar-2026',
+    justificacao_cat:'cobertura_existente',
+    justificacao:'Fora de âmbito Portugal · regulamentação completa via MiCA (Reg. 2023/1114) já em vigor desde Jun-2024. A iniciativa CE em causa é apenas orientação interpretativa não-vinculativa. Sem necessidade de transposição.',
+    arquivado_por:'Helena Carvalho · DGAE',
+  },
+  { vigil_id:'VGL-2026-0084',
+    title:'Recomendação CE sobre boas práticas administrativas em IA na AP',
+    arq_dt:'15-Mar-2026',
+    justificacao_cat:'nao_legislativo',
+    justificacao:'Instrumento não-legislativo (Recomendação ao abrigo do Art. 292.º TFUE). Não impõe obrigações a Estados-Membros. Informação encaminhada à AMA para incorporação voluntária no plano de IA da Administração Pública.',
+    arquivado_por:'Helena Carvalho · DGAE',
+  },
+  { vigil_id:'VGL-2026-0091',
+    title:'Proposta de orientação técnica sobre certificações forensics digitais',
+    arq_dt:'22-Mar-2026',
+    justificacao_cat:'cobertura_existente',
+    justificacao:'Cobertura já existe via Lei 95/2017 (regime de perícia forense informática) e DL 53/2018 (regime do CSIRT nacional). Nenhuma alteração legislativa nacional implicada.',
+    arquivado_por:'Helena Carvalho · DGAE',
+  },
+  { vigil_id:'VGL-2026-0103',
+    title:'Iniciativa sobre etiquetagem voluntária de produtos sustentáveis',
+    arq_dt:'05-Abr-2026',
+    justificacao_cat:'nao_aplicavel',
+    justificacao:'Iniciativa voluntária para empresas privadas. Sem obrigações de transposição. Comunicação ao MECT para articulação com regimes nacionais de rotulagem (ASAE).',
+    arquivado_por:'Helena Carvalho · DGAE',
+  },
+];
+
+const STATE_LABELS = {
+  cwp:'No CWP', call_for_evidence:'Call for Evidence', colegio_agendado:'Colégio agendado',
+  colegio_adoptado:'Adoptado · COM',
+  vigilancia:'Em vigilância', promovido:'Promovido', no_radar:'Já no RADAR', arquivado:'Arquivado',
+};
+
+const JUST_LABELS = {
+  nao_aplicavel:'Não aplicável a Portugal',
+  nao_legislativo:'Âmbito não-legislativo',
+  cobertura_existente:'Cobertura nacional já existe',
+};
+
+// === RENDER ===
+function setTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('cur', t.dataset.tab === name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.dataset.panel === name));
+}
+
+function critPill(c) {
+  return `<span class="cand-crit crit-${c}">${c === 'alto' ? '● Alta' : c === 'medio' ? '● Média' : '● Baixa'} criticidade</span>`;
+}
+
+function renderSemana() {
+  document.getElementById('count-semana').textContent = SEMANA.length;
+  document.getElementById('semana-list').innerHTML = SEMANA.map(c => `
+    <div class="cand-card">
+      <div class="cand-h">
+        <div class="cand-h-l">
+          <div class="cand-meta-row">
+            <span class="cand-vigid">${c.vigil_id}</span>
+            <span class="cand-cwp">${c.cwp}</span>
+            <span class="cand-state-pill state-colegio-adoptado">Adoptado pelo Colégio</span>
+          </div>
+          <div class="cand-title">${c.title}</div>
+          <div class="cand-summary">${c.summary}</div>
+        </div>
+        <div class="cand-h-r">
+          ${critPill(c.criticidade)}
+          <div class="cand-confidence">IA · ${Math.round(c.confidence*100)}% · ${c.model}</div>
+        </div>
+      </div>
+
+      <div class="cand-fields">
+        <div><div class="cand-field-lb">Sector</div><div class="cand-field-vl">${c.sector}</div></div>
+        <div><div class="cand-field-lb">Base jurídica</div><div class="cand-field-vl">${c.base_juridica}</div></div>
+        <div><div class="cand-field-lb">Ministério candidato</div><div class="cand-field-vl">${c.ministerio_cand}</div></div>
+        <div><div class="cand-field-lb">Área governativa</div><div class="cand-field-vl">${c.area_gov}</div></div>
+      </div>
+
+      ${c.extra ? `<div style="padding:0.55rem 0.7rem;background:var(--amber-soft);border-radius:6px;font-size:0.74rem;color:var(--ink-2);line-height:1.45;margin-bottom:0.6rem"><strong>Sinalização IA:</strong> ${c.extra}</div>` : ''}
+
+      <div class="cand-actions">
+        ${CAN_WRITE ? `
+          <button class="btn-action btn-amber" onclick="openNotaPreview('${c.vigil_id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Gerar nota de antecipação
+          </button>
+          <button class="btn-action btn-primary" onclick="promote('${c.vigil_id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Promover a PROSPETIVA
+          </button>
+          <button class="btn-action btn-ghost" onclick="watch('${c.vigil_id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+            Vigiar
+          </button>
+          <button class="btn-action btn-danger" onclick="archive('${c.vigil_id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
+            Arquivar
+          </button>
+        ` : `
+          <span style="font-size:0.74rem;color:var(--ink-3);font-style:italic">— sem permissões de decisão neste perfil —</span>
+        `}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderWatchlist() {
+  const q = document.getElementById('wl-search').value.toLowerCase();
+  const fs = document.getElementById('wl-state').value;
+  const fc = document.getElementById('wl-crit').value;
+  const filtered = WATCHLIST.filter(c => {
+    if (q && !(c.title + c.vigil_id + c.ministerio_cand).toLowerCase().includes(q)) return false;
+    if (fs && c.state !== fs) return false;
+    if (fc && c.criticidade !== fc) return false;
+    return true;
+  });
+  document.getElementById('count-watchlist').textContent = WATCHLIST.length;
+  document.getElementById('wl-meta').textContent = `${filtered.length} / ${WATCHLIST.length} candidatos`;
+  document.getElementById('watchlist-list').innerHTML = filtered.map(c => `
+    <div class="cand-card">
+      <div class="cand-h">
+        <div class="cand-h-l">
+          <div class="cand-meta-row">
+            <span class="cand-vigid">${c.vigil_id}</span>
+            ${c.com_ref ? `<span class="cand-cwp">${c.com_ref}</span>` : ''}
+            <span class="cand-state-pill state-${c.state === 'vigilancia' ? 'vigilancia' : c.state === 'promovido' ? 'promovido' : c.state === 'no_radar' ? 'com-publicado' : ''}">${STATE_LABELS[c.state] || c.state}</span>
+            ${critPill(c.criticidade)}
+          </div>
+          <div class="cand-title">${c.title}</div>
+          <div class="cand-summary">${c.summary}</div>
+        </div>
+      </div>
+      <div class="cand-fields">
+        <div><div class="cand-field-lb">Ministério candidato</div><div class="cand-field-vl">${c.ministerio_cand}</div></div>
+        <div><div class="cand-field-lb">1.º sinal</div><div class="cand-field-vl">${c.primeiro_sinal}</div></div>
+        <div><div class="cand-field-lb">Observador</div><div class="cand-field-vl">${c.observador}</div></div>
+        <div><div class="cand-field-lb">Sector</div><div class="cand-field-vl">${c.sector}</div></div>
+      </div>
+      <div style="margin:0.5rem 0; font-size:0.7rem; color:var(--ink-3); font-weight:600; text-transform:uppercase; letter-spacing:0.04em">Timeline desde o 1.º sinal</div>
+      <div class="timeline-mini">
+        ${c.timeline.map((t, i) => `
+          <div class="tl-step">
+            <div class="tl-dot ${t.state}"></div>
+            <div class="tl-lb">${t.dt || '—'}<br><span style="color:var(--ink-2)">${t.ev.substring(0, 22)}${t.ev.length > 22 ? '…' : ''}</span></div>
+          </div>
+          ${i < c.timeline.length-1 ? `<div class="tl-line ${t.state === 'done' ? 'done' : ''}"></div>` : ''}
+        `).join('')}
+      </div>
+      <div class="cand-actions" style="margin-top:0.6rem">
+        ${c.state === 'no_radar' ? `<a href="RADAR.html" class="btn-action btn-primary" style="text-decoration:none">Abrir no RADAR →</a>` : ''}
+        ${c.state === 'promovido' ? `<a href="PROSPETIVA.html" class="btn-action btn-primary" style="text-decoration:none">Ver análise PROSPETIVA →</a>` : ''}
+        ${c.state === 'vigilancia' && CAN_WRITE ? `<button class="btn-action btn-amber" onclick="openNotaPreview('${c.vigil_id}')">Gerar nota</button> <button class="btn-action btn-primary" onclick="promote('${c.vigil_id}')">Promover a PROSPETIVA</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderArquivo() {
+  document.getElementById('count-arquivo').textContent = ARQUIVO.length;
+  document.getElementById('arquivo-list').innerHTML = ARQUIVO.map(c => `
+    <div class="arch-card">
+      <div class="cand-meta-row">
+        <span class="cand-vigid">${c.vigil_id}</span>
+        <span class="arch-just-pill">${JUST_LABELS[c.justificacao_cat] || c.justificacao_cat}</span>
+      </div>
+      <div class="cand-title">${c.title}</div>
+      <div class="arch-just-text">«${c.justificacao}»</div>
+      <div class="arch-meta">
+        <span><strong>Arquivado em:</strong> ${c.arq_dt}</span>
+        <span><strong>Decisor:</strong> ${c.arquivado_por}</span>
+        ${CAN_WRITE ? '<span style="margin-left:auto;cursor:pointer;color:var(--blue)" onclick="reactivar(\''+c.vigil_id+'\')">⟲ Reactivar para watchlist</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// === NOTA DE ANTECIPAÇÃO ===
+let curNota = null;
+
+function openNotaPreview(vigilId) {
+  if (!CAN_WRITE) return;
+  const c = SEMANA.find(x=>x.vigil_id===vigilId) || WATCHLIST.find(x=>x.vigil_id===vigilId);
+  if (!c) return;
+  curNota = c;
+  document.getElementById('modal-nota-ti').textContent = c.title;
+
+  // Identify ministério siglas
+  const ministerios = c.ministerio_cand.split('·')[0].split('+').map(s=>s.trim()).join(', ');
+
+  const today = new Date('2026-05-13');
+  const today_str = today.toLocaleDateString('pt-PT', { day:'numeric', month:'long', year:'numeric' });
+
+  document.getElementById('modal-nota-bd').innerHTML = `
+    <div class="nota-paper">
+      <div class="hdr-line"></div>
+      <h2>Nota de Antecipação Legislativa</h2>
+      <h3>VIGIL · HORIZONTE · ${c.vigil_id}</h3>
+
+      <table class="meta-table">
+        <tr><td>Destinatário primário:</td><td>Gabinete da Senhora Ministra de ${ministerios}</td></tr>
+        <tr><td>Cópia obrigatória:</td><td>Gabinete da Secretária de Estado dos Assuntos Europeus · DGAE · DGDEI</td></tr>
+        <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
+        <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
+        <tr><td>Sector:</td><td>${c.sector}</td></tr>
+        <tr><td>Base jurídica:</td><td>${c.base_juridica}</td></tr>
+        <tr><td>Data:</td><td>${today_str}</td></tr>
+      </table>
+
+      <h4>1. Síntese do acto</h4>
+      <p>${c.summary}</p>
+
+      <h4>2. Impacto previsível em Portugal</h4>
+      <p>Esta iniciativa cairá sobre o pelouro do Ministério de ${ministerios}, com articulação prevista com a área governativa de <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
+
+      <h4>3. Janela de oportunidade negocial</h4>
+      <p>O acto deverá ser adoptado pelo Colégio nos próximos meses e seguir para procedimento legislativo ordinário (Art. 294.º TFUE). A experiência da DGAE indica que mais de 90% dos actos legislativos UE fecham em trílogo de 1.ª leitura, pelo que <strong>a janela útil para influenciar o texto é estimada em 4 a 6 meses</strong> a partir da adopção pelo Colégio. Recomenda-se:</p>
+      <ul>
+        <li>Articulação imediata com a Representação Permanente em Bruxelas via DGAE.</li>
+        <li>Definição de posição portuguesa antes do início dos trabalhos no Conselho.</li>
+        <li>Identificação de aliados potenciais entre Estados-Membros com interesses convergentes.</li>
+      </ul>
+
+      <h4>4. Recomendação de seguimento</h4>
+      <ul>
+        <li><strong>Vigilância activa</strong> até publicação da COM final · responsabilidade DGAE.</li>
+        <li><strong>Promoção a análise PROSPETIVA</strong> após COM final, para mapeamento artigo-a-artigo dos diplomas portugueses afectados.</li>
+        <li><strong>Reunião técnica preparatória</strong> entre o gabinete destinatário e a DGAE, idealmente no prazo de 4 semanas a contar desta nota, para alinhar prioridades portuguesas.</li>
+      </ul>
+
+      <div class="signature">
+        <strong>Helena Carvalho</strong><br>
+        Técnica · Direcção-Geral dos Assuntos Europeus (DGAE)<br>
+        Ministério dos Negócios Estrangeiros<br>
+        ${today_str}<br><br>
+        <em>Esta nota é classificada como uso interno. Resulta da análise automatizada do crawler VIGIL/HORIZONTE seguida de validação humana. Registo de auditoria activo.</em>
+      </div>
+    </div>
+  `;
+  document.getElementById('modal-nota').classList.add('on');
+}
+
+function sendNota() {
+  if (!curNota) return;
+  toast('Nota assinada e enviada', 'Destinatários: Gabinete ministerial · SEAE · DGAE · DGDEI · regista em audit_log');
+  closeModal('modal-nota');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('on');
+}
+
+function promote(vigilId) {
+  if (!CAN_WRITE) return;
+  toast('Candidato promovido a PROSPETIVA', `${vigilId} · vigil_id mantém-se · análise IA agendada`);
+}
+
+function watch(vigilId) {
+  if (!CAN_WRITE) return;
+  toast('Adicionado à watchlist', `${vigilId} · observador atribuído · ${session.name.split(' ')[0]}`);
+}
+
+function archive(vigilId) {
+  if (!CAN_WRITE) return;
+  const just = prompt('Justificação obrigatória (mínimo 30 caracteres):');
+  if (!just || just.length < 30) {
+    toast('Arquivamento cancelado', 'Justificação obrigatória de pelo menos 30 caracteres', 'warn');
+    return;
+  }
+  toast('Candidato arquivado', `${vigilId} · justificação registada · pode ser reactivado`, 'info');
+}
+
+function reactivar(vigilId) {
+  if (!CAN_WRITE) return;
+  toast('Candidato reactivado', `${vigilId} · move para watchlist · auditoria registada`, 'info');
+}
+
+function toast(ti, msg, type) {
+  const wrap = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast t-' + (type || 'success');
+  el.innerHTML = `<div class="toast-ti">${ti}</div><div class="toast-msg">${msg||''}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+
+// Close modal on backdrop click
+document.getElementById('modal-nota').addEventListener('click', (e) => {
+  if (e.target.id === 'modal-nota') closeModal('modal-nota');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal.on').forEach(m=>m.classList.remove('on'));
+});
+
+renderSemana();
+renderWatchlist();
+renderArquivo();
+</script>
+
+</body>
+</html>

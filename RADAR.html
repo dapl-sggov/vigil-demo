@@ -267,8 +267,14 @@ else {
   const initials = session.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
   document.getElementById('avatar').textContent = initials;
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
-  if (session.perfil === 'gabinete') {
+  if (session.perfil === 'gabinete_min') {
     document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas os processos sob a tutela do teu ministério (Ambiente e Energia · MAE). Acede ao detalhe de cada processo para o seu ciclo de vida completo.';
+  } else if (session.perfil === 'tecnico_dgdei') {
+    document.getElementById('hero-sub').textContent = 'Como Técnico DGDEI consultas o RADAR para preparar informação destinada à Comissão. Podes registar notas a transmitir à CE em cada processo.';
+  } else if (session.perfil === 'gabinete_seae') {
+    document.getElementById('hero-sub').textContent = 'Como Gabinete da SEAE consultas o RADAR em vista transversal. Cada processo herda timeline retroactiva do HORIZONTE quando aplicável (linhagem desde o 1.º sinal pré-publicação).';
+  } else if (session.perfil === 'admin_dapl') {
+    document.getElementById('hero-sub').textContent = 'Como Admin DAPL consultas o RADAR apenas para monitorizar saúde operacional da plataforma. Sem permissões de escrita.';
   }
 }
 
@@ -276,7 +282,14 @@ else {
 // DATA
 // ============================================================================
 const PROCESSOS = [
-  { id:'P001', celex:'32022L2555', titulo:'NIS2 · Cibersegurança de redes e sistemas', tipo:'DIR', setor:'Digital', ministerio:'MAE / CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'IP/24/1182', risco_eur:'A determinar', eventos:[
+  { id:'P001', vigil_id:'VGL-2021-0094', celex:'32022L2555', titulo:'NIS2 · Cibersegurança de redes e sistemas', tipo:'DIR', setor:'Digital', ministerio:'MAE / CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'IP/24/1182', risco_eur:'A determinar', horizonte_history:[
+    {dt:'2021-03-08', ev:'CWP 2021 listou NIS2', actor:'sistema'},
+    {dt:'2021-05-12', ev:'Detectado pelo HORIZONTE · candidato criado', actor:'crawler'},
+    {dt:'2021-05-18', ev:'Nota de antecipação enviada · MP, MAE, CNCS, DGAE', actor:'DGAE'},
+    {dt:'2021-09-22', ev:'Promovido a PROSPETIVA · análise validada', actor:'DGAE'},
+    {dt:'2022-12-14', ev:'COM final publicada · 32022L2555', actor:'CE'},
+    {dt:'2022-12-17', ev:'Publicação JOUE · match automático no RADAR', actor:'sistema'},
+  ], eventos:[
     {dt:'17-12-2022',ti:'Publicação JOUE',sub:'Diretiva (UE) 2022/2555 publicada',state:'done'},
     {dt:'10-01-2023',ti:'Ficha aberta na DGDEI',sub:'Coordenação atribuída · CNCS lead',state:'done'},
     {dt:'17-10-2024',ti:'Prazo de transposição',sub:'Excedido sem transposição completa',state:'done'},
@@ -306,7 +319,15 @@ const PROCESSOS = [
     {dt:'18-01-2025',ti:'Ficha aberta',sub:'MTSSS + ACT como co-responsáveis',state:'done'},
     {dt:'01-03-2026',ti:'Anteprojeto em consulta pública',sub:'Recolha de contributos até 30-04',state:'cur'},
   ] },
-  { id:'P021', celex:'32024R1689', titulo:'AI Act · Regulamento da Inteligência Artificial', tipo:'REG', setor:'Digital', ministerio:'MP / ANI', prazo:'Ago 2026', estado:'em-curso', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
+  { id:'P021', vigil_id:'VGL-2021-0023', celex:'32024R1689', titulo:'AI Act · Regulamento da Inteligência Artificial', tipo:'REG', setor:'Digital', ministerio:'MP / ANI', prazo:'Ago 2026', estado:'em-curso', risco:'medio', infracao:'', risco_eur:'A determinar', horizonte_history:[
+    {dt:'2020-04-21', ev:'White Paper sobre IA · primeira menção', actor:'CE'},
+    {dt:'2021-04-21', ev:'COM(2021) 206 · Proposta inicial', actor:'CE'},
+    {dt:'2021-05-03', ev:'Detectado pelo HORIZONTE · candidato criado', actor:'crawler'},
+    {dt:'2021-05-10', ev:'Nota de antecipação enviada · MP, MARE, MJ, DGAE', actor:'DGAE'},
+    {dt:'2022-03-08', ev:'Promovido a PROSPETIVA · análise 1.ª versão', actor:'DGAE'},
+    {dt:'2024-06-13', ev:'Colégio adopta texto final · trílogo concluído', actor:'CE'},
+    {dt:'2024-07-12', ev:'Publicação JOUE · match automático no RADAR', actor:'sistema'},
+  ], eventos:[
     {dt:'12-07-2024',ti:'Publicação JOUE',sub:'Reg. (UE) 2024/1689',state:'done'},
     {dt:'02-08-2025',ti:'Aplicação faseada · proibições',state:'done'},
     {dt:'02-08-2026',ti:'Aplicação obrigações centrais',sub:'Sistema de IA de alto risco',state:'todo'},
@@ -387,7 +408,7 @@ function render() {
   let filtered = PROCESSOS.filter(p => {
     if (curFilter !== 'all' && p.estado !== curFilter) return false;
     if (curSector && p.setor !== curSector) return false;
-    if (session && session.perfil === 'gabinete') {
+    if (session && session.perfil === 'gabinete_min') {
       // Gabinete só vê processos do seu ministério (MAE)
       if (!p.ministerio.includes('MAE')) return false;
     }
@@ -487,8 +508,32 @@ function openDetail(id) {
       </div>
     </div>
 
+    ${p.vigil_id ? `
     <div class="detail-section">
-      <div class="detail-section-h">Linha do tempo de eventos</div>
+      <div class="detail-section-h" style="display:flex;align-items:center;gap:0.5rem">
+        Linhagem HORIZONTE
+        <span style="font-family:var(--font-mono);font-size:0.7rem;background:rgba(192,137,22,0.10);color:var(--amber);padding:0.15rem 0.45rem;border-radius:3px;font-weight:600">${p.vigil_id}</span>
+      </div>
+      <div style="font-size:0.78rem;color:var(--ink-3);line-height:1.5;margin-bottom:0.7rem;font-style:italic">
+        Este processo foi detectado pelo HORIZONTE antes de ser publicado no JOUE. O <code>vigil_id</code> persistiu desde o primeiro sinal até à promoção para o RADAR. <a href="HORIZONTE.html" style="color:var(--green)">Ver no HORIZONTE →</a>
+      </div>
+      <div class="events">
+        ${p.horizonte_history.map(e => `
+          <div class="event">
+            <div class="event-dot done"></div>
+            <div class="event-bd">
+              <div class="event-date">${e.dt}</div>
+              <div class="event-ti">${e.ev}</div>
+              <div class="event-sub" style="color:var(--amber);font-family:var(--font-mono);font-size:0.66rem">${e.actor}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    ` : ''}
+
+    <div class="detail-section">
+      <div class="detail-section-h">Linha do tempo de eventos · pós-publicação</div>
       <div class="events">${eventsHtml}</div>
     </div>
 
@@ -499,7 +544,7 @@ function openDetail(id) {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           Abrir Ficha
         </a>
-        ${p.infracao && (session.perfil === 'dgdei' || session.perfil === 'dapl_admin') ? `<a href="CONTENCIOSO.html?p=${p.id}" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/></svg>Contencioso</a>` : ''}
+        ${p.infracao && (session.perfil === 'tecnico_dgdei' || session.perfil === 'admin_demo') ? `<a href="CONTENCIOSO.html?p=${p.id}" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/></svg>Contencioso</a>` : ''}
         <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=CELEX:${p.celex}" target="_blank" rel="noopener" class="btn btn-ghost">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           EUR-Lex

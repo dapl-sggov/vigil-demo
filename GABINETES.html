@@ -195,10 +195,13 @@ function render() {
   let mins = MINISTERIOS;
   if (curFilter !== 'all') mins = mins.filter(m => m.semaforo === curFilter);
   // Se gabinete, filtra para o seu ministério
-  if (session.perfil === 'gabinete' && session.ministerio) {
+  if (session.perfil === 'gabinete_min' && session.ministerio) {
     mins = MINISTERIOS.filter(m => m.sigla === session.ministerio);
     document.getElementById('hero-h1').textContent = 'Vista executiva · ' + mins[0].nome;
     document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas o teu ministério. Detalhes dos processos sob a tua tutela em baixo.';
+  } else if (session.perfil === 'gabinete_seae') {
+    document.getElementById('hero-h1').textContent = 'Vista transversal · Gabinete da SEAE';
+    document.getElementById('hero-sub').textContent = 'Como Gabinete da Secretária de Estado dos Assuntos Europeus tens vista política sobre todos os 16 ministérios. Para cada ministério podes consultar fichas activas e iniciar plano de transposição em SmartLegis.';
   }
   document.getElementById('grid').innerHTML = mins.map(m => `
     <div class="min-card ${selectedMin === m.sigla ? 'cur' : ''}" onclick="selectMin('${m.sigla}')" role="button" tabindex="0">
@@ -218,7 +221,7 @@ function render() {
   document.getElementById('tool-meta').textContent = `${mins.length} ministério${mins.length === 1 ? '' : 's'} · ${MINISTERIOS.reduce((a,m)=>a+m.total,0)} processos totais`;
 
   // Auto-select first if gabinete
-  if (session.perfil === 'gabinete' && session.ministerio && !selectedMin) {
+  if (session.perfil === 'gabinete_min' && session.ministerio && !selectedMin) {
     selectMin(session.ministerio);
   }
 }
