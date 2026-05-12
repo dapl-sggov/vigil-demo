@@ -147,6 +147,17 @@ strong,b{font-weight:600;}
 .nota-paper li{margin-bottom:0.3rem;}
 .nota-paper .signature{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--ink-5);font-size:0.84rem;font-style:italic;color:var(--ink-2);}
 .nota-paper .signature strong{font-style:normal;color:var(--ink);}
+.nota-paper [contenteditable="true"]{outline:none;transition:background 0.15s;padding:0.1rem 0.25rem;border-radius:3px;border-left:2px solid transparent;}
+.nota-paper [contenteditable="true"]:hover{background:rgba(192,137,22,0.06);border-left-color:rgba(192,137,22,0.3);}
+.nota-paper [contenteditable="true"]:focus{background:rgba(192,137,22,0.10);border-left-color:var(--amber);box-shadow:0 0 0 1px var(--amber);}
+.nota-edit-banner{display:flex;align-items:center;gap:0.55rem;background:rgba(192,137,22,0.10);border:1px solid rgba(192,137,22,0.25);border-radius:6px;padding:0.55rem 0.75rem;margin-bottom:1rem;font-size:0.78rem;color:var(--amber);font-family:'Inter',sans-serif;}
+.nota-edit-banner svg{width:14px;height:14px;flex-shrink:0;}
+.nota-edit-banner strong{font-weight:600;}
+.nota-edit-actions{display:flex;gap:0.45rem;margin-left:auto;}
+.nota-edit-actions button{font-family:'Inter',sans-serif;font-size:0.72rem;padding:0.25rem 0.55rem;border-radius:4px;border:1px solid var(--amber);background:#fff;color:var(--amber);cursor:pointer;font-weight:600;}
+.nota-edit-actions button:hover{background:var(--amber);color:#fff;}
+.nota-dirty-badge{display:none;font-size:0.7rem;color:var(--amber);font-weight:600;margin-left:0.5rem;}
+.nota-dirty-badge.on{display:inline;}
 
 .modal-ft{padding:0.9rem 1.5rem;background:var(--bg3);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:0.6rem;}
 .modal-ft-l{font-size:0.74rem;color:var(--ink-3);}
@@ -259,7 +270,7 @@ strong,b{font-weight:600;}
   <div class="modal-card">
     <div class="modal-h">
       <div class="modal-h-bd">
-        <div class="modal-eyebrow">Nota de Antecipação · Pré-visualização</div>
+        <div class="modal-eyebrow">Nota de Antecipação · gerada por IA · <strong>editável pelo técnico DGAE</strong> <span class="nota-dirty-badge" id="nota-dirty-badge">• alterada</span></div>
         <div class="modal-ti" id="modal-nota-ti">—</div>
       </div>
       <button class="modal-x" onclick="closeModal('modal-nota')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -610,14 +621,21 @@ function openNotaPreview(vigilId) {
   const today_str = today.toLocaleDateString('pt-PT', { day:'numeric', month:'long', year:'numeric' });
 
   document.getElementById('modal-nota-bd').innerHTML = `
+    <div class="nota-edit-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span><strong>Rascunho gerado pela IA · podes editar qualquer secção</strong> directamente — clica nos blocos a sombreado para ajustar texto, destinatários ou recomendações antes de assinar.</span>
+      <div class="nota-edit-actions">
+        <button onclick="resetNotaAI()" title="Restaurar versão original da IA">↺ Restaurar IA</button>
+      </div>
+    </div>
     <div class="nota-paper">
       <div class="hdr-line"></div>
       <h2>Nota de Antecipação Legislativa</h2>
       <h3>VIGIL · HORIZONTE · ${c.vigil_id}</h3>
 
       <table class="meta-table">
-        <tr><td>Destinatário primário:</td><td>Gabinete da Senhora Ministra de ${ministerios}</td></tr>
-        <tr><td>Cópia obrigatória:</td><td>Gabinete da Secretária de Estado dos Assuntos Europeus · DGAE · DGDEI</td></tr>
+        <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario">Gabinete da Senhora Ministra de ${ministerios}</td></tr>
+        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete da Secretária de Estado dos Assuntos Europeus · DGAE · DGDEI</td></tr>
         <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
         <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
         <tr><td>Sector:</td><td>${c.sector}</td></tr>
@@ -626,21 +644,21 @@ function openNotaPreview(vigilId) {
       </table>
 
       <h4>1. Síntese do acto</h4>
-      <p>${c.summary}</p>
+      <p contenteditable="true" data-nota-field="sintese">${c.summary}</p>
 
       <h4>2. Impacto previsível em Portugal</h4>
-      <p>Esta iniciativa cairá sobre o pelouro do Ministério de ${ministerios}, com articulação prevista com a área governativa de <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
+      <p contenteditable="true" data-nota-field="impacto">Esta iniciativa cairá sobre o pelouro do Ministério de ${ministerios}, com articulação prevista com a área governativa de <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
 
       <h4>3. Janela de oportunidade negocial</h4>
-      <p>O acto deverá ser adoptado pelo Colégio nos próximos meses e seguir para procedimento legislativo ordinário (Art. 294.º TFUE). A experiência da DGAE indica que mais de 90% dos actos legislativos UE fecham em trílogo de 1.ª leitura, pelo que <strong>a janela útil para influenciar o texto é estimada em 4 a 6 meses</strong> a partir da adopção pelo Colégio. Recomenda-se:</p>
-      <ul>
+      <p contenteditable="true" data-nota-field="janela">O acto deverá ser adoptado pelo Colégio nos próximos meses e seguir para procedimento legislativo ordinário (Art. 294.º TFUE). A experiência da DGAE indica que mais de 90% dos actos legislativos UE fecham em trílogo de 1.ª leitura, pelo que <strong>a janela útil para influenciar o texto é estimada em 4 a 6 meses</strong> a partir da adopção pelo Colégio. Recomenda-se:</p>
+      <ul contenteditable="true" data-nota-field="janela-lista">
         <li>Articulação imediata com a Representação Permanente em Bruxelas via DGAE.</li>
         <li>Definição de posição portuguesa antes do início dos trabalhos no Conselho.</li>
         <li>Identificação de aliados potenciais entre Estados-Membros com interesses convergentes.</li>
       </ul>
 
       <h4>4. Recomendação de seguimento</h4>
-      <ul>
+      <ul contenteditable="true" data-nota-field="seguimento">
         <li><strong>Vigilância activa</strong> até publicação da COM final · responsabilidade DGAE.</li>
         <li><strong>Promoção a análise PROSPETIVA</strong> após COM final, para mapeamento artigo-a-artigo dos diplomas portugueses afectados.</li>
         <li><strong>Reunião técnica preparatória</strong> entre o gabinete destinatário e a DGAE, idealmente no prazo de 4 semanas a contar desta nota, para alinhar prioridades portuguesas.</li>
@@ -651,16 +669,43 @@ function openNotaPreview(vigilId) {
         Técnica · Direcção-Geral dos Assuntos Europeus (DGAE)<br>
         Ministério dos Negócios Estrangeiros<br>
         ${today_str}<br><br>
-        <em>Esta nota é classificada como uso interno. Resulta da análise automatizada do crawler VIGIL/HORIZONTE seguida de validação humana. Registo de auditoria activo.</em>
+        <em>Esta nota é classificada como uso interno. Resulta da análise automatizada do crawler VIGIL/HORIZONTE seguida de validação humana. Registo de auditoria activo · todas as alterações ficam registadas com timestamp e autor.</em>
       </div>
     </div>
   `;
+
+  // Save original IA snapshot for reset
+  const fields = {};
+  document.querySelectorAll('[data-nota-field]').forEach(el => {
+    fields[el.dataset.notaField] = el.innerHTML;
+    el.addEventListener('input', markNotaDirty);
+  });
+  curNota._aiSnapshot = fields;
+  document.getElementById('nota-dirty-badge').classList.remove('on');
+
   document.getElementById('modal-nota').classList.add('on');
+}
+
+function markNotaDirty() {
+  document.getElementById('nota-dirty-badge').classList.add('on');
+}
+
+function resetNotaAI() {
+  if (!curNota || !curNota._aiSnapshot) return;
+  if (!confirm('Restaurar a versão original gerada pela IA? Todas as edições serão perdidas.')) return;
+  document.querySelectorAll('[data-nota-field]').forEach(el => {
+    const orig = curNota._aiSnapshot[el.dataset.notaField];
+    if (orig !== undefined) el.innerHTML = orig;
+  });
+  document.getElementById('nota-dirty-badge').classList.remove('on');
+  toast('Versão IA restaurada', 'A nota voltou ao rascunho original gerado pelo crawler HORIZONTE.');
 }
 
 function sendNota() {
   if (!curNota) return;
-  toast('Nota assinada e enviada', 'Destinatários: Gabinete ministerial · SEAE · DGAE · DGDEI · regista em audit_log');
+  const dirty = document.getElementById('nota-dirty-badge').classList.contains('on');
+  const suffix = dirty ? ' · versão editada pelo técnico DGAE' : ' · versão IA mantida sem alterações';
+  toast('Nota assinada e enviada', 'Destinatários: Gabinete ministerial · SEAE · DGAE · DGDEI · regista em audit_log' + suffix);
   closeModal('modal-nota');
 }
 

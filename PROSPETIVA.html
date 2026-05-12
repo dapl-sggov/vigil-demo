@@ -75,6 +75,7 @@ strong,b{font-weight:600;}
 .tag-trab{background:rgba(192,137,22,0.10);color:var(--amber);}
 .tag-amb{background:rgba(48,153,80,0.10);color:var(--green);}
 .tag-fin{background:rgba(160,80,160,0.10);color:#884488;}
+.tag-trans{background:rgba(208,33,23,0.10);color:var(--red);}
 .ex-card-ti{font-size:0.82rem;color:var(--ink);font-weight:500;line-height:1.3;}
 .ex-card-sub{font-size:0.7rem;color:var(--ink-3);margin-top:0.2rem;}
 
@@ -275,23 +276,12 @@ button:focus-visible,a:focus-visible,.showcase:focus-visible,.ex-card:focus-visi
     <div class="ex-h">Selecionar proposta para análise</div>
     <div class="ex-sub">Os exemplos abaixo contêm o articulado real conforme publicado no EUR-Lex.</div>
 
-    <!-- Showcase -->
-    <div class="showcase" id="showcase" onclick="loadExample('lobby')" role="button" tabindex="0">
-      <div class="showcase-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Caso demonstrador
-      </div>
-      <div class="showcase-ti">Proposta de Diretiva sobre Representação de Interesses Exercida por Países Terceiros</div>
-      <div class="showcase-sub">Em Janeiro de 2026, Portugal aprovou a Lei n.º 2/2026 (Lei do Lobby) sem considerar esta diretiva, que estava em fase avançada de negociação. Esta análise mostra precisamente o que o VIGIL teria detectado a tempo — incluindo o impacto sobre a recém-aprovada Lei do Lobby.</div>
-      <div class="showcase-meta">
-        <span><strong>14 artigos</strong> · 5 capítulos</span>
-        <span><strong>3 diplomas afectados</strong></span>
-        <span><strong>1 nova legislação</strong> (Portaria conjunta)</span>
-        <span><strong>Análise de referência</strong></span>
-      </div>
-    </div>
-
     <div class="ex-grid">
+      <div class="ex-card" data-ex="lobby" onclick="loadExample('lobby')" role="button" tabindex="0">
+        <span class="ex-tag tag-trans">Transparência</span>
+        <div class="ex-card-ti">Representação de interesses por países terceiros</div>
+        <div class="ex-card-sub">Proposta CE 2023/0463 · 14 artigos</div>
+      </div>
       <div class="ex-card" data-ex="ai_act" onclick="loadExample('ai_act')" role="button" tabindex="0">
         <span class="ex-tag tag-digital">Digital</span>
         <div class="ex-card-ti">AI Act · Regulamento da Inteligência Artificial</div>
@@ -541,7 +531,7 @@ A coordenação entre o regime do lobby (Lei 2/2026) e o regime de países terce
         { role:'cores', name:'Min. Finanças (AT)', desc:'Identificação fiscal de entidades estrangeiras · dados de pagamentos' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA aprovado · entra na lista de processos' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DGAE)', sub:'Output IA aprovado · entra na lista de processos' },
         { date:'30-05-2026', state:'todo', ti:'Adoção do acto pelo Conselho', sub:'Última leitura prevista · entrada em vigor T+20 dias' },
         { date:'19-06-2026', state:'todo', ti:'Entrada em vigor da diretiva', sub:'Início da contagem do prazo de 12 meses' },
         { date:'30-09-2026', state:'todo', ti:'Concertação interministerial', sub:'Reunião CIAE · acordo sobre Portaria conjunta' },
@@ -677,14 +667,14 @@ A urgência: prazo crítico em 02-08-2026 (aplicação plena das obrigações de
         { tag:'Portaria', title:'Cria o sandbox regulamentar IA', sub:'Pelo menos um sandbox até 02-08-2026 · regime de candidaturas · supervisão da ANI.', meta:'Min. Pres. · Min. Educação · prazo Ago 2026' },
       ],
       ministries: [
-        { role:'coord', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação interministerial · proposta legislativa · articulação CIAE' },
+        { role:'coord', name:'Min. dos Negócios Estrangeiros (DGAE)', desc:'Coordenação interministerial · proposta legislativa · articulação CIAE' },
         { role:'cores', name:'Min. da Justiça (CNPD)', desc:'Articulação RGPD ↔ AI Act · IA com dados pessoais' },
         { role:'cores', name:'Min. Educação, Ciência e Inovação (ANI)', desc:'Candidata natural a autoridade competente · sandbox · estratégia nacional IA' },
         { role:'cores', name:'Min. Adjunto e Reforma do Estado', desc:'IA na Administração Pública · CPA · transparência algorítmica' },
         { role:'cores', name:'Min. Trabalho, Solidariedade e Seg. Social (ACT)', desc:'IA em RH · risco elevado · supervisão' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Plano aprovado · entra em pipeline de transposição' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DGAE)', sub:'Plano aprovado · entra em pipeline de transposição' },
         { date:'30-05-2026', state:'todo', ti:'Concertação CIAE · escolha da autoridade', sub:'ANI vs ANACOM vs nova entidade · decisão política' },
         { date:'15-06-2026', state:'todo', ti:'Anteprojecto de Decreto-Lei', sub:'Min. Presidência redige · CNPD parecer · ACT parecer' },
         { date:'30-06-2026', state:'todo', ti:'RSE · designação autoridade', sub:'Antes do recesso parlamentar · janela útil' },
@@ -804,13 +794,13 @@ Articulação obrigatória com Lei 58/2019, Reg. (UE) 2022/868 (Data Governance 
         { tag:'Portaria', title:'Cláusulas-tipo para contratos de partilha de dados', sub:'Em linha com modelos publicados pela CE · facilita conformidade Art. 13.º · uso pela AP em compras de cloud.', meta:'Min. Just. + Min. Pres. · prazo Q3 2026' },
       ],
       ministries: [
-        { role:'coord', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação · proposta de DL · articulação CIAE' },
+        { role:'coord', name:'Min. dos Negócios Estrangeiros (DGAE)', desc:'Coordenação · proposta de DL · articulação CIAE' },
         { role:'cores', name:'Min. da Justiça (CNPD)', desc:'RGPD ↔ Data Act · cláusulas contratuais · sanções' },
         { role:'cores', name:'Min. Adjunto e Reforma do Estado (AMA)', desc:'Interoperabilidade AP · cloud pública · espaços europeus de dados' },
         { role:'cores', name:'Min. Economia e Coesão Territorial', desc:'Empresas e produtos conectados · cláusulas B2B · IoT industrial' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada · pipeline de transposição', sub:'DAPL valida output IA' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada · pipeline de transposição', sub:'DGAE valida output IA' },
         { date:'30-05-2026', state:'todo', ti:'CIAE · escolha da autoridade competente', sub:'ANACOM · AMA · CNPD · nova entidade' },
         { date:'30-06-2026', state:'todo', ti:'Anteprojecto de DL', sub:'Antes do recesso parlamentar' },
         { date:'15-09-2026', state:'todo', ti:'RCM · adopção do DL', sub:'1 ano após início da aplicação · risco INFR mitigado' },
@@ -940,10 +930,10 @@ Diplomas afectados em cascata: Código do Trabalho · Lei 27/2010 (TVDE) · DL 1
         { role:'coord', name:'Min. do Trabalho, Solidariedade e Seg. Social', desc:'Proponente da Proposta de Lei · ACT como autoridade fiscalizadora' },
         { role:'cores', name:'Min. das Infraestruturas e Habitação (IMT)', desc:'Articulação com TVDE e DL 173/2017 · transporte por plataformas' },
         { role:'cores', name:'Min. da Justiça (CNPD)', desc:'Gestão algorítmica · proibições do Art. 8.º · cooperação com ACT' },
-        { role:'cores', name:'Min. da Presidência (DAPL)', desc:'Coordenação interministerial · CIAE' },
+        { role:'cores', name:'Min. dos Negócios Estrangeiros (DGAE)', desc:'Coordenação interministerial · CIAE' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA validado · plano partilhado com MTSSS' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DGAE)', sub:'Output IA validado · plano partilhado com MTSSS' },
         { date:'30-06-2026', state:'todo', ti:'Anteprojecto MTSSS', sub:'Articulação com ACT, CITE, sindicatos · concertação social' },
         { date:'15-09-2026', state:'todo', ti:'Concertação social · CES', sub:'Pareceres dos parceiros sociais (CGTP, UGT, CIP, CCP)' },
         { date:'30-10-2026', state:'todo', ti:'Submissão à AR · Proposta de Lei', sub:'Antes do recesso · janela útil semestre' },
@@ -1081,7 +1071,7 @@ Trabalho pendente: alteração ao Código Penal e articulação com o pacote AML
         { role:'cores', name:'Min. da Administração Interna (PJ)', desc:'Investigação criminal de branqueamento · cooperação polícia europeia' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Output IA aprovado · alinhamento com pacote AMLA' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DGAE)', sub:'Output IA aprovado · alinhamento com pacote AMLA' },
         { date:'30-06-2026', state:'todo', ti:'Anteprojecto Min. Justiça', sub:'Reformulação dos Arts. 368.º-A e 368.º-B · audição PGR' },
         { date:'30-09-2026', state:'todo', ti:'Submissão à AR · Proposta de Lei', sub:'Antes do recesso · janela útil semestre' },
         { date:'30-11-2026', state:'todo', ti:'Aprovação na generalidade', sub:'Discussão pública · audição peritos' },
@@ -1216,10 +1206,10 @@ DGEG é a autoridade técnica · ADENE gere o sistema de certificação · IRN c
         { role:'cores', name:'Min. das Infraestruturas e Habitação', desc:'Articulação com licenciamento urbanístico · DGT · municípios · habitação social' },
         { role:'cores', name:'Min. das Finanças (AT)', desc:'Incentivos fiscais à renovação · IMI · IRS · benefícios para emissões nulas' },
         { role:'cores', name:'Min. da Economia e Coesão Territorial', desc:'Programas de apoio · PRR · ICNF para áreas protegidas' },
-        { role:'cores', name:'Min. da Presidência (DAPL/SGGov)', desc:'Coordenação interministerial · CIAE' },
+        { role:'cores', name:'Min. dos Negócios Estrangeiros (DGAE)', desc:'Coordenação interministerial · CIAE' },
       ],
       calendar: [
-        { date:'15-05-2026', state:'cur', ti:'Análise validada (DAPL)', sub:'Plano partilhado com MAE/DGEG · concertação acelerada' },
+        { date:'15-05-2026', state:'cur', ti:'Análise validada (DGAE)', sub:'Plano partilhado com MAE/DGEG · concertação acelerada' },
         { date:'29-05-2026', state:'todo', ti:'Prazo de transposição · CRÍTICO', sub:'14 dias úteis · risco de incumprimento · resposta rápida indispensável' },
         { date:'30-06-2026', state:'todo', ti:'Anteprojectos consolidados', sub:'DL Passaporte · DL 101-D actualizado · Portaria solar' },
         { date:'15-09-2026', state:'todo', ti:'RCM · adopção em bloco', sub:'Vários DLs no mesmo CM · sinal político de prioridade' },
@@ -1308,7 +1298,7 @@ function loadExample(key) {
 
   // Update example cards
   document.querySelectorAll('.ex-card').forEach(c => c.classList.toggle('cur', c.dataset.ex === key));
-  document.getElementById('showcase').classList.toggle('cur', key === 'lobby');
+  // showcase removed — all examples are visually equal now
 
   // Update editor
   document.getElementById('doc-name').textContent = ex.docName;
@@ -1345,7 +1335,7 @@ function loadExample(key) {
 
 function clearAll() {
   currentExample = null;
-  document.querySelectorAll('.ex-card,.showcase').forEach(c => c.classList.remove('cur'));
+  document.querySelectorAll('.ex-card').forEach(c => c.classList.remove('cur'));
   document.getElementById('doc-name').textContent = '— sem proposta carregada —';
   ['tipo','celex','com','lang','fase','prazo'].forEach(k => document.getElementById('det-'+k).textContent = '—');
   document.getElementById('prop-text').value = '';
@@ -1488,7 +1478,7 @@ function renderResult(ex, a) {
     ${section(7, 'Dependências e riscos', `${a.depend.length}`, dependList(a.depend))}
 
     <div class="result-actions">
-      <span class="result-actions-h">Acções da DAPL</span>
+      <span class="result-actions-h">Acções do técnico DGAE</span>
       <button class="btn btn-primary" onclick="toast('Análise validada','Estado: validado · escalonamento autorizado para os ministérios envolvidos.')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Validar e escalonar

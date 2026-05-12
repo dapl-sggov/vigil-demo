@@ -147,7 +147,7 @@ if (!ALLOWED.includes(session.perfil)) {
   document.getElementById('content').innerHTML = `
     <div class="access-denied">
       <h2>🔒 Acesso restrito</h2>
-      <p>O módulo CONTENCIOSO contém metadados de peças processuais classificadas no mínimo como <strong>Reservado</strong> (Lei n.º 2/94 e RCM n.º 50/88). Apenas perfis DGDEI e Administração da DAPL podem aceder.</p>
+      <p>O módulo CONTENCIOSO contém metadados de peças processuais classificadas no mínimo como <strong>Reservado</strong> (Lei n.º 2/94 e RCM n.º 50/88). Apenas o perfil DGDEI pode aceder.</p>
       <p>O teu perfil actual é <strong>${session.role}</strong>. Para visualizar dados agregados sem acesso a peças individuais, consulta o módulo GABINETES.</p>
       <a href="hub.html" class="brand-link" style="display:inline-block;padding:0.6rem 1.4rem;background:var(--green);color:#fff;border-radius:7px;text-decoration:none;font-weight:600">← Voltar ao Hub</a>
     </div>
@@ -274,7 +274,7 @@ document.getElementById('content').innerHTML = `
     <div class="risk-card">
       <div class="risk-card-lb">Acessos esta semana</div>
       <div class="risk-card-vl">23</div>
-      <div class="risk-card-dt">DGDEI · DAPL · 0 negados</div>
+      <div class="risk-card-dt">DGDEI · 0 negados</div>
     </div>
   </div>
 
