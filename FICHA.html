@@ -246,7 +246,7 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Ministério coordenador <span class="req">*</span></div><div class="fld-lb-r">campo 06</div></div>
-              <select class="sel"><option>Min. da Economia (ME)</option><option>Min. da Justiça (MJ)</option><option>Min. das Finanças (MF)</option><option>Min. do Ambiente e da Energia (MAEN)</option><option>Min. Adjunto e da Reforma do Estado (MARE)</option><option>Min. das Infraestruturas e da Habitação (MIH)</option><option>Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)</option></select>
+              <select class="sel"><option>Min. da Economia e da Coesão Territorial (MECT)</option><option>Min. da Justiça (MJ)</option><option>Min. das Finanças (MF)</option><option>Min. do Ambiente e da Energia (MAEN)</option><option>Min. Adjunto e da Reforma do Estado (MARE)</option><option>Min. das Infraestruturas e da Habitação (MIH)</option><option>Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)</option></select>
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Áreas governativas envolvidas</div><div class="fld-lb-r">campo 07</div></div>
@@ -260,7 +260,7 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Técnico responsável</div><div class="fld-lb-r">campo 09</div></div>
-              <input class="inp" value="Maria Santos · ME · DG Política Económica">
+              <input class="inp" value="Maria Santos · MECT · DG Política Económica">
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Chefe de divisão</div><div class="fld-lb-r">campo 10</div></div>
@@ -298,7 +298,7 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
               <div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 12</div>
             </div>
             <textarea class="tar" rows="4">• Proposta de Lei autónoma · "Regime do dever de diligência das empresas em matéria de sustentabilidade" · art.s 1-37 transpostos integralmente
-• Portaria conjunta ME+MAEN · designa IAPMEI como autoridade nacional de supervisão (art.º 24.º CSDDD) e regula coimas
+• Portaria conjunta MECT+MAEN · designa IAPMEI como autoridade nacional de supervisão (art.º 24.º CSDDD) e regula coimas
 • Decreto-Lei de execução · plano de transição climática (art.º 22.º) · articulação com Lei de Bases do Clima
 • Regulamento da Linha de apoio às PME · âmbito subjectivo (>1000 trabalhadores e €450M volume negócios) e cadeia de actividades</textarea>
           </div>
@@ -336,7 +336,7 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
               <div class="marco-actions"><button class="btn-mini">Editar</button></div>
             </div>
             <div class="marco">
-              <div><div class="marco-nm">2. Envio à PCM</div><div class="marco-sub">Despacho conjunto ME-MP</div></div>
+              <div><div class="marco-nm">2. Envio à PCM</div><div class="marco-sub">Despacho conjunto MECT-MP</div></div>
               <div class="marco-date">02-05-2026</div>
               <div class="marco-status status-em-curso">Em curso</div>
               <div class="marco-actions"><button class="btn-mini">Editar</button></div>
@@ -477,7 +477,7 @@ else {
 }
 
 const FICHAS = [
-  { id:'P008', celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence Directive', estado:'parcial', prazo:'Jul 2027', min:'ME', cur:true },
+  { id:'P008', celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence Directive', estado:'parcial', prazo:'Jul 2027', min:'MECT', cur:true },
   { id:'P001', celex:'32022L2555', titulo:'NIS2 · Cibersegurança redes e sistemas', estado:'atrasada', prazo:'Out 2024', min:'MARE / CNCS' },
   { id:'P011', celex:'32024L1275', titulo:'EPBD · Eficiência energética edifícios', estado:'parcial', prazo:'Mai 2026', min:'MAEN + MIH' },
   { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', estado:'parcial', prazo:'Ago 2026', min:'MAEN / APA' },
@@ -551,7 +551,7 @@ setInterval(() => {
 }, 8000);
 
 function createSmartLegisPlan() {
-  toast('Plano criado em SmartLegis', 'Referência SL/2026/0341 · ME notificado · 8 marcos carregados · ligação ao processo VIGIL persiste', 'info');
+  toast('Plano criado em SmartLegis', 'Referência SL/2026/0341 · MECT notificado · 8 marcos carregados · ligação ao processo VIGIL persiste', 'info');
 }
 
 // Initialize role-specific sections

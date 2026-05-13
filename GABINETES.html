@@ -171,7 +171,7 @@ const MINISTERIOS = [
   { sigla:'MARE', nome:'Min. Adjunto e da Reforma do Estado',              trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Administração Pública · Modernização · AMA · CNCS · ESPAP · INCM' },
   { sigla:'MNE',  nome:'Min. dos Negócios Estrangeiros',                   trat:'Sr. Ministro',  semaforo:'amber', total:8,  criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades · SEAE' },
   { sigla:'MF',   nome:'Min. das Finanças',                                trat:'Sr. Ministro',  semaforo:'red',   total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Mercados · BdP · CMVM' },
-  { sigla:'ME',   nome:'Min. da Economia',                                 trat:'Sr. Ministro',  semaforo:'amber', total:9,  criticos:2, atencao:4, emCurso:3, areas:'Economia · Comércio · Turismo · Indústria · IAPMEI' },
+  { sigla:'MECT', nome:'Min. da Economia e da Coesão Territorial',          trat:'Sr. Ministro',  semaforo:'amber', total:9,  criticos:2, atencao:4, emCurso:3, areas:'Economia · Comércio · Turismo · Indústria · Coesão · IAPMEI' },
   { sigla:'MAEN', nome:'Min. do Ambiente e da Energia',                    trat:'Sra. Ministra', semaforo:'red',   total:14, criticos:6, atencao:5, emCurso:3, areas:'Ambiente · Energia · Clima · APA · DGEG · ICNF · ADENE · ERSE' },
   { sigla:'MS',   nome:'Min. da Saúde',                                    trat:'Sra. Ministra', semaforo:'amber', total:6,  criticos:0, atencao:3, emCurso:3, areas:'Saúde · Medicamentos · Tecnologias · Infarmed · SPMS' },
   { sigla:'MTSSS',nome:'Min. do Trabalho, Solidariedade e Seg. Social',    trat:'Sra. Ministra', semaforo:'amber', total:5,  criticos:1, atencao:2, emCurso:2, areas:'Trabalho · Solidariedade · Segurança Social · ACT · CITE' },
@@ -182,7 +182,7 @@ const MINISTERIOS = [
   { sigla:'MAP',  nome:'Min. da Agricultura e Pescas',                     trat:'Sr. Ministro',  semaforo:'amber', total:4,  criticos:1, atencao:2, emCurso:1, areas:'Agricultura · Pescas · Alimentação · ASAE' },
   { sigla:'MC',   nome:'Min. da Cultura',                                  trat:'Sra. Ministra', semaforo:'green', total:2,  criticos:0, atencao:0, emCurso:2, areas:'Cultura · Património · Audiovisual' },
   { sigla:'MDN',  nome:'Min. da Defesa Nacional',                          trat:'Sr. Ministro',  semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Defesa · Indústria de defesa' },
-  { sigla:'MJM',  nome:'Min. da Juventude e Modernização',                 trat:'Sra. Ministra', semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Juventude · Modernização' },
+  { sigla:'MCJD', nome:'Min. da Cultura, Juventude e Desporto',             trat:'Sra. Ministra', semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Cultura · Juventude · Desporto' },
 ];
 
 let curFilter = 'all';
@@ -258,7 +258,7 @@ function selectMin(sigla) {
       { celex:'32019L2034', ti:'IFD · Empresas de investimento', prazo:'Jun 2021', estado:'critico', urgent:true },
       { celex:'32018L1673', ti:'AML5 · Branqueamento', prazo:'Jan 2020', estado:'critico', urgent:true },
     ],
-    ME: [
+    MECT: [
       { celex:'32024L1760', ti:'CSDDD · Sustentabilidade Due Diligence', prazo:'Jul 2027', estado:'atencao' },
       { celex:'32023L2225', ti:'Crédito ao consumidor', prazo:'Nov 2025', estado:'atencao' },
     ],
@@ -276,7 +276,7 @@ function selectMin(sigla) {
       { dt:'15-05-2026', ti:'AML6 · projecto-lei à AR', sub:'Submissão antes de 30 jun · janela útil', urgent:true },
       { dt:'30-05-2026', ti:'Resposta IP/22/0841 · MiFID II', sub:'Após parecer fundamentado', soon:true },
     ],
-    ME: [{ dt:'15-05-2026', ti:'CSDDD · RSE no CM', sub:'Anteprojecto pronto · marco 2 concluído' }],
+    MECT: [{ dt:'15-05-2026', ti:'CSDDD · RSE no CM', sub:'Anteprojecto pronto · marco 2 concluído' }],
   };
   const cal = calendario[sigla] || [{ dt:'—', ti:'Sem prazos críticos', sub:'Calendário a 30 dias sem entradas' }];
 
