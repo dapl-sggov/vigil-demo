@@ -268,7 +268,7 @@ else {
   document.getElementById('avatar').textContent = initials;
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
   if (session.perfil === 'gabinete_min') {
-    document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas os processos sob a tutela do teu ministério (Ambiente e Energia · MAE). Acede ao detalhe de cada processo para o seu ciclo de vida completo.';
+    document.getElementById('hero-sub').textContent = 'Como Gabinete ministerial vês apenas os processos sob a tutela do teu ministério (Ambiente e Energia · MAEN). Acede ao detalhe de cada processo para o seu ciclo de vida completo.';
   } else if (session.perfil === 'tecnico_dgdei') {
     document.getElementById('hero-sub').textContent = 'Como Técnico DGDEI consultas o RADAR para preparar informação destinada à Comissão. Podes registar notas a transmitir à CE em cada processo.';
   } else if (session.perfil === 'gabinete_seae') {
@@ -282,10 +282,10 @@ else {
 // DATA
 // ============================================================================
 const PROCESSOS = [
-  { id:'P001', vigil_id:'VGL-2021-0094', celex:'32022L2555', titulo:'NIS2 · Cibersegurança de redes e sistemas', tipo:'DIR', setor:'Digital', ministerio:'MP / CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'IP/24/1182', risco_eur:'A determinar', horizonte_history:[
+  { id:'P001', vigil_id:'VGL-2021-0094', celex:'32022L2555', titulo:'NIS2 · Cibersegurança de redes e sistemas', tipo:'DIR', setor:'Digital', ministerio:'MARE / CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'IP/24/1182', risco_eur:'A determinar', horizonte_history:[
     {dt:'2021-03-08', ev:'CWP 2021 listou NIS2', actor:'sistema'},
     {dt:'2021-05-12', ev:'Detectado pelo HORIZONTE · candidato criado', actor:'crawler'},
-    {dt:'2021-05-18', ev:'Nota de antecipação enviada · MP, MAE, CNCS, DGAE', actor:'DGAE'},
+    {dt:'2021-05-18', ev:'Nota de antecipação enviada · MARE, MAEN, CNCS, DGAE', actor:'DGAE'},
     {dt:'2021-09-22', ev:'Promovido a PROSPETIVA · análise validada', actor:'DGAE'},
     {dt:'2022-12-14', ev:'COM final publicada · 32022L2555', actor:'CE'},
     {dt:'2022-12-17', ev:'Publicação JOUE · match automático no RADAR', actor:'sistema'},
@@ -296,21 +296,21 @@ const PROCESSOS = [
     {dt:'15-11-2024',ti:'Notificação formal CE',sub:'Procedimento IP/24/1182 aberto',state:'done'},
     {dt:'29-04-2026',ti:'Resposta à notificação',sub:'Prazo amanhã · projecto Lei pronto',state:'cur'},
   ] },
-  { id:'P016', celex:'31992L0043', titulo:'Habitats · Rede Natura 2000', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / ICNF', prazo:'1994', estado:'critico', risco:'alto', infracao:'C-217/24', risco_eur:'€10M + €41 250/dia', eventos:[
+  { id:'P016', celex:'31992L0043', titulo:'Habitats · Rede Natura 2000', tipo:'DIR', setor:'Ambiente', ministerio:'MAEN / ICNF', prazo:'1994', estado:'critico', risco:'alto', infracao:'C-217/24', risco_eur:'€10M + €41 250/dia', eventos:[
     {dt:'12-09-2022',ti:'Acção TJUE intentada',sub:'CE vs. Portugal · 55 sítios não classificados',state:'done'},
     {dt:'15-06-2023',ti:'Audiência no TJUE',sub:'Memoriais finais',state:'done'},
     {dt:'05-03-2026',ti:'Acórdão proferido',sub:'€10M + €41 250/dia em vigor',state:'cur'},
     {dt:'em curso',ti:'Cumprimento das medidas',sub:'ICNF a coordenar acções de protecção',state:'todo'},
   ] },
-  { id:'P008', celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence', tipo:'DIR', setor:'Empresas / ESG', ministerio:'MECT', prazo:'Jul 2027', estado:'atencao', risco:'alto', infracao:'', risco_eur:'A determinar', eventos:[
+  { id:'P008', celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence', tipo:'DIR', setor:'Empresas / ESG', ministerio:'ME', prazo:'Jul 2027', estado:'atencao', risco:'alto', infracao:'', risco_eur:'A determinar', eventos:[
     {dt:'05-07-2024',ti:'Publicação JOUE',sub:'Directiva (UE) 2024/1760',state:'done'},
-    {dt:'02-09-2024',ti:'Ficha aberta',sub:'MECT como ministério coordenador',state:'done'},
+    {dt:'02-09-2024',ti:'Ficha aberta',sub:'ME como ministério coordenador',state:'done'},
     {dt:'14-04-2025',ti:'"Stop the Clock" (Omnibus)',sub:'Adiamento prazo para 26-07-2027',state:'done'},
     {dt:'25-04-2026',ti:'Marco "fins técnicos" concluído',sub:'Anteprojecto submetido',state:'cur'},
     {dt:'15-05-2026',ti:'RSE (CM)',sub:'Reunião do Secretariado Executivo',state:'todo'},
     {dt:'26-07-2027',ti:'Prazo transposição',sub:'63 semanas restantes',state:'todo'},
   ] },
-  { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / APA', prazo:'Ago 2026', estado:'atencao', risco:'alto', infracao:'IP/24/0891', risco_eur:'15-25 M€', eventos:[
+  { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', tipo:'DIR', setor:'Ambiente', ministerio:'MAEN / APA', prazo:'Ago 2026', estado:'atencao', risco:'alto', infracao:'IP/24/0891', risco_eur:'15-25 M€', eventos:[
     {dt:'14-08-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/884 (revisão)',state:'done'},
     {dt:'23-01-2025',ti:'Notificação formal CE',sub:'Lisboa+Porto excedem limites · IP/24/0891',state:'done'},
     {dt:'15-04-2026',ti:'Parecer fundamentado',sub:'CE emite parecer · APA a implementar planos',state:'cur'},
@@ -333,7 +333,7 @@ const PROCESSOS = [
     {dt:'02-08-2025',ti:'Aplicação faseada · proibições',state:'done'},
     {dt:'02-08-2026',ti:'Aplicação obrigações centrais',sub:'Sistema de IA de alto risco',state:'todo'},
   ] },
-  { id:'P011', celex:'32024L1275', titulo:'EPBD · Desempenho energético dos edifícios', tipo:'DIR', setor:'Energia', ministerio:'MAE + MIH', prazo:'Mai 2026', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
+  { id:'P011', celex:'32024L1275', titulo:'EPBD · Desempenho energético dos edifícios', tipo:'DIR', setor:'Energia', ministerio:'MAEN + MIH', prazo:'Mai 2026', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[
     {dt:'08-05-2024',ti:'Publicação JOUE',sub:'Diretiva (UE) 2024/1275',state:'done'},
     {dt:'15-12-2025',ti:'Anteprojeto em concertação',sub:'CIAE · interesses cruzados energia/habitação',state:'cur'},
     {dt:'29-05-2026',ti:'Prazo de transposição',sub:'31 dias restantes',state:'todo'},
@@ -351,15 +351,15 @@ const PROCESSOS = [
     {dt:'20-06-2019',ti:'Publicação JOUE',sub:'Diretiva (UE) 2019/1152',state:'done'},
     {dt:'01-09-2022',ti:'Notificação formal',sub:'Transposição parcial',state:'done'},
   ] },
-  { id:'P018', celex:'32020L2184', titulo:'Água potável (revisão)', tipo:'DIR', setor:'Ambiente', ministerio:'MAE / APA', prazo:'Jan 2023', estado:'critico', risco:'alto', infracao:'IP/23/1122', risco_eur:'A determinar', eventos:[] },
+  { id:'P018', celex:'32020L2184', titulo:'Água potável (revisão)', tipo:'DIR', setor:'Ambiente', ministerio:'MAEN / APA', prazo:'Jan 2023', estado:'critico', risco:'alto', infracao:'IP/23/1122', risco_eur:'A determinar', eventos:[] },
   { id:'P020', celex:'32022L2557', titulo:'CER · Resiliência entidades críticas', tipo:'DIR', setor:'Digital', ministerio:'MAI + CNCS', prazo:'Out 2024', estado:'critico', risco:'alto', infracao:'', risco_eur:'A determinar', eventos:[] },
-  { id:'P010', celex:'32023L1791', titulo:'EED · Eficiência energética', tipo:'DIR', setor:'Energia', ministerio:'MAE / DGEG', prazo:'Out 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
-  { id:'P009', celex:'32023L2413', titulo:'RED III · Energia renovável', tipo:'DIR', setor:'Energia', ministerio:'MAE / DGEG', prazo:'Jun 2026', estado:'em-curso', risco:'baixo', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P010', celex:'32023L1791', titulo:'EED · Eficiência energética', tipo:'DIR', setor:'Energia', ministerio:'MAEN / DGEG', prazo:'Out 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
+  { id:'P009', celex:'32023L2413', titulo:'RED III · Energia renovável', tipo:'DIR', setor:'Energia', ministerio:'MAEN / DGEG', prazo:'Jun 2026', estado:'em-curso', risco:'baixo', infracao:'', risco_eur:'A determinar', eventos:[] },
   { id:'P024', celex:'32019L1158', titulo:'Equilíbrio vida profissional-familiar', tipo:'DIR', setor:'Trabalho', ministerio:'MTSSS', prazo:'Ago 2022', estado:'em-curso', risco:'baixo', infracao:'', risco_eur:'A determinar', eventos:[] },
   { id:'P027', celex:'32022L2046', titulo:'Farmacovigilância · medicamentos', tipo:'DIR', setor:'Saúde', ministerio:'MS / Infarmed', prazo:'Jan 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
   { id:'P028', celex:'32021R2282', titulo:'HTA · Avaliação tecnologias de saúde', tipo:'REG', setor:'Saúde', ministerio:'MS / Infarmed', prazo:'Jan 2025', estado:'atencao', risco:'medio', infracao:'', risco_eur:'A determinar', eventos:[] },
   { id:'P025', celex:'32019L0883', titulo:'Resíduos gerados por navios', tipo:'DIR', setor:'Marítimo', ministerio:'MIH / DGRM', prazo:'Jun 2021', estado:'critico', risco:'medio', infracao:'IP/22/1034', risco_eur:'A determinar', eventos:[] },
-  { id:'P012', celex:'32019L0944', titulo:'Mercado interno da electricidade', tipo:'DIR', setor:'Energia', ministerio:'MAE / ERSE', prazo:'Dez 2020', estado:'critico', risco:'alto', infracao:'IP/21/2341', risco_eur:'A determinar', eventos:[] },
+  { id:'P012', celex:'32019L0944', titulo:'Mercado interno da electricidade', tipo:'DIR', setor:'Energia', ministerio:'MAEN / ERSE', prazo:'Dez 2020', estado:'critico', risco:'alto', infracao:'IP/21/2341', risco_eur:'A determinar', eventos:[] },
   { id:'P004', celex:'32019L0879', titulo:'BRRD II · Recuperação e resolução bancária', tipo:'DIR', setor:'Finanças', ministerio:'MF / BdP', prazo:'Dez 2020', estado:'critico', risco:'alto', infracao:'IP/21/0773', risco_eur:'A determinar', eventos:[] },
 ];
 
@@ -410,8 +410,8 @@ function render() {
     if (curFilter !== 'all' && p.estado !== curFilter) return false;
     if (curSector && p.setor !== curSector) return false;
     if (session && session.perfil === 'gabinete_min') {
-      // Gabinete só vê processos do seu ministério (MAE)
-      if (!p.ministerio.includes('MAE')) return false;
+      // Gabinete só vê processos do seu ministério (MAEN)
+      if (!p.ministerio.includes('MAEN')) return false;
     }
     if (q) {
       const hay = (p.titulo + ' ' + p.celex + ' ' + p.ministerio + ' ' + (p.infracao || '')).toLowerCase();

@@ -312,38 +312,49 @@ if (!CAN_WRITE) {
   document.getElementById('readonly-text').textContent = READ_ONLY_TEXTS[session.perfil] || 'Modo de leitura.';
 }
 
-// === ORGÂNICA DO XXV GOVERNO CONSTITUCIONAL (mapa sigla → titular + género) ===
-// Usado para construir destinatários correctos nas Notas de Antecipação
+// === ORGÂNICA DO XXV GOVERNO CONSTITUCIONAL — mapa sigla → tratamento (género) + papel ===
+// Por design, não armazenamos o nome do titular (muda com cada remodelação).
+// Apenas o género do cargo actual e a designação do Ministério.
+// Campo `role` é a expressão preposicionada que segue "Ministro/a" para construir frases correctas:
+//   "Sra. Ministra ${role}"  →  "Sra. Ministra do Ambiente e da Energia"
 const MINISTROS = {
-  'PM':   { mini:'Primeiro-Ministro',                            titular:'Luís Montenegro',                  trat:'Sr. Primeiro-Ministro' },
-  'MP':   { mini:'Min. da Presidência',                          titular:'António Leitão Amaro',             trat:'Sr. Ministro' },
-  'MARE': { mini:'Min. Adjunto e Reforma do Estado',             titular:'Manuel Castro Almeida',            trat:'Sr. Ministro' },
-  'MAAP': { mini:'Min. Adjunto e Assuntos Parlamentares',        titular:'Pedro Duarte',                     trat:'Sr. Ministro' },
-  'MNE':  { mini:'Min. dos Negócios Estrangeiros',               titular:'Paulo Rangel',                     trat:'Sr. Ministro' },
-  'MF':   { mini:'Min. das Finanças',                            titular:'Joaquim Miranda Sarmento',         trat:'Sr. Ministro' },
-  'MD':   { mini:'Min. da Defesa Nacional',                      titular:'Nuno Melo',                        trat:'Sr. Ministro' },
-  'MAI':  { mini:'Min. da Administração Interna',                titular:'Margarida Blasco',                 trat:'Sra. Ministra' },
-  'MJ':   { mini:'Min. da Justiça',                              titular:'Rita Júdice',                      trat:'Sra. Ministra' },
-  'ME':   { mini:'Min. da Economia',                             titular:'Pedro Reis',                       trat:'Sr. Ministro' },
-  'MECT': { mini:'Min. da Economia',                             titular:'Pedro Reis',                       trat:'Sr. Ministro' }, // alias legacy
-  'MAE':  { mini:'Min. do Ambiente e Energia',                   titular:'Maria da Graça Carvalho',          trat:'Sra. Ministra' },
-  'MIH':  { mini:'Min. das Infraestruturas e Habitação',         titular:'Miguel Pinto Luz',                 trat:'Sr. Ministro' },
-  'MECI': { mini:'Min. da Educação, Ciência e Inovação',         titular:'Fernando Alexandre',               trat:'Sr. Ministro' },
-  'MS':   { mini:'Min. da Saúde',                                titular:'Ana Paula Martins',                trat:'Sra. Ministra' },
-  'MTSSS':{ mini:'Min. do Trabalho, Solidariedade e Seg. Social', titular:'Maria do Rosário Palma Ramalho',  trat:'Sra. Ministra' },
-  'MAP':  { mini:'Min. da Agricultura e Pescas',                 titular:'José Manuel Fernandes',            trat:'Sr. Ministro' },
-  'MC':   { mini:'Min. da Cultura',                              titular:'Dalila Rodrigues',                 trat:'Sra. Ministra' },
-  'MJM':  { mini:'Min. da Juventude e Modernização',             titular:'Margarida Balseiro Lopes',         trat:'Sra. Ministra' },
+  'PM':   { trat:'Sr. Primeiro-Ministro', role:'',                                                full:'Primeiro-Ministro' },
+  'MP':   { trat:'Sr. Ministro',          role:'da Presidência do Conselho de Ministros',         full:'Min. da Presidência' },
+  'MARE': { trat:'Sr. Ministro',          role:'Adjunto e da Reforma do Estado',                  full:'Min. Adjunto e da Reforma do Estado' },
+  'MAAP': { trat:'Sr. Ministro',          role:'Adjunto e dos Assuntos Parlamentares',            full:'Min. Adjunto e dos Assuntos Parlamentares' },
+  'MNE':  { trat:'Sr. Ministro',          role:'dos Negócios Estrangeiros',                       full:'Min. dos Negócios Estrangeiros' },
+  'MF':   { trat:'Sr. Ministro',          role:'das Finanças',                                    full:'Min. das Finanças' },
+  'MDN':  { trat:'Sr. Ministro',          role:'da Defesa Nacional',                              full:'Min. da Defesa Nacional' },
+  'MAI':  { trat:'Sr. Ministro',          role:'da Administração Interna',                        full:'Min. da Administração Interna' },
+  'MJ':   { trat:'Sra. Ministra',         role:'da Justiça',                                      full:'Min. da Justiça' },
+  'ME':   { trat:'Sr. Ministro',          role:'da Economia',                                     full:'Min. da Economia' },
+  'MECT': { trat:'Sr. Ministro',          role:'da Economia',                                     full:'Min. da Economia' }, // alias legacy
+  'MAEN': { trat:'Sra. Ministra',         role:'do Ambiente e da Energia',                        full:'Min. do Ambiente e da Energia' },
+  'MAE':  { trat:'Sra. Ministra',         role:'do Ambiente e da Energia',                        full:'Min. do Ambiente e da Energia' }, // alias antigo
+  'MIH':  { trat:'Sr. Ministro',          role:'das Infraestruturas e da Habitação',              full:'Min. das Infraestruturas e da Habitação' },
+  'MECI': { trat:'Sr. Ministro',          role:'da Educação, Ciência e Inovação',                 full:'Min. da Educação, Ciência e Inovação' },
+  'MS':   { trat:'Sra. Ministra',         role:'da Saúde',                                        full:'Min. da Saúde' },
+  'MTSSS':{ trat:'Sra. Ministra',         role:'do Trabalho, Solidariedade e Segurança Social',   full:'Min. do Trabalho, Solidariedade e Segurança Social' },
+  'MAP':  { trat:'Sr. Ministro',          role:'da Agricultura e Pescas',                         full:'Min. da Agricultura e Pescas' },
+  'MC':   { trat:'Sra. Ministra',         role:'da Cultura',                                      full:'Min. da Cultura' },
+  'MJM':  { trat:'Sra. Ministra',         role:'da Juventude e Modernização',                     full:'Min. da Juventude e Modernização' },
 };
 
-// Resolve um campo "MAE · CNCS · MAI" para o primeiro ministério reconhecido (ignora agências como CNCS/AMA)
+// Resolve um campo "MARE · CNCS · MAI" para o primeiro Ministério reconhecido,
+// ignorando agências (CNCS, AMA, ACT, IMT, ANACOM, BdP, CMVM, IRN, APA, etc.)
 function resolveMinisterio(ministerio_cand) {
   const parts = ministerio_cand.split('·').map(s=>s.trim());
   for (const p of parts) {
     if (MINISTROS[p]) return { sigla:p, ...MINISTROS[p] };
   }
-  // Fallback: primeiro componente, sem mapeamento
-  return { sigla:parts[0], mini:`Ministério (${parts[0]})`, titular:'(titular)', trat:'Sr./Sra. Ministro/a' };
+  return { sigla:parts[0], full:`Ministério (${parts[0]})`, role:'', trat:'Sr./Sra. Ministro/a' };
+}
+
+// Constrói a forma "do/da Sr./Sra. Ministro/a + role" para destinatários
+function gabineteDestinatario(min) {
+  const artigoContraido = min.trat.startsWith('Sra') ? 'da' : 'do';
+  const roleSuffix = min.role ? ' ' + min.role : '';
+  return `Gabinete ${artigoContraido} ${min.trat}${roleSuffix}`;
 }
 
 // === DATA ===
@@ -354,7 +365,7 @@ const SEMANA = [
     summary:'Alargamento do âmbito da NIS2 a sectores adicionais (administração pública local, organizações de investigação). Reforço dos requisitos de reporte de incidentes (24h para incidentes significativos). Harmonização de sanções a nível UE.',
     sector:'Digital · Cibersegurança',
     base_juridica:'Art. 114.º TFUE',
-    ministerio_cand:'MP · CNCS · MAI',
+    ministerio_cand:'MARE · CNCS · MAI',
     area_gov:'CIBERSEGURANCA',
     criticidade:'alto', confidence:0.91, model:'haiku-4-5',
     detected_at:'13-05-2026 13:02',
@@ -387,7 +398,7 @@ const SEMANA = [
     summary:'Auditoria social anual obrigatória, conduzida por entidades certificadas, sobre VLOPs (Very Large Online Platforms). Conteúdo: avaliação de risco para integridade democrática, direitos fundamentais, saúde mental dos utilizadores.',
     sector:'Digital · Direitos',
     base_juridica:'Art. 114.º TFUE',
-    ministerio_cand:'MAI · MJ',
+    ministerio_cand:'MARE · MJ · ANACOM',
     area_gov:'DIGITAL',
     criticidade:'medio', confidence:0.72, model:'haiku-4-5',
     detected_at:'13-05-2026 13:02',
@@ -486,7 +497,7 @@ const ARQUIVO = [
     title:'Iniciativa sobre etiquetagem voluntária de produtos sustentáveis',
     arq_dt:'05-Abr-2026',
     justificacao_cat:'nao_aplicavel',
-    justificacao:'Iniciativa voluntária para empresas privadas. Sem obrigações de transposição. Comunicação ao MECT para articulação com regimes nacionais de rotulagem (ASAE).',
+    justificacao:'Iniciativa voluntária para empresas privadas. Sem obrigações de transposição. Comunicação ao ME para articulação com regimes nacionais de rotulagem (ASAE).',
     arquivado_por:'Helena Carvalho · DGAE',
   },
 ];
@@ -648,9 +659,10 @@ function openNotaPreview(vigilId) {
   curNota = c;
   document.getElementById('modal-nota-ti').textContent = c.title;
 
-  // Resolve o ministério primário com base no XXV Governo (titular + tratamento correctos)
+  // Resolve o Ministério líder do dossier (género correcto, sem nome do titular)
   const min = resolveMinisterio(c.ministerio_cand);
   const minPathRest = c.ministerio_cand.split('·').slice(1).map(s=>s.trim()).filter(Boolean).join(' · ');
+  const destLine = gabineteDestinatario(min);
 
   const today = new Date('2026-05-13');
   const today_str = today.toLocaleDateString('pt-PT', { day:'numeric', month:'long', year:'numeric' });
@@ -669,8 +681,8 @@ function openNotaPreview(vigilId) {
       <h3>VIGIL · HORIZONTE · ${c.vigil_id}</h3>
 
       <table class="meta-table">
-        <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario">Gabinete d${min.trat.startsWith('Sra')?'a':'o'} ${min.trat} · <strong>${min.titular}</strong> · ${min.mini}${minPathRest ? ' <em>(articulação: ' + minPathRest + ')</em>' : ''}</td></tr>
-        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete da Secretária de Estado dos Assuntos Europeus (SEAE · MNE) · Direcção-Geral dos Assuntos Europeus (DGAE) · Direcção-Geral do Direito Europeu e Internacional (DGDEI)</td></tr>
+        <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario"><strong>${destLine}</strong> · ${min.full}${minPathRest ? ' <em>(articulação operacional: ' + minPathRest + ')</em>' : ''}</td></tr>
+        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete d${MINISTROS['MNE'].trat.startsWith('Sra')?'a':'o'} ${MINISTROS['MNE'].trat} dos Negócios Estrangeiros · Secretaria de Estado dos Assuntos Europeus (SEAE) · DGAE · DGDEI</td></tr>
         <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
         <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
         <tr><td>Sector:</td><td>${c.sector}</td></tr>
@@ -682,7 +694,7 @@ function openNotaPreview(vigilId) {
       <p contenteditable="true" data-nota-field="sintese">${c.summary}</p>
 
       <h4>2. Impacto previsível em Portugal</h4>
-      <p contenteditable="true" data-nota-field="impacto">Esta iniciativa cairá sobre o pelouro d${min.trat.startsWith('Sra')?'a':'o'} ${min.trat.replace('Sra. ','').replace('Sr. ','')} <strong>${min.titular}</strong> (${min.mini})${minPathRest ? ', com articulação prevista com as entidades ' + minPathRest : ''}. Área governativa: <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
+      <p contenteditable="true" data-nota-field="impacto">Esta iniciativa cairá sobre o pelouro d${min.trat.startsWith('Sra')?'a':'o'} <strong>${min.trat} ${min.role}</strong>${minPathRest ? ', com articulação operacional prevista com ' + minPathRest : ''}. Área governativa: <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
 
       <h4>3. Janela de oportunidade negocial</h4>
       <p contenteditable="true" data-nota-field="janela">O acto deverá ser adoptado pelo Colégio nos próximos meses e seguir para procedimento legislativo ordinário (Art. 294.º TFUE). A experiência da DGAE indica que mais de 90% dos actos legislativos UE fecham em trílogo de 1.ª leitura, pelo que <strong>a janela útil para influenciar o texto é estimada em 4 a 6 meses</strong> a partir da adopção pelo Colégio. Recomenda-se:</p>
