@@ -312,6 +312,40 @@ if (!CAN_WRITE) {
   document.getElementById('readonly-text').textContent = READ_ONLY_TEXTS[session.perfil] || 'Modo de leitura.';
 }
 
+// === ORGÂNICA DO XXV GOVERNO CONSTITUCIONAL (mapa sigla → titular + género) ===
+// Usado para construir destinatários correctos nas Notas de Antecipação
+const MINISTROS = {
+  'PM':   { mini:'Primeiro-Ministro',                            titular:'Luís Montenegro',                  trat:'Sr. Primeiro-Ministro' },
+  'MP':   { mini:'Min. da Presidência',                          titular:'António Leitão Amaro',             trat:'Sr. Ministro' },
+  'MARE': { mini:'Min. Adjunto e Reforma do Estado',             titular:'Manuel Castro Almeida',            trat:'Sr. Ministro' },
+  'MAAP': { mini:'Min. Adjunto e Assuntos Parlamentares',        titular:'Pedro Duarte',                     trat:'Sr. Ministro' },
+  'MNE':  { mini:'Min. dos Negócios Estrangeiros',               titular:'Paulo Rangel',                     trat:'Sr. Ministro' },
+  'MF':   { mini:'Min. das Finanças',                            titular:'Joaquim Miranda Sarmento',         trat:'Sr. Ministro' },
+  'MD':   { mini:'Min. da Defesa Nacional',                      titular:'Nuno Melo',                        trat:'Sr. Ministro' },
+  'MAI':  { mini:'Min. da Administração Interna',                titular:'Margarida Blasco',                 trat:'Sra. Ministra' },
+  'MJ':   { mini:'Min. da Justiça',                              titular:'Rita Júdice',                      trat:'Sra. Ministra' },
+  'ME':   { mini:'Min. da Economia',                             titular:'Pedro Reis',                       trat:'Sr. Ministro' },
+  'MECT': { mini:'Min. da Economia',                             titular:'Pedro Reis',                       trat:'Sr. Ministro' }, // alias legacy
+  'MAE':  { mini:'Min. do Ambiente e Energia',                   titular:'Maria da Graça Carvalho',          trat:'Sra. Ministra' },
+  'MIH':  { mini:'Min. das Infraestruturas e Habitação',         titular:'Miguel Pinto Luz',                 trat:'Sr. Ministro' },
+  'MECI': { mini:'Min. da Educação, Ciência e Inovação',         titular:'Fernando Alexandre',               trat:'Sr. Ministro' },
+  'MS':   { mini:'Min. da Saúde',                                titular:'Ana Paula Martins',                trat:'Sra. Ministra' },
+  'MTSSS':{ mini:'Min. do Trabalho, Solidariedade e Seg. Social', titular:'Maria do Rosário Palma Ramalho',  trat:'Sra. Ministra' },
+  'MAP':  { mini:'Min. da Agricultura e Pescas',                 titular:'José Manuel Fernandes',            trat:'Sr. Ministro' },
+  'MC':   { mini:'Min. da Cultura',                              titular:'Dalila Rodrigues',                 trat:'Sra. Ministra' },
+  'MJM':  { mini:'Min. da Juventude e Modernização',             titular:'Margarida Balseiro Lopes',         trat:'Sra. Ministra' },
+};
+
+// Resolve um campo "MAE · CNCS · MAI" para o primeiro ministério reconhecido (ignora agências como CNCS/AMA)
+function resolveMinisterio(ministerio_cand) {
+  const parts = ministerio_cand.split('·').map(s=>s.trim());
+  for (const p of parts) {
+    if (MINISTROS[p]) return { sigla:p, ...MINISTROS[p] };
+  }
+  // Fallback: primeiro componente, sem mapeamento
+  return { sigla:parts[0], mini:`Ministério (${parts[0]})`, titular:'(titular)', trat:'Sr./Sra. Ministro/a' };
+}
+
 // === DATA ===
 // Candidatos para Esta Semana (semana 19 · Maio 2026)
 const SEMANA = [
@@ -320,7 +354,7 @@ const SEMANA = [
     summary:'Alargamento do âmbito da NIS2 a sectores adicionais (administração pública local, organizações de investigação). Reforço dos requisitos de reporte de incidentes (24h para incidentes significativos). Harmonização de sanções a nível UE.',
     sector:'Digital · Cibersegurança',
     base_juridica:'Art. 114.º TFUE',
-    ministerio_cand:'MAE · CNCS · MAI',
+    ministerio_cand:'MP · CNCS · MAI',
     area_gov:'CIBERSEGURANCA',
     criticidade:'alto', confidence:0.91, model:'haiku-4-5',
     detected_at:'13-05-2026 13:02',
@@ -342,7 +376,7 @@ const SEMANA = [
     summary:'Segunda iteração da carteira digital europeia. Inclui obrigações para administrações públicas nacionais sobre integração de credenciais europeias. Reforço de interoperabilidade transfronteiriça. Articulação com regimes nacionais de identidade electrónica.',
     sector:'Digital · Administração',
     base_juridica:'Art. 114.º TFUE',
-    ministerio_cand:'MARE · AMA · MJ',
+    ministerio_cand:'MARE · AMA · MJ · MAI',
     area_gov:'REFORMA_ESTADO',
     criticidade:'medio', confidence:0.78, model:'haiku-4-5',
     detected_at:'13-05-2026 13:02',
@@ -411,13 +445,13 @@ const WATCHLIST = [
     title:'AI Act · Regulamento da Inteligência Artificial',
     com_ref:'Reg. (UE) 2024/1689',
     summary:'JÁ NO RADAR. Mantido aqui para visualizar linhagem retroactiva: detectado por HORIZONTE em 2024, promovido a PROSPETIVA, publicado JOUE em 12-Jul-2024.',
-    sector:'Digital', ministerio_cand:'MARE · ANI', criticidade:'alto',
+    sector:'Digital', ministerio_cand:'MECI · ANI · MP', criticidade:'alto',
     primeiro_sinal:'19-Out-2021',
     observador:'Helena Carvalho · DGAE (à data, J. Pereira)',
     timeline:[
       {dt:'2021-10-19',ev:'CWP 2022 listou iniciativa',state:'done'},
       {dt:'2021-12-03',ev:'Detectado · HORIZONTE',state:'done'},
-      {dt:'2022-01-15',ev:'Nota antecipação · MP, MARE, MJ',state:'done'},
+      {dt:'2022-01-15',ev:'Nota antecipação · MP, MECI, MJ',state:'done'},
       {dt:'2022-03-08',ev:'Promovido a PROSPETIVA',state:'done'},
       {dt:'2024-06-13',ev:'Colégio adopta · 32024R1689',state:'done'},
       {dt:'2024-07-12',ev:'Publicação JOUE · match no RADAR',state:'done'},
@@ -614,8 +648,9 @@ function openNotaPreview(vigilId) {
   curNota = c;
   document.getElementById('modal-nota-ti').textContent = c.title;
 
-  // Identify ministério siglas
-  const ministerios = c.ministerio_cand.split('·')[0].split('+').map(s=>s.trim()).join(', ');
+  // Resolve o ministério primário com base no XXV Governo (titular + tratamento correctos)
+  const min = resolveMinisterio(c.ministerio_cand);
+  const minPathRest = c.ministerio_cand.split('·').slice(1).map(s=>s.trim()).filter(Boolean).join(' · ');
 
   const today = new Date('2026-05-13');
   const today_str = today.toLocaleDateString('pt-PT', { day:'numeric', month:'long', year:'numeric' });
@@ -634,8 +669,8 @@ function openNotaPreview(vigilId) {
       <h3>VIGIL · HORIZONTE · ${c.vigil_id}</h3>
 
       <table class="meta-table">
-        <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario">Gabinete da Senhora Ministra de ${ministerios}</td></tr>
-        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete da Secretária de Estado dos Assuntos Europeus · DGAE · DGDEI</td></tr>
+        <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario">Gabinete d${min.trat.startsWith('Sra')?'a':'o'} ${min.trat} · <strong>${min.titular}</strong> · ${min.mini}${minPathRest ? ' <em>(articulação: ' + minPathRest + ')</em>' : ''}</td></tr>
+        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete da Secretária de Estado dos Assuntos Europeus (SEAE · MNE) · Direcção-Geral dos Assuntos Europeus (DGAE) · Direcção-Geral do Direito Europeu e Internacional (DGDEI)</td></tr>
         <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
         <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
         <tr><td>Sector:</td><td>${c.sector}</td></tr>
@@ -647,7 +682,7 @@ function openNotaPreview(vigilId) {
       <p contenteditable="true" data-nota-field="sintese">${c.summary}</p>
 
       <h4>2. Impacto previsível em Portugal</h4>
-      <p contenteditable="true" data-nota-field="impacto">Esta iniciativa cairá sobre o pelouro do Ministério de ${ministerios}, com articulação prevista com a área governativa de <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
+      <p contenteditable="true" data-nota-field="impacto">Esta iniciativa cairá sobre o pelouro d${min.trat.startsWith('Sra')?'a':'o'} ${min.trat.replace('Sra. ','').replace('Sr. ','')} <strong>${min.titular}</strong> (${min.mini})${minPathRest ? ', com articulação prevista com as entidades ' + minPathRest : ''}. Área governativa: <strong>${c.area_gov}</strong>. ${c.extra ? '<br><br>' + c.extra : ''} A análise jurídica detalhada será desenvolvida no módulo PROSPETIVA caso V. Ex.ª autorize a sua progressão para essa fase.</p>
 
       <h4>3. Janela de oportunidade negocial</h4>
       <p contenteditable="true" data-nota-field="janela">O acto deverá ser adoptado pelo Colégio nos próximos meses e seguir para procedimento legislativo ordinário (Art. 294.º TFUE). A experiência da DGAE indica que mais de 90% dos actos legislativos UE fecham em trílogo de 1.ª leitura, pelo que <strong>a janela útil para influenciar o texto é estimada em 4 a 6 meses</strong> a partir da adopção pelo Colégio. Recomenda-se:</p>
