@@ -312,32 +312,37 @@ if (!CAN_WRITE) {
   document.getElementById('readonly-text').textContent = READ_ONLY_TEXTS[session.perfil] || 'Modo de leitura.';
 }
 
-// === ORGÂNICA DO XXV GOVERNO CONSTITUCIONAL — mapa sigla → tratamento (género) + papel ===
-// Por design, não armazenamos o nome do titular (muda com cada remodelação).
-// Apenas o género do cargo actual e a designação do Ministério.
-// Campo `role` é a expressão preposicionada que segue "Ministro/a" para construir frases correctas:
-//   "Sra. Ministra ${role}"  →  "Sra. Ministra do Ambiente e da Energia"
+// === ORGÂNICA DO XXV GOVERNO CONSTITUCIONAL — designações OFICIAIS (SMARTBP · 11-Fev-2026) ===
+// Mapa sigla → tratamento (género) + papel preposicionado + designação completa.
+// Por design, não armazenamos nome do titular (muda com remodelações).
+// Domínio de email institucional: nome.apelido@${sigla.toLowerCase()}.gov.pt
 const MINISTROS = {
   'PM':   { trat:'Sr. Primeiro-Ministro', role:'',                                                full:'Primeiro-Ministro' },
-  'MP':   { trat:'Sr. Ministro',          role:'da Presidência do Conselho de Ministros',         full:'Min. da Presidência' },
-  'MARE': { trat:'Sr. Ministro',          role:'Adjunto e da Reforma do Estado',                  full:'Min. Adjunto e da Reforma do Estado' },
-  'MAAP': { trat:'Sr. Ministro',          role:'Adjunto e dos Assuntos Parlamentares',            full:'Min. Adjunto e dos Assuntos Parlamentares' },
-  'MNE':  { trat:'Sr. Ministro',          role:'dos Negócios Estrangeiros',                       full:'Min. dos Negócios Estrangeiros' },
-  'MF':   { trat:'Sr. Ministro',          role:'das Finanças',                                    full:'Min. das Finanças' },
-  'MDN':  { trat:'Sr. Ministro',          role:'da Defesa Nacional',                              full:'Min. da Defesa Nacional' },
-  'MAI':  { trat:'Sr. Ministro',          role:'da Administração Interna',                        full:'Min. da Administração Interna' },
-  'MJ':   { trat:'Sra. Ministra',         role:'da Justiça',                                      full:'Min. da Justiça' },
+  'MENE': { trat:'Sr. Ministro',          role:'de Estado e dos Negócios Estrangeiros',           full:'Min. de Estado e dos Negócios Estrangeiros' },
+  'MEF':  { trat:'Sr. Ministro',          role:'de Estado e das Finanças',                        full:'Min. de Estado e das Finanças' },
+  'MP':   { trat:'Sr. Ministro',          role:'da Presidência',                                  full:'Min. da Presidência' },
   'MECT': { trat:'Sr. Ministro',          role:'da Economia e da Coesão Territorial',             full:'Min. da Economia e da Coesão Territorial' },
-  'ME':   { trat:'Sr. Ministro',          role:'da Economia e da Coesão Territorial',             full:'Min. da Economia e da Coesão Territorial' }, // alias legacy
-  'MAEN': { trat:'Sra. Ministra',         role:'do Ambiente e da Energia',                        full:'Min. do Ambiente e da Energia' },
-  'MAE':  { trat:'Sra. Ministra',         role:'do Ambiente e da Energia',                        full:'Min. do Ambiente e da Energia' }, // alias antigo
-  'MIH':  { trat:'Sr. Ministro',          role:'das Infraestruturas e da Habitação',              full:'Min. das Infraestruturas e da Habitação' },
+  'MARE': { trat:'Sr. Ministro',          role:'Adjunto e da Reforma do Estado',                  full:'Min. Adjunto e da Reforma do Estado' },
+  'MAP':  { trat:'Sr. Ministro',          role:'dos Assuntos Parlamentares',                      full:'Min. dos Assuntos Parlamentares' },
+  'MDN':  { trat:'Sr. Ministro',          role:'da Defesa Nacional',                              full:'Min. da Defesa Nacional' },
+  'MIH':  { trat:'Sr. Ministro',          role:'das Infraestruturas e Habitação',                 full:'Min. das Infraestruturas e Habitação' },
+  'MJ':   { trat:'Sra. Ministra',         role:'da Justiça',                                      full:'Min. da Justiça' },
+  'MAI':  { trat:'Sra. Ministra',         role:'da Administração Interna',                        full:'Min. da Administração Interna' },
   'MECI': { trat:'Sr. Ministro',          role:'da Educação, Ciência e Inovação',                 full:'Min. da Educação, Ciência e Inovação' },
   'MS':   { trat:'Sra. Ministra',         role:'da Saúde',                                        full:'Min. da Saúde' },
   'MTSSS':{ trat:'Sra. Ministra',         role:'do Trabalho, Solidariedade e Segurança Social',   full:'Min. do Trabalho, Solidariedade e Segurança Social' },
-  'MAP':  { trat:'Sr. Ministro',          role:'da Agricultura e Pescas',                         full:'Min. da Agricultura e Pescas' },
-  'MC':   { trat:'Sra. Ministra',         role:'da Cultura',                                      full:'Min. da Cultura' },
+  'MAEN': { trat:'Sra. Ministra',         role:'do Ambiente e Energia',                           full:'Min. do Ambiente e Energia' },
   'MCJD': { trat:'Sra. Ministra',         role:'da Cultura, Juventude e Desporto',                full:'Min. da Cultura, Juventude e Desporto' },
+  'MAM':  { trat:'Sr. Ministro',          role:'da Agricultura e Mar',                            full:'Min. da Agricultura e Mar' },
+
+  // === Aliases legacy (defesa contra dados antigos em localStorage) ===
+  'MNE':  { trat:'Sr. Ministro',          role:'de Estado e dos Negócios Estrangeiros',           full:'Min. de Estado e dos Negócios Estrangeiros' }, // legacy → MENE
+  'MF':   { trat:'Sr. Ministro',          role:'de Estado e das Finanças',                        full:'Min. de Estado e das Finanças' },              // legacy → MEF
+  'ME':   { trat:'Sr. Ministro',          role:'da Economia e da Coesão Territorial',             full:'Min. da Economia e da Coesão Territorial' },   // legacy → MECT
+  'MAE':  { trat:'Sra. Ministra',         role:'do Ambiente e Energia',                           full:'Min. do Ambiente e Energia' },                 // legacy → MAEN
+  'MAAP': { trat:'Sr. Ministro',          role:'dos Assuntos Parlamentares',                      full:'Min. dos Assuntos Parlamentares' },            // legacy → MAP
+  'MC':   { trat:'Sra. Ministra',         role:'da Cultura, Juventude e Desporto',                full:'Min. da Cultura, Juventude e Desporto' },      // legacy → MCJD
+  'MD':   { trat:'Sr. Ministro',          role:'da Defesa Nacional',                              full:'Min. da Defesa Nacional' },                    // legacy → MDN
 };
 
 // Resolve um campo "MARE · CNCS · MAI" para o primeiro Ministério reconhecido,
@@ -412,7 +417,7 @@ const WATCHLIST = [
     title:'Lei do Lobby · Diretiva Representação Interesses Países Terceiros',
     com_ref:'COM(2023) 637 final',
     summary:'PROMOVIDO em 15-Jan-2026. Análise PROSPETIVA concluída e validada. À espera de adopção pelo Conselho (trílogo em curso).',
-    sector:'Transparência', ministerio_cand:'MP · MNE', criticidade:'alto',
+    sector:'Transparência', ministerio_cand:'MP · MENE', criticidade:'alto',
     primeiro_sinal:'15-Out-2024',
     observador:'Helena Carvalho · DGAE',
     timeline:[
@@ -420,7 +425,7 @@ const WATCHLIST = [
       {dt:'2025-02-08',ev:'Call for Evidence aberto',state:'done'},
       {dt:'2025-09-22',ev:'Colégio adopta · COM final publicada',state:'done'},
       {dt:'2026-01-12',ev:'Detectado pelo crawler HORIZONTE',state:'done'},
-      {dt:'2026-01-15',ev:'Nota antecipação · MP, MNE, DGAE',state:'done'},
+      {dt:'2026-01-15',ev:'Nota antecipação · MP, MENE, DGAE',state:'done'},
       {dt:'2026-02-03',ev:'Promovido a PROSPETIVA · validado',state:'done'},
       {dt:'',ev:'Aguarda publicação JOUE para RADAR',state:'cur'},
     ],
@@ -682,7 +687,7 @@ function openNotaPreview(vigilId) {
 
       <table class="meta-table">
         <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario"><strong>${destLine}</strong> · ${min.full}${minPathRest ? ' <em>(articulação operacional: ' + minPathRest + ')</em>' : ''}</td></tr>
-        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete d${MINISTROS['MNE'].trat.startsWith('Sra')?'a':'o'} ${MINISTROS['MNE'].trat} dos Negócios Estrangeiros · Secretaria de Estado dos Assuntos Europeus (SEAE) · DGAE · DGDEI</td></tr>
+        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete d${MINISTROS['MENE'].trat.startsWith('Sra')?'a':'o'} ${MINISTROS['MENE'].trat} de Estado e dos Negócios Estrangeiros · Gabinete da Secretária de Estado dos Assuntos Europeus (SEAE) · DGAE · DGDEI</td></tr>
         <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
         <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
         <tr><td>Sector:</td><td>${c.sector}</td></tr>

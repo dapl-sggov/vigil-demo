@@ -163,26 +163,27 @@ else {
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
 }
 
-// Orgânica do XXV Governo Constitucional. Por design, não armazenamos o nome
-// do titular (muda com cada remodelação) — apenas o género do cargo actual
-// (Sr. Ministro / Sra. Ministra) para construir destinatários correctos.
+// Orgânica do XXV Governo Constitucional — designações OFICIAIS (SMARTBP · 11-Fev-2026).
+// Por design, não armazenamos nome do titular (muda com remodelações) —
+// apenas o género do cargo (Sr. Ministro / Sra. Ministra).
+// Domínio de email institucional: nome.apelido@${sigla.toLowerCase()}.gov.pt
 const MINISTERIOS = [
-  { sigla:'MP',   nome:'Min. da Presidência',                              trat:'Sr. Ministro',  semaforo:'amber', total:5,  criticos:0, atencao:2, emCurso:3, areas:'Coordenação · Lei do Lobby · Conselho de Ministros' },
-  { sigla:'MARE', nome:'Min. Adjunto e da Reforma do Estado',              trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Administração Pública · Modernização · AMA · CNCS · ESPAP · INCM' },
-  { sigla:'MNE',  nome:'Min. dos Negócios Estrangeiros',                   trat:'Sr. Ministro',  semaforo:'amber', total:8,  criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades · SEAE' },
-  { sigla:'MF',   nome:'Min. das Finanças',                                trat:'Sr. Ministro',  semaforo:'red',   total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Mercados · BdP · CMVM' },
-  { sigla:'MECT', nome:'Min. da Economia e da Coesão Territorial',          trat:'Sr. Ministro',  semaforo:'amber', total:9,  criticos:2, atencao:4, emCurso:3, areas:'Economia · Comércio · Turismo · Indústria · Coesão · IAPMEI' },
-  { sigla:'MAEN', nome:'Min. do Ambiente e da Energia',                    trat:'Sra. Ministra', semaforo:'red',   total:14, criticos:6, atencao:5, emCurso:3, areas:'Ambiente · Energia · Clima · APA · DGEG · ICNF · ADENE · ERSE' },
-  { sigla:'MS',   nome:'Min. da Saúde',                                    trat:'Sra. Ministra', semaforo:'amber', total:6,  criticos:0, atencao:3, emCurso:3, areas:'Saúde · Medicamentos · Tecnologias · Infarmed · SPMS' },
-  { sigla:'MTSSS',nome:'Min. do Trabalho, Solidariedade e Seg. Social',    trat:'Sra. Ministra', semaforo:'amber', total:5,  criticos:1, atencao:2, emCurso:2, areas:'Trabalho · Solidariedade · Segurança Social · ACT · CITE' },
+  { sigla:'MENE', nome:'Min. de Estado e dos Negócios Estrangeiros',       trat:'Sr. Ministro',  semaforo:'amber', total:8,  criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades · SEAE · SENEC · SECP' },
+  { sigla:'MEF',  nome:'Min. de Estado e das Finanças',                    trat:'Sr. Ministro',  semaforo:'red',   total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Orçamento · Tesouro · Mercados · BdP · CMVM' },
+  { sigla:'MP',   nome:'Min. da Presidência',                              trat:'Sr. Ministro',  semaforo:'amber', total:5,  criticos:0, atencao:2, emCurso:3, areas:'Coordenação · Conselho de Ministros · SEAPI · SEPCM · SEP' },
+  { sigla:'MECT', nome:'Min. da Economia e da Coesão Territorial',          trat:'Sr. Ministro',  semaforo:'amber', total:9,  criticos:2, atencao:4, emCurso:3, areas:'Economia · Coesão · Planeamento Regional · Turismo · Comércio · Adm. Local · IAPMEI' },
+  { sigla:'MARE', nome:'Min. Adjunto e da Reforma do Estado',              trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Administração Pública · Modernização · Digitalização · Simplificação · AMA · CNCS · ESPAP · INCM' },
+  { sigla:'MAP',  nome:'Min. dos Assuntos Parlamentares',                  trat:'Sr. Ministro',  semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Relações com Assembleia da República · Processo legislativo' },
+  { sigla:'MDN',  nome:'Min. da Defesa Nacional',                          trat:'Sr. Ministro',  semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Defesa · Indústria de defesa · Política da Defesa' },
+  { sigla:'MIH',  nome:'Min. das Infraestruturas e Habitação',             trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Infraestruturas · Habitação · Mobilidade · IMT · IHRU' },
   { sigla:'MJ',   nome:'Min. da Justiça',                                  trat:'Sra. Ministra', semaforo:'green', total:4,  criticos:0, atencao:1, emCurso:3, areas:'Justiça · Direitos · Cidadania · IRN · CNPD (independente)' },
-  { sigla:'MAI',  nome:'Min. da Administração Interna',                    trat:'Sr. Ministro',  semaforo:'amber', total:3,  criticos:1, atencao:1, emCurso:1, areas:'Segurança · Protecção Civil · Resiliência · ANEPC' },
-  { sigla:'MIH',  nome:'Min. das Infraestruturas e da Habitação',          trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Infraestruturas · Habitação · Mobilidade · IMT · IHRU' },
+  { sigla:'MAI',  nome:'Min. da Administração Interna',                    trat:'Sra. Ministra', semaforo:'amber', total:3,  criticos:1, atencao:1, emCurso:1, areas:'Segurança · Protecção Civil · Resiliência · ANEPC' },
   { sigla:'MECI', nome:'Min. da Educação, Ciência e Inovação',             trat:'Sr. Ministro',  semaforo:'green', total:3,  criticos:0, atencao:1, emCurso:2, areas:'Educação · Ciência · Inovação · Ensino Superior · ANI' },
-  { sigla:'MAP',  nome:'Min. da Agricultura e Pescas',                     trat:'Sr. Ministro',  semaforo:'amber', total:4,  criticos:1, atencao:2, emCurso:1, areas:'Agricultura · Pescas · Alimentação · ASAE' },
-  { sigla:'MC',   nome:'Min. da Cultura',                                  trat:'Sra. Ministra', semaforo:'green', total:2,  criticos:0, atencao:0, emCurso:2, areas:'Cultura · Património · Audiovisual' },
-  { sigla:'MDN',  nome:'Min. da Defesa Nacional',                          trat:'Sr. Ministro',  semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Defesa · Indústria de defesa' },
-  { sigla:'MCJD', nome:'Min. da Cultura, Juventude e Desporto',             trat:'Sra. Ministra', semaforo:'gray',  total:1,  criticos:0, atencao:0, emCurso:1, areas:'Cultura · Juventude · Desporto' },
+  { sigla:'MS',   nome:'Min. da Saúde',                                    trat:'Sra. Ministra', semaforo:'amber', total:6,  criticos:0, atencao:3, emCurso:3, areas:'Saúde · Medicamentos · Tecnologias · Infarmed · SPMS' },
+  { sigla:'MTSSS',nome:'Min. do Trabalho, Solidariedade e Seg. Social',    trat:'Sra. Ministra', semaforo:'amber', total:5,  criticos:1, atencao:2, emCurso:2, areas:'Trabalho · Solidariedade · Segurança Social · Acção Social · ACT · CITE' },
+  { sigla:'MAEN', nome:'Min. do Ambiente e Energia',                       trat:'Sra. Ministra', semaforo:'red',   total:14, criticos:6, atencao:5, emCurso:3, areas:'Ambiente · Energia · Clima · APA · DGEG · ICNF · ADENE · ERSE' },
+  { sigla:'MCJD', nome:'Min. da Cultura, Juventude e Desporto',            trat:'Sra. Ministra', semaforo:'gray',  total:2,  criticos:0, atencao:0, emCurso:2, areas:'Cultura · Juventude · Desporto · Património · Audiovisual' },
+  { sigla:'MAM',  nome:'Min. da Agricultura e Mar',                        trat:'Sr. Ministro',  semaforo:'amber', total:4,  criticos:1, atencao:2, emCurso:1, areas:'Agricultura · Pescas · Mar · Florestas · ASAE' },
 ];
 
 let curFilter = 'all';
@@ -251,7 +252,7 @@ function selectMin(sigla) {
       { celex:'32022L2555', ti:'NIS2 · Cibersegurança (CNCS)', prazo:'Out 2024', estado:'critico', urgent:true },
       { celex:'32023R2854', ti:'Data Act · AMA candidata a aut. competente', prazo:'Set 2025', estado:'atencao' },
     ],
-    MF: [
+    MEF: [
       { celex:'32021L0338', ti:'MiFID II · Instrumentos financeiros', prazo:'Nov 2022', estado:'critico', urgent:true },
       { celex:'32021L2167', ti:'Créditos não produtivos', prazo:'Dez 2023', estado:'critico', urgent:true },
       { celex:'32019L0879', ti:'BRRD II · Resolução bancária', prazo:'Dez 2020', estado:'critico', urgent:true },
@@ -272,7 +273,7 @@ function selectMin(sigla) {
     MARE: [
       { dt:'29-04-2026', ti:'Resposta NIS2 IP/24/1182', sub:'Prazo amanhã · DGDEI lead · CNCS pronto', urgent:true },
     ],
-    MF: [
+    MEF: [
       { dt:'15-05-2026', ti:'AML6 · projecto-lei à AR', sub:'Submissão antes de 30 jun · janela útil', urgent:true },
       { dt:'30-05-2026', ti:'Resposta IP/22/0841 · MiFID II', sub:'Após parecer fundamentado', soon:true },
     ],
