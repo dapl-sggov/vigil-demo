@@ -318,8 +318,8 @@ if (!CAN_WRITE) {
 // Domínio de email institucional: nome.apelido@${sigla.toLowerCase()}.gov.pt
 const MINISTROS = {
   'PM':   { trat:'Sr. Primeiro-Ministro', role:'',                                                full:'Primeiro-Ministro' },
-  'MENE': { trat:'Sr. Ministro',          role:'de Estado e dos Negócios Estrangeiros',           full:'Min. de Estado e dos Negócios Estrangeiros' },
-  'MEF':  { trat:'Sr. Ministro',          role:'de Estado e das Finanças',                        full:'Min. de Estado e das Finanças' },
+  'MNE':  { trat:'Sr. Ministro',          role:'dos Negócios Estrangeiros',                       full:'Min. dos Negócios Estrangeiros' },
+  'MF':   { trat:'Sr. Ministro',          role:'das Finanças',                                    full:'Min. das Finanças' },
   'MP':   { trat:'Sr. Ministro',          role:'da Presidência',                                  full:'Min. da Presidência' },
   'MECT': { trat:'Sr. Ministro',          role:'da Economia e da Coesão Territorial',             full:'Min. da Economia e da Coesão Territorial' },
   'MARE': { trat:'Sr. Ministro',          role:'Adjunto e da Reforma do Estado',                  full:'Min. Adjunto e da Reforma do Estado' },
@@ -336,8 +336,6 @@ const MINISTROS = {
   'MAM':  { trat:'Sr. Ministro',          role:'da Agricultura e Mar',                            full:'Min. da Agricultura e Mar' },
 
   // === Aliases legacy (defesa contra dados antigos em localStorage) ===
-  'MNE':  { trat:'Sr. Ministro',          role:'de Estado e dos Negócios Estrangeiros',           full:'Min. de Estado e dos Negócios Estrangeiros' }, // legacy → MENE
-  'MF':   { trat:'Sr. Ministro',          role:'de Estado e das Finanças',                        full:'Min. de Estado e das Finanças' },              // legacy → MEF
   'ME':   { trat:'Sr. Ministro',          role:'da Economia e da Coesão Territorial',             full:'Min. da Economia e da Coesão Territorial' },   // legacy → MECT
   'MAE':  { trat:'Sra. Ministra',         role:'do Ambiente e Energia',                           full:'Min. do Ambiente e Energia' },                 // legacy → MAEN
   'MAAP': { trat:'Sr. Ministro',          role:'dos Assuntos Parlamentares',                      full:'Min. dos Assuntos Parlamentares' },            // legacy → MAP
@@ -417,7 +415,7 @@ const WATCHLIST = [
     title:'Lei do Lobby · Diretiva Representação Interesses Países Terceiros',
     com_ref:'COM(2023) 637 final',
     summary:'PROMOVIDO em 15-Jan-2026. Análise PROSPETIVA concluída e validada. À espera de adopção pelo Conselho (trílogo em curso).',
-    sector:'Transparência', ministerio_cand:'MP · MENE', criticidade:'alto',
+    sector:'Transparência', ministerio_cand:'MP · MNE', criticidade:'alto',
     primeiro_sinal:'15-Out-2024',
     observador:'Helena Carvalho · DGAE',
     timeline:[
@@ -425,7 +423,7 @@ const WATCHLIST = [
       {dt:'2025-02-08',ev:'Call for Evidence aberto',state:'done'},
       {dt:'2025-09-22',ev:'Colégio adopta · COM final publicada',state:'done'},
       {dt:'2026-01-12',ev:'Detectado pelo crawler HORIZONTE',state:'done'},
-      {dt:'2026-01-15',ev:'Nota antecipação · MP, MENE, DGAE',state:'done'},
+      {dt:'2026-01-15',ev:'Nota antecipação · MP, MNE, DGAE',state:'done'},
       {dt:'2026-02-03',ev:'Promovido a PROSPETIVA · validado',state:'done'},
       {dt:'',ev:'Aguarda publicação JOUE para RADAR',state:'cur'},
     ],
@@ -687,7 +685,7 @@ function openNotaPreview(vigilId) {
 
       <table class="meta-table">
         <tr><td>Destinatário primário:</td><td contenteditable="true" data-nota-field="dest-primario"><strong>${destLine}</strong> · ${min.full}${minPathRest ? ' <em>(articulação operacional: ' + minPathRest + ')</em>' : ''}</td></tr>
-        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete d${MINISTROS['MENE'].trat.startsWith('Sra')?'a':'o'} ${MINISTROS['MENE'].trat} de Estado e dos Negócios Estrangeiros · Gabinete da Secretária de Estado dos Assuntos Europeus (SEAE) · DGAE · DGDEI</td></tr>
+        <tr><td>Cópia obrigatória:</td><td contenteditable="true" data-nota-field="dest-copia">Gabinete d${MINISTROS['MNE'].trat.startsWith('Sra')?'a':'o'} ${MINISTROS['MNE'].trat} dos Negócios Estrangeiros · Gabinete da Secretária de Estado dos Assuntos Europeus (SEAE) · DGAE · DGDEI</td></tr>
         <tr><td>Acto detectado:</td><td>${c.title}</td></tr>
         <tr><td>Referências UE:</td><td>${c.cwp} · ${c.com_ref || 'COM final em preparação'}</td></tr>
         <tr><td>Sector:</td><td>${c.sector}</td></tr>

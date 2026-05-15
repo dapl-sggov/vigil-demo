@@ -168,8 +168,8 @@ else {
 // apenas o género do cargo (Sr. Ministro / Sra. Ministra).
 // Domínio de email institucional: nome.apelido@${sigla.toLowerCase()}.gov.pt
 const MINISTERIOS = [
-  { sigla:'MENE', nome:'Min. de Estado e dos Negócios Estrangeiros',       trat:'Sr. Ministro',  semaforo:'amber', total:8,  criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades · SEAE · SENEC · SECP' },
-  { sigla:'MEF',  nome:'Min. de Estado e das Finanças',                    trat:'Sr. Ministro',  semaforo:'red',   total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Orçamento · Tesouro · Mercados · BdP · CMVM' },
+  { sigla:'MNE',  nome:'Min. dos Negócios Estrangeiros',                   trat:'Sr. Ministro',  semaforo:'amber', total:8,  criticos:1, atencao:3, emCurso:4, areas:'DGAE · DGDEI · Cooperação · Comunidades · SEAE · SENEC · SECP' },
+  { sigla:'MF',   nome:'Min. das Finanças',                                trat:'Sr. Ministro',  semaforo:'red',   total:12, criticos:5, atencao:4, emCurso:3, areas:'Finanças · Fiscalidade · Orçamento · Tesouro · Mercados · BdP · CMVM' },
   { sigla:'MP',   nome:'Min. da Presidência',                              trat:'Sr. Ministro',  semaforo:'amber', total:5,  criticos:0, atencao:2, emCurso:3, areas:'Coordenação · Conselho de Ministros · SEAPI · SEPCM · SEP' },
   { sigla:'MECT', nome:'Min. da Economia e da Coesão Territorial',          trat:'Sr. Ministro',  semaforo:'amber', total:9,  criticos:2, atencao:4, emCurso:3, areas:'Economia · Coesão · Planeamento Regional · Turismo · Comércio · Adm. Local · IAPMEI' },
   { sigla:'MARE', nome:'Min. Adjunto e da Reforma do Estado',              trat:'Sr. Ministro',  semaforo:'amber', total:6,  criticos:1, atencao:3, emCurso:2, areas:'Administração Pública · Modernização · Digitalização · Simplificação · AMA · CNCS · ESPAP · INCM' },
@@ -252,7 +252,7 @@ function selectMin(sigla) {
       { celex:'32022L2555', ti:'NIS2 · Cibersegurança (CNCS)', prazo:'Out 2024', estado:'critico', urgent:true },
       { celex:'32023R2854', ti:'Data Act · AMA candidata a aut. competente', prazo:'Set 2025', estado:'atencao' },
     ],
-    MEF: [
+    MF: [
       { celex:'32021L0338', ti:'MiFID II · Instrumentos financeiros', prazo:'Nov 2022', estado:'critico', urgent:true },
       { celex:'32021L2167', ti:'Créditos não produtivos', prazo:'Dez 2023', estado:'critico', urgent:true },
       { celex:'32019L0879', ti:'BRRD II · Resolução bancária', prazo:'Dez 2020', estado:'critico', urgent:true },
@@ -273,7 +273,7 @@ function selectMin(sigla) {
     MARE: [
       { dt:'29-04-2026', ti:'Resposta NIS2 IP/24/1182', sub:'Prazo amanhã · DGDEI lead · CNCS pronto', urgent:true },
     ],
-    MEF: [
+    MF: [
       { dt:'15-05-2026', ti:'AML6 · projecto-lei à AR', sub:'Submissão antes de 30 jun · janela útil', urgent:true },
       { dt:'30-05-2026', ti:'Resposta IP/22/0841 · MiFID II', sub:'Após parecer fundamentado', soon:true },
     ],
