@@ -217,25 +217,25 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">CELEX <span class="req">*</span></div><div class="fld-lb-r">campo 01</div></div>
-              <input class="inp" id="f-celex" value="32024L1760">
+              <input class="inp" id="f-celex">
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Tipo de acto <span class="req">*</span></div><div class="fld-lb-r">campo 02</div></div>
-              <select class="sel"><option>Diretiva</option><option>Regulamento</option><option>Decisão</option></select>
+              <select class="sel" id="f-tipo"><option>Diretiva</option><option>Regulamento</option><option>Decisão</option></select>
             </div>
           </div>
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Título oficial <span class="req">*</span></div><div class="fld-lb-r">campo 03</div></div>
-            <input class="inp" id="f-titulo" value="Directiva (UE) 2024/1760 do PE e do Conselho, de 13 de Junho de 2024, relativa ao dever de diligência das empresas em matéria de sustentabilidade (CSDDD)">
+            <input class="inp" id="f-titulo">
           </div>
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Data publicação JOUE</div><div class="fld-lb-r">campo 04</div></div>
-              <input class="inp" type="date" value="2024-07-05">
+              <input class="inp" type="date" id="f-data-joue">
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Prazo de transposição <span class="req">*</span></div><div class="fld-lb-r">campo 05</div></div>
-              <input class="inp" type="date" value="2027-07-26">
+              <input class="inp" type="date" id="f-prazo-transp">
             </div>
           </div>
         </div>
@@ -246,25 +246,25 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Ministério coordenador <span class="req">*</span></div><div class="fld-lb-r">campo 06</div></div>
-              <select class="sel"><option>Min. da Economia e da Coesão Territorial (MECT)</option><option>Min. da Justiça (MJ)</option><option>Min. das Finanças (MF)</option><option>Min. do Ambiente e Energia (MAEN)</option><option>Min. Adjunto e da Reforma do Estado (MARE)</option><option>Min. das Infraestruturas e Habitação (MIH)</option><option>Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)</option><option>Min. dos Negócios Estrangeiros (MNE)</option><option>Min. da Agricultura e Mar (MAM)</option></select>
+              <select class="sel" id="f-min-coord"><option>Min. da Economia e da Coesão Territorial (MECT)</option><option>Min. da Justiça (MJ)</option><option>Min. das Finanças (MF)</option><option>Min. do Ambiente e Energia (MAEN)</option><option>Min. Adjunto e da Reforma do Estado (MARE)</option><option>Min. das Infraestruturas e Habitação (MIH)</option><option>Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)</option><option>Min. dos Negócios Estrangeiros (MNE)</option><option>Min. da Agricultura e Mar (MAM)</option></select>
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Áreas governativas envolvidas</div><div class="fld-lb-r">campo 07</div></div>
-              <select class="sel" multiple style="height:80px"><option selected>ECONOMIA</option><option selected>AMBIENTE</option><option>JUSTICA</option><option>FINANCAS</option></select>
+              <select class="sel" multiple style="height:80px" id="f-areas"><option>ECONOMIA</option><option>AMBIENTE</option><option>JUSTICA</option><option>FINANCAS</option><option>DIGITAL</option><option>TRABALHO</option><option>SAUDE</option><option>SEGURANCA</option><option>HABITACAO</option><option>TRANSPORTES</option></select>
             </div>
           </div>
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Entidades co-responsáveis</div><div class="fld-lb-r">campo 08</div></div>
-            <input class="inp" value="DGAE · CMVM · IRN · APA">
+            <input class="inp" id="f-entidades">
           </div>
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Técnico responsável</div><div class="fld-lb-r">campo 09</div></div>
-              <input class="inp" value="Maria Santos · MECT · DG Política Económica">
+              <input class="inp" id="f-tecnico">
             </div>
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Chefe de divisão</div><div class="fld-lb-r">campo 10</div></div>
-              <input class="inp" value="Dr. António Cunha · Min. da Economia · Direcção-Geral de Política Económica">
+              <input class="inp" id="f-chefe">
             </div>
           </div>
         </div>
@@ -273,8 +273,8 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
         <div data-stepbody="3" class="on">
           <div class="ai-banner">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span>3 campos pré-preenchidos pela análise PROSPETIVA de 25-04-2026 · podes aceitar, corrigir ou rejeitar.</span>
-            <button class="ai-banner-action" onclick="toast('Pré-preenchimento aceite','3 campos confirmados','info')">Aceitar todos</button>
+            <span id="f-ai-banner">—</span>
+            <button class="ai-banner-action" onclick="toast('Pré-preenchimento aceite','Campos confirmados','info')">Aceitar todos</button>
           </div>
 
           <div class="section-h">Passo 3 · Análise jurídica</div>
@@ -284,12 +284,8 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
               <div class="fld-lb-l">Diplomas nacionais afectados <span class="req">*</span></div>
               <div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 11</div>
             </div>
-            <textarea class="tar" rows="5">• Código das Sociedades Comerciais (DL n.º 262/86 de 02-09-1986) · art.º 64.º (dever de cuidado) e 65.º (relatório de gestão) · adaptação para integrar due diligence em DH/ambiente
-• Lei n.º 93/2021 (whistleblower · transposição Dir. 2019/1937) · alargamento de canais de denúncia para violações CSDDD
-• Lei de Bases do Clima (Lei n.º 98/2021) · articulação com plano de transição (art.º 22.º CSDDD)
-• Regime Jurídico do Acesso e Exercício de Actividades de Comércio (DL n.º 10/2015) · contraordenações
-• Código do Trabalho (Lei n.º 7/2009) · art.º 127.º (deveres do empregador) · referência à cadeia de actividades</textarea>
-            <div class="fld-help">Lista gerada pela IA com 78% de confiança · 5 diplomas mapeados · validar artigos específicos.</div>
+            <textarea class="tar" rows="6" id="f-diplomas"></textarea>
+            <div class="fld-help" id="f-diplomas-help">—</div>
           </div>
 
           <div class="fld ai-prefilled">
@@ -297,90 +293,36 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
               <div class="fld-lb-l">Nova legislação necessária</div>
               <div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 12</div>
             </div>
-            <textarea class="tar" rows="4">• Proposta de Lei autónoma · "Regime do dever de diligência das empresas em matéria de sustentabilidade" · art.s 1-37 transpostos integralmente
-• Portaria conjunta MECT+MAEN · designa IAPMEI como autoridade nacional de supervisão (art.º 24.º CSDDD) e regula coimas
-• Decreto-Lei de execução · plano de transição climática (art.º 22.º) · articulação com Lei de Bases do Clima
-• Regulamento da Linha de apoio às PME · âmbito subjectivo (>1000 trabalhadores e €450M volume negócios) e cadeia de actividades</textarea>
+            <textarea class="tar" rows="5" id="f-nova-leg"></textarea>
           </div>
 
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Tabela de correspondência (URL)</div><div class="fld-lb-r">campo 13</div></div>
-            <input class="inp" placeholder="https://drive.sggov.gov.pt/...">
+            <input class="inp" id="f-tabela-corr" placeholder="https://drive.sggov.gov.pt/...">
           </div>
 
           <div class="fld-grid-2">
             <div class="fld">
               <div class="fld-lb"><div class="fld-lb-l">Impacto orçamental (€)</div><div class="fld-lb-r">campo 14</div></div>
-              <input class="inp" value="€3.8M / 5 anos · supervisão IAPMEI + linha apoio PME">
+              <input class="inp" id="f-impacto">
             </div>
             <div class="fld ai-prefilled">
               <div class="fld-lb"><div class="fld-lb-l">Risco financeiro de incumprimento</div><div class="fld-lb-r"><span class="ai-pill"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>IA</span> campo 15</div></div>
-              <input class="inp" value="€10-18M (sanção fixa) + €25-40k/dia (compulsória) · alto">
+              <input class="inp" id="f-risco">
             </div>
           </div>
 
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Observações jurídicas</div><div class="fld-lb-r">campo 16</div></div>
-            <textarea class="tar" rows="3" placeholder="Notas adicionais, dependências, articulação com outros actos…"></textarea>
+            <textarea class="tar" rows="3" id="f-obs-jur" placeholder="Notas adicionais, dependências, articulação com outros actos…"></textarea>
           </div>
         </div>
 
         <!-- STEP 4 -->
         <div data-stepbody="4">
           <div class="section-h">Passo 4 · Tramitação · 8 marcos canónicos</div>
-          <div class="marcos">
-            <div class="marco">
-              <div><div class="marco-nm">1. Fins técnicos</div><div class="marco-sub">Anteprojecto pronto</div></div>
-              <div class="marco-date">25-04-2026</div>
-              <div class="marco-status status-concluido">Concluído</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">2. Envio à PCM</div><div class="marco-sub">Despacho conjunto MECT-MP</div></div>
-              <div class="marco-date">02-05-2026</div>
-              <div class="marco-status status-em-curso">Em curso</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">3. RSE</div><div class="marco-sub">Reunião do Secretariado Executivo</div></div>
-              <div class="marco-date">15-05-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">4. RCM</div><div class="marco-sub">Reunião do Conselho de Ministros</div></div>
-              <div class="marco-date">22-05-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">5. Promulgação PR</div><div class="marco-sub">Sanção pelo Presidente da República</div></div>
-              <div class="marco-date">10-06-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">6. Publicação DR</div><div class="marco-sub">Diário da República · 1.ª série</div></div>
-              <div class="marco-date">15-06-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">7. Entrada em vigor</div><div class="marco-sub">Vacatio legis (30 dias)</div></div>
-              <div class="marco-date">15-07-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-            <div class="marco">
-              <div><div class="marco-nm">8. Notificação CE</div><div class="marco-sub">SOLVIT · base TRIS</div></div>
-              <div class="marco-date">20-07-2026</div>
-              <div class="marco-status status-pendente">Pendente</div>
-              <div class="marco-actions"><button class="btn-mini">Editar</button></div>
-            </div>
-          </div>
-          <div style="margin-top:1rem;padding:0.7rem 0.95rem;background:var(--tint-amber);border-radius:7px;font-size:0.78rem;color:var(--amber);">
-            ⚠️ Margem face ao prazo (26-07-2027 · após Omnibus "Stop the Clock"): <strong>434 dias</strong>. Marcos 4-8 ainda podem deslizar até 12 meses sem accionar alerta vermelho.
-          </div>
+          <div class="marcos" id="f-marcos"></div>
+          <div id="f-margem-aviso" style="margin-top:1rem;padding:0.7rem 0.95rem;border-radius:7px;font-size:0.78rem;"></div>
         </div>
 
         <!-- STEP 5 -->
@@ -388,7 +330,7 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           <div class="section-h">Passo 5 · Validação final · DGDEI</div>
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Estado da ficha <span class="req">*</span></div><div class="fld-lb-r">campo 17</div></div>
-            <select class="sel"><option>Em curso</option><option>Concluída</option><option>Suspensa</option><option>Arquivada</option></select>
+            <select class="sel" id="f-estado-final"><option>Em curso</option><option>Concluída</option><option>Suspensa</option><option>Arquivada</option><option>Atrasada</option></select>
           </div>
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Validação DGDEI</div><div class="fld-lb-r">campo 18</div></div>
@@ -399,12 +341,9 @@ button:focus-visible,a:focus-visible,.rail-it:focus-visible{outline:2px solid va
           </div>
           <div class="fld">
             <div class="fld-lb"><div class="fld-lb-l">Observações finais</div><div class="fld-lb-r">campo 19</div></div>
-            <textarea class="tar" rows="3" placeholder="Notas de validação, dependências externas, etc."></textarea>
+            <textarea class="tar" rows="3" id="f-obs-final" placeholder="Notas de validação, dependências externas, etc."></textarea>
           </div>
-          <div style="margin-top:1.2rem;padding:1rem 1.2rem;background:var(--green-soft);border:1px solid var(--green);border-radius:8px;">
-            <div style="font-size:0.84rem;font-weight:600;color:var(--green-dark);margin-bottom:0.4rem;">Pronto para finalizar</div>
-            <div style="font-size:0.78rem;color:var(--ink-2);line-height:1.5;">Ao validar a ficha, o estado passa a "concluída" e o sistema dispara notificações para o gabinete ministerial · arquivar entrada para auditoria · gerar export para o SmartLegis.</div>
-          </div>
+          <div id="f-final-aviso" style="margin-top:1.2rem;padding:1rem 1.2rem;border-radius:8px;"></div>
         </div>
 
       </div>
@@ -476,13 +415,308 @@ else {
   document.getElementById('user-name').textContent = session.name.split(' ')[0];
 }
 
+// =====================================================================
+// DATASET COMPLETO POR FICHA (19 campos canónicos + 8 marcos + metadados)
+// =====================================================================
 const FICHAS = [
-  { id:'P008', celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence Directive', estado:'parcial', prazo:'Jul 2027', min:'MECT', cur:true },
-  { id:'P001', celex:'32022L2555', titulo:'NIS2 · Cibersegurança redes e sistemas', estado:'atrasada', prazo:'Out 2024', min:'MARE / CNCS' },
-  { id:'P011', celex:'32024L1275', titulo:'EPBD · Eficiência energética edifícios', estado:'parcial', prazo:'Mai 2026', min:'MAEN + MIH' },
-  { id:'P017', celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂', estado:'parcial', prazo:'Ago 2026', min:'MAEN / APA' },
-  { id:'P022', celex:'32024L2831', titulo:'Trabalho em plataformas digitais', estado:'parcial', prazo:'Dez 2026', min:'MTSSS' },
-  { id:'P023', celex:'32019L1152', titulo:'Condições de trabalho transparentes', estado:'completa', prazo:'Ago 2022', min:'MTSSS' },
+  // ---------------------------------------------------------------------
+  // P008 · CSDDD · Corporate Sustainability Due Diligence Directive
+  // ---------------------------------------------------------------------
+  {
+    id:'P008', cur:true,
+    celex:'32024L1760', titulo:'CSDDD · Corporate Sustainability Due Diligence Directive',
+    estado:'parcial', prazo:'Jul 2027', min:'MECT',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2024/1760 do PE e do Conselho, de 13 de Junho de 2024, relativa ao dever de diligência das empresas em matéria de sustentabilidade (CSDDD)',
+    data_joue:'2024-07-05', prazo_transp:'2027-07-26',
+    min_coord:'Min. da Economia e da Coesão Territorial (MECT)',
+    areas:['ECONOMIA','AMBIENTE'],
+    entidades:'DGAE · IAPMEI · CMVM · APA · ACT',
+    tecnico:'Maria Santos · MECT · DG Política Económica',
+    chefe:'Dr. António Cunha · MECT · DG Política Económica',
+    ai_banner:'3 campos pré-preenchidos pela análise PROSPETIVA de 25-04-2026 · podes aceitar, corrigir ou rejeitar.',
+    diplomas:`• Código das Sociedades Comerciais (DL n.º 262/86 de 02-09-1986) · art.º 64.º (dever de cuidado) e 65.º (relatório de gestão) · adaptação para integrar due diligence em DH/ambiente
+• Lei n.º 93/2021 (whistleblower · transposição Dir. 2019/1937) · alargamento de canais de denúncia para violações CSDDD
+• Lei de Bases do Clima (Lei n.º 98/2021) · articulação com plano de transição (art.º 22.º CSDDD)
+• Regime Jurídico do Acesso e Exercício de Actividades de Comércio (DL n.º 10/2015) · contraordenações
+• Código do Trabalho (Lei n.º 7/2009) · art.º 127.º (deveres do empregador) · referência à cadeia de actividades`,
+    diplomas_help:'Lista gerada pela IA com 78% de confiança · 5 diplomas mapeados · validar artigos específicos.',
+    nova_leg:`• Proposta de Lei autónoma · "Regime do dever de diligência das empresas em matéria de sustentabilidade" · art.s 1-37 transpostos integralmente
+• Portaria conjunta MECT+MAEN · designa IAPMEI como autoridade nacional de supervisão (art.º 24.º CSDDD) e regula coimas
+• Decreto-Lei de execução · plano de transição climática (art.º 22.º) · articulação com Lei de Bases do Clima
+• Regulamento da Linha de apoio às PME · âmbito subjectivo (>1000 trabalhadores e €450M volume negócios) e cadeia de actividades`,
+    tabela_corr:'',
+    impacto:'€3.8M / 5 anos · supervisão IAPMEI + linha apoio PME',
+    risco:'€10-18M (sanção fixa) + €25-40k/dia (compulsória) · alto',
+    obs_jur:'Aguarda transposição alinhada com pacote Omnibus (Stop the Clock · Abril 2025) que adiou prazo para 26-07-2027. IAPMEI candidato natural a autoridade competente, com articulação MAEN para componente ambiental.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto pronto · MECT', date:'25-04-2026', st:'concluido' },
+      { nm:'2. Envio à PCM', sub:'Despacho conjunto MECT-MP', date:'02-05-2026', st:'em-curso' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'15-05-2026', st:'pendente' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros', date:'22-05-2026', st:'pendente' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'10-06-2026', st:'pendente' },
+      { nm:'6. Publicação DR', sub:'Diário da República · 1.ª série', date:'15-06-2026', st:'pendente' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis (30 dias)', date:'15-07-2026', st:'pendente' },
+      { nm:'8. Notificação CE', sub:'SOLVIT · base TRIS', date:'20-07-2026', st:'pendente' },
+    ],
+    margem_aviso:'⚠️ Margem face ao prazo (26-07-2027 · após Omnibus "Stop the Clock"): <strong>434 dias</strong>. Marcos 4-8 ainda podem deslizar até 12 meses sem accionar alerta vermelho.',
+    margem_cls:'amber',
+    estado_final:'Em curso',
+    obs_final:'',
+    final_aviso_ti:'Pronto para finalizar',
+    final_aviso_msg:'Ao validar a ficha, o estado passa a "concluída" e o sistema dispara notificações para o gabinete ministerial · arquivar entrada para auditoria · gerar export para o SmartLegis.',
+    final_aviso_cls:'green',
+  },
+
+  // ---------------------------------------------------------------------
+  // P001 · NIS2 · Cibersegurança (atrasada · prazo expirado · infracção)
+  // ---------------------------------------------------------------------
+  {
+    id:'P001',
+    celex:'32022L2555', titulo:'NIS2 · Cibersegurança redes e sistemas',
+    estado:'atrasada', prazo:'Out 2024', min:'MARE / CNCS',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2022/2555 do PE e do Conselho, de 14 de Dezembro de 2022, relativa a medidas destinadas a garantir um elevado nível comum de cibersegurança na União (NIS2)',
+    data_joue:'2022-12-27', prazo_transp:'2024-10-17',
+    min_coord:'Min. Adjunto e da Reforma do Estado (MARE)',
+    areas:['DIGITAL','SEGURANCA'],
+    entidades:'CNCS · GNS · ANACOM · Banco de Portugal · CMVM',
+    tecnico:'Rui Brito · MARE · CNCS',
+    chefe:'Dra. Lina Vieira · MARE · CNCS · Direcção de Estratégia e Operações',
+    ai_banner:'⚠ Ficha em estado crítico · prazo expirado há mais de 18 meses · procedimento IP/24/1182 activo. 4 campos pré-preenchidos para acelerar resposta.',
+    diplomas:`• Lei n.º 46/2018 (regime jurídico de segurança do ciberespaço · transpõe NIS1) · revogação parcial e substituição extensiva
+• Decreto-Lei n.º 65/2021 (regulamentação Lei 46/2018) · revisão integral
+• Lei n.º 41/2004 (privacidade nas comunicações eletrónicas) · articulação com obrigações de reporte
+• Decreto-Lei n.º 7/2004 (comércio eletrónico) · obrigações adicionais para fornecedores de serviços digitais
+• Lei n.º 58/2019 (RGPD · execução) · interface com CNPD para incidentes que envolvam dados pessoais
+• Lei n.º 109/2009 (Lei do Cibercrime) · interface com canal de notificação ao Ministério Público`,
+    diplomas_help:'Lista gerada pela IA com 91% de confiança · 6 diplomas mapeados · sobreposição substancial com NIS1 (Lei 46/2018 fica praticamente revogada).',
+    nova_leg:`• Proposta de Lei · "Regime jurídico de cibersegurança da União" · transposição integral · revoga Lei 46/2018
+• Decreto-Lei de execução · designa CNCS como autoridade competente (art.º 8.º) + autoridades sectoriais (BdP, ANACOM, ERSE)
+• Portaria · classificação de entidades essenciais vs importantes · critérios de dimensão
+• Regulamento · regime sancionatório · coimas até €10M ou 2% VN mundial
+• Plano Nacional de Cibersegurança 2027-2030 · revisão antecipada para alinhamento com Quadro de Avaliação NIS2`,
+    tabela_corr:'https://drive.sggov.gov.pt/nis2/tabela_correspondencia_v2.xlsx',
+    impacto:'€8.2M / 4 anos · reforço CNCS (+22 FTE) + plataforma de reporte + supervisão sectorial',
+    risco:'Sanção compulsória estimada €50-80k/dia se acórdão TJUE · risco fixo €15-25M',
+    obs_jur:'Procedimento de infracção IP/24/1182 em fase de parecer fundamentado. Prazo de resposta amanhã (29-04-2026 · 24h). Projecto-lei pronto há 11 semanas mas bloqueado em concertação MARE-MP-MAI sobre repartição de competências. DGDEI a preparar resposta à CE.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto pronto · CNCS', date:'12-08-2024', st:'concluido' },
+      { nm:'2. Envio à PCM', sub:'Bloqueado em concertação interministerial', date:'(esperado 15-02-2025)', st:'atrasado' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'pendente', st:'pendente' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros', date:'pendente', st:'pendente' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'pendente', st:'pendente' },
+      { nm:'6. Publicação DR', sub:'Diário da República · 1.ª série', date:'pendente', st:'pendente' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis (30 dias)', date:'pendente', st:'pendente' },
+      { nm:'8. Notificação CE', sub:'TRIS · resposta a IP/24/1182', date:'pendente', st:'pendente' },
+    ],
+    margem_aviso:'🔴 Prazo expirado há <strong>576 dias</strong>. Procedimento de infracção IP/24/1182 em parecer fundamentado. Próximo passo CE: acção TJUE até Outubro 2026. Custo estimado por dia de atraso: €50-80k.',
+    margem_cls:'red',
+    estado_final:'Atrasada',
+    obs_final:'Validação não pode ser feita enquanto procedimento de infracção estiver activo · aguardar resposta CE.',
+    final_aviso_ti:'⚠ Validação bloqueada',
+    final_aviso_msg:'Esta ficha está em incumprimento. A validação só pode ocorrer após (a) submissão da resposta CE pela DGDEI (24h) e (b) aprovação do projecto-lei em CM. Notificações de escalonamento já dispararam para SEAE e Coordenação SGGov.',
+    final_aviso_cls:'red',
+  },
+
+  // ---------------------------------------------------------------------
+  // P011 · EPBD · Eficiência energética edifícios (parcial · prazo crítico)
+  // ---------------------------------------------------------------------
+  {
+    id:'P011',
+    celex:'32024L1275', titulo:'EPBD · Eficiência energética edifícios',
+    estado:'parcial', prazo:'Mai 2026', min:'MAEN + MIH',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2024/1275 do PE e do Conselho, de 24 de Abril de 2024, relativa ao desempenho energético dos edifícios (reformulação)',
+    data_joue:'2024-05-08', prazo_transp:'2026-05-29',
+    min_coord:'Min. do Ambiente e Energia (MAEN)',
+    areas:['AMBIENTE','HABITACAO'],
+    entidades:'DGEG · ADENE · APA · IHRU · IMT · Municípios (ANMP)',
+    tecnico:'Joana Brito · MAEN · DGEG · Divisão de Eficiência Energética',
+    chefe:'Eng. Rui Saavedra · MAEN · DGEG · Director-Geral Adjunto',
+    ai_banner:'⏳ Prazo crítico a 17 dias · 5 campos pré-preenchidos pela análise PROSPETIVA · revisão urgente recomendada.',
+    diplomas:`• Decreto-Lei n.º 101-D/2020 (Sistema de Certificação Energética dos Edifícios · SCE) · alteração estrutural · novas classes A-G com classe específica para edifícios de emissões nulas
+• Decreto-Lei n.º 118/2013 (Desempenho Energético dos Edifícios) · reformulação para reflectir Art. 7.º-9.º EPBD (passaporte de renovação)
+• Decreto-Lei n.º 30/2022 (Plano de Eficiência Energética) · articulação com programas de apoio · exclusão de incentivos a fósseis
+• Decreto-Lei n.º 555/99 (RJUE) · novos requisitos para licenciamento urbanístico · obrigatoriedade solar para edifícios novos
+• Decreto-Lei n.º 90/2014 (mobilidade eléctrica) · pontos de carregamento obrigatórios em parques de estacionamento`,
+    diplomas_help:'Lista gerada pela IA com 84% de confiança · 5 diplomas afectados · prazo Art. 12.º (passaporte) é o mais crítico (29-05-2026).',
+    nova_leg:`• Decreto-Lei (urgente) · Cria o regime do Passaporte de Renovação (Art. 12.º EPBD) · ADENE como gestor · validade 10 anos · interface com SCE
+• Decreto-Lei · Actualiza DL 101-D/2020 · nova metodologia · classe específica para edifícios de emissões nulas
+• RCM · Aprova o Plano Nacional de Renovação dos Edifícios (Art. 3.º) · objectivos vinculativos 2030 e 2035 · alinhamento PRR
+• Portaria conjunta MAEN+MIH · requisitos técnicos mínimos · sistemas solares · ventilação · isolamento
+• Regulamento técnico · regime fiscal de incentivos · revisão IMI/IRS para edifícios renovados`,
+    tabela_corr:'https://drive.sggov.gov.pt/epbd/tabela_correspondencia_v4.xlsx',
+    impacto:'€42M / 7 anos · sistema certificação + plataforma passaporte + programa apoio renovação (PRR)',
+    risco:'€8-12M (sanção fixa) + €15-25k/dia (compulsória) se procedimento formal · médio-alto',
+    obs_jur:'Concertação MAEN+MIH em curso. Anteprojecto pronto há 6 semanas · falta acordo sobre alocação de competências entre ADENE (operacional) e IMT (urbanística). Reunião CIAE marcada para 02-05-2026.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto pronto · MAEN/DGEG', date:'15-03-2026', st:'concluido' },
+      { nm:'2. Envio à PCM', sub:'Pendente acordo MAEN-MIH', date:'(esperado 06-05-2026)', st:'em-curso' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'18-05-2026', st:'pendente' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros', date:'25-05-2026', st:'pendente' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'pendente', st:'pendente' },
+      { nm:'6. Publicação DR', sub:'Diário da República · 1.ª série', date:'pendente', st:'pendente' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis (30 dias)', date:'pendente', st:'pendente' },
+      { nm:'8. Notificação CE', sub:'TRIS · base de notificação UE', date:'pendente', st:'pendente' },
+    ],
+    margem_aviso:'⚠️ Margem face ao prazo (29-05-2026): <strong>17 dias</strong>. Marcos 4-8 têm de ser comprimidos. Risco de incumprimento se concertação MAEN-MIH não fechar até 06-05.',
+    margem_cls:'amber',
+    estado_final:'Em curso',
+    obs_final:'',
+    final_aviso_ti:'⏳ Validação possível mas urgente',
+    final_aviso_msg:'O calendário é apertado mas atingível. Validação da ficha desbloqueia o despacho de transposição. Recomenda-se acompanhamento diário até à RCM de 25-05-2026.',
+    final_aviso_cls:'amber',
+  },
+
+  // ---------------------------------------------------------------------
+  // P017 · Qualidade do ar · PM2.5 e NO₂ (parcial · infracção informal)
+  // ---------------------------------------------------------------------
+  {
+    id:'P017',
+    celex:'32024L0884', titulo:'Qualidade do ar · PM2.5 e NO₂',
+    estado:'parcial', prazo:'Ago 2026', min:'MAEN / APA',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2024/884 do PE e do Conselho, de 14 de Março de 2024, relativa à qualidade do ar ambiente e a um ar mais limpo na Europa (reformulação) · estabelece limites mais restritivos para PM2.5 e NO₂',
+    data_joue:'2024-04-08', prazo_transp:'2026-08-15',
+    min_coord:'Min. do Ambiente e Energia (MAEN)',
+    areas:['AMBIENTE','SAUDE','TRANSPORTES'],
+    entidades:'APA · DGS · IMT · IPMA · Câmaras de Lisboa e Porto · CCDR-LVT · CCDR-N',
+    tecnico:'Carlos Mendes · MAEN · APA · Departamento de Qualidade do Ambiente',
+    chefe:'Dra. Cláudia Furtado · MAEN · APA · Direcção de Avaliação Ambiental',
+    ai_banner:'⚠ Procedimento INFR/24/0891 em parecer fundamentado · 4 campos pré-preenchidos · IA recomenda planos accionáveis Lisboa+Porto.',
+    diplomas:`• Decreto-Lei n.º 39/2018 (qualidade do ar ambiente · transpõe Dir. 2008/50/CE) · alteração estrutural · novos limites
+• Decreto-Lei n.º 102-D/2020 (Sistema de Avaliação e Gestão da Qualidade do Ar) · revisão de redes de monitorização
+• Lei n.º 19/2014 (Lei de Bases do Ambiente) · articulação · referência a planos de melhoria da qualidade do ar
+• Decreto-Lei n.º 9/2007 (regulamento do ruído) · sobreposição em zonas urbanas críticas
+• Decreto-Lei n.º 71/2017 (mobilidade urbana sustentável) · articulação com ZER (Zonas de Emissões Reduzidas)
+• Portaria n.º 332/2018 (rede de monitorização da qualidade do ar) · revisão metodologia`,
+    diplomas_help:'Lista gerada pela IA com 86% de confiança · 6 diplomas afectados · prioridade alta para Lisboa e Porto que excedem limites actuais.',
+    nova_leg:`• Decreto-Lei · Transpõe nova Directiva 2024/884 · novos limites PM2.5 (10 µg/m³ anual) e NO₂ (20 µg/m³ anual)
+• Resolução do Conselho de Ministros · Plano Nacional de Qualidade do Ar 2027-2035 · objectivos vinculativos
+• Decretos-Lei municipais (Lisboa, Porto) · Zonas de Emissões Reduzidas obrigatórias · interdição diesel pré-Euro 5 até 2028
+• Portaria · Rede de monitorização ampliada · 35 novas estações fixas + monitorização móvel
+• Regulamento · Regime sancionatório para entidades públicas em incumprimento dos planos de melhoria`,
+    tabela_corr:'https://drive.sggov.gov.pt/qar/tabela_correspondencia_v3.xlsx',
+    impacto:'€18M / 5 anos · rede de monitorização + planos municipais + financiamento ZER',
+    risco:'€15-25M (sanção fixa estimada) + €30-50k/dia (compulsória) · alto',
+    obs_jur:'Procedimento INFR/24/0891 em parecer fundamentado. CE confirma que Lisboa e Porto excedem limites em 2023 e 2024. APA tem plano detalhado mas execução municipal lenta. Diálogo informal em curso para evitar TJUE.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto pronto · APA', date:'10-02-2026', st:'concluido' },
+      { nm:'2. Envio à PCM', sub:'Despacho conjunto MAEN', date:'21-04-2026', st:'concluido' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'10-06-2026', st:'em-curso' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros · com RCM Plano Nacional', date:'24-06-2026', st:'pendente' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'15-07-2026', st:'pendente' },
+      { nm:'6. Publicação DR', sub:'Diário da República · 1.ª série', date:'22-07-2026', st:'pendente' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis (30 dias)', date:'21-08-2026', st:'pendente' },
+      { nm:'8. Notificação CE', sub:'TRIS + resposta a INFR/24/0891', date:'05-08-2026', st:'pendente' },
+    ],
+    margem_aviso:'⚠️ Margem face ao prazo (15-08-2026): <strong>95 dias</strong>. Calendário apertado mas viável. Procedimento INFR/24/0891 pode escalar para TJUE se atraso confirmado.',
+    margem_cls:'amber',
+    estado_final:'Em curso',
+    obs_final:'',
+    final_aviso_ti:'Validação condicional ao Plano Nacional',
+    final_aviso_msg:'Ficha pode ser validada após aprovação do Plano Nacional de Qualidade do Ar 2027-2035 (RCM acoplada). Coordenação MAEN+CCDR LVT/N a confirmar exequibilidade.',
+    final_aviso_cls:'amber',
+  },
+
+  // ---------------------------------------------------------------------
+  // P022 · Trabalho em plataformas digitais (parcial · em concertação)
+  // ---------------------------------------------------------------------
+  {
+    id:'P022',
+    celex:'32024L2831', titulo:'Trabalho em plataformas digitais',
+    estado:'parcial', prazo:'Dez 2026', min:'MTSSS',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2024/2831 do PE e do Conselho, de 23 de Outubro de 2024, relativa à melhoria das condições de trabalho no trabalho em plataformas digitais',
+    data_joue:'2024-12-02', prazo_transp:'2026-12-02',
+    min_coord:'Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)',
+    areas:['TRABALHO','DIGITAL','TRANSPORTES'],
+    entidades:'ACT · CITE · IMT · CNPD · Segurança Social',
+    tecnico:'Marta Pinto · MTSSS · DG Emprego e Relações de Trabalho',
+    chefe:'Dr. Bruno Aguiar · MTSSS · Director-Geral DGERT',
+    ai_banner:'📋 Consulta pública aberta até 30-04-2026 · 23 contributos recebidos · 4 campos pré-preenchidos pela análise PROSPETIVA.',
+    diplomas:`• Código do Trabalho (Lei n.º 7/2009) · alteração ao Art. 12.º-A (reforço da presunção legal de laboralidade) · Art. 22.º (informação ao trabalhador) · Art. 23.º (deliberações disciplinares) · novo capítulo sobre gestão algorítmica
+• Lei n.º 45/2018 (regime jurídico do TVDE) · articulação directa · Uber, Bolt, Free Now · pendente actualização
+• Portaria n.º 207-A/2018 (regulamentação TVDE) · transparência sobre sistemas automatizados
+• Lei n.º 58/2019 (RGPD · execução) · cruzamento com Art. 8.º (proibições) · CNPD competente para fiscalização da gestão algorítmica
+• Lei n.º 73/2017 (assédio · acções colectivas) · extensão de legitimidade para acções de plataformas
+• Lei n.º 27/2010 (códigos de conduta) · interface com obrigações de transparência`,
+    diplomas_help:'Lista gerada pela IA com 89% de confiança · 6 diplomas afectados · alteração estrutural ao Código do Trabalho prevista.',
+    nova_leg:`• Proposta de Lei · Altera o Código do Trabalho (transposição da Directiva 2024/2831) · inclui reforço da presunção, capítulo novo sobre gestão algorítmica, deveres de transparência das plataformas, regime sancionatório
+• Decreto-Lei · Adapta o regime do TVDE e do transporte por plataformas · articulação com nova Lei do Trabalho em Plataformas · clarifica autoridade competente entre ACT e IMT
+• Portaria · Modelo de informação dos sistemas algorítmicos · cláusulas-tipo · documento informativo obrigatório a entregar ao trabalhador antes do início da actividade
+• Regulamento ACT · procedimentos de inspecção a sistemas de gestão algorítmica · cooperação CNPD
+• Resolução do Conselho de Ministros · Estratégia Nacional para o Trabalho Digital 2027-2030`,
+    tabela_corr:'',
+    impacto:'€5.4M / 4 anos · reforço ACT (+15 FTE especializados em algoritmos) + plataforma de inspecção digital',
+    risco:'€6-10M (sanção fixa) + €15-25k/dia (compulsória) se procedimento formal · médio',
+    obs_jur:'Anteprojecto em consulta pública até 30-04-2026. Recebidos 23 contributos · plataformas digitais (UberPT, Bolt, Glovo) com posição crítica face à presunção legal. CITE com parecer favorável. Acordo MTSSS-MIH em curso sobre coordenação ACT/IMT no TVDE.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto em consulta pública', date:'01-03-2026', st:'em-curso' },
+      { nm:'2. Envio à PCM', sub:'Pós-encerramento consulta pública', date:'(esperado 30-05-2026)', st:'pendente' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'15-06-2026', st:'pendente' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros', date:'29-06-2026', st:'pendente' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'pendente', st:'pendente' },
+      { nm:'6. Publicação DR', sub:'Diário da República · 1.ª série', date:'pendente', st:'pendente' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis (60 dias por ser laboral)', date:'pendente', st:'pendente' },
+      { nm:'8. Notificação CE', sub:'TRIS · base de notificação UE', date:'pendente', st:'pendente' },
+    ],
+    margem_aviso:'🟢 Margem face ao prazo (02-12-2026): <strong>205 dias</strong>. Calendário confortável. Consulta pública dentro do prazo. Sem procedimento de infracção activo.',
+    margem_cls:'green',
+    estado_final:'Em curso',
+    obs_final:'',
+    final_aviso_ti:'Validação prevista após consulta pública',
+    final_aviso_msg:'Aguarda encerramento da consulta pública (30-04-2026) e integração dos contributos. Coordenação ACT/IMT/CNPD é o ponto sensível. Decisão final em RCM de 29-06-2026.',
+    final_aviso_cls:'green',
+  },
+
+  // ---------------------------------------------------------------------
+  // P023 · Condições de trabalho transparentes (completa · transposta)
+  // ---------------------------------------------------------------------
+  {
+    id:'P023',
+    celex:'32019L1152', titulo:'Condições de trabalho transparentes',
+    estado:'completa', prazo:'Ago 2022', min:'MTSSS',
+    tipo:'Diretiva',
+    titulo_oficial:'Directiva (UE) 2019/1152 do PE e do Conselho, de 20 de Junho de 2019, relativa a condições de trabalho transparentes e previsíveis na União Europeia',
+    data_joue:'2019-07-11', prazo_transp:'2022-08-01',
+    min_coord:'Min. do Trabalho, Solidariedade e Seg. Social (MTSSS)',
+    areas:['TRABALHO'],
+    entidades:'ACT · DGERT · Segurança Social',
+    tecnico:'Marta Pinto · MTSSS · DG Emprego e Relações de Trabalho',
+    chefe:'Dr. Bruno Aguiar · MTSSS · Director-Geral DGERT',
+    ai_banner:'✅ Ficha concluída · transposta integralmente pela Lei n.º 13/2023 · referência histórica.',
+    diplomas:`• Código do Trabalho (Lei n.º 7/2009) · alteração extensiva pela Lei n.º 13/2023 · artigos 92.º, 106.º, 107.º, 108.º, 154.º, 161.º + novo capítulo XII-A
+• Lei n.º 102/2009 (segurança e saúde no trabalho) · ajustes pontuais
+• Lei n.º 35/2014 (Lei Geral do Trabalho em Funções Públicas) · alteração para alinhar com regime privado
+• Regulamento do Código do Trabalho (DR n.º 4/2010) · revogação parcial`,
+    diplomas_help:'Lista validada (transposição concluída) · 4 diplomas alterados pela Lei n.º 13/2023 de 03-04-2023.',
+    nova_leg:`• Lei n.º 13/2023 de 03-04-2023 · "Agenda do Trabalho Digno" · transpõe Dir. 2019/1152 e Dir. 2019/1158 (work-life balance) · publicada DR 1.ª série n.º 66
+• Portaria n.º 246/2023 · modelo de informação obrigatória ao trabalhador · cláusulas-tipo
+• Despacho ACT n.º 8954/2023 · orientações para inspecção`,
+    tabela_corr:'https://drive.sggov.gov.pt/tct/tabela_correspondencia_final.xlsx',
+    impacto:'€1.2M / executado · reforço ACT + campanhas de informação · 100% executado',
+    risco:'Nulo · transposição validada pela CE · procedimento informal SG/22/0341 encerrado',
+    obs_jur:'Transposição concluída e validada. Ficha mantida em arquivo activo para referência histórica e para suportar fiscalização ACT.',
+    marcos:[
+      { nm:'1. Fins técnicos', sub:'Anteprojecto pronto · MTSSS', date:'15-11-2022', st:'concluido' },
+      { nm:'2. Envio à PCM', sub:'Despacho MTSSS', date:'10-12-2022', st:'concluido' },
+      { nm:'3. RSE', sub:'Reunião do Secretariado Executivo', date:'20-12-2022', st:'concluido' },
+      { nm:'4. RCM', sub:'Reunião do Conselho de Ministros', date:'12-01-2023', st:'concluido' },
+      { nm:'5. Promulgação PR', sub:'Sanção pelo Presidente da República', date:'24-03-2023', st:'concluido' },
+      { nm:'6. Publicação DR', sub:'Lei n.º 13/2023 · DR 1.ª série n.º 66', date:'03-04-2023', st:'concluido' },
+      { nm:'7. Entrada em vigor', sub:'Vacatio legis · 01-05-2023', date:'01-05-2023', st:'concluido' },
+      { nm:'8. Notificação CE', sub:'TRIS · validada pela CE', date:'15-05-2023', st:'concluido' },
+    ],
+    margem_aviso:'✅ Transposição concluída em 01-05-2023 · 9 meses após o prazo original (01-08-2022) · procedimento informal SG/22/0341 encerrado pela CE em Jul/2023.',
+    margem_cls:'green',
+    estado_final:'Concluída',
+    obs_final:'Validação final realizada por Ana Patrícia Silva (DGDEI) em 12-06-2023. Ficha mantida em arquivo activo para referência histórica.',
+    final_aviso_ti:'✅ Ficha concluída',
+    final_aviso_msg:'Esta ficha já foi validada e arquivada para auditoria. As alterações estão bloqueadas. Para reabrir, contactar a Admin DAPL.',
+    final_aviso_cls:'green',
+  },
 ];
 
 let curFichaId = 'P008';
@@ -501,13 +735,91 @@ function renderRail() {
   `).join('');
 }
 
+function renderMarcos(marcos) {
+  const stClass = { 'concluido':'status-concluido', 'em-curso':'status-em-curso', 'pendente':'status-pendente', 'atrasado':'status-atrasado' };
+  const stLabel = { 'concluido':'Concluído', 'em-curso':'Em curso', 'pendente':'Pendente', 'atrasado':'Atrasado' };
+  return marcos.map(m => `
+    <div class="marco">
+      <div><div class="marco-nm">${m.nm}</div><div class="marco-sub">${m.sub}</div></div>
+      <div class="marco-date">${m.date}</div>
+      <div class="marco-status ${stClass[m.st] || 'status-pendente'}">${stLabel[m.st] || 'Pendente'}</div>
+      <div class="marco-actions"><button class="btn-mini">Editar</button></div>
+    </div>
+  `).join('');
+}
+
+function setSelectValueByText(sel, text) {
+  for (const opt of sel.options) {
+    if (opt.text === text || opt.value === text) { opt.selected = true; return; }
+  }
+  // fallback: first option
+  if (sel.options.length) sel.options[0].selected = true;
+}
+
+function setMultiSelectValues(sel, values) {
+  const set = new Set(values);
+  for (const opt of sel.options) opt.selected = set.has(opt.value || opt.text);
+}
+
+function applyAvisoStyle(el, cls) {
+  const styles = {
+    'red':   { bg:'#fde8e8', border:'#dc2626', color:'#991b1b' },
+    'amber': { bg:'var(--tint-amber)', border:'var(--amber)', color:'var(--amber)' },
+    'green': { bg:'var(--green-soft)', border:'var(--green)', color:'var(--green-dark)' },
+  };
+  const s = styles[cls] || styles.amber;
+  el.style.background = s.bg;
+  el.style.border = `1px solid ${s.border}`;
+  el.style.color = s.color;
+}
+
 function loadFicha(id) {
   curFichaId = id;
   const f = FICHAS.find(x => x.id === id);
   if (!f) return;
+
+  // === Header do wizard ===
   document.getElementById('wiz-celex').textContent = f.celex;
   document.getElementById('wiz-ti').textContent = f.titulo;
   document.getElementById('wiz-meta').innerHTML = `<span><strong>Ministério:</strong> ${f.min}</span><span><strong>Prazo:</strong> ${f.prazo}</span><span><strong>Estado:</strong> ${f.estado}</span>`;
+
+  // === Passo 1 ===
+  document.getElementById('f-celex').value = f.celex;
+  setSelectValueByText(document.getElementById('f-tipo'), f.tipo);
+  document.getElementById('f-titulo').value = f.titulo_oficial;
+  document.getElementById('f-data-joue').value = f.data_joue;
+  document.getElementById('f-prazo-transp').value = f.prazo_transp;
+
+  // === Passo 2 ===
+  setSelectValueByText(document.getElementById('f-min-coord'), f.min_coord);
+  setMultiSelectValues(document.getElementById('f-areas'), f.areas || []);
+  document.getElementById('f-entidades').value = f.entidades;
+  document.getElementById('f-tecnico').value = f.tecnico;
+  document.getElementById('f-chefe').value = f.chefe;
+
+  // === Passo 3 ===
+  document.getElementById('f-ai-banner').textContent = f.ai_banner;
+  document.getElementById('f-diplomas').value = f.diplomas;
+  document.getElementById('f-diplomas-help').textContent = f.diplomas_help;
+  document.getElementById('f-nova-leg').value = f.nova_leg;
+  document.getElementById('f-tabela-corr').value = f.tabela_corr || '';
+  document.getElementById('f-impacto').value = f.impacto;
+  document.getElementById('f-risco').value = f.risco;
+  document.getElementById('f-obs-jur').value = f.obs_jur || '';
+
+  // === Passo 4 ===
+  document.getElementById('f-marcos').innerHTML = renderMarcos(f.marcos);
+  const aviso4 = document.getElementById('f-margem-aviso');
+  aviso4.innerHTML = f.margem_aviso;
+  applyAvisoStyle(aviso4, f.margem_cls);
+
+  // === Passo 5 ===
+  setSelectValueByText(document.getElementById('f-estado-final'), f.estado_final);
+  document.getElementById('f-obs-final').value = f.obs_final || '';
+  const aviso5 = document.getElementById('f-final-aviso');
+  aviso5.innerHTML = `<div style="font-size:0.84rem;font-weight:600;margin-bottom:0.4rem;">${f.final_aviso_ti}</div><div style="font-size:0.78rem;line-height:1.5;">${f.final_aviso_msg}</div>`;
+  applyAvisoStyle(aviso5, f.final_aviso_cls);
+
   renderRail();
 }
 
