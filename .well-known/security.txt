@@ -1,0 +1,13 @@
+# Política de Segurança · VIGIL · DAPL/SGGov
+# Conforme RFC 9116
+
+Contact: https://github.com/dapl-sggov/vigil-demo/security/advisories/new
+Contact: mailto:security@sggov.gov.pt
+Expires: 2027-05-19T23:59:59.000Z
+Preferred-Languages: pt, en
+Policy: https://github.com/dapl-sggov/vigil-demo/blob/main/SECURITY.md
+Acknowledgments: https://github.com/dapl-sggov/vigil-demo/security/advisories
+
+# Quadro legal aplicável: DL 125/2025 (transposição UE 2022/2555 NIS2).
+# A SGGov compromete-se a não accionar judicialmente investigadores
+# que actuem de boa-fé conforme a política CVD acima.
