@@ -1,0 +1,15 @@
+{
+  "name": "vigil-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mock interactivo da plataforma VIGIL · demonstração estática (HTML/CSS/JS sem build)",
+  "type": "module",
+  "scripts": {
+    "serve": "python -m http.server 8765",
+    "a11y": "node scripts/a11y.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.11.4",
+    "puppeteer": "^23.0.0"
+  }
+}
