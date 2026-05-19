@@ -4,104 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VIGIL · HORIZONTE</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1D1D1F;--ink-2:#3A3A3C;--ink-3:#6E6E73;--ink-4:#8E8E93;--ink-5:#AEAEB2;--line:#E5E5EA;--bg:#FBFBFD;--bg2:#FFFFFF;--bg3:#F5F5F7;--bg4:#EEEEF1;--green:#0E7433;--green-dark:#0A5A28;--green-soft:#E6F0E9;--blue:#2B5683;--blue-soft:#E5ECF3;--red:#D02117;--red-soft:#FBEAE9;--amber:#C08916;--amber-soft:#FDF4E3;--gold:#BE9C54;--gold-soft:rgba(190,156,84,0.12);--tint-green:rgba(14,116,51,0.08);--tint-amber:rgba(192,137,22,0.10);--tint-red:rgba(208,33,23,0.08);--tint-blue:rgba(43,86,131,0.08);--sh-md:0 4px 12px rgba(0,0,0,0.06),0 0 0 1px rgba(0,0,0,0.04);--font:'Inter',-apple-system,Arial,sans-serif;--font-mono:'JetBrains Mono',Menlo,Consolas,monospace;}
+:root{
+  --font:'Atkinson Hyperlegible',Arial,sans-serif;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+  --ink:#1A1815;--ink-2:#3D3A35;--ink-3:#6E6A62;--ink-4:#9A958B;--ink-5:#BFBAB1;
+  --paper:#F5F1E8;--paper-2:#FBF8F1;--paper-3:#EDE7D8;--paper-4:#E3DDC9;
+  --line:#D8D2BF;--line-2:#C2BBA5;
+  /* aliases para compatibilidade com código existente */
+  --bg:var(--paper);--bg2:var(--paper-2);--bg3:var(--paper-3);--bg4:var(--paper-4);
+  --green:#0E7433;--green-dark:#063D1B;--green-soft:#DCE8DE;
+  --blue:#2B5683;--blue-soft:#DDE5EC;
+  --red:#A8170E;--red-soft:#F0DAD7;
+  --amber:#A86E10;--amber-soft:#F2E5C4;
+  --gold:#BE9C54;--gold-soft:#EEDFB5;
+  --tint-green:rgba(14,116,51,0.12);
+  --tint-amber:rgba(168,110,16,0.14);
+  --tint-red:rgba(168,23,14,0.12);
+  --tint-blue:rgba(43,86,131,0.12);
+  --sh-md:0 8px 24px rgba(26,24,21,0.10);
+  --r:4px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{font-family:var(--font);font-size:14.5px;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;line-height:1.5;}
-strong,b{font-weight:600;}
+html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.5;}
+strong,b{font-weight:700;}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-0.015em;color:var(--ink);}
+
+.skip{position:absolute;top:-100px;left:0;padding:0.7rem 1rem;background:var(--ink);color:var(--paper);font-weight:700;z-index:999;text-decoration:none;}
+.skip:focus{top:0;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .shell{max-width:1280px;margin:0 auto;padding:1.4rem 1.6rem 4rem;}
 
-.brand{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.95rem;padding-bottom:0.85rem;border-bottom:1px solid var(--line);}
-.brand-mark{width:30px;height:30px;background:var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;}
-.brand-mark svg{width:18px;height:18px;color:#fff;}
-.brand-bd{flex:1;}
-.brand-nm{font-weight:700;font-size:1rem;letter-spacing:-0.015em;}
-.brand-sub{font-size:0.72rem;color:var(--ink-3);}
-.brand-link{font-size:0.72rem;color:var(--green);text-decoration:none;font-weight:500;margin-right:0.7rem;}
-.brand-link:hover{text-decoration:underline;}
-.user-chip{display:flex;align-items:center;gap:0.45rem;padding:0.3rem 0.55rem 0.3rem 0.35rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;}
-.avatar-sm{width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:600;}
-.user-name-sm{font-size:0.72rem;font-weight:500;color:var(--ink-2);}
+.site-hdr{display:flex;align-items:center;gap:0.85rem;margin-bottom:1rem;padding-bottom:1rem;border-bottom:2px solid var(--ink);}
+.brand-mark{width:34px;height:34px;background:var(--amber);border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.brand-mark svg{width:20px;height:20px;color:var(--paper);}
+.brand-bd{flex:1;min-width:0;}
+.brand-nm{font-family:var(--font-display);font-weight:900;font-size:1.15rem;letter-spacing:-0.025em;color:var(--ink);}
+.brand-sub{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;letter-spacing:0.02em;}
+.brand-link{font-size:0.74rem;color:var(--ink);text-decoration:none;font-weight:700;margin-right:0.7rem;padding:0.35rem 0.65rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper-2);}
+.brand-link:hover{background:var(--paper-3);}
+.user-chip{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.6rem 0.3rem 0.35rem;background:var(--paper-2);border:1px solid var(--line-2);border-radius:var(--r);}
+.avatar-sm{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;font-family:var(--font-display);}
+.user-name-sm{font-size:0.74rem;font-weight:700;color:var(--ink-2);}
 
-.hero{padding:1rem 0 1.4rem;}
-.hero-eye{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);font-weight:600;margin-bottom:0.4rem;}
-.hero-h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
-.hero-sub{font-size:0.92rem;color:var(--ink-3);max-width:780px;line-height:1.55;}
+.hero{padding:1.2rem 0 1.6rem;}
+.hero-eye{font-family:var(--font-display);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--amber);font-weight:800;margin-bottom:0.55rem;}
+.hero-h1{font-family:var(--font-display);font-size:2.4rem;font-weight:900;letter-spacing:-0.035em;margin-bottom:0.7rem;line-height:1.02;color:var(--ink);}
+.hero-sub{font-size:0.96rem;color:var(--ink-2);max-width:780px;line-height:1.55;}
 
-.read-only-banner{padding:0.6rem 0.95rem;background:var(--blue-soft);border:1px solid var(--blue);border-radius:8px;font-size:0.78rem;color:var(--blue);margin-bottom:1rem;display:flex;align-items:flex-start;gap:0.55rem;}
-.read-only-banner svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+.read-only-banner{padding:0.7rem 1rem;background:var(--blue-soft);border-left:3px solid var(--blue);border-radius:0 var(--r) var(--r) 0;font-size:0.82rem;color:#1A3650;margin-bottom:1.1rem;display:flex;align-items:flex-start;gap:0.6rem;}
+.read-only-banner svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;color:var(--blue);}
 
-.tabs{display:flex;gap:0.4rem;border-bottom:1px solid var(--line);margin-bottom:1.2rem;}
-.tab{padding:0.65rem 1.05rem;font-family:inherit;font-size:0.86rem;color:var(--ink-3);cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.5rem;}
-.tab:hover{color:var(--ink);}
-.tab.cur{color:var(--ink);border-bottom-color:var(--amber);font-weight:600;}
-.tab .count{background:var(--bg4);color:var(--ink-3);font-size:0.66rem;padding:0.1rem 0.45rem;border-radius:10px;font-weight:600;}
-.tab.cur .count{background:var(--amber);color:#fff;}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line-2);margin-bottom:1.4rem;}
+.tab{padding:0.75rem 1.1rem;font-family:var(--font-display);font-size:0.88rem;color:var(--ink-3);cursor:pointer;background:transparent;border:none;border-bottom:3px solid transparent;margin-bottom:-1px;font-weight:700;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.55rem;letter-spacing:0.01em;}
+.tab:hover{color:var(--ink);background:var(--paper-2);}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--amber);}
+.tab .count{background:var(--paper-3);color:var(--ink-2);font-size:0.68rem;padding:0.12rem 0.5rem;border-radius:2px;font-weight:700;font-family:var(--font-mono);}
+.tab[aria-selected="true"] .count{background:var(--amber);color:var(--paper);}
 
 .panel{display:none;}
 .panel.on{display:block;}
 
 /* COLÉGIO WATCH (Vista A) */
-.colegio-bar{display:flex;align-items:center;gap:0.8rem;padding:0.85rem 1.1rem;background:linear-gradient(135deg,var(--amber-soft) 0%,var(--bg2) 100%);border:1px solid var(--amber);border-radius:10px;margin-bottom:1.1rem;}
-.colegio-bar-ic{width:32px;height:32px;border-radius:8px;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.colegio-bar{display:flex;align-items:center;gap:0.9rem;padding:0.95rem 1.15rem;background:var(--paper-2);border:1px solid var(--line-2);border-left:4px solid var(--amber);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.2rem;}
+.colegio-bar-ic{width:34px;height:34px;border-radius:var(--r);background:var(--amber);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .colegio-bar-ic svg{width:18px;height:18px;}
 .colegio-bar-bd{flex:1;}
-.colegio-bar-ti{font-size:0.86rem;font-weight:600;color:var(--ink);}
-.colegio-bar-sub{font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem;}
-.colegio-bar-meta{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);text-align:right;}
+.colegio-bar-ti{font-family:var(--font-display);font-size:0.95rem;font-weight:800;color:var(--ink);}
+.colegio-bar-sub{font-size:0.76rem;color:var(--ink-3);margin-top:0.2rem;}
+.colegio-bar-meta{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-3);text-align:right;letter-spacing:0.02em;}
 
-.cards-grid{display:flex;flex-direction:column;gap:0.7rem;}
-.cand-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:0.9rem 1rem;transition:all 0.15s;}
-.cand-card:hover{border-color:var(--amber);box-shadow:var(--sh-md);}
-.cand-h{display:flex;justify-content:space-between;align-items:flex-start;gap:0.85rem;margin-bottom:0.55rem;}
+.cards-grid{display:flex;flex-direction:column;gap:0.75rem;}
+.cand-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;transition:all 0.15s;}
+.cand-card:hover{border-color:var(--ink-3);box-shadow:inset 0 -3px 0 var(--amber);}
+.cand-h{display:flex;justify-content:space-between;align-items:flex-start;gap:0.95rem;margin-bottom:0.6rem;}
 .cand-h-l{flex:1;min-width:0;}
-.cand-meta-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;flex-wrap:wrap;}
-.cand-vigid{font-family:var(--font-mono);font-size:0.66rem;color:var(--amber);background:var(--amber-soft);padding:0.15rem 0.45rem;border-radius:3px;font-weight:600;letter-spacing:0.02em;}
-.cand-cwp{font-family:var(--font-mono);font-size:0.66rem;color:var(--ink-3);}
-.cand-state-pill{font-size:0.6rem;padding:0.18rem 0.5rem;border-radius:3px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
-.state-cwp{background:var(--bg4);color:var(--ink-2);}
+.cand-meta-row{display:flex;align-items:center;gap:0.55rem;margin-bottom:0.4rem;flex-wrap:wrap;}
+.cand-vigid{font-family:var(--font-mono);font-size:0.68rem;color:#7C5009;background:var(--amber-soft);padding:0.18rem 0.5rem;border-radius:2px;font-weight:700;letter-spacing:0.04em;}
+.cand-cwp{font-family:var(--font-mono);font-size:0.68rem;color:var(--ink-3);letter-spacing:0.02em;}
+.cand-state-pill{font-family:var(--font-display);font-size:0.62rem;padding:0.2rem 0.55rem;border-radius:2px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;}
+.state-cwp{background:var(--paper-3);color:var(--ink-2);}
 .state-call{background:var(--tint-blue);color:var(--blue);}
-.state-colegio-agendado{background:var(--tint-amber);color:var(--amber);}
-.state-colegio-adoptado{background:var(--gold-soft);color:var(--gold);}
-.state-com-publicado{background:var(--green-soft);color:var(--green);}
+.state-colegio-agendado{background:var(--tint-amber);color:#7C5009;}
+.state-colegio-adoptado{background:var(--gold-soft);color:#7C5C12;}
+.state-com-publicado{background:var(--green-soft);color:var(--green-dark);}
 .state-vigilancia{background:var(--blue-soft);color:var(--blue);}
-.state-promovido{background:var(--green-soft);color:var(--green);}
+.state-promovido{background:var(--green-soft);color:var(--green-dark);}
 .state-arquivado{background:var(--red-soft);color:var(--red);}
-.cand-title{font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;line-height:1.35;}
-.cand-summary{font-size:0.78rem;color:var(--ink-2);line-height:1.5;}
+.cand-title{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:0.3rem;line-height:1.25;letter-spacing:-0.015em;}
+.cand-summary{font-size:0.82rem;color:var(--ink-2);line-height:1.55;}
 .cand-h-r{flex-shrink:0;text-align:right;}
-.cand-crit{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.72rem;font-weight:600;padding:0.25rem 0.5rem;border-radius:4px;}
+.cand-crit{display:inline-flex;align-items:center;gap:0.35rem;font-family:var(--font-display);font-size:0.74rem;font-weight:800;padding:0.3rem 0.6rem;border-radius:var(--r);letter-spacing:0.02em;}
 .crit-alto{background:var(--tint-red);color:var(--red);}
-.crit-medio{background:var(--tint-amber);color:var(--amber);}
-.crit-baixo{background:var(--tint-green);color:var(--green);}
-.cand-confidence{font-size:0.66rem;color:var(--ink-4);margin-top:0.3rem;font-family:var(--font-mono);}
+.crit-medio{background:var(--tint-amber);color:#7C5009;}
+.crit-baixo{background:var(--tint-green);color:var(--green-dark);}
+.cand-confidence{font-size:0.68rem;color:var(--ink-3);margin-top:0.35rem;font-family:var(--font-mono);letter-spacing:0.02em;}
 
-.cand-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:0.55rem;padding:0.6rem 0.7rem;background:var(--bg3);border-radius:6px;margin:0.5rem 0;}
-.cand-field-lb{font-size:0.6rem;text-transform:uppercase;color:var(--ink-4);font-weight:600;letter-spacing:0.04em;margin-bottom:0.15rem;}
-.cand-field-vl{font-size:0.76rem;color:var(--ink);font-weight:500;}
+.cand-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;padding:0.7rem 0.8rem;background:var(--paper-3);border-radius:var(--r);margin:0.55rem 0;}
+.cand-field-lb{font-family:var(--font-display);font-size:0.62rem;text-transform:uppercase;color:var(--ink-3);font-weight:800;letter-spacing:0.1em;margin-bottom:0.2rem;}
+.cand-field-vl{font-size:0.8rem;color:var(--ink);font-weight:600;}
 
-.cand-actions{display:flex;gap:0.4rem;flex-wrap:wrap;padding-top:0.55rem;border-top:1px solid var(--line);}
-.btn-action{padding:0.4rem 0.8rem;font-family:inherit;font-size:0.74rem;font-weight:600;border-radius:6px;cursor:pointer;border:1px solid;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.3rem;}
-.btn-action svg{width:11px;height:11px;}
-.btn-primary{background:var(--green);color:#fff;border-color:var(--green);}
-.btn-primary:hover{background:var(--green-dark);}
-.btn-amber{background:var(--amber);color:#fff;border-color:var(--amber);}
-.btn-amber:hover{background:#9F7012;}
-.btn-ghost{background:var(--bg2);color:var(--ink-2);border-color:var(--line);}
-.btn-ghost:hover{background:var(--bg3);}
-.btn-danger{background:var(--bg2);color:var(--red);border-color:var(--line);}
-.btn-danger:hover{background:var(--red-soft);}
+.cand-actions{display:flex;gap:0.45rem;flex-wrap:wrap;padding-top:0.6rem;border-top:1px solid var(--line);}
+.btn-action{padding:0.45rem 0.85rem;font-family:var(--font-display);font-size:0.76rem;font-weight:700;border-radius:var(--r);cursor:pointer;border:1px solid;transition:all 0.12s;display:inline-flex;align-items:center;gap:0.4rem;letter-spacing:0.01em;}
+.btn-action svg{width:12px;height:12px;}
+.btn-primary{background:var(--green);color:var(--paper);border-color:var(--green);}
+.btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark);}
+.btn-amber{background:var(--amber);color:var(--paper);border-color:var(--amber);}
+.btn-amber:hover{background:#7C5009;border-color:#7C5009;}
+.btn-ghost{background:var(--paper-2);color:var(--ink-2);border-color:var(--line-2);}
+.btn-ghost:hover{background:var(--paper-3);border-color:var(--ink-3);}
+.btn-danger{background:var(--paper-2);color:var(--red);border-color:var(--line-2);}
+.btn-danger:hover{background:var(--red-soft);border-color:var(--red);}
 
-.cand-note-status{font-size:0.7rem;color:var(--green);font-weight:500;display:inline-flex;align-items:center;gap:0.25rem;}
+.cand-note-status{font-size:0.74rem;color:var(--green-dark);font-weight:700;display:inline-flex;align-items:center;gap:0.3rem;}
 
 /* WATCHLIST (Vista B) */
-.list-toolbar{display:flex;gap:0.5rem;align-items:center;margin-bottom:0.9rem;flex-wrap:wrap;padding:0.65rem 0.85rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;}
+.list-toolbar{display:flex;gap:0.55rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;padding:0.75rem 0.95rem;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);}
 .tool-search{flex:1;min-width:200px;}
-.inp,.sel{padding:0.45rem 0.7rem;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.8rem;color:var(--ink);background:var(--bg2);outline:none;}
-.inp:focus,.sel:focus{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-soft);}
+.inp,.sel{padding:0.5rem 0.8rem;border:1px solid var(--line-2);border-radius:var(--r);font-family:inherit;font-size:0.84rem;color:var(--ink);background:var(--paper);outline:none;}
+.inp:focus,.sel:focus{border-color:var(--ink);box-shadow:inset 0 -2px 0 var(--amber);}
 .inp{width:100%;}
-.tool-meta{margin-left:auto;font-size:0.74rem;color:var(--ink-3);}
+.tool-meta{margin-left:auto;font-size:0.76rem;color:var(--ink-3);font-family:var(--font-mono);}
 
 .timeline-mini{display:flex;align-items:center;gap:0.45rem;margin-top:0.5rem;padding:0.45rem 0.6rem;background:var(--bg);border-radius:6px;}
 .tl-step{display:flex;flex-direction:column;align-items:center;gap:0.2rem;min-width:0;}
@@ -114,174 +141,206 @@ strong,b{font-weight:600;}
 .tl-line.done{background:var(--green);}
 
 /* ARQUIVO (Vista C) */
-.arch-card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:0.8rem 0.95rem;border-left:3px solid var(--red);}
-.arch-card+.arch-card{margin-top:0.5rem;}
-.arch-just-pill{display:inline-block;font-size:0.62rem;padding:0.15rem 0.45rem;border-radius:3px;background:var(--red-soft);color:var(--red);font-weight:600;margin-bottom:0.4rem;}
-.arch-just-text{font-size:0.78rem;color:var(--ink-2);font-style:italic;line-height:1.5;}
-.arch-meta{display:flex;gap:0.8rem;font-size:0.7rem;color:var(--ink-3);margin-top:0.55rem;padding-top:0.5rem;border-top:1px solid var(--line);}
+.arch-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:0.85rem 1rem;border-left:4px solid var(--red);}
+.arch-card+.arch-card{margin-top:0.55rem;}
+.arch-just-pill{display:inline-block;font-family:var(--font-display);font-size:0.64rem;padding:0.18rem 0.5rem;border-radius:2px;background:var(--red);color:var(--paper);font-weight:800;margin-bottom:0.45rem;text-transform:uppercase;letter-spacing:0.08em;}
+.arch-just-text{font-size:0.82rem;color:var(--ink-2);font-style:italic;line-height:1.55;}
+.arch-meta{display:flex;gap:0.9rem;font-size:0.72rem;color:var(--ink-3);margin-top:0.6rem;padding-top:0.55rem;border-top:1px solid var(--line);font-family:var(--font-mono);letter-spacing:0.02em;}
 
 /* MODAL · Nota de Antecipação */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:50;padding:1.5rem;backdrop-filter:blur(3px);}
+.modal{position:fixed;inset:0;background:rgba(26,24,21,0.55);display:none;align-items:center;justify-content:center;z-index:50;padding:1.5rem;}
 .modal.on{display:flex;}
-.modal-card{width:min(820px,100%);max-height:90vh;background:var(--bg2);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.3);display:flex;flex-direction:column;overflow:hidden;}
-.modal-h{padding:1.2rem 1.5rem;background:linear-gradient(135deg,var(--amber-soft) 0%,var(--bg2) 100%);border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.modal-card{width:min(820px,100%);max-height:90vh;background:var(--paper-2);border:1px solid var(--ink);border-radius:var(--r);box-shadow:0 24px 60px rgba(26,24,21,0.28);display:flex;flex-direction:column;overflow:hidden;}
+.modal-h{padding:1.3rem 1.6rem;background:var(--paper-2);border-bottom:1px solid var(--line);border-top:4px solid var(--amber);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
 .modal-h-bd{flex:1;}
-.modal-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);font-weight:700;margin-bottom:0.3rem;}
-.modal-ti{font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1.3;}
-.modal-x{background:transparent;border:none;cursor:pointer;color:var(--ink-3);width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;}
-.modal-x:hover{background:var(--bg3);color:var(--ink);}
+.modal-eyebrow{font-family:var(--font-display);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--amber);font-weight:800;margin-bottom:0.4rem;}
+.modal-ti{font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--ink);line-height:1.15;letter-spacing:-0.02em;}
+.modal-x{background:transparent;border:1px solid transparent;cursor:pointer;color:var(--ink-3);width:34px;height:34px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;}
+.modal-x:hover{background:var(--paper-3);color:var(--ink);border-color:var(--line-2);}
 .modal-x svg{width:18px;height:18px;}
-.modal-bd{padding:1.5rem;overflow-y:auto;flex:1;}
+.modal-bd{padding:1.6rem;overflow-y:auto;flex:1;}
 
 /* Nota de Antecipação · format */
-.nota-paper{background:#FEFCF8;border:1px solid var(--line);border-radius:6px;padding:2rem 2.2rem;font-family:'Times New Roman',Georgia,serif;line-height:1.6;color:var(--ink);}
-.nota-paper h2{font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:0.4rem;letter-spacing:0.02em;font-family:'Inter',sans-serif;}
-.nota-paper h3{font-size:0.78rem;font-weight:600;text-align:center;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.3rem;font-family:'Inter',sans-serif;}
-.nota-paper .hdr-line{height:2px;background:var(--amber);margin:0 0 1.5rem 0;}
-.nota-paper .meta-table{width:100%;font-size:0.84rem;margin-bottom:1.2rem;}
-.nota-paper .meta-table td{padding:0.25rem 0.5rem 0.25rem 0;vertical-align:top;}
-.nota-paper .meta-table td:first-child{font-weight:600;width:30%;}
-.nota-paper p{font-size:0.92rem;margin-bottom:0.85rem;text-align:justify;}
-.nota-paper h4{font-size:0.9rem;font-weight:700;margin-top:1rem;margin-bottom:0.55rem;color:var(--ink);font-family:'Inter',sans-serif;}
-.nota-paper ul{margin-left:1.5rem;font-size:0.88rem;margin-bottom:0.85rem;}
-.nota-paper li{margin-bottom:0.3rem;}
-.nota-paper .signature{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--ink-5);font-size:0.84rem;font-style:italic;color:var(--ink-2);}
-.nota-paper .signature strong{font-style:normal;color:var(--ink);}
-.nota-paper [contenteditable="true"]{outline:none;transition:background 0.15s;padding:0.1rem 0.25rem;border-radius:3px;border-left:2px solid transparent;}
-.nota-paper [contenteditable="true"]:hover{background:rgba(192,137,22,0.06);border-left-color:rgba(192,137,22,0.3);}
-.nota-paper [contenteditable="true"]:focus{background:rgba(192,137,22,0.10);border-left-color:var(--amber);box-shadow:0 0 0 1px var(--amber);}
-.nota-edit-banner{display:flex;align-items:center;gap:0.55rem;background:rgba(192,137,22,0.10);border:1px solid rgba(192,137,22,0.25);border-radius:6px;padding:0.55rem 0.75rem;margin-bottom:1rem;font-size:0.78rem;color:var(--amber);font-family:'Inter',sans-serif;}
-.nota-edit-banner svg{width:14px;height:14px;flex-shrink:0;}
-.nota-edit-banner strong{font-weight:600;}
-.nota-edit-actions{display:flex;gap:0.45rem;margin-left:auto;}
-.nota-edit-actions button{font-family:'Inter',sans-serif;font-size:0.72rem;padding:0.25rem 0.55rem;border-radius:4px;border:1px solid var(--amber);background:#fff;color:var(--amber);cursor:pointer;font-weight:600;}
-.nota-edit-actions button:hover{background:var(--amber);color:#fff;}
-.nota-dirty-badge{display:none;font-size:0.7rem;color:var(--amber);font-weight:600;margin-left:0.5rem;}
+.nota-paper{background:#FBF6E9;border:1px solid var(--line-2);border-radius:var(--r);padding:2.2rem 2.4rem;font-family:'Fraunces','Times New Roman',Georgia,serif;line-height:1.65;color:var(--ink);}
+.nota-paper h2{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:900;text-align:center;margin-bottom:0.5rem;letter-spacing:-0.015em;}
+.nota-paper h3{font-family:var(--font),sans-serif;font-size:0.78rem;font-weight:700;text-align:center;color:var(--amber);text-transform:uppercase;letter-spacing:0.16em;margin-bottom:1.3rem;}
+.nota-paper .hdr-line{height:2px;background:var(--amber);margin:0 0 1.6rem 0;}
+.nota-paper .meta-table{width:100%;font-size:0.88rem;margin-bottom:1.3rem;font-family:var(--font),sans-serif;}
+.nota-paper .meta-table td{padding:0.3rem 0.5rem 0.3rem 0;vertical-align:top;}
+.nota-paper .meta-table td:first-child{font-weight:700;width:30%;color:var(--ink-2);}
+.nota-paper p{font-size:0.96rem;margin-bottom:0.95rem;text-align:justify;}
+.nota-paper h4{font-family:'Fraunces',serif;font-size:1rem;font-weight:800;margin-top:1.1rem;margin-bottom:0.6rem;color:var(--ink);letter-spacing:-0.01em;}
+.nota-paper ul{margin-left:1.5rem;font-size:0.92rem;margin-bottom:0.95rem;}
+.nota-paper li{margin-bottom:0.35rem;}
+.nota-paper .signature{margin-top:2.2rem;padding-top:1.1rem;border-top:1px solid var(--line-2);font-size:0.86rem;font-style:italic;color:var(--ink-2);}
+.nota-paper .signature strong{font-style:normal;color:var(--ink);font-weight:700;}
+.nota-paper [contenteditable="true"]{outline:none;transition:background 0.15s;padding:0.1rem 0.3rem;border-radius:2px;border-left:2px solid transparent;}
+.nota-paper [contenteditable="true"]:hover{background:rgba(168,110,16,0.08);border-left-color:rgba(168,110,16,0.35);}
+.nota-paper [contenteditable="true"]:focus{background:rgba(168,110,16,0.14);border-left-color:var(--amber);box-shadow:inset 0 -2px 0 var(--amber);}
+.nota-edit-banner{display:flex;align-items:center;gap:0.6rem;background:var(--amber-soft);border-left:3px solid var(--amber);border-radius:0 var(--r) var(--r) 0;padding:0.6rem 0.85rem;margin-bottom:1.1rem;font-size:0.8rem;color:#5C440D;font-family:var(--font);}
+.nota-edit-banner svg{width:14px;height:14px;flex-shrink:0;color:var(--amber);}
+.nota-edit-banner strong{font-weight:700;}
+.nota-edit-actions{display:flex;gap:0.5rem;margin-left:auto;}
+.nota-edit-actions button{font-family:var(--font);font-size:0.74rem;padding:0.3rem 0.65rem;border-radius:var(--r);border:1px solid var(--amber);background:var(--paper-2);color:var(--amber);cursor:pointer;font-weight:700;}
+.nota-edit-actions button:hover{background:var(--amber);color:var(--paper);}
+.nota-dirty-badge{display:none;font-size:0.7rem;color:var(--amber);font-weight:700;margin-left:0.55rem;letter-spacing:0.04em;}
 .nota-dirty-badge.on{display:inline;}
 
-.modal-ft{padding:0.9rem 1.5rem;background:var(--bg3);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:0.6rem;}
-.modal-ft-l{font-size:0.74rem;color:var(--ink-3);}
-.modal-ft-r{display:flex;gap:0.5rem;}
+.modal-ft{padding:1rem 1.6rem;background:var(--paper-3);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:0.7rem;}
+.modal-ft-l{font-size:0.76rem;color:var(--ink-3);}
+.modal-ft-r{display:flex;gap:0.55rem;}
 
-.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.5rem;z-index:99;}
-.toast{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:8px;box-shadow:var(--sh-md);padding:0.65rem 0.9rem;min-width:260px;animation:tin 0.22s;}
+.toasts{position:fixed;bottom:1.4rem;right:1.4rem;display:flex;flex-direction:column;gap:0.55rem;z-index:99;}
+.toast{background:var(--paper-2);border:1px solid var(--line-2);border-left:4px solid var(--green);border-radius:0 var(--r) var(--r) 0;box-shadow:0 12px 28px rgba(26,24,21,0.18);padding:0.7rem 1rem;min-width:280px;animation:tin 0.22s;}
 .toast.t-info{border-left-color:var(--blue);}
 .toast.t-warn{border-left-color:var(--amber);}
-.toast-ti{font-size:0.8rem;font-weight:600;}
-.toast-msg{font-size:0.72rem;color:var(--ink-3);margin-top:0.1rem;}
+.toast-ti{font-family:var(--font-display);font-size:0.84rem;font-weight:800;color:var(--ink);}
+.toast-msg{font-size:0.74rem;color:var(--ink-3);margin-top:0.15rem;}
 @keyframes tin{from{transform:translateX(20px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[contenteditable]:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
 
 @media (max-width:900px){
   .cand-fields{grid-template-columns:repeat(2,1fr);}
+  .hero-h1{font-size:1.9rem;}
+}
+@media (max-width:600px){
+  .shell{padding:1rem 1.1rem 3rem;}
+  .cand-fields{grid-template-columns:1fr;}
+  .colegio-bar{flex-direction:column;align-items:flex-start;gap:0.65rem;}
+  .colegio-bar-meta{text-align:left;}
+  .cand-h{flex-direction:column;}
+  .cand-h-r{text-align:left;}
+  .hero-h1{font-size:1.5rem;}
+  .list-toolbar{flex-direction:column;align-items:stretch;}
+  .tool-meta{margin-left:0;}
+  .tabs{overflow-x:auto;}
+  .tab{flex-shrink:0;}
+  .modal-bd{padding:1rem;}
+  .nota-paper{padding:1.3rem 1.4rem;}
+  .modal-h{padding:1rem 1.2rem;}
+  .modal-ft{flex-direction:column;align-items:stretch;padding:0.85rem 1.2rem;}
+  .modal-ft-r{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 
+<a class="skip" href="#main-content">Saltar para o conteúdo</a>
+
 <div class="shell">
 
-  <div class="brand">
-    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3a12 12 0 0 1 3 7 12 12 0 0 1-3 7 12 12 0 0 1-3-7 12 12 0 0 1 3-7z"/></svg></div>
+  <header class="site-hdr">
+    <div class="brand-mark"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3a12 12 0 0 1 3 7 12 12 0 0 1-3 7 12 12 0 0 1-3-7 12 12 0 0 1 3-7z"/></svg></div>
     <div class="brand-bd"><div class="brand-nm">VIGIL · HORIZONTE</div><div class="brand-sub">M00 · Detecção semanal de propostas legislativas UE · Técnico DGAE</div></div>
     <a href="hub.html" class="brand-link">← Voltar ao Hub</a>
-    <div class="user-chip"><div class="avatar-sm" id="avatar">—</div><span class="user-name-sm" id="user-name">—</span></div>
-  </div>
+    <div class="user-chip" aria-label="Sessão activa"><div class="avatar-sm" id="avatar" aria-hidden="true">—</div><span class="user-name-sm" id="user-name">—</span></div>
+  </header>
 
-  <div class="hero">
-    <div class="hero-eye">M00 · HORIZONTE · Fase pré-publicação · DGAE</div>
-    <h1 class="hero-h1" id="hero-h1">Antes de Bruxelas aprovar · sabes o que vai mudar em Lisboa</h1>
-    <p class="hero-sub" id="hero-sub">A cada quarta-feira às 13h, após o Colégio de Comissários, o crawler do VIGIL detecta propostas novas e produz uma fila de candidatos para decisão DGAE. Cada decisão fica auditada: vigiar, promover à análise PROSPETIVA, gerar nota de antecipação para o gabinete candidato, ou arquivar com justificação.</p>
-  </div>
+  <main id="main-content">
 
-  <div id="readonly-banner" class="read-only-banner" style="display:none">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-    <div id="readonly-text">Modo de leitura · este perfil pode consultar o HORIZONTE mas não pode decidir promoções, gerar notas ou arquivar candidatos.</div>
-  </div>
+    <section class="hero" aria-labelledby="hero-h1">
+      <div class="hero-eye">M00 · HORIZONTE · Fase pré-publicação · DGAE</div>
+      <h1 class="hero-h1" id="hero-h1">Antes de Bruxelas aprovar · sabes o que vai mudar em Lisboa</h1>
+      <p class="hero-sub" id="hero-sub">A cada quarta-feira às 13h, após o Colégio de Comissários, o crawler do VIGIL detecta propostas novas e produz uma fila de candidatos para decisão DGAE. Cada decisão fica auditada: vigiar, promover à análise PROSPETIVA, gerar nota de antecipação para o gabinete candidato, ou arquivar com justificação.</p>
+    </section>
 
-  <div class="tabs">
-    <button class="tab cur" data-tab="semana" onclick="setTab('semana')">
-      Esta semana
-      <span class="count" id="count-semana">—</span>
-    </button>
-    <button class="tab" data-tab="watchlist" onclick="setTab('watchlist')">
-      Watchlist
-      <span class="count" id="count-watchlist">—</span>
-    </button>
-    <button class="tab" data-tab="arquivo" onclick="setTab('arquivo')">
-      Arquivo justificado
-      <span class="count" id="count-arquivo">—</span>
-    </button>
-  </div>
-
-  <!-- VISTA A · Esta semana -->
-  <div class="panel on" data-panel="semana">
-    <div class="colegio-bar">
-      <div class="colegio-bar-ic">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      </div>
-      <div class="colegio-bar-bd">
-        <div class="colegio-bar-ti">Colégio de Comissários · Quarta-feira, 13 de Maio de 2026</div>
-        <div class="colegio-bar-sub">12 pontos na agenda · 4 incluem propostas legislativas · crawler executou às 13h02 · 4 candidatos detectados</div>
-      </div>
-      <div class="colegio-bar-meta">
-        Próximo ciclo: <strong>quarta 20-05</strong><br>
-        Última corrida: <strong>hoje 13:02</strong>
-      </div>
+    <div id="readonly-banner" class="read-only-banner" role="status" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <div id="readonly-text">Modo de leitura · este perfil pode consultar o HORIZONTE mas não pode decidir promoções, gerar notas ou arquivar candidatos.</div>
     </div>
 
-    <div class="cards-grid" id="semana-list"></div>
-  </div>
-
-  <!-- VISTA B · Watchlist -->
-  <div class="panel" data-panel="watchlist">
-    <div class="list-toolbar">
-      <div class="tool-search"><input class="inp" id="wl-search" type="search" placeholder="Pesquisar título, vigil_id, ministério…" oninput="renderWatchlist()"></div>
-      <select class="sel" id="wl-state" onchange="renderWatchlist()">
-        <option value="">Todos os estados</option>
-        <option value="cwp">No CWP</option>
-        <option value="call_for_evidence">Call for Evidence</option>
-        <option value="colegio_adoptado">Adoptado pelo Colégio</option>
-        <option value="vigilancia">Em vigilância</option>
-        <option value="promovido">Promovido a PROSPETIVA/RADAR</option>
-      </select>
-      <select class="sel" id="wl-crit" onchange="renderWatchlist()">
-        <option value="">Todas as criticidades</option>
-        <option value="alto">Alta</option>
-        <option value="medio">Média</option>
-        <option value="baixo">Baixa</option>
-      </select>
-      <span class="tool-meta" id="wl-meta">— candidatos</span>
+    <div class="tabs" role="tablist" aria-label="Vistas do HORIZONTE">
+      <button class="tab" role="tab" id="tab-semana" aria-selected="true" aria-controls="panel-semana" tabindex="0" data-tab="semana" onclick="setTab('semana')">
+        Esta semana
+        <span class="count" id="count-semana">—</span>
+      </button>
+      <button class="tab" role="tab" id="tab-watchlist" aria-selected="false" aria-controls="panel-watchlist" tabindex="-1" data-tab="watchlist" onclick="setTab('watchlist')">
+        Watchlist
+        <span class="count" id="count-watchlist">—</span>
+      </button>
+      <button class="tab" role="tab" id="tab-arquivo" aria-selected="false" aria-controls="panel-arquivo" tabindex="-1" data-tab="arquivo" onclick="setTab('arquivo')">
+        Arquivo justificado
+        <span class="count" id="count-arquivo">—</span>
+      </button>
     </div>
-    <div class="cards-grid" id="watchlist-list"></div>
-  </div>
 
-  <!-- VISTA C · Arquivo justificado -->
-  <div class="panel" data-panel="arquivo">
-    <div style="padding:0.7rem 0.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;margin-bottom:0.9rem;font-size:0.82rem;color:var(--ink-2);line-height:1.5">
-      <strong>Accountability simétrica:</strong> as decisões de <em>não promover</em> um candidato ficam registadas com justificação obrigatória, da mesma forma que as de promover. Se mais tarde se descobrir que uma decisão de arquivamento foi errada, essa descoberta é em si auditável.
-    </div>
-    <div id="arquivo-list"></div>
-  </div>
+    <!-- VISTA A · Esta semana -->
+    <section class="panel on" id="panel-semana" role="tabpanel" aria-labelledby="tab-semana" data-panel="semana">
+      <div class="colegio-bar">
+        <div class="colegio-bar-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="colegio-bar-bd">
+          <h2 class="colegio-bar-ti" style="font-family:var(--font-display);font-weight:800;">Colégio de Comissários · Quarta-feira, 13 de Maio de 2026</h2>
+          <div class="colegio-bar-sub">12 pontos na agenda · 4 incluem propostas legislativas · crawler executou às 13h02 · 4 candidatos detectados</div>
+        </div>
+        <div class="colegio-bar-meta">
+          Próximo ciclo: <strong>quarta 20-05</strong><br>
+          Última corrida: <strong>hoje 13:02</strong>
+        </div>
+      </div>
+
+      <div class="cards-grid" id="semana-list"></div>
+    </section>
+
+    <!-- VISTA B · Watchlist -->
+    <section class="panel" id="panel-watchlist" role="tabpanel" aria-labelledby="tab-watchlist" data-panel="watchlist" hidden>
+      <div class="list-toolbar" role="search">
+        <div class="tool-search">
+          <label for="wl-search" class="sr-only">Pesquisar candidatos</label>
+          <input class="inp" id="wl-search" type="search" placeholder="Pesquisar título, vigil_id, ministério…" oninput="renderWatchlist()">
+        </div>
+        <label for="wl-state" class="sr-only">Filtrar por estado</label>
+        <select class="sel" id="wl-state" onchange="renderWatchlist()">
+          <option value="">Todos os estados</option>
+          <option value="cwp">No CWP</option>
+          <option value="call_for_evidence">Call for Evidence</option>
+          <option value="colegio_adoptado">Adoptado pelo Colégio</option>
+          <option value="vigilancia">Em vigilância</option>
+          <option value="promovido">Promovido a PROSPETIVA/RADAR</option>
+        </select>
+        <label for="wl-crit" class="sr-only">Filtrar por criticidade</label>
+        <select class="sel" id="wl-crit" onchange="renderWatchlist()">
+          <option value="">Todas as criticidades</option>
+          <option value="alto">Alta</option>
+          <option value="medio">Média</option>
+          <option value="baixo">Baixa</option>
+        </select>
+        <span class="tool-meta" id="wl-meta" aria-live="polite">— candidatos</span>
+      </div>
+      <div class="cards-grid" id="watchlist-list"></div>
+    </section>
+
+    <!-- VISTA C · Arquivo justificado -->
+    <section class="panel" id="panel-arquivo" role="tabpanel" aria-labelledby="tab-arquivo" data-panel="arquivo" hidden>
+      <div style="padding:0.8rem 1rem;background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:0 var(--r) var(--r) 0;margin-bottom:1rem;font-size:0.84rem;color:var(--ink-2);line-height:1.5">
+        <strong>Accountability simétrica:</strong> as decisões de <em>não promover</em> um candidato ficam registadas com justificação obrigatória, da mesma forma que as de promover. Se mais tarde se descobrir que uma decisão de arquivamento foi errada, essa descoberta é em si auditável.
+      </div>
+      <div id="arquivo-list"></div>
+    </section>
+
+  </main>
 
 </div>
 
-<!-- MODAL · Nota de Antecipação -->
-<div class="modal" id="modal-nota">
+<!-- DIALOG · Nota de Antecipação -->
+<div class="modal" id="modal-nota" role="dialog" aria-modal="true" aria-labelledby="modal-nota-ti" aria-hidden="true" inert>
   <div class="modal-card">
     <div class="modal-h">
       <div class="modal-h-bd">
-        <div class="modal-eyebrow">Nota de Antecipação · gerada por IA · <strong>editável pelo técnico DGAE</strong> <span class="nota-dirty-badge" id="nota-dirty-badge">• alterada</span></div>
-        <div class="modal-ti" id="modal-nota-ti">—</div>
+        <div class="modal-eyebrow">Nota de Antecipação · gerada por IA · <strong>editável pelo técnico DGAE</strong> <span class="nota-dirty-badge" id="nota-dirty-badge" aria-live="polite">• alterada</span></div>
+        <h2 class="modal-ti" id="modal-nota-ti">—</h2>
       </div>
-      <button class="modal-x" onclick="closeModal('modal-nota')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="modal-x" type="button" aria-label="Fechar nota" onclick="closeModal('modal-nota')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="modal-bd" id="modal-nota-bd"></div>
     <div class="modal-ft">
       <div class="modal-ft-l">Destinatários definidos pelo Técnico DGAE · auditoria activa</div>
       <div class="modal-ft-r">
-        <button class="btn-action btn-ghost" onclick="closeModal('modal-nota')">Cancelar</button>
-        <button class="btn-action btn-amber" id="btn-nota-send" onclick="sendNota()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <button class="btn-action btn-ghost" type="button" onclick="closeModal('modal-nota')">Cancelar</button>
+        <button class="btn-action btn-amber" type="button" id="btn-nota-send" onclick="sendNota()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Assinar e enviar
         </button>
       </div>
@@ -289,7 +348,7 @@ strong,b{font-weight:600;}
   </div>
 </div>
 
-<div class="toasts" id="toasts"></div>
+<div class="toasts" id="toasts" role="region" aria-label="Notificações" aria-live="polite"></div>
 
 <script>
 const session = (()=>{ try{return JSON.parse(localStorage.getItem('vigil-demo-session')||'null');}catch(e){return null;} })();
@@ -519,9 +578,33 @@ const JUST_LABELS = {
 
 // === RENDER ===
 function setTab(name) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('cur', t.dataset.tab === name));
-  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', p.dataset.panel === name));
+  document.querySelectorAll('.tab').forEach(t => {
+    const is = t.dataset.tab === name;
+    t.setAttribute('aria-selected', is ? 'true' : 'false');
+    t.setAttribute('tabindex', is ? '0' : '-1');
+  });
+  document.querySelectorAll('.panel').forEach(p => {
+    const is = p.dataset.panel === name;
+    p.classList.toggle('on', is);
+    if (is) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+  });
 }
+
+// Tablist arrow-key navigation (WAI-ARIA pattern)
+document.querySelectorAll('[role="tablist"] [role="tab"]').forEach((tab, idx, all) => {
+  tab.addEventListener('keydown', (e) => {
+    let next = null;
+    if (e.key === 'ArrowRight') next = all[(idx + 1) % all.length];
+    else if (e.key === 'ArrowLeft') next = all[(idx - 1 + all.length) % all.length];
+    else if (e.key === 'Home') next = all[0];
+    else if (e.key === 'End') next = all[all.length - 1];
+    if (next) {
+      e.preventDefault();
+      setTab(next.dataset.tab);
+      next.focus();
+    }
+  });
+});
 
 function critPill(c) {
   return `<span class="cand-crit crit-${c}">${c === 'alto' ? '● Alta' : c === 'medio' ? '● Média' : '● Baixa'} criticidade</span>`;
@@ -733,11 +816,22 @@ function openNotaPreview(vigilId) {
   curNota._aiSnapshot = fields;
   document.getElementById('nota-dirty-badge').classList.remove('on');
 
-  document.getElementById('modal-nota').classList.add('on');
+  openModal('modal-nota');
 }
 
 function markNotaDirty() {
   document.getElementById('nota-dirty-badge').classList.add('on');
+}
+
+let _lastFocus = null;
+function openModal(id) {
+  _lastFocus = document.activeElement;
+  const m = document.getElementById(id);
+  m.classList.add('on');
+  m.removeAttribute('inert');
+  m.setAttribute('aria-hidden', 'false');
+  const focusable = m.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  if (focusable.length) focusable[0].focus();
 }
 
 function resetNotaAI() {
@@ -760,7 +854,14 @@ function sendNota() {
 }
 
 function closeModal(id) {
-  document.getElementById(id).classList.remove('on');
+  const m = document.getElementById(id);
+  m.classList.remove('on');
+  m.setAttribute('inert', '');
+  m.setAttribute('aria-hidden', 'true');
+  if (_lastFocus && typeof _lastFocus.focus === 'function') {
+    _lastFocus.focus();
+    _lastFocus = null;
+  }
 }
 
 function promote(vigilId) {

@@ -6,122 +6,151 @@
 <title>VIGIL · Iniciar sessão</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink:#1D1D1F; --ink-2:#3A3A3C; --ink-3:#6E6E73; --ink-4:#8E8E93;
-  --line:#E5E5EA;
-  --bg:#FBFBFD; --bg2:#FFFFFF; --bg3:#F5F5F7;
-  --green:#0E7433; --green-dark:#0A5A28; --green-soft:#E6F0E9;
-  --blue:#2B5683; --red:#D02117; --amber:#C08916;
-  --sh-md:0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
-  --sh-lg:0 20px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
-  --font:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --font:'Atkinson Hyperlegible',Arial,sans-serif;
+  --font-display:'Fraunces',Georgia,serif;
   --font-mono:'JetBrains Mono',Menlo,Consolas,monospace;
+
+  --ink:#1A1815; --ink-2:#3D3A35; --ink-3:#6E6A62; --ink-4:#9A958B;
+  --paper:#F5F1E8; --paper-2:#FBF8F1; --paper-3:#EDE7D8;
+  --line:#D8D2BF; --line-2:#C2BBA5;
+
+  --green:#0E7433; --green-dark:#063D1B; --green-soft:#DCE8DE;
+  --blue:#2B5683; --red:#A8170E; --amber:#A86E10; --gold:#BE9C54;
+
+  --r:4px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--bg);height:100vh;width:100vw;overflow:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;}
-body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top right, var(--green-soft) 0%, var(--bg) 60%);overflow-y:auto;}
+html,body{font-family:var(--font);font-size:15px;color:var(--ink);background:var(--paper);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.5;}
+body{display:flex;align-items:center;justify-content:center;padding:1.5rem;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(190,156,84,0.18) 0%, transparent 42%),
+    radial-gradient(circle at 92% 88%, rgba(14,116,51,0.12) 0%, transparent 50%),
+    var(--paper);
+}
+strong,b{font-weight:700;}
 
-.scr{display:flex;align-items:center;justify-content:center;width:100%;min-height:100%;padding:1.5rem;}
-.card{width:min(480px, 100%);background:var(--bg2);border-radius:16px;box-shadow:var(--sh-lg);overflow:hidden;}
-.brand{padding:1.8rem 2rem 1.3rem;text-align:center;border-bottom:1px solid var(--line);}
-.brand-mark{width:48px;height:48px;background:var(--green);border-radius:10px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;}
-.brand-mark svg{width:28px;height:28px;}
-.brand-nm{font-size:1.6rem;font-weight:800;letter-spacing:-0.025em;}
-.brand-sub{font-size:0.78rem;color:var(--ink-3);margin-top:0.3rem;}
+.skip{position:absolute;top:-100px;left:0;padding:0.7rem 1rem;background:var(--ink);color:var(--paper);font-weight:700;z-index:999;text-decoration:none;}
+.skip:focus{top:0;}
 
-.form{padding:1.3rem 2rem 0.9rem;}
-.fg{margin-bottom:0.85rem;}
-.lbl{display:block;font-size:0.74rem;font-weight:600;color:var(--ink-2);margin-bottom:0.4rem;letter-spacing:-0.005em;}
-.inp{width:100%;padding:0.7rem 0.85rem;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:0.9rem;color:var(--ink);background:var(--bg2);outline:none;transition:all 0.12s;}
-.inp:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft);}
-.btn{width:100%;padding:0.7rem 1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.12s;}
+main{width:min(520px,100%);}
+.card{background:var(--paper-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;}
+
+.note{padding:0.7rem 2rem;background:var(--ink);color:var(--paper);font-size:0.78rem;letter-spacing:0.02em;text-align:center;font-weight:500;}
+.note a{color:var(--gold);text-decoration:underline;font-weight:700;}
+
+.brand{padding:2.2rem 2rem 1.6rem;text-align:center;border-bottom:1px solid var(--line);}
+.brand-mark{width:56px;height:56px;background:var(--ink);border-radius:var(--r);margin:0 auto 1.1rem;display:flex;align-items:center;justify-content:center;}
+.brand-mark svg{width:30px;height:30px;color:var(--paper);}
+.brand-nm{font-family:var(--font-display);font-size:2.6rem;font-weight:900;letter-spacing:-0.04em;line-height:0.95;color:var(--ink);}
+.brand-sub{font-size:0.82rem;color:var(--ink-3);margin-top:0.6rem;letter-spacing:0.01em;}
+
+.form{padding:1.5rem 2rem 1.1rem;}
+.fg{margin-bottom:0.9rem;}
+.lbl{display:block;font-size:0.7rem;font-weight:700;color:var(--ink-2);margin-bottom:0.4rem;letter-spacing:0.08em;text-transform:uppercase;}
+.inp{width:100%;padding:0.75rem 0.9rem;border:1px solid var(--line-2);border-radius:var(--r);font-family:inherit;font-size:0.95rem;color:var(--ink);background:var(--paper);outline:none;transition:border-color 0.12s;}
+.inp:focus{border-color:var(--ink);box-shadow:inset 0 -2px 0 var(--green);}
+.btn{width:100%;padding:0.85rem 1rem;background:var(--ink);color:var(--paper);border:none;border-radius:var(--r);font-family:inherit;font-size:0.92rem;font-weight:700;cursor:pointer;letter-spacing:0.02em;transition:background 0.12s;}
 .btn:hover{background:var(--green-dark);}
-.err{font-size:0.78rem;color:var(--red);margin-top:0.4rem;display:none;}
+.err{font-size:0.82rem;color:var(--red);margin-top:0.5rem;padding:0.5rem 0.7rem;background:rgba(168,23,14,0.08);border-left:3px solid var(--red);border-radius:0 var(--r) var(--r) 0;display:none;}
 .err.on{display:block;}
 
-.demo{padding:0 2rem 1.4rem;border-top:1px solid var(--line);margin-top:0.3rem;padding-top:1.1rem;}
-.demo-h{font-size:0.74rem;font-weight:600;color:var(--ink-3);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.45rem;}
-.demo-h::before{content:"";width:4px;height:4px;background:var(--ink-4);border-radius:50%;}
-.demo-grid{display:flex;flex-direction:column;gap:0.4rem;}
-.demo-btn{padding:0.55rem 0.75rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;cursor:pointer;text-align:left;font-family:inherit;transition:all 0.12s;display:flex;justify-content:space-between;align-items:center;gap:0.85rem;}
-.demo-btn:hover{background:var(--green-soft);border-color:var(--green);}
-.demo-cred{font-family:var(--font-mono);font-size:0.72rem;color:var(--ink);font-weight:500;flex-shrink:0;width:130px;}
-.demo-role{font-size:0.7rem;color:var(--ink-3);flex:1;line-height:1.3;}
-.demo-btn.mock{background:#FFF3E0;border-color:#E5B870;}
-.demo-btn.mock:hover{background:#FFE9C7;}
-.demo-btn.mock .demo-cred{color:#A06800;}
-.demo-btn.mock .demo-role{color:#7C4F00;}
+.demo{padding:0 2rem 1.6rem;border-top:1px solid var(--line);margin-top:0.4rem;padding-top:1.3rem;}
+.demo-h{font-family:var(--font-display);font-size:0.78rem;font-weight:800;color:var(--ink-2);margin-bottom:0.8rem;text-transform:uppercase;letter-spacing:0.12em;}
+.demo-grid{display:flex;flex-direction:column;gap:0.45rem;}
+.demo-btn{padding:0.65rem 0.85rem;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);cursor:pointer;text-align:left;font-family:inherit;transition:all 0.12s;display:flex;justify-content:space-between;align-items:center;gap:0.85rem;}
+.demo-btn:hover{background:var(--paper-3);border-color:var(--ink-3);}
+.demo-cred{font-family:var(--font-mono);font-size:0.75rem;color:var(--ink);font-weight:600;flex-shrink:0;width:130px;}
+.demo-role{font-size:0.72rem;color:var(--ink-3);flex:1;line-height:1.35;}
+.demo-btn.mock{background:rgba(190,156,84,0.16);border-color:var(--gold);}
+.demo-btn.mock:hover{background:rgba(190,156,84,0.26);}
+.demo-btn.mock .demo-cred{color:#7C5C12;}
+.demo-btn.mock .demo-role{color:#5C440D;}
 
-.foot{padding:0.75rem 2rem;background:var(--bg3);font-size:0.7rem;color:var(--ink-3);text-align:center;}
+.foot{padding:0.85rem 2rem;background:var(--paper-3);font-size:0.72rem;color:var(--ink-3);text-align:center;border-top:1px solid var(--line);letter-spacing:0.02em;}
 
-.note{padding:0.6rem 2rem;background:var(--green-soft);font-size:0.74rem;color:var(--green-dark);text-align:center;border-bottom:1px solid var(--green);font-weight:500;}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+@media (max-width:600px){
+  body{padding:0.75rem;}
+  .brand{padding:1.6rem 1.3rem 1.2rem;}
+  .brand-nm{font-size:2.1rem;}
+  .form,.demo{padding-left:1.3rem;padding-right:1.3rem;}
+  .foot{padding-left:1.3rem;padding-right:1.3rem;}
+  .demo-btn{flex-wrap:wrap;}
+  .demo-cred{width:auto;}
+}
 </style>
 </head>
 <body>
 
-<div class="scr">
+<a class="skip" href="#main-content">Saltar para o conteúdo</a>
+
+<main id="main-content">
   <div class="card">
-    <div class="note">📡 Demonstração interactiva · simula a experiência VIGIL</div>
-    <div class="brand">
+    <div class="note" id="note">Demonstração interactiva · simula a experiência VIGIL</div>
+
+    <header class="brand">
       <div class="brand-mark">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <rect x="2" y="2" width="7" height="16" rx="1.5" fill="#fff"/>
-          <rect x="11" y="2" width="7" height="9" rx="1.5" fill="#fff"/>
-          <rect x="11" y="13" width="7" height="5" rx="1.5" fill="#fff" opacity="0.75"/>
+          <rect x="2" y="2" width="7" height="16" rx="0.5" fill="currentColor"/>
+          <rect x="11" y="2" width="7" height="9" rx="0.5" fill="currentColor"/>
+          <rect x="11" y="13" width="7" height="5" rx="0.5" fill="currentColor" opacity="0.6"/>
         </svg>
       </div>
-      <div class="brand-nm">VIGIL</div>
-      <div class="brand-sub">Plataforma de Acompanhamento do Direito da União Europeia</div>
-    </div>
+      <h1 class="brand-nm">VIGIL</h1>
+      <p class="brand-sub">Plataforma de Acompanhamento do Direito da União Europeia</p>
+    </header>
 
-    <form class="form" onsubmit="return doLogin(event)" autocomplete="off">
+    <form class="form" onsubmit="return doLogin(event)" autocomplete="off" aria-labelledby="form-title">
+      <h2 id="form-title" class="lbl" style="margin-bottom:0.9rem;font-size:0.72rem;">Iniciar sessão</h2>
       <div class="fg">
         <label class="lbl" for="user">Utilizador</label>
-        <input class="inp" id="user" type="text" autofocus autocomplete="username">
+        <input class="inp" id="user" type="text" autofocus autocomplete="username" required>
       </div>
       <div class="fg">
         <label class="lbl" for="pass">Password</label>
-        <input class="inp" id="pass" type="password" autocomplete="current-password">
+        <input class="inp" id="pass" type="password" autocomplete="current-password" required>
       </div>
-      <div class="err" id="err">Credenciais incorrectas. Tenta com um dos perfis demo.</div>
+      <div class="err" id="err" role="alert" aria-live="polite">Credenciais incorrectas. Tenta com um dos perfis demo.</div>
       <button type="submit" class="btn">Entrar</button>
     </form>
 
-    <div class="demo">
-      <div class="demo-h">Perfis de demonstração · clica para entrar</div>
+    <section class="demo" aria-labelledby="demo-h">
+      <h2 id="demo-h" class="demo-h">Perfis de demonstração</h2>
       <div class="demo-grid">
-        <button class="demo-btn mock" onclick="quickLogin('admin_demo')">
-          <div class="demo-cred">demo / demo</div>
-          <div class="demo-role">⚠ Admin total (mock · só para demo)</div>
+        <button type="button" class="demo-btn mock" onclick="quickLogin('admin_demo')">
+          <span class="demo-cred">demo / demo</span>
+          <span class="demo-role">⚠ Admin total (mock · só para demonstração)</span>
         </button>
-        <button class="demo-btn" onclick="quickLogin('tecnico_dgae')">
-          <div class="demo-cred">dgae / dgae</div>
-          <div class="demo-role">Técnico DGAE · scout · operador HORIZONTE/PROSPETIVA</div>
+        <button type="button" class="demo-btn" onclick="quickLogin('tecnico_dgae')">
+          <span class="demo-cred">dgae / dgae</span>
+          <span class="demo-role">Técnico DGAE · scout · operador HORIZONTE/PROSPETIVA</span>
         </button>
-        <button class="demo-btn" onclick="quickLogin('tecnico_dgdei')">
-          <div class="demo-cred">dgdei / dgdei</div>
-          <div class="demo-role">Técnico DGDEI · contencioso + relator CE</div>
+        <button type="button" class="demo-btn" onclick="quickLogin('tecnico_dgdei')">
+          <span class="demo-cred">dgdei / dgdei</span>
+          <span class="demo-role">Técnico DGDEI · contencioso + relator CE</span>
         </button>
-        <button class="demo-btn" onclick="quickLogin('gabinete_seae')">
-          <div class="demo-cred">seae / seae</div>
-          <div class="demo-role">Gabinete SEAE · ponte SmartLegis</div>
+        <button type="button" class="demo-btn" onclick="quickLogin('gabinete_seae')">
+          <span class="demo-cred">seae / seae</span>
+          <span class="demo-role">Gabinete SEAE · ponte SmartLegis</span>
         </button>
-        <button class="demo-btn" onclick="quickLogin('gabinete_min')">
-          <div class="demo-cred">gabinete / gabinete</div>
-          <div class="demo-role">Gabinete ministerial · MAEN</div>
+        <button type="button" class="demo-btn" onclick="quickLogin('gabinete_min')">
+          <span class="demo-cred">gabinete / gabinete</span>
+          <span class="demo-role">Gabinete ministerial · MAEN</span>
         </button>
-        <button class="demo-btn" onclick="quickLogin('admin_dapl')">
-          <div class="demo-cred">dapl / dapl</div>
-          <div class="demo-role">Admin DAPL · plataforma · sem interferência em processos</div>
+        <button type="button" class="demo-btn" onclick="quickLogin('admin_dapl')">
+          <span class="demo-cred">dapl / dapl</span>
+          <span class="demo-role">Admin DAPL · plataforma · sem interferência em processos</span>
         </button>
       </div>
-    </div>
+    </section>
 
-    <div class="foot">DAPL · Secretaria-Geral do Governo · Demonstração · Abril 2026</div>
+    <footer class="foot">DAPL · Secretaria-Geral do Governo · Demonstração · Maio 2026</footer>
   </div>
-</div>
+</main>
 
 <script>
 const PROFILES = {
@@ -212,8 +241,8 @@ function doLogin(ev) {
   try {
     const s = JSON.parse(localStorage.getItem('vigil-demo-session') || 'null');
     if (s && s.loginAt && (Date.now() - s.loginAt < 8 * 60 * 60 * 1000)) {
-      const note = document.querySelector('.note');
-      note.innerHTML = `📡 Sessão activa: <strong>${s.name}</strong> · <a href="hub.html" style="color:var(--green-dark);text-decoration:underline">continuar</a> · <a href="#" onclick="localStorage.removeItem('vigil-demo-session');location.reload();return false" style="color:var(--green-dark);text-decoration:underline">terminar</a>`;
+      const note = document.getElementById('note');
+      note.innerHTML = `Sessão activa: <strong>${s.name}</strong> · <a href="hub.html">continuar</a> · <a href="#" onclick="localStorage.removeItem('vigil-demo-session');location.reload();return false">terminar</a>`;
     }
   } catch(e) {}
 })();
