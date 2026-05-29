@@ -139,6 +139,63 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-0.015em;color:
 
 .brand-link{color:var(--ink);}
 
+/* Toolbar (tabs + relatório) */
+.cont-toolbar{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.tab-btn{font-family:var(--font);font-size:0.8rem;font-weight:700;padding:0.5rem 0.9rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper-2);color:var(--ink-2);cursor:pointer;}
+.tab-btn.cur{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.tab-btn:hover:not(.cur){background:var(--paper-3);}
+.report-btn{margin-left:auto;font-family:var(--font);font-size:0.8rem;font-weight:700;padding:0.5rem 0.9rem;border:1px solid var(--green);border-radius:var(--r);background:var(--green);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;}
+.report-btn:hover{background:var(--green-dark);}
+.report-btn svg{width:15px;height:15px;}
+
+/* Category bar (9 categorias) */
+.cat-bar{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;}
+.cat-chip{font-size:0.72rem;font-weight:600;padding:0.35rem 0.65rem;border-radius:999px;border:1px solid var(--line-2);background:var(--paper-2);color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;}
+.cat-chip:hover{background:var(--paper-3);}
+.cat-chip.cur{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.cat-chip .n{font-family:var(--font-mono);font-size:0.66rem;background:rgba(0,0,0,0.08);padding:0.05rem 0.35rem;border-radius:999px;}
+.cat-chip.cur .n{background:rgba(255,255,255,0.2);}
+
+/* Category section header in list */
+.cat-section{font-family:var(--font-display);font-size:0.82rem;font-weight:800;color:var(--ink);margin:1.4rem 0 0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--line-2);letter-spacing:-0.01em;display:flex;align-items:center;gap:0.5rem;}
+.cat-section .roman{font-size:0.7rem;background:var(--ink);color:var(--paper);padding:0.1rem 0.45rem;border-radius:3px;font-family:var(--font-mono);font-weight:600;}
+.cat-section .cnt{margin-left:auto;font-size:0.68rem;color:var(--ink-3);font-weight:600;}
+
+/* Participation pill */
+.part-pill{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.04em;padding:0.12rem 0.4rem;border-radius:3px;font-weight:700;}
+.part-reu{background:var(--tint-red);color:var(--red);}
+.part-interveniente{background:var(--tint-blue);color:var(--blue);}
+.part-observacoes{background:var(--bg4);color:var(--ink-3);}
+.part-recorrente,.part-recorrido{background:var(--tint-amber);color:var(--amber);}
+
+.fase-reenvio{background:var(--tint-blue);color:var(--blue);}
+.fase-recurso{background:var(--tint-amber);color:var(--amber);}
+.fase-aguarda{background:var(--bg4);color:var(--ink-3);}
+
+/* SEAE report modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(26,24,21,0.55);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:2.5rem 1.5rem;overflow-y:auto;}
+.modal-backdrop.on{display:flex;}
+.report-modal{background:var(--paper-2);border:1px solid var(--line-2);border-radius:var(--r);max-width:840px;width:100%;box-shadow:var(--sh-md);}
+.report-hd{display:flex;align-items:center;gap:0.8rem;padding:1.1rem 1.4rem;border-bottom:2px solid var(--ink);}
+.report-hd h2{font-family:var(--font-display);font-size:1.15rem;font-weight:900;flex:1;letter-spacing:-0.02em;}
+.report-hd .x{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink-3);line-height:1;}
+.report-controls{padding:1rem 1.4rem;background:var(--paper-3);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;}
+.report-controls label{font-size:0.78rem;font-weight:700;color:var(--ink-2);}
+.report-controls select{font-family:var(--font);font-size:0.82rem;padding:0.4rem 0.6rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper-2);color:var(--ink);}
+.report-body{padding:1.4rem;max-height:62vh;overflow-y:auto;}
+.report-doc{background:#fff;border:1px solid var(--line);padding:1.6rem 1.8rem;font-size:0.82rem;line-height:1.55;}
+.report-doc h3{font-family:var(--font-display);font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:0.02em;border-bottom:2px solid var(--ink);padding-bottom:0.4rem;margin:1.3rem 0 0.7rem;}
+.report-doc h3:first-child{margin-top:0;}
+.report-doc h4{font-size:0.82rem;font-weight:700;color:var(--ink-2);margin:0.9rem 0 0.4rem;}
+.report-doc .rd-meta{font-size:0.72rem;color:var(--ink-3);font-family:var(--font-mono);margin-bottom:1rem;}
+.report-doc .rd-row{display:grid;grid-template-columns:130px 1fr;gap:0.8rem;padding:0.45rem 0;border-bottom:1px solid var(--line);}
+.report-doc .rd-row .rd-ref{font-family:var(--font-mono);font-size:0.74rem;color:var(--red);font-weight:600;}
+.report-doc .rd-empty{color:var(--ink-4);font-style:italic;}
+.report-doc .rd-count{display:inline-block;background:var(--tint-red);color:var(--red);font-weight:700;padding:0.05rem 0.45rem;border-radius:3px;font-size:0.78rem;margin-left:0.4rem;}
+.report-foot{padding:0.9rem 1.4rem;border-top:1px solid var(--line);display:flex;gap:0.5rem;justify-content:flex-end;}
+.report-foot button{font-family:var(--font);font-size:0.78rem;font-weight:700;padding:0.5rem 0.9rem;border-radius:var(--r);cursor:pointer;border:1px solid var(--line-2);background:var(--paper-2);color:var(--ink-2);}
+.report-foot button.primary{background:var(--green);color:#fff;border-color:var(--green);}
+
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
 
 @media (max-width:900px){.risk-dash{grid-template-columns:1fr 1fr;}.pipeline{grid-template-columns:repeat(2,1fr);}.piece{grid-template-columns:1fr;}.hero-h1{font-size:1.9rem;}}
@@ -186,8 +243,60 @@ if (!ALLOWED.includes(session.perfil)) {
   `;
 } else {
 
+// =====================================================================
+// TAXONOMIA REAL DGDEI/DUE — 9 categorias de contencioso TJUE
+// (origem: Mapa de Contencioso · 03_Especificacao_Tecnica/08)
+// =====================================================================
+const CATEGORIAS = {
+  'I':    { roman:'I',    nome:'Ações de incumprimento contra PT',                    part:'reu' },
+  'II':   { roman:'II',   nome:'Ações de incumprimento · intervenção de PT',          part:'interveniente' },
+  'III':  { roman:'III',  nome:'Pareceres',                                           part:'observacoes' },
+  'IV':   { roman:'IV',   nome:'Recursos de acórdão do Tribunal Geral',               part:'recorrente' },
+  'V':    { roman:'V',    nome:'Recursos de anulação TJUE · intervenção',             part:'interveniente' },
+  'VI':   { roman:'VI',   nome:'Recursos de anulação · Tribunal Geral',               part:'recorrente' },
+  'VII':  { roman:'VII',  nome:'Recursos de anulação Tribunal Geral · intervenção',   part:'interveniente' },
+  'VIII': { roman:'VIII', nome:'Reenvio prejudicial · tribunais portugueses',         part:'observacoes' },
+  'IX':   { roman:'IX',   nome:'Reenvio prejudicial · tribunais de outros EM',        part:'observacoes' },
+};
+const PART_LABEL = { reu:'Réu', interveniente:'Intervenção', observacoes:'Observações', recorrente:'Recorrente', recorrido:'Recorrido' };
+
+// =====================================================================
+// PROCEDIMENTOS DE INFRAÇÃO (fase administrativa CE · NI → PF → TJUE)
+// Distintos do contencioso judicial. Alimentam o reporte à SEAE.
+// =====================================================================
+const INFRACOES = [
+  { ref:'INFR(2024)2038', celex:'32022L2555', mat:'NIS2 · Cibersegurança', motivo:'falta_transposicao',
+    fase:'parecer_fundamentado', faseLabel:'Parecer fundamentado', faseCls:'fase-parecer',
+    dataNI:'15-11-2024', dataPF:'29-04-2026', prazo:'29-04-2026', ministerios:['MARE','MAI'],
+    sintese:'Falta de transposição da NIS2 (prazo 17-10-2024). Projecto de Lei pronto, bloqueado em concertação MARE-MP-MAI.',
+    pontoSit:'Anteprojecto concluído · aguarda entrada em RSE', scoreboard:'Scoreboard formal 2025',
+    risco:'€8-12M se acórdão · €50-80k/dia compulsória', tecnico:'AC' },
+  { ref:'INFR(2024)0891', celex:'32024L0884', mat:'Qualidade do ar · PM2.5 e NO₂', motivo:'ma_aplicacao',
+    fase:'parecer_fundamentado', faseLabel:'Parecer fundamentado', faseCls:'fase-parecer',
+    dataNI:'23-01-2025', dataPF:'15-04-2026', prazo:'15-06-2026', ministerios:['MAEN'],
+    sintese:'Lisboa e Porto excedem limites PM2.5/NO₂. APA com planos · execução municipal lenta.',
+    pontoSit:'Diálogo informal em curso para evitar TJUE', scoreboard:'—',
+    risco:'€15-25M (fixa) + €30-50k/dia', tecnico:'CA' },
+  { ref:'INFR(2022)0160', celex:'32020L0262', mat:'Regime geral dos impostos especiais de consumo', motivo:'falta_transposicao',
+    fase:'aguarda_arquivamento', faseLabel:'Aguarda arquivamento', faseCls:'fase-aguarda',
+    dataNI:'17-07-2022', dataPF:'', prazo:'', ministerios:['MF'],
+    sintese:'Transposição concluída pela Lei de execução. CE notificada · processo a aguardar arquivamento.',
+    pontoSit:'Diploma publicado · resposta à CE enviada', scoreboard:'Scoreboard formal 2025',
+    risco:'Encerramento previsto', tecnico:'LM' },
+  { ref:'INFR(2025)0204', celex:'32024L2831', mat:'Trabalho em plataformas digitais', motivo:'falta_transposicao',
+    fase:'notificacao_para_cumprir', faseLabel:'Notificação para Cumprir', faseCls:'fase-notificacao',
+    dataNI:'26-03-2026', dataPF:'', prazo:'26-05-2026', ministerios:['MTSSS'],
+    sintese:'NI por antecipação do prazo (02-12-2026). Anteprojecto em consulta pública.',
+    pontoSit:'Aguarda entrada do DL em circuito legislativo', scoreboard:'Scoreboard informal 2026',
+    risco:'€6-10M se escalar', tecnico:'AC' },
+];
+
+// =====================================================================
+// CONTENCIOSO JUDICIAL (TJUE / Tribunal Geral) — 9 categorias
+// =====================================================================
 const CASES = [
-  { id:'C-217/24', celex:'31992L0043', mat:'Habitats · Rede Natura 2000 (55 sítios)', fase:'acordao', faseLabel:'Acórdão proferido', faseCls:'fase-acordao', dt:'05-03-2026', sancao:'€10M + €41 250/dia',
+  // ---- Categoria I · Incumprimento contra PT (réu) ----
+  { id:'C-217/24', cat:'I', participacao:'reu', tribunal:'TJUE', celex:'31992L0043', mat:'Habitats · Rede Natura 2000 (55 sítios)', fase:'acordao', faseLabel:'Acórdão proferido', faseCls:'fase-acordao', dt:'05-03-2026', sancao:'€10M + €41 250/dia',
     detalhe:'Acção movida pela CE em 12-09-2022. Acórdão TJUE de 5 mar. 2026 condena Portugal pela falha sistemática na designação de zonas especiais de conservação. Sanção fixa €10M + sanção pecuniária compulsória €41 250/dia até cumprimento integral.',
     pipeline:[
       {nm:'Pub. JOUE',dt:'21-05-1992',cls:'done'},{nm:'Ficha DGDEI',dt:'1992',cls:'done'},
@@ -215,65 +324,102 @@ const CASES = [
       {lb:'Custos de defesa estimados', vl:'€420 000'},
       {lb:'Total acumulado a 28-04-2026', vl:'€12 771 250', total:true},
     ],
-    minister:'Min. Ambiente e Energia · ICNF',
+    minister:'MAEN · ICNF', tecnico:'LM',
   },
-  { id:'IP/24/1182', celex:'32022L2555', mat:'NIS2 · Cibersegurança (falta de transposição)', fase:'notificacao', faseLabel:'Notificação formal', faseCls:'fase-notificacao', dt:'15-11-2024', sancao:'A determinar',
-    detalhe:'Procedimento aberto em 15-11-2024 por incumprimento da obrigação de transposição da Diretiva NIS2 até 17-10-2024. Resposta de Portugal em curso · projecto de Lei pronto.',
+  // ---- Categoria I · Execução de acórdão (260.º TFUE) ----
+  { id:'C-613/24', cat:'I', participacao:'reu', tribunal:'TJUE', celex:'31992L0043', mat:'Comissão/Portugal · execução do acórdão de 05-09-2019 (260.º TFUE)', fase:'acordao', faseLabel:'Aguarda acórdão', faseCls:'fase-acordao', dt:'05-03-2026', sancao:'Sanção a fixar',
+    detalhe:'Ação de execução do acórdão do TJUE de 05-09-2019 (260.º, n.º 1) que declarou o incumprimento de Portugal quanto à falta de designação como zonas especiais de conservação de 61 sítios de importância comunitária (Decisões 2004/813/CE e 2006/613/CE). Notificada em 27-09-2024.',
     pipeline:[
-      {nm:'Pub. JOUE',dt:'17-12-2022',cls:'done'},{nm:'Ficha DGDEI',dt:'10-01-2023',cls:'done'},
-      {nm:'Prazo excedido',dt:'17-10-2024',cls:'done'},{nm:'Notif. formal',dt:'15-11-2024',cls:'cur'},
-      {nm:'Parecer fund.',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},
+      {nm:'Notificação',dt:'27-09-2024',cls:'done'},{nm:'Contestação',dt:'05-12-2024',cls:'done'},
+      {nm:'Réplica',dt:'13-02-2025',cls:'done'},{nm:'Tréplica',dt:'24-03-2025',cls:'done'},
+      {nm:'Fase escrita',dt:'25-03-2025',cls:'done'},{nm:'Acórdão',dt:'05-03-2026',cls:'cur'},
     ],
     pieces:[
-      {dt:'15-11-2024',ti:'Notificação formal CE',cls:'reservado',hash:'0x3e7d...c182'},
-      {dt:'29-04-2026',ti:'Resposta de Portugal (PROJECTO)',cls:'reservado',hash:'0xa412...9d51'},
+      {dt:'05-12-2024',ti:'Contestação',cls:'reservado',hash:'0x5a2c...e91f'},
+      {dt:'13-02-2025',ti:'Réplica da Comissão',cls:'publico',hash:'0x7d34...2b8a'},
+      {dt:'24-03-2025',ti:'Tréplica',cls:'reservado',hash:'0x1f9e...c402'},
     ],
-    audit:[
-      {ts:'28-04-2026 16:01',actor:'Ana Silva',action:'edit_piece_meta · resposta'},
-      {ts:'28-04-2026 10:14',actor:'João Mendes',action:'view_contencioso_case'},
-    ],
-    cost:[{lb:'Risco financeiro estimado se acórdão',vl:'€8-12M',total:true}],
-    minister:'Min. Ambiente e Energia · CNCS',
+    audit:[{ts:'28-05-2026 11:20',actor:'Ana Patrícia Silva',action:'view_contencioso_case'}],
+    cost:[{lb:'Sanção compulsória estimada (260.º)',vl:'€20-40k/dia',total:true}],
+    minister:'MAEN · ICNF', tecnico:'LM',
   },
-  { id:'INFR/24/0891', celex:'32024L0884', mat:'Qualidade do ar · PM2.5 e NO₂ (Lisboa, Porto)', fase:'parecer', faseLabel:'Parecer fundamentado', faseCls:'fase-parecer', dt:'15-04-2026', sancao:'Estimativa 15-25M€',
-    detalhe:'Portugal excedeu sistematicamente os limites de PM2.5 e NO₂ em Lisboa e Porto. CE emitiu parecer fundamentado em 15-04-2026. APA a implementar planos de qualidade do ar.',
+  { id:'C-166/25', cat:'I', participacao:'reu', tribunal:'TJUE', celex:'32010L0075', mat:'Comissão/Portugal · má transposição da Diretiva 2010/75/UE (emissões industriais)', fase:'aguarda', faseLabel:'Fase escrita encerrada', faseCls:'fase-aguarda', dt:'31-07-2025', sancao:'A determinar',
+    detalhe:'Ação de incumprimento (258.º TFUE) por má transposição da Diretiva relativa às emissões industriais. Notificada em 03-03-2025. Fase escrita encerrada em 31-07-2025.',
     pipeline:[
-      {nm:'Pub. JOUE',dt:'14-08-2024',cls:'done'},{nm:'Ficha DGDEI',dt:'2024',cls:'done'},
-      {nm:'Notif. formal',dt:'23-01-2025',cls:'done'},{nm:'Parecer fund.',dt:'15-04-2026',cls:'cur'},
-      {nm:'Acção TJUE',dt:'—',cls:''},{nm:'Acórdão',dt:'—',cls:''},
+      {nm:'Notificação',dt:'03-03-2025',cls:'done'},{nm:'Contestação',dt:'13-05-2025',cls:'done'},
+      {nm:'Réplica',dt:'24-06-2025',cls:'done'},{nm:'Tréplica',dt:'30-07-2025',cls:'done'},
+      {nm:'Fase escrita',dt:'31-07-2025',cls:'cur'},{nm:'Acórdão',dt:'—',cls:''},
     ],
     pieces:[
-      {dt:'23-01-2025',ti:'Notificação formal',cls:'reservado',hash:'0x6f2a...7e3c'},
-      {dt:'15-04-2026',ti:'Parecer fundamentado',cls:'reservado',hash:'0x8b1d...4a92'},
+      {dt:'13-05-2025',ti:'Contestação',cls:'reservado',hash:'0x3c81...a7d2'},
+      {dt:'30-07-2025',ti:'Tréplica',cls:'reservado',hash:'0x9e2f...41bc'},
     ],
-    audit:[{ts:'27-04-2026 09:32',actor:'Bernardo Vidal',action:'view_contencioso_case'}],
-    cost:[{lb:'Risco financeiro estimado',vl:'€15-25M',total:true}],
-    minister:'Min. Ambiente e Energia · APA',
+    audit:[],
+    cost:[{lb:'Risco financeiro a determinar',vl:'A determinar',total:true}],
+    minister:'MAEN · APA', tecnico:'LM',
   },
-  { id:'INFR/22/1034', celex:'32019L0883', mat:'Resíduos gerados por navios', fase:'notificacao', faseLabel:'Notificação formal', faseCls:'fase-notificacao', dt:'10-06-2022', sancao:'A determinar',
-    detalhe:'Notificação por transposição parcial. DGRM e MIH a coordenar acções. Risco baixo de escalar.',
+  // ---- Categoria VIII · Reenvio prejudicial · tribunal português (observações) ----
+  { id:'C-258/23 a C-260/23', cat:'VIII', participacao:'observacoes', tribunal:'TJUE', celex:'—', mat:'Imagens Médicas Integradas e o. · reenvio do Tribunal da Concorrência, Regulação e Supervisão', fase:'aguarda', faseLabel:'Aguarda acórdão', faseCls:'fase-aguarda', dt:'07-03-2024', sancao:'Sem sanção a PT',
+    detalhe:'Pedidos de decisão prejudicial submetidos por tribunal português sobre a interpretação do art. 7.º da Carta dos Direitos Fundamentais. Portugal apresentou observações. Não é incumprimento — PT não é réu.',
     pipeline:[
-      {nm:'Pub. JOUE',dt:'07-06-2019',cls:'done'},{nm:'Ficha DGDEI',dt:'2019',cls:'done'},
-      {nm:'Prazo excedido',dt:'28-06-2021',cls:'done'},{nm:'Notif. formal',dt:'10-06-2022',cls:'cur'},
-      {nm:'Parecer fund.',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},
+      {nm:'Reenvio',dt:'19-06-2023',cls:'done'},{nm:'Observações PT',dt:'25-08-2023',cls:'done'},
+      {nm:'Sem audiência',dt:'07-03-2024',cls:'done'},{nm:'Conclusões AG',dt:'—',cls:'cur'},
+      {nm:'Acórdão',dt:'—',cls:''},{nm:'—',dt:'',cls:''},
     ],
-    pieces:[{dt:'10-06-2022',ti:'Notificação formal',cls:'reservado',hash:'0x1d2e...5f8b'}],
+    pieces:[{dt:'25-08-2023',ti:'Observações de Portugal',cls:'publico',hash:'0x6b1a...88f3'}],
     audit:[],
-    cost:[{lb:'Risco baixo de sanção',vl:'€2-5M',total:true}],
-    minister:'Min. Infraestruturas · DGRM',
+    cost:[{lb:'Reenvio prejudicial · sem risco financeiro para PT',vl:'—',total:false}],
+    minister:'MECT · Autoridade da Concorrência', tecnico:'CA',
   },
-  { id:'SG/24/3421', celex:'32018L1673', mat:'AML6 · transposição incompleta (diálogo informal)', fase:'dialogo', faseLabel:'Diálogo informal', faseCls:'fase-dialogo', dt:'10-09-2024', sancao:'Sem sanção em curso',
-    detalhe:'Diálogo informal · sem procedimento formal aberto · risco baixo de escalar.',
-    pipeline:[{nm:'Pub. JOUE',dt:'12-11-2018',cls:'done'},{nm:'Ficha DGDEI',dt:'2018',cls:'done'},{nm:'Prazo excedido',dt:'03-12-2020',cls:'done'},{nm:'Diálogo CE',dt:'10-09-2024',cls:'cur'},{nm:'Notif. formal',dt:'—',cls:''},{nm:'Acção TJUE',dt:'—',cls:''},],
-    pieces:[],
+  // ---- Categoria IX · Reenvio prejudicial · tribunal de outro EM (observações) ----
+  { id:'C-530/24', cat:'IX', participacao:'observacoes', tribunal:'TJUE', celex:'—', mat:'Tipico · reenvio do Bundesgerichtshof (Alemanha) · livre prestação de serviços', fase:'aguarda', faseLabel:'Aguarda acórdão', faseCls:'fase-aguarda', dt:'11-12-2025', sancao:'Sem sanção a PT',
+    detalhe:'Pedido de decisão prejudicial do Supremo Tribunal Federal alemão sobre o âmbito da liberdade de prestação de serviços. Portugal apresentou observações (interesse na matéria de jogo). Audiência de alegações em 24-09-2025.',
+    pipeline:[
+      {nm:'Reenvio',dt:'20-09-2024',cls:'done'},{nm:'Observações PT',dt:'18-11-2024',cls:'done'},
+      {nm:'Fase escrita',dt:'03-03-2025',cls:'done'},{nm:'Audiência',dt:'24-09-2025',cls:'done'},
+      {nm:'Conclusões AG',dt:'11-12-2025',cls:'cur'},{nm:'Acórdão',dt:'—',cls:''},
+    ],
+    pieces:[{dt:'18-11-2024',ti:'Observações de Portugal',cls:'publico',hash:'0x2d7c...b914'}],
     audit:[],
-    cost:[{lb:'Sem custo monetário neste momento',vl:'—',total:false}],
-    minister:'Min. Finanças',
+    cost:[{lb:'Reenvio prejudicial · sem risco financeiro para PT',vl:'—',total:false}],
+    minister:'SCML', tecnico:'LM',
+  },
+  // ---- Categoria VI · Recurso de anulação · Tribunal Geral (recorrente) ----
+  { id:'T-412/25', cat:'VI', participacao:'recorrente', tribunal:'TG', celex:'32024R1689', mat:'Portugal/Comissão · recurso de anulação de acto de execução (AI Act)', fase:'recurso', faseLabel:'Fase escrita', faseCls:'fase-recurso', dt:'15-04-2026', sancao:'Sem sanção a PT',
+    detalhe:'Recurso de anulação interposto por Portugal contra acto de execução da Comissão no âmbito do AI Act, por alegada extravasão de competências. Portugal é recorrente.',
+    pipeline:[
+      {nm:'Petição',dt:'10-02-2026',cls:'done'},{nm:'Contestação CE',dt:'15-04-2026',cls:'cur'},
+      {nm:'Réplica',dt:'—',cls:''},{nm:'Tréplica',dt:'—',cls:''},
+      {nm:'Audiência',dt:'—',cls:''},{nm:'Acórdão',dt:'—',cls:''},
+    ],
+    pieces:[{dt:'10-02-2026',ti:'Petição inicial',cls:'publico',hash:'0x8f12...3e7d'}],
+    audit:[],
+    cost:[{lb:'Recurso próprio · sem risco financeiro',vl:'—',total:false}],
+    minister:'MECI · ANI', tecnico:'CA',
+  },
+  // ---- Categoria V · Recurso de anulação TJUE · intervenção ----
+  { id:'C-389/25', cat:'V', participacao:'interveniente', tribunal:'TJUE', celex:'32023R2854', mat:'Intervenção de PT em recurso de anulação (Data Act) movido por outro EM', fase:'recurso', faseLabel:'Intervenção admitida', faseCls:'fase-recurso', dt:'20-03-2026', sancao:'Sem sanção a PT',
+    detalhe:'Portugal intervém ao lado da Comissão em recurso de anulação interposto por outro Estado-Membro contra disposições do Data Act. Intervenção admitida em 20-03-2026.',
+    pipeline:[
+      {nm:'Recurso',dt:'10-01-2026',cls:'done'},{nm:'Pedido interv.',dt:'05-02-2026',cls:'done'},
+      {nm:'Interv. admitida',dt:'20-03-2026',cls:'cur'},{nm:'Alegações interv.',dt:'—',cls:''},
+      {nm:'Audiência',dt:'—',cls:''},{nm:'Acórdão',dt:'—',cls:''},
+    ],
+    pieces:[{dt:'05-02-2026',ti:'Pedido de intervenção',cls:'publico',hash:'0x4a9d...c1e8'}],
+    audit:[],
+    cost:[{lb:'Intervenção · sem risco financeiro',vl:'—',total:false}],
+    minister:'MARE · AMA', tecnico:'CA',
   },
 ];
 
 const totalRiskAcum = 12771250;
 const totalRiskPotencial = 100000000;
+
+// Contagem por categoria (só processos judiciais)
+const catCounts = {};
+CASES.forEach(c => { catCounts[c.cat] = (catCounts[c.cat]||0)+1; });
+const catsPresentes = Object.keys(CATEGORIAS).filter(k => catCounts[k]);
+const nIncumprimento = CASES.filter(c => c.cat==='I' || c.cat==='II').length;
 
 document.getElementById('content').innerHTML = `
   <div class="classified-banner">
@@ -282,9 +428,9 @@ document.getElementById('content').innerHTML = `
   </div>
 
   <div class="hero">
-    <div class="hero-eye">M04 · CONTENCIOSO · DGDEI · TJUE</div>
-    <h1 class="hero-h1">5 processos activos · €12,77M de sanções já pagas/em vigor</h1>
-    <p class="hero-sub">Pipeline de 6 fases para gestão dos processos perante o TJUE: Publicação JOUE → Ficha DGDEI → Prazo excedido → Pré-contencioso → Acção TJUE → Acórdão. Apenas DGDEI e Admin têm acesso. Cada visualização gera entrada em audit_log imutável.</p>
+    <div class="hero-eye">M06 · CONTENCIOSO · DGDEI / DUE · TJUE e Tribunal Geral</div>
+    <h1 class="hero-h1">${CASES.length} processos judiciais · ${INFRACOES.length} procedimentos de infração · €12,77M em sanções em vigor</h1>
+    <p class="hero-sub">Taxonomia real da DGDEI · ${catsPresentes.length} das 9 categorias de contencioso TJUE representadas. A fase administrativa (procedimentos de infração CE: NI → PF → TJUE) é distinta da fase judicial. Apenas o perfil DGDEI acede. Cada visualização gera entrada em audit_log imutável.</p>
   </div>
 
   <div class="risk-dash">
@@ -294,88 +440,276 @@ document.getElementById('content').innerHTML = `
       <div class="risk-card-dt">€41 250/dia · C-217/24</div>
     </div>
     <div class="risk-card">
-      <div class="risk-card-lb">Risco potencial</div>
-      <div class="risk-card-vl">&gt;€100M</div>
-      <div class="risk-card-dt">Acumulado se incumprimento</div>
+      <div class="risk-card-lb">Incumprimento (cat. I/II)</div>
+      <div class="risk-card-vl">${nIncumprimento}</div>
+      <div class="risk-card-dt">com risco financeiro para PT</div>
     </div>
     <div class="risk-card">
-      <div class="risk-card-lb">Casos activos</div>
-      <div class="risk-card-vl">5</div>
-      <div class="risk-card-dt">1 acórdão · 1 parecer · 2 notif. · 1 diálogo</div>
+      <div class="risk-card-lb">Reenvios / intervenções</div>
+      <div class="risk-card-vl">${CASES.length - nIncumprimento}</div>
+      <div class="risk-card-dt">sem risco de sanção a PT</div>
     </div>
     <div class="risk-card">
-      <div class="risk-card-lb">Acessos esta semana</div>
-      <div class="risk-card-vl">23</div>
-      <div class="risk-card-dt">DGDEI · 0 negados</div>
+      <div class="risk-card-lb">Infrações ativas (CE)</div>
+      <div class="risk-card-vl">${INFRACOES.filter(i=>i.fase!=='arquivado'&&i.fase!=='aguarda_arquivamento').length}</div>
+      <div class="risk-card-dt">${INFRACOES.filter(i=>i.motivo==='falta_transposicao').length} transposição · ${INFRACOES.filter(i=>i.motivo==='ma_aplicacao').length} aplicação</div>
     </div>
   </div>
 
-  <div class="cases">
-    ${CASES.map((c, i) => `
-      <div class="case ${i === 0 ? 'open' : ''}" data-i="${i}">
-        <div class="case-h" onclick="this.parentElement.classList.toggle('open')">
-          <div class="case-status ${c.fase}"></div>
-          <div class="case-bd">
-            <div class="case-celex">${c.id} · CELEX ${c.celex}</div>
-            <div class="case-ti">${c.mat}</div>
-            <div class="case-meta">${c.minister}</div>
-          </div>
-          <div class="case-rt">
-            <span class="case-fase-pill ${c.faseCls}">${c.faseLabel}</span>
-            <span class="case-sancao">${c.sancao}</span>
-            <span style="font-size:0.66rem;color:var(--ink-3);font-family:var(--font-mono)">${c.dt}</span>
-          </div>
-          <svg class="case-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-        <div class="case-body">
-          <div style="font-size:0.84rem;color:var(--ink-2);line-height:1.55;padding-top:1rem">${c.detalhe}</div>
+  <div class="cont-toolbar">
+    <button class="tab-btn cur" id="tab-cont" onclick="switchTab('cont')">Contencioso judicial · ${CASES.length}</button>
+    <button class="tab-btn" id="tab-infr" onclick="switchTab('infr')">Procedimentos de infração · ${INFRACOES.length}</button>
+    <button class="report-btn" onclick="openReport()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Gerar relatório SEAE
+    </button>
+  </div>
 
-          <div class="section-h">Pipeline de 6 fases</div>
-          <div class="pipeline">
-            ${c.pipeline.map((p, j) => `
-              <div class="phase ${p.cls}">
-                <div class="phase-n">FASE ${j+1}</div>
-                <div class="phase-nm">${p.nm}</div>
-                <div class="phase-dt">${p.dt}</div>
-              </div>
-            `).join('')}
-          </div>
+  <div id="cat-bar-wrap"></div>
+  <div id="cont-list"></div>
 
-          <div class="section-h">Peças processuais (apenas metadados)</div>
-          ${c.pieces.length > 0 ? `<div class="pieces">${c.pieces.map(p => `
-            <div class="piece">
-              <div class="piece-dt">${p.dt}</div>
-              <div class="piece-ti">${p.ti}</div>
-              <div class="piece-cls cls-${p.cls}">${p.cls}</div>
-              <div class="piece-hash">${p.hash}</div>
-              <a href="#" class="piece-link" onclick="event.preventDefault(); openExternal('${c.id}','${p.ti}')" title="Abrir nos sistemas DGDEI">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-          `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem peças registadas no VIGIL.</div>'}
-
-          <div class="section-h">Cálculo de risco financeiro</div>
-          ${c.cost.map(co => `<div class="cost-row ${co.total ? 'total' : ''}"><span>${co.lb}</span><span style="text-align:right;font-family:var(--font-mono)">${co.vl}</span></div>`).join('')}
-
-          <div class="section-h">Auditoria · acessos recentes</div>
-          ${c.audit.length > 0 ? `<div class="audit">${c.audit.map(a => `
-            <div class="audit-it">
-              <span class="audit-ts">${a.ts}</span>
-              <span class="audit-actor">${a.actor}</span>
-              <span class="audit-action">→ ${a.action}</span>
-            </div>
-          `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem acessos registados no período.</div>'}
-
-          <div style="margin-top:1.2rem;display:flex;gap:0.55rem;flex-wrap:wrap">
-            <button onclick="alert('Acção registada em audit_log: notify_dgdei')" style="padding:0.5rem 1rem;background:var(--red);color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:0.78rem;font-weight:600;cursor:pointer">Notificar DGDEI</button>
-            <button onclick="alert('Briefing PDF gerado · classificado Reservado')" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;cursor:pointer">Exportar briefing (Reservado)</button>
-            <a href="RADAR.html" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem">← Ver no RADAR</a>
-          </div>
-        </div>
+  <!-- Modal de relatório SEAE -->
+  <div class="modal-backdrop" id="report-backdrop">
+    <div class="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-title">
+      <div class="report-hd">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h2 id="report-title">Ponto de Situação da Aplicação do Direito da União</h2>
+        <button class="x" onclick="closeReport()" aria-label="Fechar">×</button>
       </div>
-    `).join('')}
+      <div class="report-controls">
+        <label for="report-min">Ministério:</label>
+        <select id="report-min" onchange="generateReport()"></select>
+        <span style="font-size:0.72rem;color:var(--ink-3)">Gerado automaticamente a partir dos dados do VIGIL · substitui o preenchimento manual da DUE/DGDEI</span>
+      </div>
+      <div class="report-body"><div class="report-doc" id="report-doc"></div></div>
+      <div class="report-foot">
+        <button onclick="closeReport()">Fechar</button>
+        <button class="primary" onclick="alert('Relatório exportado (mock) · PDF + Word · registado em audit_log')">Exportar PDF / Word</button>
+      </div>
+    </div>
   </div>
 `;
+
+let curTab = 'cont';
+let curCat = 'todas';
+
+function caseCardHTML(c, open) {
+  const cat = CATEGORIAS[c.cat] || {};
+  return `
+    <div class="case ${open ? 'open' : ''}">
+      <div class="case-h" onclick="this.parentElement.classList.toggle('open')">
+        <div class="case-status ${c.fase}"></div>
+        <div class="case-bd">
+          <div class="case-celex">${c.id}${c.celex && c.celex!=='—' ? ' · CELEX '+c.celex : ''} · ${c.tribunal}</div>
+          <div class="case-ti">${c.mat}</div>
+          <div class="case-meta">${c.minister} · técnico ${c.tecnico}</div>
+        </div>
+        <div class="case-rt">
+          <span class="part-pill part-${c.participacao}">${PART_LABEL[c.participacao]||c.participacao}</span>
+          <span class="case-fase-pill ${c.faseCls}">${c.faseLabel}</span>
+          <span style="font-size:0.66rem;color:var(--ink-3);font-family:var(--font-mono)">${c.dt}</span>
+        </div>
+        <svg class="case-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="case-body">
+        <div style="font-size:0.84rem;color:var(--ink-2);line-height:1.55;padding-top:1rem">${c.detalhe}</div>
+
+        <div class="section-h">Tramitação · atos processuais</div>
+        <div class="pipeline">
+          ${c.pipeline.map((p, j) => `
+            <div class="phase ${p.cls}">
+              <div class="phase-n">${p.nm ? '' : ''}${j+1}</div>
+              <div class="phase-nm">${p.nm}</div>
+              <div class="phase-dt">${p.dt}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section-h">Peças processuais (apenas metadados)</div>
+        ${c.pieces.length > 0 ? `<div class="pieces">${c.pieces.map(p => `
+          <div class="piece">
+            <div class="piece-dt">${p.dt}</div>
+            <div class="piece-ti">${p.ti}</div>
+            <div class="piece-cls cls-${p.cls}">${p.cls}</div>
+            <div class="piece-hash">${p.hash}</div>
+            <a href="#" class="piece-link" onclick="event.preventDefault(); openExternal('${c.id}','${p.ti}')" title="Abrir nos sistemas DGDEI">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem peças registadas no VIGIL.</div>'}
+
+        <div class="section-h">Cálculo de risco financeiro</div>
+        ${c.cost.map(co => `<div class="cost-row ${co.total ? 'total' : ''}"><span>${co.lb}</span><span style="text-align:right;font-family:var(--font-mono)">${co.vl}</span></div>`).join('')}
+
+        <div class="section-h">Auditoria · acessos recentes</div>
+        ${c.audit.length > 0 ? `<div class="audit">${c.audit.map(a => `
+          <div class="audit-it">
+            <span class="audit-ts">${a.ts}</span>
+            <span class="audit-actor">${a.actor}</span>
+            <span class="audit-action">→ ${a.action}</span>
+          </div>
+        `).join('')}</div>` : '<div style="padding:0.7rem;color:var(--ink-4);font-style:italic;font-size:0.78rem">Sem acessos registados no período.</div>'}
+
+        <div style="margin-top:1.2rem;display:flex;gap:0.55rem;flex-wrap:wrap">
+          <button onclick="alert('Acção registada em audit_log: notify_dgdei')" style="padding:0.5rem 1rem;background:var(--red);color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:0.78rem;font-weight:600;cursor:pointer">Notificar DGDEI</button>
+          <button onclick="alert('Briefing PDF gerado · classificado Reservado')" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;cursor:pointer">Exportar briefing (Reservado)</button>
+          <a href="RADAR.html" style="padding:0.5rem 1rem;background:var(--bg2);color:var(--ink-2);border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:0.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem">← Ver no RADAR</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+function infracaoCardHTML(inf, open) {
+  const motivoLabel = inf.motivo === 'falta_transposicao' ? 'Falta de transposição' : 'Má aplicação do Direito da União';
+  return `
+    <div class="case ${open ? 'open' : ''}">
+      <div class="case-h" onclick="this.parentElement.classList.toggle('open')">
+        <div class="case-status ${inf.fase}"></div>
+        <div class="case-bd">
+          <div class="case-celex">${inf.ref} · CELEX ${inf.celex}</div>
+          <div class="case-ti">${inf.mat}</div>
+          <div class="case-meta">${inf.ministerios.join(' · ')} · técnico ${inf.tecnico} · ${motivoLabel}</div>
+        </div>
+        <div class="case-rt">
+          <span class="case-fase-pill ${inf.faseCls}">${inf.faseLabel}</span>
+          <span style="font-size:0.66rem;color:var(--ink-3);font-family:var(--font-mono)">prazo ${inf.prazo || '—'}</span>
+        </div>
+        <svg class="case-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="case-body">
+        <div style="font-size:0.84rem;color:var(--ink-2);line-height:1.55;padding-top:1rem">${inf.sintese}</div>
+        <div class="section-h">Fase administrativa CE</div>
+        <div class="pipeline" style="grid-template-columns:repeat(4,1fr)">
+          <div class="phase ${inf.dataNI?'done':''}"><div class="phase-n">NI</div><div class="phase-nm">Notif. p/ Cumprir</div><div class="phase-dt">${inf.dataNI||'—'}</div></div>
+          <div class="phase ${inf.dataPF?(inf.fase==='parecer_fundamentado'?'cur':'done'):''}"><div class="phase-n">PF</div><div class="phase-nm">Parecer Fund.</div><div class="phase-dt">${inf.dataPF||'—'}</div></div>
+          <div class="phase ${inf.fase==='recurso_tjue'?'cur':''}"><div class="phase-n">TJUE</div><div class="phase-nm">Ação no tribunal</div><div class="phase-dt">—</div></div>
+          <div class="phase ${inf.fase==='aguarda_arquivamento'||inf.fase==='arquivado'?'cur':''}"><div class="phase-n">ARQ</div><div class="phase-nm">Arquivamento</div><div class="phase-dt">—</div></div>
+        </div>
+        <div class="section-h">Ponto de situação</div>
+        <div class="cost-row"><span>Situação no circuito legislativo</span><span style="text-align:right">${inf.pontoSit}</span></div>
+        <div class="cost-row"><span>Scoreboard CE</span><span style="text-align:right">${inf.scoreboard}</span></div>
+        <div class="cost-row"><span>Síntese da resposta de PT</span><span style="text-align:right">${inf.sintese}</span></div>
+        <div class="cost-row total"><span>Risco financeiro</span><span style="text-align:right;font-family:var(--font-mono)">${inf.risco}</span></div>
+      </div>
+    </div>`;
+}
+
+function renderCatBar() {
+  if (curTab !== 'cont') { document.getElementById('cat-bar-wrap').innerHTML = ''; return; }
+  const chips = ['todas', ...catsPresentes].map(k => {
+    if (k === 'todas') {
+      return `<button class="cat-chip ${curCat==='todas'?'cur':''}" onclick="setCat('todas')">Todas <span class="n">${CASES.length}</span></button>`;
+    }
+    const cat = CATEGORIAS[k];
+    return `<button class="cat-chip ${curCat===k?'cur':''}" onclick="setCat('${k}')" title="${cat.nome}">${cat.roman} · ${cat.nome.length>34?cat.nome.slice(0,32)+'…':cat.nome} <span class="n">${catCounts[k]}</span></button>`;
+  }).join('');
+  document.getElementById('cat-bar-wrap').innerHTML = `<div class="cat-bar">${chips}</div>`;
+}
+
+function renderList() {
+  const wrap = document.getElementById('cont-list');
+  if (curTab === 'infr') {
+    wrap.innerHTML = `<div class="cases">${INFRACOES.map((inf,i)=>infracaoCardHTML(inf, i===0)).join('')}</div>`;
+    return;
+  }
+  // Contencioso: agrupar por categoria (ou filtrar)
+  const cats = curCat === 'todas' ? catsPresentes : [curCat];
+  let html = '';
+  cats.forEach(k => {
+    const cat = CATEGORIAS[k];
+    const list = CASES.filter(c => c.cat === k);
+    if (!list.length) return;
+    html += `<div class="cat-section"><span class="roman">${cat.roman}</span> ${cat.nome} <span class="cnt">${list.length} processo${list.length>1?'s':''}</span></div>`;
+    html += `<div class="cases">${list.map((c,i)=>caseCardHTML(c, curCat!=='todas' && i===0)).join('')}</div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+function switchTab(t) {
+  curTab = t;
+  document.getElementById('tab-cont').classList.toggle('cur', t==='cont');
+  document.getElementById('tab-infr').classList.toggle('cur', t==='infr');
+  renderCatBar();
+  renderList();
+}
+function setCat(k) { curCat = k; renderCatBar(); renderList(); }
+
+// ===== Relatório SEAE =====
+function listaMinisterios() {
+  const set = new Set();
+  CASES.forEach(c => (c.minister.split('·')[0].trim()).split('/').forEach(m => set.add(m.trim())));
+  INFRACOES.forEach(i => i.ministerios.forEach(m => set.add(m)));
+  // normalizar siglas conhecidas
+  return [...set].filter(Boolean).sort();
+}
+function openReport() {
+  const sel = document.getElementById('report-min');
+  const mins = ['MAEN','MARE','MECT','MF','MTSSS','MECI','MIH','MS','MJ','MAI','MNE','MAM'];
+  sel.innerHTML = mins.map(m => `<option value="${m}">${m}</option>`).join('');
+  sel.value = 'MAEN';
+  generateReport();
+  document.getElementById('report-backdrop').classList.add('on');
+}
+function closeReport() { document.getElementById('report-backdrop').classList.remove('on'); }
+
+function generateReport() {
+  const min = document.getElementById('report-min').value;
+  const matchMin = (s) => (s||'').toUpperCase().includes(min);
+  // Infrações deste ministério
+  const infrMin = INFRACOES.filter(i => i.ministerios.includes(min));
+  const infrTransp = infrMin.filter(i => i.motivo==='falta_transposicao' && i.fase!=='aguarda_arquivamento' && i.fase!=='arquivado');
+  const infrAplic  = infrMin.filter(i => i.motivo==='ma_aplicacao' && i.fase!=='aguarda_arquivamento' && i.fase!=='arquivado');
+  const infrArq    = infrMin.filter(i => i.fase==='aguarda_arquivamento' || i.fase==='arquivado');
+  // Contencioso judicial deste ministério
+  const contMin = CASES.filter(c => matchMin(c.minister));
+  const hoje = new Date('2026-05-29').toLocaleDateString('pt-PT');
+
+  const rowsInfr = (arr) => arr.length ? arr.map(i => `
+    <div class="rd-row"><div class="rd-ref">${i.ref}</div><div>${i.mat}<br><span style="color:var(--ink-3);font-size:0.74rem">NI ${i.dataNI||'—'}${i.dataPF?' · PF '+i.dataPF:''} · ${i.pontoSit}${i.scoreboard&&i.scoreboard!=='—'?' · '+i.scoreboard:''}</span></div></div>`).join('')
+    : '<div class="rd-empty" style="padding:0.4rem 0">Nenhum.</div>';
+
+  const rowsCont = contMin.length ? contMin.map(c => {
+    const cat = CATEGORIAS[c.cat]||{};
+    return `<div class="rd-row"><div class="rd-ref">${c.id}</div><div>${c.mat}<br><span style="color:var(--ink-3);font-size:0.74rem">Cat. ${cat.roman} · ${PART_LABEL[c.participacao]} · ${c.faseLabel} (${c.dt})</span></div></div>`;
+  }).join('') : '<div class="rd-empty" style="padding:0.4rem 0">Nenhum processo judicial em curso.</div>';
+
+  document.getElementById('report-doc').innerHTML = `
+    <div style="text-align:center;margin-bottom:1rem">
+      <div style="font-weight:700">MINISTÉRIO DOS NEGÓCIOS ESTRANGEIROS</div>
+      <div style="font-size:0.78rem;color:var(--ink-3)">Direção-Geral de Direito Europeu e Internacional · DUE</div>
+    </div>
+    <h3>${min} — Ponto de Situação da Aplicação do Direito da União</h3>
+    <div class="rd-meta">Gerado pelo VIGIL · ${hoje} · para reporte à SEAE</div>
+
+    <h3>Procedimentos de Infração <span class="rd-count">${infrTransp.length + infrAplic.length} ativos</span></h3>
+    <h4>Por falta de transposição de Diretivas (${infrTransp.length})</h4>
+    ${rowsInfr(infrTransp)}
+    <h4>Por má aplicação do Direito da União (${infrAplic.length})</h4>
+    ${rowsInfr(infrAplic)}
+    ${infrArq.length ? `<h4>A aguardar arquivamento (${infrArq.length})</h4>${rowsInfr(infrArq)}` : ''}
+
+    <h3>Contencioso <span class="rd-count">${contMin.length}</span></h3>
+    ${rowsCont}
+
+    <h3>Diretivas por transpor</h3>
+    <div class="rd-empty" style="padding:0.4rem 0">Dados obtidos automaticamente do módulo RADAR (FICHAS com prazo a correr / ultrapassado sem INFR). Integração em Sprint 7.</div>
+
+    <h3>Regulamentos — pedidos informais ativos da CE</h3>
+    <div class="rd-empty" style="padding:0.4rem 0">Sem pedidos informais registados para este ministério.</div>
+
+    <div style="margin-top:1.4rem;padding-top:0.8rem;border-top:1px dashed var(--line-2);font-size:0.72rem;color:var(--ink-4);font-style:italic">
+      Este documento é gerado automaticamente a partir dos dados detidos pela plataforma. Substitui o preenchimento manual hoje feito pela DUE/DGDEI para reporte periódico à SEAE. Em produção, exportável em PDF e Word com um clique.
+    </div>`;
+}
+
+// Expor ao escopo global (onclick inline) — robusto independentemente de Annex B
+window.switchTab = switchTab;
+window.setCat = setCat;
+window.openReport = openReport;
+window.closeReport = closeReport;
+window.generateReport = generateReport;
+
+switchTab('cont');
 
 }
 
